@@ -1,0 +1,301 @@
+<form [formGroup]="updateForm">
+<table class="mat-elevation-z8 demo-table">
+
+
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Actors *</label>
+
+      <div class="error" *ngIf="updateForm.get('actors')?.hasError('required') && submitted">Errore Inserire correttamente Actors!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="actors">Actors</mat-label>
+        <input matInput #actors  id="actors" name="actors" type="text" placeholder="Actors.." formControlName="actors">
+      </mat-form-field>
+    </td>
+
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">Director *</label>
+      <div class="error" *ngIf="updateForm.get('director')?.hasError('required') && submitted">Errore Inserire correttamente Director!</div>
+    </td>
+      <td class="tabTd">
+        <mat-form-field appearance="fill">
+          <mat-label for="director">Director</mat-label>
+          <input matInput #director  id="director" name="director" type="text" placeholder="Director.." formControlName="director">
+        </mat-form-field>
+      </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">Genere *</label>
+      <div class="error" *ngIf="updateForm.get('genre')?.hasError('required') && submitted">Errore Inserire correttamente Genere!</div>
+    </td>
+      <td class="tabTd">
+        <mat-form-field appearance="fill">
+          <mat-label for="genre">Genere</mat-label>
+          <input matInput #genre id="genre" name="genre" type="text" placeholder="Genere.." formControlName="genre">
+        </mat-form-field>
+    </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Plot *</label>
+      <div class="error" *ngIf="updateForm.get('plot')?.hasError('required') && submitted">Errore Inserire correttamente Plot!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="plot">Plot</mat-label>
+          <textarea matInput #plot id="plot" name="plot" placeholder="Plot.." formControlName="plot"></textarea>
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">Awards *</label>
+      <div class="error" *ngIf="updateForm.get('awards')?.hasError('required') && submitted">Errore Inserire correttamente Awards!</div>
+    </td>
+      <td class="tabTd">
+        <mat-form-field appearance="fill">
+          <mat-label for="awards">Awards</mat-label>
+          <input matInput #awards id="awards" name="awards" type="text" placeholder="Awards.." formControlName="awards">
+        </mat-form-field>
+    </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">BoxOffice *</label>
+      <div class="error" *ngIf="updateForm.get('boxOffice')?.hasError('required') && submitted">Errore Inserire correttamente BoxOffice!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="boxoffice">Box Office</mat-label>
+        <input matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">Country *</label>
+      <div class="error" *ngIf="updateForm.get('country')?.hasError('required') && submitted">Errore Inserire correttamente Country!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="country">Country</mat-label>
+        <input matInput #country id="country" name="country" type="text" placeholder="Country.." formControlName="country">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">DVD *</label>
+      <div class="error" *ngIf="updateForm.get('dvd')?.hasError('required') && submitted">Errore Inserire correttamente DVD!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="dvd">DVD</mat-label>
+        <input matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
+      </mat-form-field>
+  </td>
+</tr>
+
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Imdbrating *</label>
+      <div class="error" *ngIf="updateForm.get('imdbrating')?.hasError('required') && submitted">Errore Inserire correttamente Imdbrating!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="imdbrating">Rating</mat-label>
+        <input matInput #imdbrating id="imdbrating" name="imdbrating" type="number" min="0" max="100" value="0" formControlName="imdbrating">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Imdbvotes *</label>
+      <div class="error" *ngIf="updateForm.get('imdbvotes')?.hasError('required') && submitted">Errore Inserire correttamente Imdbvotes!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="imdbvotes">Imdbvotes</mat-label>
+        <input matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="Imdbvotes.." formControlName="imdbvotes">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Language *</label>
+      <div class="error" *ngIf="updateForm.get('language')?.hasError('required') && submitted">Errore Inserire correttamente Language!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="language">Language</mat-label>
+        <input matInput #language id="language" name="language" type="text" placeholder="Language.." formControlName="language">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label   title="Campo Obbligatorio">Metascore *</label>
+      <div class="error" *ngIf="updateForm.get('metascore')?.hasError('required') && submitted">Errore Inserire correttamente Metascore!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="metascore">Metascore</mat-label>
+        <input matInput #metascore id="metascore" name="metascore" type="text"placeholder="Metascore.." formControlName="metascore">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Poster *</label>
+      <div class="error" *ngIf="updateForm.get('poster')?.hasError('required') && submitted">Errore Inserire correttamente Poster!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="poster">Poster</mat-label>
+        <input matInput #poster id="poster" name="poster" type="text"placeholder="Poster.." formControlName="poster">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Production *</label>
+      <div class="error" *ngIf="updateForm.get('production')?.hasError('required') && submitted">Errore Inserire correttamente Production!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="production">Production</mat-label>
+        <input matInput #production id="production" name="production" type="text" placeholder="Production.." formControlName="production">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Rated *</label>
+      <div class="error" *ngIf="updateForm.get('rated')?.hasError('required') && submitted">Errore Inserire correttamente Rated!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="rated">Rated</mat-label>
+        <input matInput #rated id="rated" name="rated" type="text" placeholder="Rated.." formControlName="rated">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Released *</label>
+      <div class="error" *ngIf="updateForm.get('released')?.hasError('required') && submitted">Errore Inserire correttamente Released!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="released">Released</mat-label>
+        <input matInput #released id="released" name="released" type="text" placeholder="Released.." formControlName="released">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+  <td class="tabTd"><label for="response" title="Campo Obbligatorio">Response *</label>
+    <div class="error" *ngIf="updateForm.get('response')?.hasError('required') && submitted">Errore Inserire correttamente Response!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field  appearance="fill">
+        <mat-label for="response">Response</mat-label>
+        <mat-select  formControlName="response">
+          <mat-option value="True">True</mat-option>
+          <mat-option value="False">False</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Runtime *</label>
+      <div class="error" *ngIf="updateForm.get('runtime')?.hasError('required') && submitted">Errore Inserire correttamente Runtime!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="runtime">Runtime</mat-label>
+        <input matInput #runtime id="runtime" name="runtime" type="text" placeholder="Runtime.." formControlName="runtime">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label>Total Seasons *</label></td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="totalseasons" >Total Seasons</mat-label>
+        <input matInput #totalseasons id="totalseasons" name="totalseasons" type="number" min="0" value="0" formControlName="totalseasons">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Type *</label>
+      <div class="error" *ngIf="updateForm.get('type')?.hasError('required')  && submitted">Errore Inserire correttamente Type!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="type">Type</mat-label>
+        <input matInput #type id="type" name="type" type="text" placeholder="Type.." formControlName="type">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Website *</label>
+      <div class="error" *ngIf="updateForm.get('website')?.hasError('required') && submitted">Errore Inserire correttamente Website!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="website">Website</mat-label>
+        <input matInput #website id="website" name="website" type="text" placeholder="Website.." formControlName="website">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+    <td class="tabTd"><label  title="Campo Obbligatorio">Writer *</label>
+      <div class="error" *ngIf="updateForm.get('writer')?.hasError('required') && submitted">Errore Inserire correttamente Writer!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="writer">Writer</mat-label>
+        <input matInput #writer id="writer" name="writer" type="text" placeholder="Writer.." formControlName="writer">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+  <td class="tabTd"><label  title="Campo Obbligatorio">Year *</label>
+    <div class="error" *ngIf="updateForm.get('year')?.hasError('required') && submitted">Errore Inserire correttamente Year!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="year">Year</mat-label>
+        <input matInput #year id="year" name="year" type="text" placeholder="Year.." formControlName="year">
+      </mat-form-field>
+  </td>
+</tr>
+
+<tr>
+  <td class="tabTh" colspan="2">
+    <div class="demo-button-container">
+      <button mat-raised-button color="primary" (click)="updateData()" class="demo-button">
+        Update data
+      </button>
+      <button type="button" mat-raised-button color="primary" (click)="exit()" class="demo-button">
+        Exit
+      </button>
+    </div>
+
+  </td>
+
+</tr>
+</table>
+</form>

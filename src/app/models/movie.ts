@@ -10,6 +10,7 @@ export interface Movie {
     writer:string,
     actors: string,
     plot: string,
+    boxoffice: string,
     language: string,
     country: string,
     awards: string,
