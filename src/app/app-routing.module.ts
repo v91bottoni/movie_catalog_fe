@@ -8,13 +8,14 @@ const routes: Routes = [
     path: "home",
     component: HomeComponent
   },
-  {
-    path: 'updateMovie',
-    component: UpdateMovieComponent,
-    /*canActivate: [],
-    data:{
-        expectedRoles: ['super_admin', 'admin']
-    },*/
+  /* PATH TEMPORANEA => TESTING COMPONENT*/  {path: 'updateMovie',     component: UpdateMovieComponent},
+{
+  path: 'updateMovie/:idMovie',
+  component: UpdateMovieComponent,
+  /*canActivate: [],
+  data:{
+      expectedRoles: ['super_admin', 'admin']
+  },*/
 },
 
 

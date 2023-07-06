@@ -12,11 +12,22 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { HttpClientModule } from '@angular/common/http';
+import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UpdateMovieComponent,
+    NavbarComponent,
+    DrowerButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +40,12 @@ import { UpdateMovieComponent } from './components/update-movie/update-movie.com
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatSidenavModule,
+    HttpClientModule,
 
   ],
   providers: [],
