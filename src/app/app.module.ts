@@ -10,9 +10,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { HomeComponent } from './components/home/home.component';
+import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    UpdateMovieComponent,
   ],
   imports: [
     BrowserModule,
