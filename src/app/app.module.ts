@@ -20,6 +20,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ErrorComponent } from './components/error/error.component';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { DrowerButtonComponent } from './components/drower-button/drower-button.
     UpdateMovieComponent,
     NavbarComponent,
     DrowerButtonComponent,
+    SearchResultComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,8 @@ import { DrowerButtonComponent } from './components/drower-button/drower-button.
     MatAutocompleteModule,
     MatSidenavModule,
     HttpClientModule,
-
+    MatProgressSpinnerModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

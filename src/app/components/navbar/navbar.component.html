@@ -8,7 +8,7 @@
     <mat-form-field  class="search" appearance="fill">
       <mat-label>Search </mat-label>
       <input  matInput #param [(ngModel)]="searchTerm" />
-       <button class="btn" matPrefix (click)="searchFilm(param.value, search)">
+       <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
         <mat-icon  matPrefix style="color: black;">search</mat-icon>
        </button>
     </mat-form-field>

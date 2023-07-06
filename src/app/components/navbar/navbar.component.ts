@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { SearchService } from 'src/app/service/search.service';
 
 
 @Component({
@@ -7,6 +8,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  constructor(private searchService : SearchService){
+
+  }
   @Output()drawerEvent = new EventEmitter<string>;
   searchTerm = '';
   searchIcon="search";
@@ -19,8 +23,9 @@ export class NavbarComponent implements OnInit {
     else this.searchIcon = "search";
   }
   searchFilm(param:string, elem:HTMLElement){
-    console.log(param);
     this.toggle(elem);
+    // posticipando, sottoscrivo in SearchResult prima di eseguire Subject.next() in nextParam().
+    setTimeout(()=>{this.searchService.nextParam(param); },0);
   }
   drawerEventFire(){
     this.drawerEvent.emit("DrawerToggleEvent");
