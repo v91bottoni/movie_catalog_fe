@@ -10,9 +10,19 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { HomeComponent } from './components/home/home.component';
+import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
+import { MatCardModule } from '@angular/material/card';
+import { LoginComponent } from './components/login/login.component'
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    UpdateMovieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +35,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-
+    MatCardModule,
+    HttpClientModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
