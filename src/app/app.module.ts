@@ -18,10 +18,11 @@ import { ErrorComponent } from './components/error/error.component';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import {MatCardModule} from '@angular/material/card';
@@ -32,6 +33,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ROUTES, provideRouter } from '@angular/router';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { ROUTES, provideRouter } from '@angular/router';
     DrowerButtonComponent,
     SearchResultComponent,
     ErrorComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,14 +69,17 @@ import { ROUTES, provideRouter } from '@angular/router';
     MatRippleModule,
     MatGridListModule,
     MatPaginatorModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
-    }
+    },
+    MatNativeDateModule,
   ],
   bootstrap: [AppComponent]
 })
