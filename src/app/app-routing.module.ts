@@ -12,7 +12,25 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: "",
+    component: LoginComponent
+  },
+  {
+    path: "*",
+    component: HomeComponent
+  },
+  {
     path: "home",
+    component: HomeComponent,
+    // children: [
+    //   {
+    //       path: 'page/:pag',
+    //       component: HomeComponent
+    //   }
+    // ]
+  },
+  {
+    path: "home/page/:pag",
     component: HomeComponent
   },
   /* PATH TEMPORANEA => TESTING COMPONENT*/  {path: 'updateMovie',     component: UpdateMovieComponent},
