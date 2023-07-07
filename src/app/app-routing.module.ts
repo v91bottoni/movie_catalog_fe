@@ -5,7 +5,7 @@ import { UpdateMovieComponent } from './components/update-movie/update-movie.com
 import { SearchResultComponent} from './components/search-result/search-result.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 const routes: Routes = [
   {
     path: "login",
@@ -44,7 +44,7 @@ const routes: Routes = [
 },
 {path: 'search', component: SearchResultComponent},
 {path: 'errorPage', component: ErrorComponent},
-
+{ path: 'movies/:id', component: MovieDetailsComponent },
 ];
 
 @NgModule({

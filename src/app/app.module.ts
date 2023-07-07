@@ -30,6 +30,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ROUTES, provideRouter } from '@angular/router';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ROUTES, provideRouter } from '@angular/router';
     DrowerButtonComponent,
     SearchResultComponent,
     ErrorComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,

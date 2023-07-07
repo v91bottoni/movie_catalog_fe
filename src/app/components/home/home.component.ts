@@ -74,7 +74,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-
+  openMovieDetails(movieId: string): void {
+    this.router.navigate(['/movies', movieId]);
+  }
   // onResize(event: UIEvent) {
   //   const target = event.target as Window;
   //   this.breakpoint = (target.innerWidth <= 400) ? 1 : 6;
