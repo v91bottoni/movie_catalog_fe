@@ -5,6 +5,16 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   {
     path: "home",
+    component: HomeComponent,
+    // children: [
+    //   {
+    //       path: 'page/:pag',
+    //       component: HomeComponent
+    //   }
+    // ]
+  },
+  {
+    path: "home/page/:pag",
     component: HomeComponent
   }
 ];
