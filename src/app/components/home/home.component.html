@@ -8,17 +8,16 @@
 </mat-button-toggle-group>
 
 </mat-grid-list>
-
+<mat-spinner class="loader" *ngIf="!response"></mat-spinner>
 <mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">
 <!-- <mat-grid-list [cols]="breakpoint" rowHeight="35%" (window:resize)="onResize($event)"> -->
-    
-    <mat-grid-tile *ngFor="let result of response.movieList">
 
-        <mat-card class="card" >
+
+        <mat-card *ngFor="let result of response.movieList" class="card" >
 
             <img mat-card-image [src]="result.poster" class="card-poster">
 
-            <mat-card-header> 
+            <mat-card-header>
                 <mat-card-title class="card-title">
                     <b> {{result.title}} </b>
                 </mat-card-title>
@@ -43,19 +42,18 @@
 
         </mat-card>
 
-    </mat-grid-tile>
 
-    <!-- <mat-paginator 
-    [length]="(response.maxPageNumber * 10)" 
+    <!-- <mat-paginator
+    [length]="(response.maxPageNumber * 10)"
     [pageSize]="10">
     </mat-paginator> -->
 
-    
+
 
 </mat-grid-list>
 
 <table mat-table [dataSource]="movies" *ngIf="response && !cardView">
-    
+
     <!-- Title Column -->
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
@@ -83,13 +81,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
+<section class="pageButton">
 <mat-button-toggle-group value="current" style="margin: 3%;">
     <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>
     <mat-button-toggle value="more-next" *ngIf="page-1>0" (click)="navigatePage(page-1)">«</mat-button-toggle>
     <mat-button-toggle value="more-previous" *ngIf="page-2>0" (click)="navigatePage(page-2)">{{page-2}}</mat-button-toggle>
     <mat-button-toggle value="previous" *ngIf="page-1>0" (click)="navigatePage(page-1)">{{page-1}}</mat-button-toggle>
-    
+
     <mat-button-toggle value="current" disabled="true">{{page}}</mat-button-toggle>
 
     <mat-button-toggle value="next" *ngIf="page+1<=maxPage" (click)="navigatePage(page+1)">{{page+1}}</mat-button-toggle>
@@ -97,4 +95,4 @@
     <mat-button-toggle value="more-next" *ngIf="page+1<=maxPage" (click)="navigatePage(page+1)">»</mat-button-toggle>
     <mat-button-toggle value="more-next" *ngIf="page+1>maxPage" disabled="true">»</mat-button-toggle>
 </mat-button-toggle-group>
-
+</section>

@@ -2,6 +2,7 @@
   flex: 1 1 auto;
 }
 .search{
+  z-index: 2;
   position: absolute;
   transform: translate(-100%, -15%);
   width: 60vw;
