@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { response } from 'src/app/models/response';
 import { MovieService } from 'src/app/service/movie.service';
-
+import { Router } from '@angular/router'; 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,8 +18,11 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
   
   
+  openMovieDetails(movieId: string): void {
+    this.router.navigate(['/movies', movieId]);
+  }
 
 }
