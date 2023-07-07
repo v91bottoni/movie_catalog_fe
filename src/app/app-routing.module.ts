@@ -50,6 +50,8 @@ const routes: Routes = [
 },
 {path: 'search', component: SearchResultComponent},
 {path: 'errorPage', component: ErrorComponent},
+{path: 'noContent', component: ErrorComponent},
+{path: 'searchError', component: ErrorComponent},
 { path: 'movies/:id', component: MovieDetailsComponent },
 ];
 

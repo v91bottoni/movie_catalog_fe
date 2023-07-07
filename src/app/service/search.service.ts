@@ -8,8 +8,10 @@ const search$ :Subject<string> = new Subject<string>();
   providedIn: 'root'
 })
 export class SearchService {
+  oldSearch:string=" ";
   constructor() { }
   nextParam(param:string){
+    this.oldSearch = param;
     search$.next(param);
   }
 

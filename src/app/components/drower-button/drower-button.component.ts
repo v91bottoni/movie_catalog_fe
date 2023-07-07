@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-drower-button',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./drower-button.component.css']
 })
 export class DrowerButtonComponent {
+  @Output()drawerEvent = new EventEmitter<string>;
+
+
+  logOut(){
+    sessionStorage.clear();
+    this.drawerEventFire();
+  }
+
+  drawerEventFire(){
+    this.drawerEvent.emit("DrawerToggleEvent");
+  }
 
 }

@@ -13,13 +13,14 @@ import { MovieService } from 'src/app/service/movie.service';
 export class UpdateMovieComponent {
   movie:Movie| null = null;
   submitted = false;
-  updateForm: FormGroup = this.formbuilder.group({    actors :[],    awards :[],    boxoffice :[],    country:[],    director :[],    dvd :[],    genre :[],    imdbid :[],    imdbrating :[],    imdbvotes :[],    language :[],    metascore :[],    plot :[],    poster :[],    production :[],    rated :[],    released :[],    response :[],    runtime :[],    title :[],    totalseasons:[],    type :[],    website :[],    writer :[],    year :[]  });
+  updateForm: FormGroup = this.formbuilder.group({    actors :['', Validators.required],    awards :['', Validators.required],    boxoffice :['', Validators.required],    country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],    genre :['', Validators.required],    imdbid :['', Validators.required],    imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    language :['', Validators.required],    metascore :['', Validators.required],    plot :['', Validators.required],    poster :['', Validators.required],    production :['', Validators.required],    rated :['', Validators.required],    released :['', Validators.required],    response :['', Validators.required],    runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],    website :['', Validators.required],    writer :['', Validators.required],    year :['', Validators.required]  });
 
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
     private route :Router, private activatedRoute:ActivatedRoute,){
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
 this.service.getMovieById(idMovie).subscribe(resp =>{
   this.movie = resp;
+  console.log(this.movie);
   this.updateForm = this.formbuilder.group({
     actors : [this.movie?.actors,{validators:[Validators.required],updateOn:"change"}],
     awards : [this.movie?.awards,{validators:[Validators.required],updateOn:"change"}],
@@ -36,7 +37,7 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
     poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
     production : [this.movie?.production,{validators:[Validators.required],updateOn:"change"}],
     rated : [this.movie?.rated,{validators:[Validators.required],updateOn:"change"}],
-    released : [this.movie?.release,{validators:[Validators.required],updateOn:"change"}],
+    released : [this.movie?.released,{validators:[Validators.required],updateOn:"change"}],
     response : [this.movie?.response?'True':'False',{validators:[Validators.required],updateOn:"change"}],
     runtime : [this.movie?.runtime,{validators:[Validators.required],updateOn:"change"}],
     title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
@@ -57,9 +58,10 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             let movie :Movie = this.updateForm.value;
             movie.imdbid = this.movie?.imdbid+"";
             console.log(movie);
-            this.service.saveMovie(movie).subscribe(resp =>{
+            this.service.updateMovie(movie).subscribe(resp =>{
               if(resp != null){
-                console.log(movie);
+                alert("Update Successfull");
+                this.route.navigate(['movies/'+this.movie?.imdbid]);
               }
             });
           }
@@ -69,4 +71,6 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
           this.route.navigate(["home"]);
         }
 }
+
+
 

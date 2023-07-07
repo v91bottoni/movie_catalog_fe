@@ -20,4 +20,12 @@
 .btn:hover{
   transform:translate(-1px, -1px);
 }
+.home{
+  transition: 0.4s;
+  }
+.home:hover{
+  text-shadow: 0 0 5px white;
+  transform: scale(101%);
+  cursor: pointer;
+}
 

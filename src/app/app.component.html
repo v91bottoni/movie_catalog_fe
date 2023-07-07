@@ -2,7 +2,7 @@
 <app-navbar (drawerEvent)="drawer.toggle()"></app-navbar>
 <mat-drawer-container class="example-container" hasBackdrop="true">
   <mat-drawer #drawer mode="push">
-    <app-drower-button></app-drower-button>
+    <app-drower-button (drawerEvent)="drawer.toggle()"></app-drower-button>
   </mat-drawer>
   <router-outlet></router-outlet>
 </mat-drawer-container>
