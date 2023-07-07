@@ -5,7 +5,9 @@ import { UpdateMovieComponent } from './components/update-movie/update-movie.com
 import { SearchResultComponent} from './components/search-result/search-result.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+
 const routes: Routes = [
   {
     path: "login",
@@ -30,8 +32,12 @@ const routes: Routes = [
     // ]
   },
   {
-    path: "home/page/:pag",
+    path: "home/page/:pag",  /*PATH TEMPORANEO, NON VANNO I PARAMS CON I CHILDREN DI HOME*/
     component: HomeComponent
+  },
+  {
+    path: "userInfo",
+    component: UserInfoComponent
   },
   /* PATH TEMPORANEA => TESTING COMPONENT*/  {path: 'updateMovie',     component: UpdateMovieComponent},
 {
