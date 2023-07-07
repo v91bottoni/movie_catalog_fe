@@ -24,8 +24,8 @@ export class AuthService {
     return this.http.post<user>(this.authApiUrl + 'register', user);
   }
 
-  updateUser(user: user):Observable<user>{
-    return this.http.put<user>(this.authApiUrl + 'update', user);
+  updateUser(user: user):Observable<userres>{
+    return this.http.put<userres>(this.authApiUrl + 'update', user);
   }
 
   recoverPassword(email: string):Observable<string>{
