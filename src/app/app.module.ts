@@ -10,24 +10,26 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { LoginComponent } from './components/login/login.component'
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ErrorComponent } from './components/error/error.component';
+import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatRippleModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { HttpClientModule } from '@angular/common/http';
-import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
-import { SearchResultComponent } from './components/search-result/search-result.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { ErrorComponent } from './components/error/error.component';
-import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     HomeComponent,
     UpdateMovieComponent,
     NavbarComponent,
@@ -46,14 +48,16 @@ import {MatRippleModule} from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
+    HttpClientModule,
+    MatRippleModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatAutocompleteModule,
     MatSidenavModule,
-    HttpClientModule,
     MatProgressSpinnerModule,
     MatRippleModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

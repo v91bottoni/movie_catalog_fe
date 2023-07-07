@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
-import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SearchResultComponent} from './components/search-result/search-result.component';
 import { ErrorComponent } from './components/error/error.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+  {
+    path: "login",
+    component: LoginComponent
+  },
   {
     path: "home",
     component: HomeComponent
