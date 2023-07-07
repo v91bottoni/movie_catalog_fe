@@ -6,11 +6,20 @@ import { SearchResultComponent} from './components/search-result/search-result.c
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "",
+    component: LoginComponent
+  },
+  {
+    path: "*",
+    component: HomeComponent
   },
   {
     path: "home",
@@ -41,7 +50,7 @@ const routes: Routes = [
 },
 {path: 'search', component: SearchResultComponent},
 {path: 'errorPage', component: ErrorComponent},
-
+{ path: 'movies/:id', component: MovieDetailsComponent },
 ];
 
 @NgModule({

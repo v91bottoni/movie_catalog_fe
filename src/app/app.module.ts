@@ -23,8 +23,6 @@ import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
-
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,6 +32,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ROUTES, provideRouter } from '@angular/router';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +45,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     SearchResultComponent,
     ErrorComponent,
     UserInfoComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +72,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     MatButtonToggleModule,
     MatDatepickerModule,
     MatNativeDateModule
-    
+
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
