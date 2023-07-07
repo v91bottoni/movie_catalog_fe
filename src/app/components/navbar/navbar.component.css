@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.search{
+  position: absolute;
+  transform: translate(-100%, -15%);
+  width: 60vw;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.hide{
+  display: none;
+}
+.btn{
+  border:none;
+  background: none;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.btn:hover{
+  transform:translate(-1px, -1px);
+}
+

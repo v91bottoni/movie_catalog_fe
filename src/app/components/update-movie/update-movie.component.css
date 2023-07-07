@@ -11,8 +11,12 @@
 }
 
 .demo-button  {
-  margin:  0  15px;
+  margin: 15px;
   font-size: large;
+  min-width: fit-content;
+  width: 20%;
+  font-size: x-large;
+  padding: 25px 10px;
 }
 .error{
   min-width: fit-content;
@@ -24,5 +28,7 @@
 td label{
   text-align: left;
 }
+button{
 
+}
 

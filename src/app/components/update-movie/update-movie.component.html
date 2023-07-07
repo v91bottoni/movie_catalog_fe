@@ -1,7 +1,22 @@
 <form [formGroup]="updateForm">
 <table class="mat-elevation-z8 demo-table">
+<tr>
+  <th colspan="2" ><h1>UPDATE MOVIE</h1></th>
+</tr>
 
+<tr>
+  <td class="tabTd"><label  title="Campo Obbligatorio">Title *</label>
 
+    <div class="error" *ngIf="updateForm.get('title')?.hasError('required') && submitted">Errore Inserire correttamente Title!</div>
+  </td>
+  <td class="tabTd">
+    <mat-form-field appearance="fill">
+      <mat-label for="actors">Title</mat-label>
+      <input matInput #actors  id="title" name="title" type="text" placeholder="Title.." formControlName="title">
+    </mat-form-field>
+  </td>
+
+</tr>
 
 <tr>
     <td class="tabTd"><label  title="Campo Obbligatorio">Actors *</label>
@@ -15,6 +30,18 @@
       </mat-form-field>
     </td>
 
+</tr>
+
+<tr>
+  <td class="tabTd"><label  title="Campo Obbligatorio">Year *</label>
+    <div class="error" *ngIf="updateForm.get('year')?.hasError('required') && submitted">Errore Inserire correttamente Year!</div>
+    </td>
+    <td class="tabTd">
+      <mat-form-field appearance="fill">
+        <mat-label for="year">Year</mat-label>
+        <input matInput #year id="year" name="year" type="text" placeholder="Year.." formControlName="year">
+      </mat-form-field>
+  </td>
 </tr>
 
 <tr>
@@ -271,17 +298,7 @@
   </td>
 </tr>
 
-<tr>
-  <td class="tabTd"><label  title="Campo Obbligatorio">Year *</label>
-    <div class="error" *ngIf="updateForm.get('year')?.hasError('required') && submitted">Errore Inserire correttamente Year!</div>
-    </td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="year">Year</mat-label>
-        <input matInput #year id="year" name="year" type="text" placeholder="Year.." formControlName="year">
-      </mat-form-field>
-  </td>
-</tr>
+
 
 <tr>
   <td class="tabTh" colspan="2">
