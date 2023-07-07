@@ -33,6 +33,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ROUTES, provideRouter } from '@angular/router';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     SearchResultComponent,
     ErrorComponent,
     UserInfoComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,6 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     MatButtonToggleModule,
     MatDatepickerModule,
     MatNativeDateModule
-
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

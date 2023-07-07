@@ -1,0 +1,132 @@
+<div class="register-container">
+    <mat-card *ngIf="registerForm">
+        <mat-card-header>
+            <mat-card-title><strong> Register! </strong></mat-card-title>
+          </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
+
+                <!-- Name input -->
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Name" type="string" required>
+                </mat-form-field>
+
+                <!-- Surname input -->
+                <mat-form-field>
+                    <mat-label>Surname</mat-label>
+                    <input matInput formControlName="surname" placeholder="Surname" type="string" required>
+                </mat-form-field>
+
+                <!-- CF input -->
+                <mat-form-field>
+                    <mat-label>Fiscal Code</mat-label>
+                    <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required>
+                </mat-form-field>
+
+                <!-- Email input -->
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Email" type="email" required>
+                </mat-form-field>
+
+                <!-- Password input -->
+                <mat-form-field>
+                    <input matInput formControlName="password" placeholder="Password" [type]="hidePass ? 'password' : 'text'" required>
+                        <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hidePass = !hidePass">
+                            <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                </mat-form-field>
+
+                <!-- ConfirmPassword input -->
+                <mat-form-field>
+                    <input matInput formControlName="confirmpassword" placeholder="Confirm Password" [type]="hideCPass ? 'password' : 'text'" required>
+                        <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hideCPass = !hideCPass">
+                            <mat-icon>{{hideCPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                </mat-form-field>
+
+                <!-- Birthdate input -->
+                <mat-form-field appearance="fill" class="example-form-field">
+                    <mat-label>Birthdate</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+
+                <!-- Button -->
+                <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Register</button>
+
+                <!-- Name Errors -->
+                <mat-error *ngIf="name?.invalid && (name?.dirty && name?.touched)">
+
+                    <div *ngIf="name?.errors?.['required']">
+                        Nome is required.
+                    </div>
+
+                    <div *ngIf="name?.errors?.['minlength']">
+                        Nome must be at least 3 characters long.
+                    </div>
+
+                </mat-error>
+
+                <!-- Surname Errors -->
+                <mat-error *ngIf="surname?.invalid && (surname?.dirty && surname?.touched)">
+                    
+                    <div *ngIf="surname?.errors?.['required']">
+                        Surname is required.
+                    </div>
+
+                    <div *ngIf="surname?.errors?.['minlength']">
+                        Surname must be at least 3 characters long.
+                    </div>
+                    
+                </mat-error>
+
+                <!-- Fiscal Code Errors -->
+                <mat-error *ngIf="cf?.invalid && (cf?.dirty && cf?.touched)">
+                    <div *ngIf="cf?.errors?.['required']">
+                        Fiscal Code is required.
+                    </div>
+
+                    <div *ngIf="cf?.errors?.['minlength']">
+                        Fiscal code must be 16 characters long.
+                    </div>
+
+                </mat-error>
+
+                <!-- Password Errors -->
+                <mat-error *ngIf="password?.value !== confirmpassword?.value && password?.touched && confirmpassword?.touched && password?.dirty && confirmpassword?.dirty">
+                    The passwords do not match.
+                </mat-error>
+
+                <!-- Errors -->
+                <mat-error *ngIf="email?.invalid && email?.dirty && email?.touched">
+                    Must insert a valid email.
+                </mat-error>
+
+                <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
+                    Birthdate is required.
+                </mat-error>
+
+                <mat-error *ngIf="invalidAge">
+                    Invalid Age.
+                </mat-error>
+
+                <mat-error *ngIf="cfAlreadyUsed">
+                    CF already used.
+                </mat-error>
+
+                <mat-error *ngIf="emailAlreadyUsed">
+                    Email already used.
+                </mat-error>
+                
+            </form>
+      </mat-card-content>
+    </mat-card>
+</div>
