@@ -22,8 +22,6 @@ import { MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
-
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -67,7 +65,7 @@ import { ROUTES, provideRouter } from '@angular/router';
     MatGridListModule,
     MatPaginatorModule,
     MatButtonToggleModule
-    
+
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
