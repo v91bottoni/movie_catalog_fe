@@ -28,7 +28,17 @@
 td label{
   text-align: left;
 }
-button{
-
+mat-error{
+  font-size: small;
 }
 
+mat-form-field{
+  width: 50%;
+  min-width: 150px;
+
+}
+label{
+  float: inline-start;
+  text-align: left;
+  letter-spacing: 2px;
+}

@@ -2,7 +2,7 @@
   <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon  >menu</mat-icon>
   </button>
-  <span>Movie Catalogue</span>
+  <span class="home" routerLink="home">Movie Catalogue</span>
   <span class="example-spacer"></span>
   <section #search class="hide">
       <mat-form-field  class="search" appearance="fill">
@@ -11,7 +11,7 @@
         <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
           <mat-icon  matPrefix style="color: black;">search</mat-icon>
         </button>
-        <mat-hint>Hint</mat-hint>
+
       </mat-form-field>
 
   </section>
