@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
 import { SearchResultComponent} from './components/search-result/search-result.component';
@@ -13,6 +13,16 @@ const routes: Routes = [
   },
   {
     path: "home",
+    component: HomeComponent,
+    // children: [
+    //   {
+    //       path: 'page/:pag',
+    //       component: HomeComponent
+    //   }
+    // ]
+  },
+  {
+    path: "home/page/:pag",
     component: HomeComponent
   },
   /* PATH TEMPORANEA => TESTING COMPONENT*/  {path: 'updateMovie',     component: UpdateMovieComponent},

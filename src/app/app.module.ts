@@ -19,6 +19,11 @@ import { DrowerButtonComponent } from './components/drower-button/drower-button.
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatRippleModule } from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list'
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -42,13 +47,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    HttpClientModule,
     MatInputModule,
     MatTableModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    HttpClientModule,
     MatRippleModule,
     MatCardModule,
     MatToolbarModule,
@@ -57,7 +62,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-
+    MatGridListModule,
+    MatPaginatorModule,
+    MatButtonToggleModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
