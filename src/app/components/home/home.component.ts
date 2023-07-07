@@ -26,25 +26,25 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     // this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
-    
+
     // this.route.snapshot.paramMap.get("pag")
-    
+
 
     this.route.params.subscribe(params => {
 
       if(params['pag']){
         this.page=Number(params['pag'])
         this.movieService.getAllMovies(params['pag'] , 'imdbrating').subscribe(res=>{
-          
+
           this.maxPage=res.maxPageNumber;
           this.movies=res.movieList
 
           this.response=res
           console.log(this.response);
         })
-        
+
       }
-      
+
       else{
         this.page=1;
         this.movieService.getAllMovies().subscribe(res=>{
@@ -56,14 +56,14 @@ export class HomeComponent implements OnInit {
           console.log(this.response);
         })
       }
-      
+
   });
 
-      
+
   }
 
   constructor(private movieService: MovieService, private route: ActivatedRoute, private router: Router) { }
-  
+
   navigatePage(pag: number){
     this.router.navigate(['/home/page/'+pag])
   }
@@ -73,14 +73,14 @@ export class HomeComponent implements OnInit {
     else this.cardView=true;
   }
 
-  
+
 
   // onResize(event: UIEvent) {
   //   const target = event.target as Window;
   //   this.breakpoint = (target.innerWidth <= 400) ? 1 : 6;
   // }
 
-  
-  
+
+
 
 }

@@ -11,30 +11,40 @@ import { SearchService } from 'src/app/service/search.service';
 })
 export class SearchResultComponent {
   movieList!:Movie[];
-  title = "";
-  maxpage = 0;
+  title = " ";
+  maxPage = 0;
   page = 1;
   timeOut = false;
+  displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating'];
+  cardView:boolean = true;
   constructor(private service:MovieService, private router: Router,
     private searchService:SearchService){
-    setTimeout(()=>{
-      if(!this.movieList){
-        this.router.navigate(["errorPage"]);
-      }
-    }, 10000);
+
       this.searchService.getObservableSearch().subscribe(param=>{
         console.log("Searching for \"" + param + "\"");
         this.title = param;
+        if(param == ""){
+          this.title = " ";
+        }
         this.renderList();
       });
   }
+
 
   renderList(){
     this.service.searchMovie(this.title, this.page)
       .subscribe(resp=>{
         this.movieList = resp.movieList;
-        this.maxpage = resp.maxPageNumber;
+        this.maxPage = resp.maxPageNumber;
       });
+  }
+
+  switchView(){
+    this.cardView = !this.cardView;
+  }
+  navigatePage(page:number){
+    this.page = page;
+    this.renderList();
   }
 
 }
