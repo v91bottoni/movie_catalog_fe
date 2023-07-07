@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon  >menu</mat-icon>
+  </button>
+  <span>Movie Catalogue</span>
+  <span class="example-spacer"></span>
+  <section #search class="hide">
+    <mat-form-field  class="search" appearance="fill">
+      <mat-label>Search </mat-label>
+      <input  matInput #param [(ngModel)]="searchTerm" />
+       <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
+        <mat-icon  matPrefix style="color: black;">search</mat-icon>
+       </button>
+    </mat-form-field>
+  </section>
+
+  <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon >{{searchIcon}}</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+

@@ -9,7 +9,7 @@
 
 </mat-grid-list>
 
-<mat-grid-list cols="4" rowHeight="57%" *ngIf="response && cardView" class="card-grid">
+<mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">
 <!-- <mat-grid-list [cols]="breakpoint" rowHeight="35%" (window:resize)="onResize($event)"> -->
     
     <mat-grid-tile *ngFor="let result of response.movieList">

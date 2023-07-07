@@ -32,5 +32,9 @@ export class MovieService {
     return this.http.post<Movie>(this.apiUrl + 'add/', movie);
   }
 
+  updateMovie(movie: Movie): Observable<Movie>{
+    return this.http.post<Movie>(this.apiUrl + 'update/', movie);
+  }
+
   constructor(private http: HttpClient) { }
 }
