@@ -7,11 +7,16 @@ import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
   },
   {
     path: "",
