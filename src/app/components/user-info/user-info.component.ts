@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { UpdateStates } from 'src/app/enums/updateStates';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-user-info',
@@ -46,7 +49,7 @@ export class UserInfoComponent implements OnInit{
   get birthdate()     { return this.userForm.get('birthdate')}
   get role()     { return this.userForm.get('role')}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService){}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog){}
 
   onSubmit(){
 
@@ -63,6 +66,7 @@ export class UserInfoComponent implements OnInit{
 
     this.authService.updateUser(userRes).subscribe(res=>{
       console.log(res);
+      this.openDialog('200ms', '1000ms');
       
     },
     (res) => {
@@ -76,6 +80,14 @@ export class UserInfoComponent implements OnInit{
     }
     )
 
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(UserUpdateDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 
