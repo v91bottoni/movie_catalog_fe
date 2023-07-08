@@ -46,15 +46,16 @@ export class HomeComponent implements OnInit {
       }
 
       else{
-        this.page=1;
-        this.movieService.getAllMovies().subscribe(res=>{
+        this.router.navigate(['/home/page/1'])
+        // this.page=1;
+        // this.movieService.getAllMovies().subscribe(res=>{
 
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList
+        //   this.maxPage=res.maxPageNumber;
+        //   this.movies=res.movieList
 
-          this.response=res
-          console.log(this.response);
-        })
+        //   this.response=res
+        //   console.log(this.response);
+        // })
       }
 
   });

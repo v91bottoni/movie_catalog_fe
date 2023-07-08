@@ -34,7 +34,8 @@ import { ROUTES, provideRouter } from '@angular/router';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { UserUpdateDialogComponent } from './dialogs/user-update-dialog/user-update-dialog.component';
+import { MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { RegisterComponent } from './components/register/register.component';
     ErrorComponent,
     UserInfoComponent,
     MovieDetailsComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserUpdateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { RegisterComponent } from './components/register/register.component';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
