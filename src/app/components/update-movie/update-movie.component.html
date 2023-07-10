@@ -289,7 +289,7 @@
       <button mat-raised-button color="primary" (click)="updateData()" class="demo-button">
         Update data
       </button>
-      <button type="button" mat-raised-button color="primary" (click)="exit()" class="demo-button">
+      <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="demo-button">
         Exit
       </button>
     </div>
