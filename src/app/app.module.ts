@@ -36,6 +36,9 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { RegisterComponent } from './components/register/register.component';
 import { UserUpdateDialogComponent } from './dialogs/user-update-dialog/user-update-dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SpinnerDialogComponent } from './dialogs/spinner-dialog/spinner-dialog.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,10 @@ import { MatDialogModule} from '@angular/material/dialog';
     UserInfoComponent,
     MovieDetailsComponent,
     RegisterComponent,
-    UserUpdateDialogComponent
+    UserUpdateDialogComponent,
+    ForgotPasswordComponent,
+    SpinnerDialogComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

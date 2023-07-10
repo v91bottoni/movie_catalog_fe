@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent
+  },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent
+  },
+  {
+    path: 'forgot-password/:token',
+    component: ChangePasswordComponent
   },
   {
     path: "",
