@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
   cardView: boolean = true;
   movies!: Movie[];
   displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating'];
-
+  home: boolean= false;
+  gerne: boolean= false;
+  category!:String;
   // ngVersion: string = VERSION.full;
   // matVersion: string = '5.1.0';
   // breakpoint!: number;
@@ -33,14 +35,39 @@ export class HomeComponent implements OnInit {
 
     this.route.params.subscribe(params => {
 
-      if(params['pag']){
+      if(params['gerne']){
+
+
+        this.page=Number(params['page']);
+
+
+        this.category=params ['gerne'];
+        this.movieService.getMovieByGenre(params['gerne'], params['page']).subscribe(res=>{
+
+
+          this.maxPage=res.maxPageNumber;
+          this.movies=res.movieList;
+          this.response=res;
+
+
+          this.home=false;
+          this.gerne= true;
+
+        })
+      }
+
+      else if(params['pag']){
         this.page=Number(params['pag'])
         this.movieService.getAllMovies(params['pag'] , 'imdbrating').subscribe(res=>{
 
           this.maxPage=res.maxPageNumber;
           this.movies=res.movieList
+          this.response=res;
 
-          this.response=res
+          this.home=true;
+          this.gerne= false;
+
+
           console.log(this.response);
         })
 
@@ -48,15 +75,7 @@ export class HomeComponent implements OnInit {
 
       else{
         this.router.navigate(['/home/page/1'])
-        // this.page=1;
-        // this.movieService.getAllMovies().subscribe(res=>{
 
-        //   this.maxPage=res.maxPageNumber;
-        //   this.movies=res.movieList
-
-        //   this.response=res
-        //   console.log(this.response);
-        // })
       }
 
   });
@@ -70,7 +89,8 @@ export class HomeComponent implements OnInit {
 
   navigatePage(pag: number){
     this.util.backpage = '/home/page/'+pag;
-    this.router.navigate(['/home/page/'+pag])
+    if(this.home) this.router.navigate(['/home/page/'+pag]);
+    if(this.gerne) this.router.navigate(['/home/gerne/'+ this.category+'/'+pag]);
   }
 
   switchView(){

@@ -43,6 +43,8 @@ import { ForgotPasswordSuccessfulDialogComponent } from './dialogs/forgot-passwo
 import { ForgotPasswordUnsuccessfulDialogComponent } from './dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
 import { ChangePasswordSuccessfulDialogComponent } from './dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
 import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +93,8 @@ import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-pass
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatMenuModule,
+    MatExpansionModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
