@@ -1,18 +1,24 @@
+
+<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel">
+  <mat-icon>home</mat-icon>HOME
+</mat-panel-title>
+<!--
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   HOME
 </button><br>
-<!-- <button  mat-raised-button color="primary"  routerLink="home" class="demo-button">
+
+  <button  mat-raised-button color="primary"  routerLink="home" class="demo-button">
   CATEGORIE
 </button>-->
-<mat-accordion color="primary">
+<mat-accordion color="primary" >
   <mat-expansion-panel hideToggle>
 
   </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true"
+  <mat-expansion-panel  (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title >
-        CATEGORY
+        <mat-icon>subject</mat-icon>CATEGORY
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p class="space"><a class="category" (click)="navigateCategory('Action')">Action</a></p>
@@ -28,7 +34,8 @@
   </mat-expansion-panel>
 </mat-accordion>
 <br>
-<button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="userInfo" class="demo-button">
+<!--
+   <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="userInfo" class="demo-button">
   PROFILO
 </button><br>
 <button (click)="logOut()" mat-raised-button color="primary" routerLink="login" class="demo-button">
@@ -39,8 +46,20 @@
 </button><br>
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   MANAGEMENT
-</button><br>
+</button><br>-->
 
+<mat-panel-title (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
+  <mat-icon>account_box</mat-icon>PROFILE
+</mat-panel-title>
+<mat-panel-title (click)="drawerEventFire()"  routerLink="login" class="panel" >
+  <mat-icon>account_circle</mat-icon>LOG OUT
+</mat-panel-title>
+<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
+  <mat-icon>note_add</mat-icon>ADD FILM
+</mat-panel-title>
+<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
+  <mat-icon>build</mat-icon>MANAGEMENT
+</mat-panel-title>
 <!-- <mat-menu #category="matMenu">
   <button mat-menu-item >Action</button>
   <button mat-menu-item >Adventure</button>

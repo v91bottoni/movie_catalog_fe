@@ -2,10 +2,6 @@
   flex: 1 1 auto;
 }
 .search{
-  /*position: absolute;
-  /*transform: translate(-100%, -36%);
-  margin : 0 50%;
-  transform: translate(-50% ,-80%);*/
   margin: 20px 20px 0 5px;
   min-width: 150px;
   width: 32vw;

@@ -1,11 +1,11 @@
 .example-container {
   min-height: 100%;
-  margin: 20px 0;
+  margin:  0;
 
 }
 
 mat-drawer{
-  padding:20px;
+ /* padding: 20px;*/
   min-width: fit-content;
-  width: 20%;
+  width: 21%;
 }
