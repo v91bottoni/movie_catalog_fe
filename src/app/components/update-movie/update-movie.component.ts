@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class UpdateMovieComponent {
   updateForm: FormGroup = this.formbuilder.group({    actors :['', Validators.required],    awards :['', Validators.required],    boxoffice :['', Validators.required],    country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],    genre :['', Validators.required],    imdbid :['', Validators.required],    imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    language :['', Validators.required],    metascore :['', Validators.required],    plot :['', Validators.required],    poster :['', Validators.required],    production :['', Validators.required],    rated :['', Validators.required],    released :['', Validators.required],    response :['', Validators.required],    runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],    website :['', Validators.required],    writer :['', Validators.required],    year :['', Validators.required]  });
 
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
-    private route :Router, private activatedRoute:ActivatedRoute,){
+    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService){
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
 this.service.getMovieById(idMovie).subscribe(resp =>{
   this.movie = resp;
@@ -57,7 +58,7 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
           if(this.updateForm.valid){
             let movie :Movie = this.updateForm.value;
             movie.imdbid = this.movie?.imdbid+"";
-            console.log(movie);
+            //console.log(movie);
             this.service.updateMovie(movie).subscribe(resp =>{
               if(resp != null){
                 alert("Update Successfull");
@@ -66,10 +67,12 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             });
           }
         }
-
-        exit() {
-          this.route.navigate(["home"]);
+        exit(){
+          console.log(this.util.backpage);
+          this.route.navigate([this.util.backpage]);
         }
+
+
 }
 
 
