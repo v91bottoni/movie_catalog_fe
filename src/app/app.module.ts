@@ -63,7 +63,7 @@ import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-pass
     ForgotPasswordSuccessfulDialogComponent,
     ForgotPasswordUnsuccessfulDialogComponent,
     ChangePasswordSuccessfulDialogComponent,
-    ChangePasswordUnsuccessfulDialogComponent
+    ChangePasswordUnsuccessfulDialogComponent,
   ],
   imports: [
     BrowserModule,
