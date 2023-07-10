@@ -34,3 +34,9 @@ cursor: pointer;
 .mat-expansion-panel{
   background-color: 'primary';
 }
+.label{
+  transition: 0.2s;
+  opacity: 0;
+  transform: translateX(-100%);
+}
+

@@ -1,9 +1,28 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UtilityService } from 'src/app/service/utility.service';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-drower-button',
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        margin: '0 10px',
+        opacity: 1,
+      })),
+      state('closed', style({
+        opacity: 0.5,
+      })),
+      transition('open => closed', [
+        animate('0.5s')
+      ]),
+      transition('closed => open', [
+        animate('0.2s')
+      ]),
+    ]),
+  ],
   templateUrl: './drower-button.component.html',
   styleUrls: ['./drower-button.component.css']
 })
@@ -13,7 +32,12 @@ export class DrowerButtonComponent {
 
   @Output()drawerEvent = new EventEmitter<string>;
 panelOpenState = false;
-
+isOpenHome= false;
+isOpenCat= false;
+isOpenProf= false;
+isOpenLog= false;
+isOpenAdd= false;
+isOpenMan= false;
   logOut(){
     sessionStorage.clear();
     localStorage.clear();

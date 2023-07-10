@@ -1,6 +1,8 @@
 
 <mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel">
-  <mat-icon>home</mat-icon>HOME
+  <mat-icon  (mouseenter)="isOpenHome = true;"
+  (mouseleave)="isOpenHome = false;">home</mat-icon>
+  <mat-label  #home [@openClose]="isOpenHome ? 'open' : 'closed'" >HOME</mat-label>
 </mat-panel-title>
 <!--
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
@@ -18,7 +20,9 @@
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title >
-        <mat-icon>subject</mat-icon>CATEGORY
+        <mat-icon (mouseenter)="isOpenCat = true;"
+        (mouseleave)="isOpenCat = false;">subject</mat-icon>
+        <mat-label  #home [@openClose]="isOpenCat ? 'open' : 'closed'" >CATEGORY</mat-label>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p class="space"><a class="category" (click)="navigateCategory('Action')">Action</a></p>
@@ -49,16 +53,24 @@
 </button><br>-->
 
 <mat-panel-title (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
-  <mat-icon>account_box</mat-icon>PROFILE
+  <mat-icon (mouseenter)="isOpenProf = true;"
+  (mouseleave)="isOpenProf = false;">account_box</mat-icon>
+  <mat-label  #home [@openClose]="isOpenProf ? 'open' : 'closed'" >PROFILE</mat-label>
 </mat-panel-title>
 <mat-panel-title (click)="drawerEventFire()"  routerLink="login" class="panel" >
-  <mat-icon>account_circle</mat-icon>LOG OUT
+  <mat-icon (mouseenter)="isOpenLog = true;"
+  (mouseleave)="isOpenLog = false;">account_circle</mat-icon>
+  <mat-label  #home [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
 </mat-panel-title>
 <mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
-  <mat-icon>note_add</mat-icon>ADD FILM
+  <mat-icon (mouseenter)="isOpenAdd = true;"
+  (mouseleave)="isOpenAdd = false;">note_add</mat-icon>
+  <mat-label  #home [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
 </mat-panel-title>
 <mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
-  <mat-icon>build</mat-icon>MANAGEMENT
+  <mat-icon (mouseenter)="isOpenMan = true;"
+  (mouseleave)="isOpenMan = false;">build</mat-icon>
+  <mat-label  #home [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
 </mat-panel-title>
 <!-- <mat-menu #category="matMenu">
   <button mat-menu-item >Action</button>
