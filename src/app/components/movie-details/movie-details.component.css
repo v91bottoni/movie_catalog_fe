@@ -1,53 +1,62 @@
-/* styles.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
 
 .movie-card {
-    width: 350px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .button {
-      width: 85px;
-            height: 100px;
-            margin: auto;
-  }
-  
+.movie-details {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
 
-  .container {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-  }
+.movie-poster {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 20px;
+}
 
-  .movie-poster {
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .movie-details {
-    padding: 16px;
-    text-align: center;
-  }
-  
-  .movie-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .movie-year {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 16px;
-  }
-  
-  .movie-plot {
-    padding: 16px;
-    font-size: 18px;
-    line-height: 1.4;
-  }
-  
+.movie-info {
+  flex: 1 1 auto;
+}
+
+.movie-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.movie-year {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.movie-plot {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 16px;
+}
