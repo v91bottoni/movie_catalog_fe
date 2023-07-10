@@ -42,12 +42,12 @@ export class UserInfoComponent implements OnInit{
 
   }
 
-  get name()     { return this.userForm.get('name')}
-  get surname()     { return this.userForm.get('surname')}
-  get cf()     { return this.userForm.get('cf')}
+  get name()      { return this.userForm.get('name')}
+  get surname()   { return this.userForm.get('surname')}
+  get cf()        { return this.userForm.get('cf')}
   get email()     { return this.userForm.get('email')}
-  get birthdate()     { return this.userForm.get('birthdate')}
-  get role()     { return this.userForm.get('role')}
+  get birthdate() { return this.userForm.get('birthdate')}
+  get role()      { return this.userForm.get('role')}
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog){}
 

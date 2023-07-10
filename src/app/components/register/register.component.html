@@ -66,11 +66,11 @@
                 <mat-error *ngIf="name?.invalid && (name?.dirty && name?.touched)">
 
                     <div *ngIf="name?.errors?.['required']">
-                        Nome is required.
+                        Name is required.
                     </div>
 
                     <div *ngIf="name?.errors?.['minlength']">
-                        Nome must be at least 3 characters long.
+                        Name must be at least 3 characters long.
                     </div>
 
                 </mat-error>
@@ -133,6 +133,15 @@
                 </mat-error>
                 
             </form>
+            <mat-card-footer>
+                <mat-grid-list cols="2" rowHeight="20px">
+                    <mat-grid-tile>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <a style="display: flex; text-align: end; " routerLink="/login">I already have an account.</a>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card-footer>
       </mat-card-content>
     </mat-card>
 </div>
