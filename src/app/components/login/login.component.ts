@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userName', res.user.name || '');
         localStorage.setItem('token', res.token || '');
         this.router.navigateByUrl('/home');
-
         this.util.username = res.user.name;
         alert("Login successful");
       },
