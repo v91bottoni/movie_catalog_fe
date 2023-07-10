@@ -36,6 +36,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { RegisterComponent } from './components/register/register.component';
 import { UserUpdateDialogComponent } from './dialogs/user-update-dialog/user-update-dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +79,8 @@ import { MatDialogModule} from '@angular/material/dialog';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatMenuModule,
+    MatExpansionModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

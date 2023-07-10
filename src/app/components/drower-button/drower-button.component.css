@@ -4,3 +4,15 @@ button{
   font-size: x-large;
   padding: 25px 10px;
 }
+
+.category:hover{
+cursor: pointer;
+}
+
+.space{
+  line-height: 50%;
+}
+
+.mat-expansion-panel{
+  background-color: 'primary';
+}

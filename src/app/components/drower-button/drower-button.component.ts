@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-drower-button',
@@ -6,8 +7,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./drower-button.component.css']
 })
 export class DrowerButtonComponent {
-  @Output()drawerEvent = new EventEmitter<string>;
 
+  constructor(private router: Router){}
+
+  @Output()drawerEvent = new EventEmitter<string>;
+  panelOpenState = false;
 
   logOut(){
     sessionStorage.clear();
@@ -16,6 +20,10 @@ export class DrowerButtonComponent {
 
   drawerEventFire(){
     this.drawerEvent.emit("DrawerToggleEvent");
+  }
+
+  navigateCategory(category:string){
+    this.router.navigate(['/home/gerne/'+category+'/1']);
   }
 
 }
