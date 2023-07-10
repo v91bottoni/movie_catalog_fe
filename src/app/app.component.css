@@ -4,8 +4,13 @@
 
 }
 
-mat-drawer{
- /* padding: 20px;*/
-  min-width: fit-content;
-  width: 21%;
+.sidenav{
+  z-index: 3;
+  background: none ;
+  position: absolute;
+  transition: 0.7s ease;
+}
+.hide{
+  transform: translateY(-600px);
+
 }

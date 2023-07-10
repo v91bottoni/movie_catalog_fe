@@ -10,10 +10,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       // ...
       state('open', style({
         margin: '0 10px',
+        transform:'scale(100%)',
         opacity: 1,
       })),
       state('closed', style({
-        opacity: 0.5,
+        transform:'scale(1%)',
+        opacity: 0,
       })),
       transition('open => closed', [
         animate('0.5s')

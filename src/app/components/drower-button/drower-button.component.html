@@ -1,9 +1,8 @@
 
-<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel">
-  <mat-icon  (mouseenter)="isOpenHome = true;"
-  (mouseleave)="isOpenHome = false;">home</mat-icon>
+<div  (mouseleave)="isOpenHome = false;" (click)="drawerEventFire()"  routerLink="home" class="panel">
+  <mat-icon  (mouseenter)="isOpenHome = true;">home</mat-icon>
   <mat-label  #home [@openClose]="isOpenHome ? 'open' : 'closed'" >HOME</mat-label>
-</mat-panel-title>
+</div>
 <!--
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   HOME
@@ -11,7 +10,7 @@
 
   <button  mat-raised-button color="primary"  routerLink="home" class="demo-button">
   CATEGORIE
-</button>-->
+</button>
 <mat-accordion color="primary" >
   <mat-expansion-panel hideToggle>
 
@@ -38,7 +37,7 @@
   </mat-expansion-panel>
 </mat-accordion>
 <br>
-<!--
+
    <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="userInfo" class="demo-button">
   PROFILO
 </button><br>
@@ -52,26 +51,55 @@
   MANAGEMENT
 </button><br>-->
 
-<mat-panel-title (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
+<!-- <mat-accordion color="primary" >
+  <mat-expansion-panel hideToggle>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel  (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+        <mat-icon (mouseenter)="isOpenCat = true;"
+        (mouseleave)="isOpenCat = false;">subject</mat-icon>
+        <mat-label  #home [@openClose]="isOpenCat ? 'open' : 'closed'" >CATEGORY</mat-label>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Action/1">Action</a></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Adventure/1">Adventure</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Animation/1">Animation</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Comedy/1">Comedy</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Crime/1">Crime</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Drama/1">Drama</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Documentary/1">Documentary</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Fantasy/1">Fantasy</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Romance/1">Romance</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Thriller/1">Thriller</a><br></p>
+  </mat-expansion-panel>
+</mat-accordion>
+-->
+
+
+
+<div (mouseleave)="isOpenProf = false;" (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
   <mat-icon (mouseenter)="isOpenProf = true;"
-  (mouseleave)="isOpenProf = false;">account_box</mat-icon>
+  >account_box</mat-icon>
   <mat-label  #home [@openClose]="isOpenProf ? 'open' : 'closed'" >PROFILE</mat-label>
-</mat-panel-title>
-<mat-panel-title (click)="drawerEventFire()"  routerLink="login" class="panel" >
+</div>
+<div (mouseleave)="isOpenLog = false;" (click)="drawerEventFire()"  routerLink="login" class="panel" >
   <mat-icon (mouseenter)="isOpenLog = true;"
-  (mouseleave)="isOpenLog = false;">account_circle</mat-icon>
+  >account_circle</mat-icon>
   <mat-label  #home [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
-</mat-panel-title>
-<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
+</div>
+<div (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
   <mat-icon (mouseenter)="isOpenAdd = true;"
-  (mouseleave)="isOpenAdd = false;">note_add</mat-icon>
+  >note_add</mat-icon>
   <mat-label  #home [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
-</mat-panel-title>
-<mat-panel-title (click)="drawerEventFire()"  routerLink="home" class="panel" >
+</div>
+<div (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
   <mat-icon (mouseenter)="isOpenMan = true;"
-  (mouseleave)="isOpenMan = false;">build</mat-icon>
+  >build</mat-icon>
   <mat-label  #home [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
-</mat-panel-title>
+</div>
 <!-- <mat-menu #category="matMenu">
   <button mat-menu-item >Action</button>
   <button mat-menu-item >Adventure</button>
