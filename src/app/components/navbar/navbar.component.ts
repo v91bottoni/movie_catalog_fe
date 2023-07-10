@@ -9,7 +9,7 @@ import { UtilityService } from 'src/app/service/utility.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   username: string| null = "";
   constructor(private searchService : SearchService, protected util: UtilityService,
     private router:Router){
@@ -20,9 +20,7 @@ export class NavbarComponent implements OnInit {
   searchTerm = '';
   searchElem!:HTMLElement;
   searchIcon = "search";
-  ngOnInit(): void {
 
-  }
   toggle(elem:HTMLElement){
     this.searchElem = elem;
     elem.classList.toggle("hide");

@@ -4,9 +4,10 @@
 .search{
   z-index: 2;
   position: absolute;
-  transform: translate(-100%, -18%);
-  width: 55vw;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  /*transform: translate(-100%, -36%);*/
+  margin : 0 50%;
+  transform: translate(-50% ,-80%);
+  width: 32vw;
 }
 .hide{
   display: none;
@@ -22,6 +23,7 @@
 }
 .home{
   transition: 0.4s;
+  font-size: x-large;
   }
 .home:hover{
   text-shadow: 0 0 5px white;

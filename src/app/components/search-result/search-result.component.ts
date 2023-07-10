@@ -22,8 +22,9 @@ export class SearchResultComponent {
       this.util.backpage = "search";
       setTimeout(()=>{
         if(this.title == undefined){
-          this.title = this.searchService.oldSearch;
-          this.page = this.searchService.oldSearchPage;
+          // this.title = this.searchService.oldSearch;
+          // this.page = this.searchService.oldSearchPage;
+          this.title = " ";
           this.renderList();
         }
       }, 200);
@@ -53,7 +54,7 @@ export class SearchResultComponent {
   }
   navigatePage(page:number){
     this.page = page;
-    this.searchService.oldSearchPage = page;
+    //this.searchService.oldSearchPage = page;
     this.renderList();
   }
   openMovieDetails(movieId: string): void {
