@@ -2,11 +2,12 @@
   flex: 1 1 auto;
 }
 .search{
-  z-index: 2;
-  position: absolute;
-  /*transform: translate(-100%, -36%);*/
+  /*position: absolute;
+  /*transform: translate(-100%, -36%);
   margin : 0 50%;
-  transform: translate(-50% ,-80%);
+  transform: translate(-50% ,-80%);*/
+  margin: 20px 20px 0 5px;
+  min-width: 150px;
   width: 32vw;
 }
 .hide{
@@ -22,6 +23,7 @@
   transform:translate(-1px, -1px);
 }
 .home{
+  margin-left: 10px;
   transition: 0.4s;
   font-size: x-large;
   }
@@ -30,7 +32,7 @@
   transform: scale(101%);
   cursor: pointer;
 }
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 700px) {
   .welcome {
       display: none ;
   }

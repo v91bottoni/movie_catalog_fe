@@ -1,18 +1,9 @@
-<mat-toolbar color="primary" style="min-width: 400px;">
+<mat-toolbar color="primary" style="min-width: 300px;">
   <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon  >menu</mat-icon>
   </button>
   <span class="home welcome" routerLink="home">MOVIE CATALOGUE</span>
   <span class="example-spacer"></span>
-
-  <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon >{{searchIcon}}</mat-icon>
-  </button>
-  <mat-label *ngIf="util.username" class="welcome">Benvenuto {{util.username}}!</mat-label>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/userInfo">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
 <section #search class="hide" >
   <mat-form-field  class="search" appearance="fill" >
     <mat-label>Search </mat-label>
@@ -24,6 +15,15 @@
   </mat-form-field>
 
 </section>
+  <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon >{{searchIcon}}</mat-icon>
+  </button>
+  <mat-label *ngIf="util.username" class="welcome">Benvenuto {{util.username}}!</mat-label>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/userInfo">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
 
 
 
