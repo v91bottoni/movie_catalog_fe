@@ -1,7 +1,12 @@
 <form [formGroup]="updateForm">
 <table class="mat-elevation-z8 demo-table">
 <tr>
-  <th colspan="2" ><h1>UPDATE MOVIE</h1></th>
+  <th colspan="2" >
+    <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="back">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <h1>UPDATE MOVIE</h1>
+  </th>
 </tr>
 
 <tr>
@@ -289,7 +294,7 @@
       <button mat-raised-button color="primary" (click)="updateData()" class="demo-button">
         Update data
       </button>
-      <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="demo-button">
+      <button routerLink="/home" type="button" mat-raised-button color="primary"  class="demo-button">
         Exit
       </button>
     </div>
