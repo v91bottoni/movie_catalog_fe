@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChangePasswordSuccessfulDialogComponent } from 'src/app/dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
+import { ChangePasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -10,7 +13,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ChangePasswordComponent implements OnInit{
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute ) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   token!: string;
   passwordResetForm!: FormGroup;
@@ -40,14 +43,26 @@ export class ChangePasswordComponent implements OnInit{
 
   onSubmit(){
     this.authService.changePassword(this.token, this.passwordResetForm.value.password).subscribe( (res) => {
-      setTimeout(() => this.router.navigateByUrl("/"), 1500);
-      alert(res.user.name);
-      
-      alert("Password recovery successful");
+      this.openSuccessDialog('200ms', '1000ms');
       
     }, () => {
-      setTimeout(() => this.router.navigateByUrl("/"), 2500);
-      alert("Password recovery unsuccessful");
+      this.openFalureDialog('200ms', '1000ms');
     })
+  }
+
+  openSuccessDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ChangePasswordSuccessfulDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  openFalureDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ChangePasswordUnsuccessfulDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

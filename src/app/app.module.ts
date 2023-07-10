@@ -39,6 +39,10 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SpinnerDialogComponent } from './dialogs/spinner-dialog/spinner-dialog.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ForgotPasswordSuccessfulDialogComponent } from './dialogs/forgot-password-successful-dialog/forgot-password-successful-dialog.component';
+import { ForgotPasswordUnsuccessfulDialogComponent } from './dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
+import { ChangePasswordSuccessfulDialogComponent } from './dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
+import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +59,11 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     UserUpdateDialogComponent,
     ForgotPasswordComponent,
     SpinnerDialogComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ForgotPasswordSuccessfulDialogComponent,
+    ForgotPasswordUnsuccessfulDialogComponent,
+    ChangePasswordSuccessfulDialogComponent,
+    ChangePasswordUnsuccessfulDialogComponent
   ],
   imports: [
     BrowserModule,
