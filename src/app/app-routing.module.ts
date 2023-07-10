@@ -68,6 +68,7 @@ const routes: Routes = [
 {path: 'noContent', component: ErrorComponent},
 {path: 'searchError', component: ErrorComponent},
 { path: 'movies/:id', component: MovieDetailsComponent },
+{ path: 'home/gerne/:gerne/:page', component: HomeComponent}
 ];
 
 @NgModule({

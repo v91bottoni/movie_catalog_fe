@@ -1,9 +1,33 @@
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   HOME
 </button><br>
-<button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
+<!-- <button  mat-raised-button color="primary"  routerLink="home" class="demo-button">
   CATEGORIE
-</button><br>
+</button>-->
+<mat-accordion color="primary">
+  <mat-expansion-panel hideToggle>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+        CATEGORY
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p class="space"><a class="category" (click)="navigateCategory('Action')">Action</a></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Adventure')">Adventure</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Animation')">Animation</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Comedy')">Comedy</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Crime')">Crime</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Drama')">Drama</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Documentary')">Documentary</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Fantasy')">Fantasy</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Romance')">Romance</a><br></p>
+    <p class="space"><a class="category" (click)="navigateCategory('Thriller')">Thriller</a><br></p>
+  </mat-expansion-panel>
+</mat-accordion>
+<br>
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="userInfo" class="demo-button">
   PROFILO
 </button><br>
@@ -16,3 +40,18 @@
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   MANAGEMENT
 </button><br>
+
+<!-- <mat-menu #category="matMenu">
+  <button mat-menu-item >Action</button>
+  <button mat-menu-item >Adventure</button>
+  <button mat-menu-item >Animation</button>
+  <button mat-menu-item >Comedy</button>
+  <button mat-menu-item >Crime</button>
+  <button mat-menu-item >Drama</button>
+  <button mat-menu-item >Documentary</button>
+  <button mat-menu-item >Fantasy</button>
+  <button mat-menu-item >Romance</button>
+  <button mat-menu-item >Thriller</button>
+[matMenuTriggerFor]="category" da mettere mel bottone categorie
+</mat-menu> -->
+
