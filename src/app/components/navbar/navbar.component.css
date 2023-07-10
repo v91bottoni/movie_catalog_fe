@@ -4,8 +4,8 @@
 .search{
   z-index: 2;
   position: absolute;
-  transform: translate(-100%, -15%);
-  width: 60vw;
+  transform: translate(-100%, -18%);
+  width: 55vw;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 .hide{
@@ -27,5 +27,10 @@
   text-shadow: 0 0 5px white;
   transform: scale(101%);
   cursor: pointer;
+}
+@media screen and (max-width: 620px) {
+  .welcome {
+      display: none ;
+  }
 }
 

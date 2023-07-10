@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { SearchService } from 'src/app/service/search.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-search-result',
@@ -17,15 +18,18 @@ export class SearchResultComponent {
   displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating'];
   cardView:boolean = true;
   constructor(private service:MovieService, private router: Router,
-    private searchService:SearchService){
+    private searchService:SearchService, private util:UtilityService) {
+      this.util.backpage = "search";
       setTimeout(()=>{
         if(this.title == undefined){
           this.title = this.searchService.oldSearch;
+          this.page = this.searchService.oldSearchPage;
           this.renderList();
         }
       }, 200);
       this.searchService.getObservableSearch().subscribe(param=>{
-        console.log("Searching for \"" + param + "\"");
+        //console.log("Searching for \"" + param + "\"");
+        this.page = 1;
         (param == "")? this.title=" ": this.title = param;
         this.renderList();
       });
@@ -49,6 +53,7 @@ export class SearchResultComponent {
   }
   navigatePage(page:number){
     this.page = page;
+    this.searchService.oldSearchPage = page;
     this.renderList();
   }
   openMovieDetails(movieId: string): void {

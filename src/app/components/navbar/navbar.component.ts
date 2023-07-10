@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from 'src/app/service/search.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 
 @Component({
@@ -8,19 +10,31 @@ import { SearchService } from 'src/app/service/search.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private searchService : SearchService){
+  username: string| null = "";
+  constructor(private searchService : SearchService, protected util: UtilityService,
+    private router:Router){
+
 
   }
   @Output()drawerEvent = new EventEmitter<string>;
   searchTerm = '';
-  searchIcon="search";
+  searchElem!:HTMLElement;
+  searchIcon = "search";
   ngOnInit(): void {
 
   }
   toggle(elem:HTMLElement){
+    this.searchElem = elem;
     elem.classList.toggle("hide");
-    if(this.searchIcon == "search") this.searchIcon = "visibility_off";
-    else this.searchIcon = "search";
+    if(this.searchIcon == "search") {
+      this.searchIcon = "visibility_off";
+      this.addE(elem);
+    }
+    else {
+      this.searchIcon = "search";
+      this.removeE(elem);
+
+    }
   }
   searchFilm(param:string, elem:HTMLElement){
     this.toggle(elem);
@@ -31,4 +45,20 @@ export class NavbarComponent implements OnInit {
     this.drawerEvent.emit("DrawerToggleEvent");
   }
 
+
+
+  fun = (event:KeyboardEvent) => {
+    if(event.key == 'Enter'){
+      this.router.navigate(["search"]);
+      this.toggle(this.searchElem);
+      setTimeout(()=>{this.searchService.nextParam(this.searchTerm); },0);
+
+    }
+  };
+  addE(ele:HTMLElement){
+    ele.addEventListener("keydown" , this.fun)}
+
+  removeE(ele:HTMLElement){
+    ele.removeEventListener("keydown", this.fun);
+  }
 }
