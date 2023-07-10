@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
 import { MovieService } from 'src/app/service/movie.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-home',
@@ -82,9 +83,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private movieService: MovieService, private route: ActivatedRoute, private router: Router, private util:UtilityService) {
+    this.util.backpage = "home";
+   }
 
   navigatePage(pag: number){
+    this.util.backpage = '/home/page/'+pag;
     if(this.home) this.router.navigate(['/home/page/'+pag]);
     if(this.gerne) this.router.navigate(['/home/gerne/'+ this.category+'/'+pag]);
   }

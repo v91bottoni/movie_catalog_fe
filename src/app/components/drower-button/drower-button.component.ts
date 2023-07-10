@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { UtilityService } from 'src/app/service/utility.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,15 @@ import { Router } from '@angular/router';
 })
 export class DrowerButtonComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private util : UtilityService){}
 
   @Output()drawerEvent = new EventEmitter<string>;
-  panelOpenState = false;
+panelOpenState = false;
 
   logOut(){
     sessionStorage.clear();
+    localStorage.clear();
+    this.util.username = null;
     this.drawerEventFire();
   }
 

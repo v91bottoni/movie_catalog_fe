@@ -18,6 +18,13 @@
   font-size: x-large;
   padding: 25px 10px;
 }
+.back{
+  text-align: center;
+  width: 30px;
+  position: relative;
+  float: left;
+  padding-left: 20px;
+}
 .error{
   min-width: fit-content;
   color: red;

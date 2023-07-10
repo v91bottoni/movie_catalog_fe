@@ -1,16 +1,21 @@
-<mat-card class="movie-card">
-  <mat-card-header>
-    <div mat-card-avatar class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="movie-details">
-      <div class="movie-title">{{ movie.title }}</div>
-      <div class="movie-year">Release Year: {{ movie.year }}</div>
-    </div>
-    <div class="movie-plot">{{ movie.plot }}</div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-flat-button color="primary">Action 1</button>
-    <button mat-flat-button color="accent">Action 2</button>
-  </mat-card-actions>
-</mat-card>
+
+<div class="container">
+  <mat-card class="movie-card">
+    <mat-card-content>
+      <div class="movie-details">
+        <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
+        <div class="movie-info">
+          <div class="movie-title">{{ movie.title }}</div>
+          <div class="movie-year">Release Year: {{ movie.year }}</div>
+          <div class="movie-genre">Genre: {{ movie.genre }}</div>
+          <br>
+          <div class="movie-plot">{{ movie.plot }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" routerLink="/updateMovie/{{movie.imdbid}}">Update</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
