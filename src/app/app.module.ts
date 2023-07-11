@@ -45,6 +45,10 @@ import { ChangePasswordSuccessfulDialogComponent } from './dialogs/change-passwo
 import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +70,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ForgotPasswordUnsuccessfulDialogComponent,
     ChangePasswordSuccessfulDialogComponent,
     ChangePasswordUnsuccessfulDialogComponent,
+    UserManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +100,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDialogModule,
     MatMenuModule,
     MatExpansionModule,
+    MatCheckboxModule,
+    MatSortModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
