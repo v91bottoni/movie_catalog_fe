@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from 'src/app/service/search.service';
@@ -6,6 +7,26 @@ import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-navbar',
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+
+        transform:'scale(100%)',
+        opacity: 1,
+      })),
+      state('closed', style({
+        transform:'scale(1%)',
+        opacity: 0,
+      })),
+      transition('open => closed', [
+        animate('0.5s ease'),
+      ]),
+      transition('closed => open', [
+        animate('0.2s')
+      ]),
+    ]),
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -20,6 +41,7 @@ export class NavbarComponent {
   searchTerm = '';
   searchElem!:HTMLElement;
   searchIcon = "search";
+  isOpen :boolean = false;
 
   toggle(elem:HTMLElement){
     this.searchElem = elem;
@@ -58,5 +80,13 @@ export class NavbarComponent {
 
   removeE(ele:HTMLElement){
     ele.removeEventListener("keydown", this.fun);
+  }
+
+
+  logOut(){
+    sessionStorage.clear();
+    localStorage.clear();
+    this.util.username = null;
+    this.util.role = null;
   }
 }

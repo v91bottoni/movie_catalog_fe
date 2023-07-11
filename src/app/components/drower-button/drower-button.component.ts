@@ -41,13 +41,7 @@ isOpenProf= false;
 isOpenLog= false;
 isOpenAdd= false;
 isOpenMan= false;
-  logOut(){
-    sessionStorage.clear();
-    localStorage.clear();
-    this.util.username = null;
-    this.util.role = null;
-    this.drawerEventFire();
-  }
+
 
   drawerEventFire(){
     this.drawerEvent.emit("DrawerToggleEvent");

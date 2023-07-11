@@ -8,11 +8,12 @@ import {
 } from '@angular/common/http';
 import { EMPTY, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { UtilityService } from '../service/utility.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private util:UtilityService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const s = req.url.toLowerCase();
@@ -34,6 +35,10 @@ export class AuthInterceptor implements HttpInterceptor {
           if(localStorage.getItem('token')){
             // console.log(error.error);
             localStorage.removeItem('token');
+
+            localStorage.clear();
+            this.util.role = null;
+            this.util.username = null;
             this.router.navigateByUrl('/login')
             setTimeout(() => console.log("Sessione scaduta"), 100);
           }
