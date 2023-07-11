@@ -26,7 +26,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getMovieById() {
-    this.movieService.getMovieById(this.passedValue).subscribe(
+    this.movieService.getMovieById(this.movieService.movieid).subscribe(
       (response) => {
         this.movie = response;
         this.moviePosterUrl = response.poster; // Assegna l'URL del poster a moviePosterUrl
