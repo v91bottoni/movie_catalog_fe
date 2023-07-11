@@ -1,4 +1,4 @@
-export enum errorMessages{
+export enum ErrorMessages{
   //errorPage
   errorMessage = 'Un Errore non Ha permesso il caricamento Dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.',
   //noContent

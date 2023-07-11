@@ -4,6 +4,29 @@ button{
   font-size: x-large;
   padding: 25px 10px;
 }
+.panel{
+  text-align: left;
+  padding: 12px 5px 12px 24px;
+  box-shadow: none;
+  transition: 0.3s;
+  display: flex;
+  width: fit-content;
+}
+
+mat-icon{
+margin-right: 10px;
+border: solid 1px rgba(0,0,0,0.2);
+padding: 7px;
+border-radius: 50%;
+transition: 0.2s;
+background: white;
+box-shadow: 0 0 5px rgba(0,0,0,0.2);
+cursor: pointer;
+}
+mat-icon:hover{
+  transform:  translate(-1px, -1px);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2)  inset 0 0 5px rgba(0,0,0,0.2);
+}
 
 .category:hover{
 cursor: pointer;
@@ -15,4 +38,14 @@ cursor: pointer;
 
 .mat-expansion-panel{
   background-color: 'primary';
+}
+
+
+mat-label{
+  cursor: pointer;
+  border: solid 1px rgba(0,0,0,0.2);
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: white;
+
 }

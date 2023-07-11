@@ -1,11 +1,16 @@
 .example-container {
   min-height: 100%;
-  margin: 20px 0;
+  margin:  0;
 
 }
 
-mat-drawer{
-  padding:20px;
-  min-width: fit-content;
-  width: 20%;
+.sidenav{
+  z-index: 3;
+  background: none ;
+  position: absolute;
+  transition: 0.7s ease;
+}
+.hide{
+  transform: translateY(-600px);
+
 }

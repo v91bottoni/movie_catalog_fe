@@ -1,28 +1,25 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="min-width: 300px;">
   <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon  >menu</mat-icon>
   </button>
-  <span class="home" routerLink="home">Movie Catalogue</span>
+  <span class="home welcome" routerLink="home">MOVIE CATALOGUE</span>
   <span class="example-spacer"></span>
-  <section #search class="hide" >
-      <mat-form-field  class="search" appearance="fill">
-        <mat-label>Search </mat-label>
-        <input  matInput #param  [(ngModel)]="searchTerm" />
-        <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
-          <mat-icon  matPrefix style="color: black;">search</mat-icon>
-        </button>
+<section #search class="hide" >
+  <mat-form-field  class="search" appearance="fill" >
+    <mat-label>Search </mat-label>
+    <input  matInput #param  [(ngModel)]="searchTerm" />
+    <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
+      <mat-icon  matPrefix style="color: black;">search</mat-icon>
+    </button>
 
-      </mat-form-field>
+  </mat-form-field>
 
-  </section>
+</section>
   <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon >{{searchIcon}}</mat-icon>
   </button>
-  <mat-label *ngIf="util.username" class="welcome">Benvenuto {{util.username}}!</mat-label>
+  <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Benvenuto {{util.username}}!</mat-label>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/userInfo">
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
-
-
-
