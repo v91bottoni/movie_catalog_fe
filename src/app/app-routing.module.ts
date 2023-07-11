@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RoleGuardService } from './service/role-guard.service';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,11 @@ const routes: Routes = [
   data:{
       expectedRoles: ['super_admin', 'admin']
   },*/
+},
+
+{
+  path: 'insertMovie',
+  component: InsertMovieComponent,
 },
 {path: 'search', component: SearchResultComponent},
 {path: 'errorPage', component: ErrorComponent},
