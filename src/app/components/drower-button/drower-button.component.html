@@ -3,6 +3,22 @@
   <mat-icon  (mouseenter)="isOpenHome = true;">home</mat-icon>
   <mat-label  #home [@openClose]="isOpenHome ? 'open' : 'closed'" >HOME</mat-label>
 </div>
+<div (mouseleave)="isOpenProf = false;" (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
+  <mat-icon (mouseenter)="isOpenProf = true;">account_box</mat-icon>
+  <mat-label  #home [@openClose]="isOpenProf ? 'open' : 'closed'" >PROFILE</mat-label>
+</div>
+<div (mouseleave)="isOpenLog = false;" (click)="drawerEventFire()"  routerLink="login" class="panel" >
+  <mat-icon (mouseenter)="isOpenLog = true;">account_circle</mat-icon>
+  <mat-label  #home [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
+</div>
+<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
+  <mat-icon (mouseenter)="isOpenAdd = true;">note_add</mat-icon>
+  <mat-label  #home [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
+</div>
+<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
+  <mat-icon (mouseenter)="isOpenMan = true;">build</mat-icon>
+  <mat-label  #home [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
+</div>
 <!--
 <button (click)="drawerEventFire()" mat-raised-button color="primary" routerLink="home" class="demo-button">
   HOME
@@ -51,7 +67,7 @@
   MANAGEMENT
 </button><br>-->
 
-<!-- <mat-accordion color="primary" >
+ <mat-accordion color="primary" >
   <mat-expansion-panel hideToggle>
 
   </mat-expansion-panel>
@@ -76,30 +92,10 @@
     <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home(gerne/Thriller/1">Thriller</a><br></p>
   </mat-expansion-panel>
 </mat-accordion>
--->
 
 
 
-<div (mouseleave)="isOpenProf = false;" (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
-  <mat-icon (mouseenter)="isOpenProf = true;"
-  >account_box</mat-icon>
-  <mat-label  #home [@openClose]="isOpenProf ? 'open' : 'closed'" >PROFILE</mat-label>
-</div>
-<div (mouseleave)="isOpenLog = false;" (click)="drawerEventFire()"  routerLink="login" class="panel" >
-  <mat-icon (mouseenter)="isOpenLog = true;"
-  >account_circle</mat-icon>
-  <mat-label  #home [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
-</div>
-<div (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
-  <mat-icon (mouseenter)="isOpenAdd = true;"
-  >note_add</mat-icon>
-  <mat-label  #home [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
-</div>
-<div (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
-  <mat-icon (mouseenter)="isOpenMan = true;"
-  >build</mat-icon>
-  <mat-label  #home [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
-</div>
+
 <!-- <mat-menu #category="matMenu">
   <button mat-menu-item >Action</button>
   <button mat-menu-item >Adventure</button>

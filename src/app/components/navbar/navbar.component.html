@@ -18,12 +18,8 @@
   <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon >{{searchIcon}}</mat-icon>
   </button>
-  <mat-label *ngIf="util.username" class="welcome">Benvenuto {{util.username}}!</mat-label>
+  <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Benvenuto {{util.username}}!</mat-label>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/userInfo">
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
-
-
-
-
