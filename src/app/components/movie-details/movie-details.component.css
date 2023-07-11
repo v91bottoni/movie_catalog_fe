@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: fit-content;
 }
 
 .movie-card {
@@ -38,6 +38,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  line-height: 1;
 }
 
 .movie-year {

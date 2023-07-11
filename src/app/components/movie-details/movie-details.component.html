@@ -1,21 +1,18 @@
 
-<div class="container">
-  <mat-card class="movie-card">
-    <mat-card-content>
-      <div class="movie-details">
-        <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
-        <div class="movie-info">
-          <div class="movie-title">{{ movie.title }}</div>
-          <div class="movie-year">Release Year: {{ movie.year }}</div>
-          <div class="movie-genre">Genre: {{ movie.genre }}</div>
-          <br>
-          <div class="movie-plot">{{ movie.plot }}</div>
-        </div>
+  <mat-dialog-content class="movie-card">
+    <div class="movie-details">
+      <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
+      <div class="movie-info">
+        <div class="movie-title">{{ movie.title }}</div>
+        <div class="movie-year">Release Year: {{ movie.year }}</div>
+        <div class="movie-genre">Genre: {{ movie.genre }}</div>
+        <div class="movie-plot">{{ movie.plot }}</div>
+        <div class="movie-actors"><u>{{ movie.actors }}</u></div>
       </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-stroked-button color="primary" routerLink="/updateMovie/{{movie.imdbid}}">Update</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
+    </div>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button  mat-dialog-close>Close</button>
+    <button mat-flat-button [mat-dialog-close]="true" cdkFocusInitial routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial>Update</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
