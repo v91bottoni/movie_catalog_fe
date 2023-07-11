@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RoleGuardService } from './service/role-guard.service';
+import { UserManagementComponent } from './components/user-management/user-management.component';
 
 const routes: Routes = [
   {
@@ -76,7 +77,8 @@ const routes: Routes = [
 {path: 'noContent', component: ErrorComponent},
 {path: 'searchError', component: ErrorComponent},
 { path: 'movies/:id', component: MovieDetailsComponent },
-{ path: 'home/gerne/:gerne/:page', component: HomeComponent}
+{ path: 'home/gerne/:gerne/:page', component: HomeComponent},
+{ path: 'management', component: UserManagementComponent}
 ];
 
 @NgModule({
