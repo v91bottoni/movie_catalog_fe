@@ -9,7 +9,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 @Component({
   selector: 'app-insert-movie',
   templateUrl: './insert-movie.component.html',
-  styleUrls: ['./insert-movie.component.css']
+  styleUrls: ['./insert-movie.component.scss']
 })
 export class InsertMovieComponent {
   movie!:Movie;

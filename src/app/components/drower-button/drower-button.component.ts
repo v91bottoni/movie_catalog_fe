@@ -27,7 +27,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ]),
   ],
   templateUrl: './drower-button.component.html',
-  styleUrls: ['./drower-button.component.css']
+  styleUrls: ['./drower-button.component.scss']
 })
 export class DrowerButtonComponent {
 

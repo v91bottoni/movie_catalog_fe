@@ -5,7 +5,7 @@ import { ErrorMessages } from 'src/app/enums/errorMessages';
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css']
+  styleUrls: ['./error.component.scss']
 })
 export class ErrorComponent {
   centered = false;

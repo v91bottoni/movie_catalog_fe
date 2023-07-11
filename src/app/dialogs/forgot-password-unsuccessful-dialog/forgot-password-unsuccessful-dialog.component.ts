@@ -5,7 +5,7 @@ import { ForgotPasswordComponent } from 'src/app/components/forgot-password/forg
 @Component({
   selector: 'app-forgot-password-unsuccessful-dialog',
   templateUrl: './forgot-password-unsuccessful-dialog.component.html',
-  styleUrls: ['./forgot-password-unsuccessful-dialog.component.css']
+  styleUrls: ['./forgot-password-unsuccessful-dialog.component.scss']
 })
 export class ForgotPasswordUnsuccessfulDialogComponent {
 

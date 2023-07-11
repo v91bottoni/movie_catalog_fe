@@ -5,7 +5,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-user-update-dialog',
   templateUrl: './user-update-dialog.component.html',
-  styleUrls: ['./user-update-dialog.component.css']
+  styleUrls: ['./user-update-dialog.component.scss']
 })
 export class UserUpdateDialogComponent {
 

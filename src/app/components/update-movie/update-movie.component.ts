@@ -9,7 +9,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 @Component({
   selector: 'app-update-movie',
   templateUrl: './update-movie.component.html',
-  styleUrls: ['./update-movie.component.css']
+  styleUrls: ['./update-movie.component.scss']
 })
 export class UpdateMovieComponent {
   movie:Movie| null = null;

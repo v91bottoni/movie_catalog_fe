@@ -57,7 +57,7 @@ const routes: Routes = [
     // ]
   },
   {
-    path: "home/page/:pag",  /*PATH TEMPORANEO, NON VANNO I PARAMS CON I CHILDREN DI HOME*/
+    path: "home/page/:pag", 
     component: HomeComponent
   },
   {

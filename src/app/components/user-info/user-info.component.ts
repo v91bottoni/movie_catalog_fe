@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.css']
+  styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit{
 

@@ -28,7 +28,7 @@ import { UtilityService } from 'src/app/service/utility.service';
     ]),
   ],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
   username: string| null = "";
