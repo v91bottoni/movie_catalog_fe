@@ -10,8 +10,16 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { RoleGuardService } from './service/role-guard.service';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [RoleGuardService],
+    data:{
+        expectedRoles: ['super_admin', 'admin', 'public']
+      }},
   {
     path: "login",
     component: LoginComponent
