@@ -23,8 +23,8 @@
 
 <div   class="panel">
   <button (click)="isOpen = !isOpen;"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon *ngIf="!isOpen">account_circle</mat-icon>
-    <mat-icon *ngIf="isOpen">close</mat-icon>
+    <mat-icon>account_circle</mat-icon>
+
   </button>
   <mat-label (mouseleave)="isOpen = false;" class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
     <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">face</mat-icon></div>

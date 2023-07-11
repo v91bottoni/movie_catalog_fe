@@ -79,6 +79,9 @@ const routes: Routes = [
       expectedRoles: ['super_admin', 'admin', 'public']
     }
   },
+  {  path: 'insertMovie',
+  component:InsertMovieComponent,
+},
 { path: 'search', component: SearchResultComponent},
 { path: 'errorPage', component: ErrorComponent},
 { path: 'noContent', component: ErrorComponent},

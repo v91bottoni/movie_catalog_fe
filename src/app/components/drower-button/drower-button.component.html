@@ -11,7 +11,7 @@
   <mat-icon (mouseenter)="isOpenLog = true;">account_circle</mat-icon>
   <mat-label   [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
 </div>-->
-<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
+<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="insertMovie" class="panel" >
   <mat-icon (mouseenter)="isOpenAdd = true;">note_add</mat-icon>
   <mat-label   [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
 </div>
