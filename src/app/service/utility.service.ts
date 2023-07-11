@@ -11,6 +11,7 @@ export class UtilityService {
   }
 
   username:string|null = null;
+  role:string|null|undefined = null;
   backpage = "home";
 
 }

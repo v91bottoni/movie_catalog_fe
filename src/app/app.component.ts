@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'movie-catalog-fe';
+
+  toggle(drawer:HTMLElement){
+    if(drawer.classList.contains('hide')){
+      drawer.classList.remove('hide');
+    }else{
+      drawer.classList.add('hide');
+    }
+
+  }
 }
