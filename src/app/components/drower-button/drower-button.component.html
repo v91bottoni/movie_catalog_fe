@@ -15,7 +15,7 @@
   <mat-icon (mouseenter)="isOpenAdd = true;">note_add</mat-icon>
   <mat-label   [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
 </div>
-<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="home" class="panel" >
+<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="management" class="panel" >
   <mat-icon (mouseenter)="isOpenMan = true;">build</mat-icon>
   <mat-label   [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
 </div>

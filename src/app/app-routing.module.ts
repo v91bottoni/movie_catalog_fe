@@ -63,26 +63,31 @@ const routes: Routes = [
     path: "userInfo",
     component: UserInfoComponent
   },
-  /* PATH TEMPORANEA => TESTING COMPONENT*/  {path: 'updateMovie',     component: UpdateMovieComponent},
-{
-  path: 'updateMovie/:idMovie',
-  component: UpdateMovieComponent,
-  /*canActivate: [],
-  data:{
-      expectedRoles: ['super_admin', 'admin']
-  },*/
-},
-{path: 'search', component: SearchResultComponent},
-{path: 'errorPage', component: ErrorComponent},
-{path: 'noContent', component: ErrorComponent},
-{path: 'searchError', component: ErrorComponent},
-{ path: 'movies/:id', component: MovieDetailsComponent },
-{ path: 'home/gerne/:gerne/:page', component: HomeComponent},
-{ path: 'management', component: UserManagementComponent}
-];
+  {
+    path: 'updateMovie/:idMovie',
+    component: UpdateMovieComponent,
+    canActivate: [RoleGuardService],
+    data:{
+        expectedRoles: ['super_admin', 'admin']
+  }
+  },
+  {
+    path: 'search', component: SearchResultComponent,
+    canActivate: [RoleGuardService],
+    data:{
+      expectedRoles: ['super_admin', 'admin', 'public']
+    }
+  },
+  { path: 'errorPage', component: ErrorComponent},
+  { path: 'noContent', component: ErrorComponent},
+  { path: 'searchError', component: ErrorComponent},
+  { path: 'movies/:id', component: MovieDetailsComponent },
+  { path: 'home/gerne/:gerne/:page', component: HomeComponent},
+  { path: 'management', component: UserManagementComponent}
+  ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
 export class AppRoutingModule { }
