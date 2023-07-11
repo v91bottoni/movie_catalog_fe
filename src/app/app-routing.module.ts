@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RoleGuardService } from './service/role-guard.service';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 
 const routes: Routes = [
   {
@@ -78,13 +79,14 @@ const routes: Routes = [
       expectedRoles: ['super_admin', 'admin', 'public']
     }
   },
-  { path: 'errorPage', component: ErrorComponent},
-  { path: 'noContent', component: ErrorComponent},
-  { path: 'searchError', component: ErrorComponent},
-  { path: 'movies/:id', component: MovieDetailsComponent },
-  { path: 'home/gerne/:gerne/:page', component: HomeComponent},
-  { path: 'management', component: UserManagementComponent}
-  ];
+{ path: 'search', component: SearchResultComponent},
+{ path: 'errorPage', component: ErrorComponent},
+{ path: 'noContent', component: ErrorComponent},
+{ path: 'searchError', component: ErrorComponent},
+{ path: 'movies/:id', component: MovieDetailsComponent },
+{ path: 'home/gerne/:gerne/:page', component: HomeComponent},
+{ path: 'management', component: UserManagementComponent}
+];
 
   @NgModule({
     imports: [RouterModule.forRoot(routes)],
