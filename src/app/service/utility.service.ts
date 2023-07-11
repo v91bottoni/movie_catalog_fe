@@ -5,13 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilityService {
-  constructor(){
-    if(localStorage.getItem("userName"))
-    this.username = localStorage.getItem("userName");
-  }
-
-  username:string|null = null;
-  role:string|null|undefined = null;
+  username:string|null;
+  role:string|null|undefined;
   backpage = "home";
 
+  constructor(){
+    if(localStorage.getItem("userName"))
+      this.username = localStorage.getItem("userName");
+    else this.username = null;
+    if(localStorage.getItem("role"))
+      this.role = localStorage.getItem("role");
+    else this.role = null;
+  }
 }

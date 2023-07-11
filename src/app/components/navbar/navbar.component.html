@@ -15,11 +15,21 @@
   </mat-form-field>
 
 </section>
-  <button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon >{{searchIcon}}</mat-icon>
-  </button>
-  <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Benvenuto {{util.username}}!</mat-label>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/userInfo">
+
+<button (click)="toggle(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <mat-icon >{{searchIcon}}</mat-icon>
+</button>
+<mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Benvenuto {{util.username}}!</mat-label>
+
+<div   class="panel">
+  <button (click)="isOpen = !isOpen;"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>account_circle</mat-icon>
+
   </button>
+  <mat-label (mouseleave)="isOpen = false;" class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
+    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">face</mat-icon></div>
+    <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>LOG OUT</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>
+  </mat-label>
+</div>
+
 </mat-toolbar>
