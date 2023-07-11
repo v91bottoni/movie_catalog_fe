@@ -1,8 +1,8 @@
 <!-- Nav Bar da visualizzare solo dopo il log utente -->
-<app-navbar (drawerEvent)="drawer.toggle()"></app-navbar>
-<mat-drawer-container class="example-container" hasBackdrop="true">
-  <mat-drawer #drawer mode="push">
-    <app-drower-button (drawerEvent)="drawer.toggle()"></app-drower-button>
-  </mat-drawer>
+<app-navbar (drawerEvent)="toggle(drawer)"></app-navbar>
+<mat-drawer-container class="example-container" >
+  <div #drawer class="sidenav hide" >
+    <app-drower-button (drawerEvent)="toggle(drawer)"></app-drower-button>
+  </div>
   <router-outlet></router-outlet>
 </mat-drawer-container>

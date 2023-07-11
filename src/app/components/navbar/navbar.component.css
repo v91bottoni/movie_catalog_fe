@@ -2,11 +2,9 @@
   flex: 1 1 auto;
 }
 .search{
-  z-index: 2;
-  position: absolute;
-  transform: translate(-100%, -18%);
-  width: 55vw;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  margin: 20px 20px 0 5px;
+  min-width: 150px;
+  width: 32vw;
 }
 .hide{
   display: none;
@@ -21,14 +19,16 @@
   transform:translate(-1px, -1px);
 }
 .home{
+  margin-left: 10px;
   transition: 0.4s;
+  font-size: x-large;
   }
 .home:hover{
   text-shadow: 0 0 5px white;
   transform: scale(101%);
   cursor: pointer;
 }
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 700px) {
   .welcome {
       display: none ;
   }

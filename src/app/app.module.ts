@@ -45,6 +45,10 @@ import { ChangePasswordSuccessfulDialogComponent } from './dialogs/change-passwo
 import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 @NgModule({
   declarations: [
@@ -67,6 +71,7 @@ import { InsertMovieComponent } from './components/insert-movie/insert-movie.com
     ForgotPasswordUnsuccessfulDialogComponent,
     ChangePasswordSuccessfulDialogComponent,
     ChangePasswordUnsuccessfulDialogComponent,
+    UserManagementComponent,
     InsertMovieComponent,
   ],
   imports: [
@@ -97,6 +102,8 @@ import { InsertMovieComponent } from './components/insert-movie/insert-movie.com
     MatDialogModule,
     MatMenuModule,
     MatExpansionModule,
+    MatCheckboxModule,
+    MatSortModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

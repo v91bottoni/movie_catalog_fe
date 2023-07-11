@@ -10,9 +10,18 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { RoleGuardService } from './service/role-guard.service';
+import { UserManagementComponent } from './components/user-management/user-management.component';
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [RoleGuardService],
+    data:{
+        expectedRoles: ['super_admin', 'admin', 'public']
+      }},
   {
     path: "login",
     component: LoginComponent
@@ -74,7 +83,8 @@ const routes: Routes = [
 {path: 'noContent', component: ErrorComponent},
 {path: 'searchError', component: ErrorComponent},
 { path: 'movies/:id', component: MovieDetailsComponent },
-{ path: 'home/gerne/:gerne/:page', component: HomeComponent}
+{ path: 'home/gerne/:gerne/:page', component: HomeComponent},
+{ path: 'management', component: UserManagementComponent}
 ];
 
 @NgModule({
