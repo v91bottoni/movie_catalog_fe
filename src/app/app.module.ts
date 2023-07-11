@@ -45,6 +45,7 @@ import { ChangePasswordSuccessfulDialogComponent } from './dialogs/change-passwo
 import { ChangePasswordUnsuccessfulDialogComponent } from './dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ForgotPasswordUnsuccessfulDialogComponent,
     ChangePasswordSuccessfulDialogComponent,
     ChangePasswordUnsuccessfulDialogComponent,
+    InsertMovieComponent,
   ],
   imports: [
     BrowserModule,

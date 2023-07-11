@@ -10,6 +10,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,11 @@ const routes: Routes = [
   data:{
       expectedRoles: ['super_admin', 'admin']
   },*/
+},
+
+{
+  path: 'insertMovie',
+  component: InsertMovieComponent,
 },
 {path: 'search', component: SearchResultComponent},
 {path: 'errorPage', component: ErrorComponent},
