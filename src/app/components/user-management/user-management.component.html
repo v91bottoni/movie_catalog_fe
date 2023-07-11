@@ -5,7 +5,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Example: Mario Rossi" #input>
         </mat-form-field>
         
-        <div class="mat-elevation-z8">
+        <div>
         <table mat-table [dataSource]="dataSource">
         
             <!-- ID Column -->
@@ -65,6 +65,21 @@
             </tr>
         </table>
     </div>
-
 </div>
+
+<section class="pageButton">
+    <mat-button-toggle-group value="current" style="margin: 3%;">
+        <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>
+        <mat-button-toggle value="more-next" *ngIf="page-1>0" (click)="changePage(page-1)">«</mat-button-toggle>
+        <mat-button-toggle value="more-previous" *ngIf="page-2>0" (click)="changePage(page-2)">{{page-2}}</mat-button-toggle>
+        <mat-button-toggle value="previous" *ngIf="page-1>0" (click)="changePage(page-1)">{{page-1}}</mat-button-toggle>
+    
+        <mat-button-toggle value="current" disabled="true">{{page}}</mat-button-toggle>
+    
+        <mat-button-toggle value="next" *ngIf="page+1<=maxPage" (click)="changePage(page+1)">{{page+1}}</mat-button-toggle>
+        <mat-button-toggle value="more-next" *ngIf="page+2<=maxPage" (click)="changePage(page+2)">{{page+2}}</mat-button-toggle>
+        <mat-button-toggle value="more-next" *ngIf="page+1<=maxPage" (click)="changePage(page+1)">»</mat-button-toggle>
+        <mat-button-toggle value="more-next" *ngIf="page+1>maxPage" disabled="true">»</mat-button-toggle>
+    </mat-button-toggle-group>
+</section>
   

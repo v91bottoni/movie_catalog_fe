@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -13,22 +15,22 @@ import { UserService } from 'src/app/service/user.service';
 export class UserManagementComponent implements OnInit{
 
   userList!: user[];
-  pageNumber: number = 1;
-  maxPageNumber!: number;
+  page: number = 1;
+  maxPage!: number;
   dataSource!: MatTableDataSource<user>;
 
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'role', 'disabledAt'];
 
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(private authService: AuthService, private userService: UserService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.fetchAllUsers();
   }
 
   fetchAllUsers(){
-    this.userService.getAllUsers(this.pageNumber).subscribe( (res) =>{
+    this.userService.getAllUsers(this.page).subscribe( (res) =>{
       this.userList = res.userList;
-      this.maxPageNumber = res.maxPageNumber;
+      this.maxPage = res.maxPageNumber;
 
       this.dataSource = new MatTableDataSource(this.userList);
     },
@@ -46,27 +48,27 @@ export class UserManagementComponent implements OnInit{
   }
 
   incrementPage(){
-    if(this.pageNumber < this.maxPageNumber){
-      this.pageNumber++;
+    if(this.page < this.maxPage){
+      this.page++;
       this.fetchAllUsers();
     }
   }
   
   decrementPage(){
-    if(this.pageNumber > 1){
-      this.pageNumber--;
+    if(this.page > 1){
+      this.page--;
       this.fetchAllUsers();
     }
   }
 
   changePage(page: number){
-      this.pageNumber = page;
+      this.page = page;
       this.fetchAllUsers();
   }
 
   generatePages(){
     let indexes = [];
-    for(let i = 1; i <= this.maxPageNumber; i++){
+    for(let i = 1; i <= this.maxPage; i++){
       indexes.push(i);
     }
     return indexes;
@@ -76,6 +78,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt == null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
+          this.openDialog('200ms', '1000ms');
         },
         () => {console.log("Unable to disable user");
         })
@@ -83,6 +86,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt != null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
+          this.openDialog('200ms', '1000ms');
         },
         () => {console.log("Unable to enable user");
         })
@@ -95,10 +99,19 @@ export class UserManagementComponent implements OnInit{
         user.role.id = role;
         this.authService.updateUser(user).subscribe ( () =>{
           this.fetchAllUsers();
+          this.openDialog('200ms', '1000ms');
         },
         () => {console.log("Unable to update user");
         })
     } else this.fetchAllUsers();
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(UserUpdateDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 }
