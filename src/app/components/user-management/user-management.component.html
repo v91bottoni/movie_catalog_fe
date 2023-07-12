@@ -1,9 +1,9 @@
-<div class="table" *ngIf="dataSource">
+<div *ngIf="dataSource" class="table">
 
     <mat-form-field>
         <mat-label>Search...</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Example: Mario Rossi" #input>
-        </mat-form-field>
+    </mat-form-field>
         
         <div>
         <table mat-table [dataSource]="dataSource">
