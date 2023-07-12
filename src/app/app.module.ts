@@ -50,6 +50,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
+import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { InsertMovieComponent } from './components/insert-movie/insert-movie.com
     ChangePasswordUnsuccessfulDialogComponent,
     UserManagementComponent,
     InsertMovieComponent,
+    InsertMovieDialogComponent,
   ],
   imports: [
     BrowserModule,
