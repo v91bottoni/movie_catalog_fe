@@ -33,12 +33,11 @@ export class HomeComponent implements OnInit {
     // this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
 
     // this.route.snapshot.paramMap.get("pag")
-
+    
 
     this.route.params.subscribe(params => {
 
       if(params['gerne']){
-
 
         this.page=Number(params['page']);
 
@@ -77,7 +76,6 @@ export class HomeComponent implements OnInit {
 
       else{
         this.router.navigate(['/home/page/1'])
-
       }
 
   });

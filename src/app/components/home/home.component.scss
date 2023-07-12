@@ -49,3 +49,19 @@
 .pageButton{
   text-align: center;
 }
+
+.chips{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-top: 3%;
+}
+
+mat-chip-option{
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.486);
+  transition: 500ms;
+}
+
+mat-chip-option:hover{
+  transform: scale(1.1);
+}

@@ -51,6 +51,9 @@ import { MatSortModule } from '@angular/material/sort';
 
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { RootComponent } from './components/root/root.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +78,7 @@ import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert
     UserManagementComponent,
     InsertMovieComponent,
     InsertMovieDialogComponent,
+    RootComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +110,7 @@ import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert
     MatExpansionModule,
     MatCheckboxModule,
     MatSortModule,
+    MatChipsModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
