@@ -13,6 +13,6 @@
   
   <mat-dialog-actions align="end">
     <button mat-button  mat-dialog-close>Close</button>
-    <button mat-flat-button *ngIf="utilityService.role!= null && utilityService.role != 'public' " cdkFocusInitial routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial>Update</button>
+    <button mat-flat-button mat-dialog-close *ngIf="utilityService.role!= null && utilityService.role != 'public'" routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial>Update</button>
   </mat-dialog-actions>
 </mat-dialog-content>
