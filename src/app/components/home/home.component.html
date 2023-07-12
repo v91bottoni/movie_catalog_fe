@@ -1,12 +1,27 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
 <mat-button-toggle-group style="margin: 2%;" value="selected">
-    <mat-button-toggle value="selected" *ngIf="cardView"> Cards </mat-button-toggle>
-    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> Cards </mat-button-toggle>
-    <mat-button-toggle value="selected" *ngIf="!cardView"> List </mat-button-toggle>
-    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> List </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="!cardView"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
 </mat-button-toggle-group>
 
+<div class="chips">
+<mat-chip-listbox aria-label="Fish selection">
+    <!-- <mat-chip-option color="accent" *ngIf="category" selected>{{category}}</mat-chip-option> -->
+    <mat-chip-option color="accent" routerLink="/home/gerne/Action/1">Action</mat-chip-option>
+    <mat-chip-option color="accent">Adventure</mat-chip-option>
+    <mat-chip-option color="accent">Animation</mat-chip-option>
+    <mat-chip-option color="accent">Comedy</mat-chip-option>
+    <mat-chip-option color="accent">Crime</mat-chip-option>
+    <mat-chip-option color="accent">Drama</mat-chip-option>
+    <mat-chip-option color="accent">Documentary</mat-chip-option>
+    <mat-chip-option color="accent">Fantasy</mat-chip-option>
+    <mat-chip-option color="accent">Romance</mat-chip-option>
+    <mat-chip-option color="accent">Thriller</mat-chip-option>
+</mat-chip-listbox>
+</div>
 </mat-grid-list>
 <mat-spinner class="loader" *ngIf="!response"></mat-spinner>
 <mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">

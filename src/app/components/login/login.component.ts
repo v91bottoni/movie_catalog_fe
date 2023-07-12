@@ -47,8 +47,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token || '');
         this.router.navigateByUrl('/home');
         this.util.username = res.user.name;
-        this.util.role = res.user.role.role ;
-        alert("Login successful");
+        this.util.role = res.user.role.role;
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){
