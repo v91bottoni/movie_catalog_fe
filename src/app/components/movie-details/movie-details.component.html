@@ -1,5 +1,5 @@
 
-  <mat-dialog-content class="movie-card">
+  <mat-dialog-content *ngIf="movie"  class="movie-card">
     <div class="movie-details">
       <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
       <div class="movie-info">
@@ -12,7 +12,8 @@
     </div>
   
   <mat-dialog-actions align="end">
-    <button mat-button  mat-dialog-close>Close</button>
-    <button mat-flat-button [mat-dialog-close]="true" cdkFocusInitial routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial>Update</button>
+    <button mat-button mat-dialog-close><mat-icon>clear</mat-icon>
+      Close</button>
+    <button mat-flat-button mat-dialog-close *ngIf="utilityService.role!= null && utilityService.role != 'public'" routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial><mat-icon>update</mat-icon>Update</button>
   </mat-dialog-actions>
 </mat-dialog-content>
