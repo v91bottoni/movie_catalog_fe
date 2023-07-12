@@ -48,6 +48,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
@@ -106,6 +108,7 @@ import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert
     MatExpansionModule,
     MatCheckboxModule,
     MatSortModule,
+    MatStepperModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
@@ -15,7 +15,10 @@ export class UpdateMovieComponent {
   movie:Movie| null = null;
   submitted = false;
   updateForm: FormGroup = this.formbuilder.group({    actors :['', Validators.required],    awards :['', Validators.required],    boxoffice :['', Validators.required],    country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],    genre :['', Validators.required],    imdbid :['', Validators.required],    imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    language :['', Validators.required],    metascore :['', Validators.required],    plot :['', Validators.required],    poster :['', Validators.required],    production :['', Validators.required],    rated :['', Validators.required],    released :['', Validators.required],    response :['', Validators.required],    runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],    website :['', Validators.required],    writer :['', Validators.required],    year :['', Validators.required]  });
-
+  generalityForm:FormGroup = this.formbuilder.group({     genre :['', Validators.required],   plot :['', Validators.required],    released :['', Validators.required],   runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],        year :['', Validators.required]  });
+  productionForm:FormGroup = this.formbuilder.group({    actors :['', Validators.required],   country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],     language :['', Validators.required],     poster :['', Validators.required],    production :['', Validators.required],   writer :['', Validators.required] });
+  otherInfoForm:FormGroup = this.formbuilder.group({    awards :['', Validators.required],    boxoffice :['', Validators.required],   imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    metascore :['', Validators.required], rated :['', Validators.required],    response :['', Validators.required],  website :['', Validators.required] });;
+generalityFormValid = false;
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
     private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService){
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
@@ -54,6 +57,7 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
 
 
         updateData() {
+          this.verifyStepError();
           this.submitted = true;
           if(this.updateForm.valid){
             let movie :Movie = this.updateForm.value;
@@ -70,6 +74,14 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
         exit(){
           console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
+        }
+        message="";
+        verifyStepError(){
+          this.message="";
+          if(!this.generalityForm.valid) {}
+          if(!this.productionForm.valid) {}
+          if(!this.otherInfoForm.valid) {}
+
         }
 
 

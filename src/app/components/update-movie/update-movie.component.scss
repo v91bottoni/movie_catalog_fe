@@ -25,27 +25,25 @@
   float: left;
   padding-left: 20px;
 }
-.error{
-  min-width: fit-content;
-  color: red;
-  position: relative;
-  margin-top: 5px;
-  font-size: 12px;
-}
+
 td label{
   text-align: left;
 }
 mat-error{
   font-size: small;
 }
-
 mat-form-field{
-  width: 50%;
+  width: 20%;
   min-width: 150px;
+  margin: 0 10px;
 
 }
 label{
   float: inline-start;
   text-align: left;
   letter-spacing: 2px;
+}
+
+.error{
+  color:red;
 }
