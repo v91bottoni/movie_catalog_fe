@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UtilityService } from './service/utility.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +8,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'movie-catalog-fe';
+  drawer!:HTMLElement;
   constructor(protected util :UtilityService){}
 
   toggle(drawer:HTMLElement){
+    this.drawer=drawer;
     if(drawer.classList.contains('hide')){
       drawer.classList.remove('hide');
+      document.addEventListener('click', this.close);
     }else{
       drawer.classList.add('hide');
+      document.removeEventListener('click', this.close);
     }
+    
 
   }
+  close = ()=>{ this.drawer.classList.add('hide'); };
 }
