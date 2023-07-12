@@ -27,7 +27,8 @@
 
   </button>
   <mat-label (mouseleave)="isOpen = false;" class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
-    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">face</mat-icon></div>
+    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">person</mat-icon>
+    </div>
     <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>LOG OUT</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>
   </mat-label>
 </div>
