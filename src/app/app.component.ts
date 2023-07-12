@@ -15,13 +15,20 @@ export class AppComponent {
     this.drawer=drawer;
     if(drawer.classList.contains('hide')){
       drawer.classList.remove('hide');
-      document.addEventListener('click', this.close);
+      setTimeout(() => {
+        document.addEventListener('click', this.close);
+      }, 1);
     }else{
       drawer.classList.add('hide');
-      document.removeEventListener('click', this.close);
+        document.removeEventListener('click', this.close);
     }
     
 
   }
-  close = ()=>{ this.drawer.classList.add('hide'); };
+  close = (event:MouseEvent)=>{ 
+      if(!this.drawer.classList.contains('hide')){
+        this.drawer.classList.add('hide'); 
+        document.removeEventListener('click', this.close);
+      }
+    }
 }
