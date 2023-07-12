@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit{
     this.invalidAge = false;
     this.cfAlreadyUsed = false;
     this.emailAlreadyUsed = false;
+    
     this.authService.registerUser(this.registerForm.value).subscribe( res => {
       
       if(res != null){
