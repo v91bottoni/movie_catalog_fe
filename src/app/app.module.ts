@@ -53,6 +53,7 @@ import { InsertMovieComponent } from './components/insert-movie/insert-movie.com
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { RootComponent } from './components/root/root.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { RootComponent } from './components/root/root.component';
     MatCheckboxModule,
     MatSortModule,
     MatChipsModule,
+    MatStepperModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

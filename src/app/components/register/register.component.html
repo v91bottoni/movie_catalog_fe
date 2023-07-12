@@ -4,8 +4,13 @@
             <mat-card-title><strong> Register! </strong></mat-card-title>
           </mat-card-header>
       <mat-card-content>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
 
+        <mat-vertical-stepper [linear]="false" #stepper [animationDuration]='"200ms"'>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel>Anagraphic Data</ng-template>
                 <!-- Name input -->
                 <mat-form-field>
                     <mat-label>Name</mat-label>
@@ -18,11 +23,31 @@
                     <input matInput formControlName="surname" placeholder="Surname" type="string" required>
                 </mat-form-field>
 
+                 <!-- Birthdate input -->
+                 <mat-form-field appearance="fill" class="example-form-field">
+                    <mat-label>Birthdate</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+
                 <!-- CF input -->
                 <mat-form-field>
                     <mat-label>Fiscal Code</mat-label>
                     <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required>
                 </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel>Account Data</ng-template>
 
                 <!-- Email input -->
                 <mat-form-field>
@@ -46,18 +71,12 @@
                         </button>
                 </mat-form-field>
 
-                <!-- Birthdate input -->
-                <mat-form-field appearance="fill" class="example-form-field">
-                    <mat-label>Birthdate</mat-label>
-                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
-                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                      <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                      </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+
+            </mat-step>
 
                 <!-- Button -->
                 <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Register</button>
@@ -133,6 +152,9 @@
                 </mat-error>
                 
             </form>
+
+        </mat-vertical-stepper>
+
             <mat-card-footer>
                 <mat-grid-list cols="2" rowHeight="20px">
                     <mat-grid-tile>
