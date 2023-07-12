@@ -12,6 +12,8 @@ export class MovieService {
   
   movieid : string = '';
   apiUrl = environment.apiUrl + "movies/";
+  categories: String[] = ["Action", "Adventure", "Animation", "Comedy", "Crime", 
+                            "Drama", "Documentary", "Fantasy", "Romance", "Thriller"];
 
   searchMovie(title:string, page:number = 1):Observable<response>{
     return this.http.get<response>(this.apiUrl + 'title/' + title + '/' + page);

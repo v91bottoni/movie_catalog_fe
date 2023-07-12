@@ -1,17 +1,23 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
 <mat-button-toggle-group style="margin: 2%;" value="selected">
-    <mat-button-toggle value="selected" *ngIf="cardView"> Cards </mat-button-toggle>
-    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> Cards </mat-button-toggle>
-    <mat-button-toggle value="selected" *ngIf="!cardView"> List </mat-button-toggle>
-    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> List </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="!cardView"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
 </mat-button-toggle-group>
+
+<!-- Chips -->
+<div class="chips">
+<mat-chip-listbox aria-label="Fish selection" >
+    <mat-chip-option routerLink="/home" selected> All </mat-chip-option>
+    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory" > {{chips}} </mat-chip-option>
+</mat-chip-listbox>
+</div>
 
 </mat-grid-list>
 <mat-spinner class="loader" *ngIf="!response"></mat-spinner>
 <mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">
-<!-- <mat-grid-list [cols]="breakpoint" rowHeight="35%" (window:resize)="onResize($event)"> -->
-
 
         <mat-card *ngFor="let result of response.movieList" class="card" >
 
@@ -42,45 +48,41 @@
 
         </mat-card>
 
-
-    <!-- <mat-paginator
-    [length]="(response.maxPageNumber * 10)"
-    [pageSize]="10">
-    </mat-paginator> -->
-
-
-
 </mat-grid-list>
 
-<table mat-table [dataSource]="movies" *ngIf="response && !cardView">
+<div class="table">
+    <table mat-table [dataSource]="movies" *ngIf="response && !cardView">
 
-    <!-- Title Column -->
-    <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
-    </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
+        </ng-container>
+    
+        <!-- Plot Column -->
+        <ng-container matColumnDef="plot">
+            <th mat-header-cell *matHeaderCellDef> Plot </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.plot}} </td>
+        </ng-container>
+    
+        <!-- Writer Column -->
+        <ng-container matColumnDef="writer">
+            <th mat-header-cell *matHeaderCellDef> Writer </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.writer}} </td>
+        </ng-container>
+    
+        <!-- IMDB Rating Column -->
+        <ng-container matColumnDef="imdbrating">
+            <th mat-header-cell *matHeaderCellDef> IMDB Rating </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.imdbrating}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
 
-    <!-- Plot Column -->
-    <ng-container matColumnDef="plot">
-        <th mat-header-cell *matHeaderCellDef> Plot </th>
-        <td mat-cell *matCellDef="let movie"> {{movie.plot}} </td>
-    </ng-container>
-
-    <!-- Writer Column -->
-    <ng-container matColumnDef="writer">
-        <th mat-header-cell *matHeaderCellDef> Writer </th>
-        <td mat-cell *matCellDef="let movie"> {{movie.writer}} </td>
-    </ng-container>
-
-    <!-- IMDB Rating Column -->
-    <ng-container matColumnDef="imdbrating">
-        <th mat-header-cell *matHeaderCellDef> IMDB Rating </th>
-        <td mat-cell *matCellDef="let movie"> {{movie.imdbrating}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<!-- Page -->
 <section class="pageButton">
 <mat-button-toggle-group value="current" style="margin: 3%;">
     <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>
