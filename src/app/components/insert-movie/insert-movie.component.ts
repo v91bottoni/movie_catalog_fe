@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { InsertMovieDialogComponent } from 'src/app/dialogs/insert-movie-dialog/insert-movie-dialog.component';
+import { Regex } from 'src/app/enums/regex';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -17,7 +20,8 @@ export class InsertMovieComponent {
   insertForm!: FormGroup;
 
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
-    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService){
+    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService,
+    private movieService: MovieService, public dialog: MatDialog){
 
       this.insertForm = this.formbuilder.group({
       actors : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(100)]}],
@@ -32,7 +36,7 @@ export class InsertMovieComponent {
       language : ["",{validators:[Validators.required, Validators.minLength(3),  Validators.maxLength(50)]}],
       metascore : ["",{validators:[Validators.required]}],
       plot : ["",{validators:[Validators.required, Validators.minLength(10),  Validators.maxLength(500)]}],
-      poster : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(200)]}],
+      poster : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(200), Validators.pattern(Regex.posterURL)]}],
       production : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(50)]}],
       rated : ["",{validators:[Validators.required]}],
       released : ["",{validators:[Validators.required]}],
@@ -41,10 +45,10 @@ export class InsertMovieComponent {
       title : ["",{validators:[Validators.required,  Validators.minLength(2),  Validators.maxLength(100)]}],
       totalseasons : [""],
       type : ["",{validators:[Validators.required,Validators.minLength(2),  Validators.maxLength(10)]}],
-      website : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(50)]}],
+      website : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(50), Validators.pattern(Regex.website)]}],
       writer : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(400)]}],
       year : ["",{validators:[Validators.required]}],
-      imdbid : ["",{validators:[Validators.required, Validators.minLength(5)]}]
+      imdbid : ["",{validators:[Validators.required, Validators.minLength(5), Validators.pattern(Regex.imdbid)]}]
   });
 
       }
@@ -77,12 +81,24 @@ export class InsertMovieComponent {
 
         onSubmit(){
 
-
+          this.movieService.saveMovie(this.insertForm.value).subscribe(res=>{
+            console.log(res);
+            this.openDialog('200ms', '1000ms');
+            
+          })
         }
 
         exit(){
           console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
+        }
+
+        openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+          this.dialog.open(InsertMovieDialogComponent, {
+            width: '30%',
+            enterAnimationDuration,
+            exitAnimationDuration,
+          });
         }
 
 

@@ -23,6 +23,10 @@
                   IMDB-ID must be at least 5 characters long.
                 </div>
 
+                <div *ngIf="imdbid?.errors?.['pattern']">
+                  Invalid IMDB-ID.
+                </div>
+
             </mat-error>
 
               <!-- Title input -->
@@ -217,9 +221,21 @@
             </mat-error>
 
               <!-- DVD input -->
-              <mat-form-field>
+              <!-- <mat-form-field>
                   <mat-label>DVD</mat-label>
                   <input matInput formControlName="dvd" placeholder="DVD" type="string" required>
+              </mat-form-field> -->
+
+              <mat-form-field appearance="fill" class="example-form-field">
+                <mat-label>DVD</mat-label>
+                <input matInput [matDatepicker]="datepicker" formControlName="dvd" required>
+                <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
               </mat-form-field>
 
               <!-- DVD Errors -->
@@ -322,6 +338,10 @@
                   Poster must be 200 characters long.
                 </div>
 
+                <div *ngIf="poster?.errors?.['pattern']">
+                  Poster must be a valid URL.
+                </div>
+
             </mat-error>
 
               <!-- Production input -->
@@ -363,10 +383,21 @@
             </mat-error>
 
               <!-- Released input -->
-              <mat-form-field>
+              <!-- <mat-form-field>
                   <mat-label>Released</mat-label>
                   <input matInput formControlName="released" placeholder="Released" type="string" required>
-              </mat-form-field>
+              </mat-form-field> -->
+              <mat-form-field appearance="fill" class="example-form-field">
+                <mat-label>Released</mat-label>
+                <input matInput [matDatepicker]="datepickerreleased" formControlName="released" required>
+                <mat-datepicker-toggle matIconSuffix [for]="datepickerreleased"></mat-datepicker-toggle>
+                <mat-datepicker #datepickerreleased>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+            </mat-form-field>
 
               <!-- Released Errors -->
               <mat-error *ngIf="released?.invalid && (released?.dirty || released?.touched)">
@@ -455,6 +486,10 @@
 
                 <div *ngIf="website?.errors?.['maxlength']">
                   WebSite must be 50 characters long.
+                </div>
+
+                <div *ngIf="website?.errors?.['pattern']">
+                  Invalid WebSite.
                 </div>
 
             </mat-error>
