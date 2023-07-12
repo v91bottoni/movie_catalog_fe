@@ -27,3 +27,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       overflow-x: auto;
     }
   }
+
+  .mat-mdc-standard-chip {
+    --mdc-chip-elevated-container-color: whitesmoke;
+    --mdc-chip-elevated-disabled-container-color: #e0e0e0;
+    --mdc-chip-label-text-color: #212121;
+    --mdc-chip-disabled-label-text-color: #212121;
+    --mdc-chip-with-icon-icon-color: #212121;
+    --mdc-chip-with-icon-disabled-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
+    --mdc-chip-with-icon-selected-icon-color: #212121;
+  }
+
+  mat-chip-option{
+    transition: 500ms;
+  }
+  
+  mat-chip-option:hover{
+    transform: scale(1.1);
+  }

@@ -23,14 +23,11 @@ export class HomeComponent implements OnInit {
   home: boolean= false;
   gerne: boolean= false;
   category!:String;
-  // ngVersion: string = VERSION.full;
-  // matVersion: string = '5.1.0';
-  // breakpoint!: number;
+
+  chipsCategory: String[] = this.movieService.categories;
 
 
   ngOnInit(): void {
-
-    // this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
 
     // this.route.snapshot.paramMap.get("pag")
     
@@ -112,12 +109,9 @@ export class HomeComponent implements OnInit {
   openMovieDetails(movieId: string): void {
     this.router.navigate(['/movies', movieId]);
   }
-  // onResize(event: UIEvent) {
-  //   const target = event.target as Window;
-  //   this.breakpoint = (target.innerWidth <= 400) ? 1 : 6;
-  // }
 
-
-
+  goToCategory(category:String){
+    this.router.navigateByUrl('/home/gerne/'+category+'/1')
+  }
 
 }
