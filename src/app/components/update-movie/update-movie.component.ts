@@ -1,9 +1,11 @@
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 
 
 @Component({
@@ -15,48 +17,30 @@ export class UpdateMovieComponent {
   movie:Movie| null = null;
   submitted = false;
   updateForm: FormGroup = this.formbuilder.group({    actors :['', Validators.required],    awards :['', Validators.required],    boxoffice :['', Validators.required],    country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],    genre :['', Validators.required],    imdbid :['', Validators.required],    imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    language :['', Validators.required],    metascore :['', Validators.required],    plot :['', Validators.required],    poster :['', Validators.required],    production :['', Validators.required],    rated :['', Validators.required],    released :['', Validators.required],    response :['', Validators.required],    runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],    website :['', Validators.required],    writer :['', Validators.required],    year :['', Validators.required]  });
-  generalityForm:FormGroup = this.formbuilder.group({     genre :['', Validators.required],   plot :['', Validators.required],    released :['', Validators.required],   runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],        year :['', Validators.required]  });
-  productionForm:FormGroup = this.formbuilder.group({    actors :['', Validators.required],   country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],     language :['', Validators.required],     poster :['', Validators.required],    production :['', Validators.required],   writer :['', Validators.required] });
-  otherInfoForm:FormGroup = this.formbuilder.group({    awards :['', Validators.required],    boxoffice :['', Validators.required],   imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    metascore :['', Validators.required], rated :['', Validators.required],    response :['', Validators.required],  website :['', Validators.required] });;
+  controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
+
+  genNames:string[] = [ 'plot',    'released',    'runtime',   'genre',    'title',    'totalseason',    'type', 'year'];
+  prodNames:string[] = ['actors',      'country',    'director',    'dvd',     'language',    'poster',    'production','writer'];
+  otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',      'metascore',    'rated',      'response',   'website'];
+
+  //generalityForm:FormGroup = this.formbuilder.group({     genre :['', Validators.required],   plot :['', Validators.required],    released :['', Validators.required],   runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],        year :['', Validators.required]  });
+  //productionForm:FormGroup = this.formbuilder.group({    actors :['', Validators.required],   country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],     language :['', Validators.required],     poster :['', Validators.required],    production :['', Validators.required],   writer :['', Validators.required] });
+  //otherInfoForm:FormGroup = this.formbuilder.group({    awards :['', Validators.required],    boxoffice :['', Validators.required],   imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    metascore :['', Validators.required], rated :['', Validators.required],    response :['', Validators.required],  website :['', Validators.required] });;
 generalityFormValid = false;
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
-    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService){
+    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService, public dialog: MatDialog){
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
 this.service.getMovieById(idMovie).subscribe(resp =>{
   this.movie = resp;
   console.log(this.movie);
-  this.updateForm = this.formbuilder.group({
-    actors : [this.movie?.actors,{validators:[Validators.required],updateOn:"change"}],
-    awards : [this.movie?.awards,{validators:[Validators.required],updateOn:"change"}],
-    boxoffice : [this.movie?.boxoffice,{validators:[Validators.required],updateOn:"change"}],
-    country: [this.movie?.country,{validators:[Validators.required],updateOn:"change"}],
-    director : [this.movie?.director,{validators:[Validators.required],updateOn:"change"}],
-    dvd : [this.movie?.dvd,{validators:[Validators.required],updateOn:"change"}],
-    genre : [this.movie?.genre,{validators:[Validators.required],updateOn:"change"}],
-    imdbrating : [this.movie?.imdbrating,{validators:[Validators.required],updateOn:"change"}],
-    imdbvotes : [this.movie?.imdbvotes,{validators:[Validators.required],updateOn:"change"}],
-    language : [this.movie?.language,{validators:[Validators.required],updateOn:"change"}],
-    metascore : [this.movie?.metascore,{validators:[Validators.required],updateOn:"change"}],
-    plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
-    poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
-    production : [this.movie?.production,{validators:[Validators.required],updateOn:"change"}],
-    rated : [this.movie?.rated,{validators:[Validators.required],updateOn:"change"}],
-    released : [this.movie?.released,{validators:[Validators.required],updateOn:"change"}],
-    response : [this.movie?.response?'True':'False',{validators:[Validators.required],updateOn:"change"}],
-    runtime : [this.movie?.runtime,{validators:[Validators.required],updateOn:"change"}],
-    title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
-    totalseasons : [this.movie?.totalseasons],
-    type : [this.movie?.type,{validators:[Validators.required],updateOn:"change"}],
-    website : [this.movie?.website,{validators:[Validators.required],updateOn:"change"}],
-    writer : [this.movie?.writer,{validators:[Validators.required],updateOn:"change"}],
-    year : [this.movie?.year,{validators:[Validators.required],updateOn:"change"}],
-  });
+  this.reset();
 });
 
       }
 
 
         updateData() {
+
           this.verifyStepError();
           this.submitted = true;
           if(this.updateForm.valid){
@@ -66,7 +50,12 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             this.service.updateMovie(movie).subscribe(resp =>{
               if(resp != null){
                 alert("Update Successfull");
-                this.route.navigate(['movies/'+this.movie?.imdbid]);
+                this.route.navigate(['home']);
+                this.service.movieid = movie.imdbid;
+                const dialogRef = this.dialog.open(MovieDetailsComponent);
+                dialogRef.afterClosed().subscribe(result => {
+                console.log(`Dialog result: ${result}`);
+    });
               }
             });
           }
@@ -75,12 +64,75 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
           console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
         }
-        message="";
+
+
+
+        genOK:boolean = true;
+        proOK:boolean = true;
+        othOK:boolean = true;
         verifyStepError(){
-          this.message="";
-          if(!this.generalityForm.valid) {}
-          if(!this.productionForm.valid) {}
-          if(!this.otherInfoForm.valid) {}
+          this.genOK = true;
+          this.proOK = true;
+          this.othOK = true;
+
+          if(!this.updateForm.valid) {
+            for(let control of this.genNames){
+              if(this.updateForm.get(control)?.hasError('required')){
+                console.log(control);
+                this.genOK = false;
+                break;
+              }
+            }
+            for(let control of this.prodNames){
+              if(this.updateForm.get(control)?.hasError('required')){
+                this.proOK = false;
+                break;
+              }
+            }
+            for(let control of this.otherNames){
+              if(this.updateForm.get(control)?.hasError('required')){
+                this.othOK = false;
+                break;
+              }
+            }
+          }
+
+         /*if(!this.generalityForm.valid) {this .message = "Generality Step Incomplete!"}
+          if(!this.productionForm.valid) {this .message = "Production Info Step Incomplete!"}
+          if(!this.otherInfoForm.valid) {this .message = "Other Info Step Incomplete!"}*/
+
+
+        }
+        reset(){
+          this.genOK = true;
+          this.proOK = true;
+          this.othOK = true;
+          this.updateForm = this.formbuilder.group({
+            actors : [this.movie?.actors,{validators:[Validators.required],updateOn:"change"}],
+            awards : [this.movie?.awards,{validators:[Validators.required],updateOn:"change"}],
+            boxoffice : [this.movie?.boxoffice,{validators:[Validators.required],updateOn:"change"}],
+            country: [this.movie?.country,{validators:[Validators.required],updateOn:"change"}],
+            director : [this.movie?.director,{validators:[Validators.required],updateOn:"change"}],
+            dvd : [this.movie?.dvd,{validators:[Validators.required],updateOn:"change"}],
+            genre : [this.movie?.genre,{validators:[Validators.required],updateOn:"change"}],
+            imdbrating : [this.movie?.imdbrating,{validators:[Validators.required],updateOn:"change"}],
+            imdbvotes : [this.movie?.imdbvotes,{validators:[Validators.required],updateOn:"change"}],
+            language : [this.movie?.language,{validators:[Validators.required],updateOn:"change"}],
+            metascore : [this.movie?.metascore,{validators:[Validators.required],updateOn:"change"}],
+            plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
+            poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
+            production : [this.movie?.production,{validators:[Validators.required],updateOn:"change"}],
+            rated : [this.movie?.rated,{validators:[Validators.required],updateOn:"change"}],
+            released : [this.movie?.released,{validators:[Validators.required],updateOn:"change"}],
+            response : [this.movie?.response?'True':'False',{validators:[Validators.required],updateOn:"change"}],
+            runtime : [this.movie?.runtime,{validators:[Validators.required],updateOn:"change"}],
+            title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
+            totalseasons : [this.movie?.totalseasons],
+            type : [this.movie?.type,{validators:[Validators.required],updateOn:"change"}],
+            website : [this.movie?.website,{validators:[Validators.required],updateOn:"change"}],
+            writer : [this.movie?.writer,{validators:[Validators.required],updateOn:"change"}],
+            year : [this.movie?.year,{validators:[Validators.required],updateOn:"change"}],
+          });
 
         }
 
