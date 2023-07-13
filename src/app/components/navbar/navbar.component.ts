@@ -48,16 +48,17 @@ export class NavbarComponent {
     elem.classList.toggle("hide");
     if(this.searchIcon == "search") {
       this.searchIcon = "visibility_off";
-      this.addE(elem);
+      this.addKeyEvent(elem);
     }
     else {
       this.searchIcon = "search";
-      this.removeE(elem);
+      this.searchTerm = '';
+      this.removeKeyEvent(elem);
 
     }
   }
-  searchFilm(param:string, elem:HTMLElement){
-    this.toggle(elem);
+  searchFilm(param:string){
+    //this.toggle(elem);
     // posticipando, sottoscrivo in SearchResult prima di eseguire Subject.next() in nextParam().
     setTimeout(()=>{this.searchService.nextParam(param); },0);
   }
@@ -70,15 +71,15 @@ export class NavbarComponent {
   fun = (event:KeyboardEvent) => {
     if(event.key == 'Enter'){
       this.router.navigate(["search"]);
-      this.toggle(this.searchElem);
+      //this.toggle(this.searchElem);
       setTimeout(()=>{this.searchService.nextParam(this.searchTerm); },0);
 
     }
   };
-  addE(ele:HTMLElement){
+  addKeyEvent(ele:HTMLElement){
     ele.addEventListener("keydown" , this.fun)}
 
-  removeE(ele:HTMLElement){
+  removeKeyEvent(ele:HTMLElement){
     ele.removeEventListener("keydown", this.fun);
   }
 

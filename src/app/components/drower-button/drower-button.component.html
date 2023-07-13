@@ -1,7 +1,15 @@
 
-<div  (mouseleave)="isOpenHome = false;" (click)="drawerEventFire()"  routerLink="home" class="panel">
-  <mat-icon  (mouseenter)="isOpenHome = true;">home</mat-icon>
-  <mat-label  [@openClose]="isOpenHome ? 'open' : 'closed'" >HOME</mat-label>
+<div  (mouseleave)="isOpenHome = false;"  class="panel">
+  <mat-icon  (mouseenter)="isOpenHome = true;"   routerLink="home">home</mat-icon>
+  <mat-label [@openClose]="isOpenHome ? 'open' : 'closed'"   routerLink="home" class="panelLabel">HOME</mat-label>
+</div>
+<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;"  class="panel" >
+  <mat-icon (mouseenter)="isOpenAdd = true;"   routerLink="insertMovie">note_add</mat-icon>
+  <mat-label   [@openClose]="isOpenAdd ? 'open' : 'closed'"   routerLink="insertMovie" class="panelLabel">ADDFILM</mat-label>
+</div>
+<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;"  class="panel" >
+  <mat-icon (mouseenter)="isOpenMan = true;"  routerLink="management">build</mat-icon>
+  <mat-label   [@openClose]="isOpenMan ? 'open' : 'closed'"   routerLink="management" class="panelLabel">MANAGEMENT</mat-label>
 </div>
 <!--<div (mouseleave)="isOpenProf = false;" (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
   <mat-icon (mouseenter)="isOpenProf = true;">account_box</mat-icon>
@@ -11,14 +19,6 @@
   <mat-icon (mouseenter)="isOpenLog = true;">account_circle</mat-icon>
   <mat-label   [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
 </div>-->
-<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;" (click)="drawerEventFire()"  routerLink="insertMovie" class="panel" >
-  <mat-icon (mouseenter)="isOpenAdd = true;">note_add</mat-icon>
-  <mat-label   [@openClose]="isOpenAdd ? 'open' : 'closed'" >ADDFILM</mat-label>
-</div>
-<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;" (click)="drawerEventFire()"  routerLink="management" class="panel" >
-  <mat-icon (mouseenter)="isOpenMan = true;">build</mat-icon>
-  <mat-label   [@openClose]="isOpenMan ? 'open' : 'closed'" >MANAGEMENT</mat-label>
-</div>
 
  <!-- <mat-accordion color="primary" >
   <mat-expansion-panel hideToggle>
