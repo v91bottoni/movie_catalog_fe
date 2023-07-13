@@ -1,6 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, from, map, startWith } from 'rxjs';
+import { MovieService } from 'src/app/service/movie.service';
 import { SearchService } from 'src/app/service/search.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
@@ -30,11 +33,17 @@ import { UtilityService } from 'src/app/service/utility.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   username: string| null = "";
-  constructor(private searchService : SearchService, protected util: UtilityService,
+  constructor(private searchService : SearchService, private movieservice:MovieService, protected util: UtilityService,
     private router:Router){
-
+      this.movieservice.searchMovie(' ', 1).subscribe(resp=>{
+        let movies = resp.movieList;
+        if(movies){
+          movies.forEach(movie=>{this.options.push(movie.title)});
+        }else this.options=[];
+        //this.filteredOptions = from(Array(this.options));
+      });
 
   }
   @Output()drawerEvent = new EventEmitter<string>;
@@ -42,6 +51,32 @@ export class NavbarComponent {
   searchElem!:HTMLElement;
   searchIcon = "search";
   isOpen :boolean = false;
+  myControl:FormControl = new FormControl();
+  options:string[]=[];
+  filteredOptions!: Observable<string[]>;
+
+  ngOnInit(): void {
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value || ' ')),
+    );
+
+  }
+  private _filter(value: string): string[] {
+    let filterValue = value;
+    this.movieservice.searchMovie(filterValue, 1).subscribe(resp=>{
+      let movies = resp.movieList;
+      if(movies){
+        this.options = [];
+        movies.forEach(movie=>{this.options.push(movie.title)});
+      }
+      else this.options=[];
+
+    });
+    return this.options.filter(option =>  option.toLowerCase().includes(filterValue));
+  }
+
 
   toggle(elem:HTMLElement){
     this.searchElem = elem;
