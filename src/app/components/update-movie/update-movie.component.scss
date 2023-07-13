@@ -12,11 +12,10 @@
 
 .demo-button  {
   margin: 15px;
-  font-size: large;
+  font-size: medium;
   min-width: fit-content;
-  width: 20%;
   font-size: x-large;
-  padding: 25px 10px;
+  padding: 20px 20px;
 }
 .back{
   text-align: center;
@@ -33,9 +32,9 @@ mat-error{
   font-size: small;
 }
 mat-form-field{
-  width: 20%;
-  min-width: 150px;
-  margin: 0 10px;
+  width: 30%;
+  min-width: 170px;
+  margin: 10px 5%;
 
 }
 label{
@@ -45,5 +44,5 @@ label{
 }
 
 .error{
-  color:red;
+  color:red ;
 }
