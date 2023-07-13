@@ -53,8 +53,10 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
                 this.dialog.open(UpdateMovieSuccessfullDialogComponent)
                   .afterClosed().subscribe(result=>{
                     this.route.navigate(['home']);
-                    this.service.movieid = movie.imdbid;
-                    this.dialog.open(MovieDetailsComponent);
+                    if(result){
+                      this.service.movieid = movie.imdbid;
+                      this.dialog.open(MovieDetailsComponent);
+                    }
                   });
               }
             });

@@ -5,7 +5,8 @@
     Movie update completed successfully!
   </div>
   <div mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close cdkFocusInitial>OK</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>CONTINUE</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>VIEW CHANGES</button>
   </div>
 
 </div>
