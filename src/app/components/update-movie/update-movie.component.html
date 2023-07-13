@@ -1,4 +1,4 @@
-<form [formGroup]="updateForm">
+<form [formGroup]="updateForm"  >
 <table class="mat-elevation-z8 demo-table">
 <tr>
   <th colspan="2" >
@@ -9,12 +9,11 @@
   </th>
 </tr>
 <tr>
-<p *ngIf="">{{message}}</p>
   <mat-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="generalityForm">
+    <mat-step [stepControl]="updateForm">
       <form [formGroup]="updateForm">
 
-        <ng-template #generality matStepLabel>Movie Generality</ng-template>
+        <ng-template #generality matStepLabel><p *ngIf="genOK" >Movie Generality</p><p *ngIf="!genOK" class="error">Movie Generality</p></ng-template>
 
         <mat-form-field appearance="fill">
           <mat-label for="actors">Title</mat-label>
@@ -33,7 +32,7 @@
             <input title="Campo Obbligatorio" matInput #genre id="genre" name="genre" type="text" placeholder="Genere.." formControlName="genre">
             <mat-error>Inserire Genere!</mat-error>
           </mat-form-field>
-          
+
           <mat-form-field appearance="fill">
           <mat-label for="plot">Plot</mat-label>
             <textarea title="Campo Obbligatorio" matInput #plot id="plot" name="plot" placeholder="Plot.." formControlName="plot"></textarea>
@@ -50,7 +49,7 @@
           <mat-label for="totalseasons" >Total Seasons</mat-label>
           <input  matInput #totalseasons id="totalseasons" name="totalseasons" type="number" min="0" value="0" formControlName="totalseasons">
         </mat-form-field>
-        
+
 
         <mat-form-field appearance="fill">
           <mat-label for="released">Released</mat-label>
@@ -79,10 +78,10 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="productionForm" >
-      <ng-template #production matStepLabel>Production Info</ng-template>
+    <mat-step [stepControl]="updateForm" >
+      <ng-template #production matStepLabel><p *ngIf="proOK" >Production Info</p><p *ngIf="!proOK" class="error">Production Info</p></ng-template>
       <form [formGroup]="updateForm">
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="production">Production</mat-label>
           <input title="Campo Obbligatorio" matInput #production id="production" name="production" type="text" placeholder="Production.." formControlName="production">
@@ -94,7 +93,7 @@
           <input title="Campo Obbligatorio" matInput #actors  id="actors" name="actors" type="text" placeholder="Actors.." formControlName="actors">
           <mat-error>Inserire Actors!</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="writer">Writer</mat-label>
           <input title="Campo Obbligatorio" matInput #writer id="writer" name="writer" type="text" placeholder="Writer.." formControlName="writer">
@@ -106,7 +105,7 @@
             <input title="Campo Obbligatorio" matInput #language id="language" name="language" type="text" placeholder="Language.." formControlName="language">
             <mat-error>Inserire Language!</mat-error>
           </mat-form-field>
-    
+
           <mat-form-field appearance="fill">
               <mat-label for="director">Director</mat-label>
               <input title="Campo Obbligatorio" matInput #director  id="director" name="director" type="text" placeholder="Director.." formControlName="director">
@@ -124,14 +123,14 @@
               <input title="Campo Obbligatorio" matInput #country id="country" name="country" type="text" placeholder="Country.." formControlName="country">
               <mat-error>Inserire Country!</mat-error>
             </mat-form-field>
-      
+
             <mat-form-field appearance="fill">
               <mat-label for="dvd">DVD</mat-label>
               <input title="Campo Obbligatorio" matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
               <mat-error>Inserire DVD!</mat-error>
             </mat-form-field>
 
-        
+
 
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -139,22 +138,22 @@
         </div>
       </form>
     </mat-step>
-      <mat-step [stepControl]="otherInfoForm" >
-        <ng-template #otherInfo matStepLabel>Other Info</ng-template>
+      <mat-step [stepControl]="updateForm" >
+       <ng-template  matStepLabel><p *ngIf="othOK" >Other Info</p><p *ngIf="!othOK" class="error">Other Info</p></ng-template>
       <form [formGroup]="updateForm">
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="website">Website</mat-label>
           <input title="Campo Obbligatorio" matInput #website id="website" name="website" type="text" placeholder="Website.." formControlName="website">
           <mat-error>Inserire Website!</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="awards">Awards</mat-label>
             <input title="Campo Obbligatorio" matInput #awards id="awards" name="awards" type="text" placeholder="Awards.." formControlName="awards">
             <mat-error>Inserire Awards!</mat-error>
           </mat-form-field>
-  
+
           <mat-form-field appearance="fill">
             <mat-label for="imdbrating">Rating</mat-label>
           <input title="Campo Obbligatorio" matInput #imdbrating id="imdbrating" name="imdbrating" type="number" min="0" max="10" value="0" formControlName="imdbrating">
@@ -166,25 +165,25 @@
           <input title="Campo Obbligatorio" matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
           <mat-error>Inserire Box Office!</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="imdbvotes">Imdbvotes</mat-label>
           <input title="Campo Obbligatorio" matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="Imdbvotes.." formControlName="imdbvotes">
           <mat-error>Inserire Imdbvotes!</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="metascore">Metascore</mat-label>
           <input title="Campo Obbligatorio" matInput #metascore id="metascore" name="metascore" type="text"placeholder="Metascore.." formControlName="metascore">
           <mat-error>Inserire Metascore!</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill">
           <mat-label for="rated">Rated</mat-label>
           <input title="Campo Obbligatorio" matInput #rated id="rated" name="rated" type="text" placeholder="Rated.." formControlName="rated">
           <mat-error>Inserire Rated!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field  appearance="fill">
           <mat-label for="response">Response</mat-label>
           <mat-select title="Campo Obbligatorio"  formControlName="response">
@@ -193,7 +192,7 @@
           </mat-select>
           <mat-error>Inserire Response!</mat-error>
         </mat-form-field>
-  
+
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -202,20 +201,20 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-    
+
       <div class="demo-button-container">
         <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
-          Update data
+          UPDATE DATA
         </button>
         <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
-          Exit
+          CANCEL
         </button>
       </div>
 
 
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="reset()">Reset</button>
       </div>
     </mat-step>
   </mat-stepper>
