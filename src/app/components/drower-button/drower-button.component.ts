@@ -25,6 +25,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         animate('0.2s')
       ]),
     ]),
+
   ],
   templateUrl: './drower-button.component.html',
   styleUrls: ['./drower-button.component.scss']

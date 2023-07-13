@@ -1,8 +1,8 @@
 <form [formGroup]="updateForm"  >
 <table class="mat-elevation-z8 demo-table">
 <tr>
-  <th colspan="2" >
-    <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="back">
+  <th >
+    <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <h1>UPDATE MOVIE</h1>

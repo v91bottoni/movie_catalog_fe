@@ -16,12 +16,14 @@ export class RootComponent {
     this.drawer=drawer;
     if(drawer.classList.contains('hide')){
       drawer.classList.remove('hide');
+      this.util.drawerOpen=true;
       setTimeout(() => {
         document.addEventListener('click', this.close);
       }, 1);
     }else{
       drawer.classList.add('hide');
-        document.removeEventListener('click', this.close);
+      this.util.drawerOpen=false;
+      document.removeEventListener('click', this.close);
     }
 
 
@@ -29,6 +31,7 @@ export class RootComponent {
   close = (event:MouseEvent)=>{
       if(!this.drawer.classList.contains('hide')){
         this.drawer.classList.add('hide');
+        this.util.drawerOpen=false;
         document.removeEventListener('click', this.close);
       }
     }

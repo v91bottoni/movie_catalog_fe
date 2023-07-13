@@ -1,5 +1,8 @@
 <div class="user-container">
     <mat-card *ngIf="userForm">
+      <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
         <mat-card-header>
             <mat-card-title><strong> User Details! </strong></mat-card-title>
           </mat-card-header>
@@ -67,7 +70,7 @@
 
                 <!-- Surname Errors -->
                 <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
-                    
+
                     <div *ngIf="surname?.errors?.['required']">
                         Surname is required.
                     </div>
@@ -75,7 +78,7 @@
                     <div *ngIf="surname?.errors?.['minlength']">
                         Surname must be at least 3 characters long.
                     </div>
-                    
+
                 </mat-error>
 
                 <!-- Fiscal Code Errors -->
@@ -102,7 +105,7 @@
                 <mat-error *ngIf="invalidInput">
                     Invalid Input.
                 </mat-error>
-                
+
             </form>
       </mat-card-content>
     </mat-card>

@@ -62,6 +62,14 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             });
           }
         }
+
+        goBack(){
+          this.route.navigate([this.util.backpage]);
+          this.service.movieid = this.movie?.imdbid+"";
+          this.dialog.open(MovieDetailsComponent);
+
+        }
+
         exit(){
           console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
