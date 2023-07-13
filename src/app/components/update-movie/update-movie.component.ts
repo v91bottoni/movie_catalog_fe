@@ -6,6 +6,7 @@ import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
 
 
 @Component({
@@ -49,13 +50,12 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             //console.log(movie);
             this.service.updateMovie(movie).subscribe(resp =>{
               if(resp != null){
-                alert("Update Successfull");
-                this.route.navigate(['home']);
-                this.service.movieid = movie.imdbid;
-                const dialogRef = this.dialog.open(MovieDetailsComponent);
-                dialogRef.afterClosed().subscribe(result => {
-                console.log(`Dialog result: ${result}`);
-    });
+                this.dialog.open(UpdateMovieSuccessfullDialogComponent)
+                  .afterClosed().subscribe(result=>{
+                    this.route.navigate(['home']);
+                    this.service.movieid = movie.imdbid;
+                    this.dialog.open(MovieDetailsComponent);
+                  });
               }
             });
           }
