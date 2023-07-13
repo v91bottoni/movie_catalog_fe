@@ -33,7 +33,6 @@ export class DrowerButtonComponent {
 
   constructor(private router: Router, protected util : UtilityService){ }
 
-  @Output()drawerEvent = new EventEmitter<string>;
 panelOpenState = false;
 isOpenHome= false;
 isOpenCat= false;
@@ -42,13 +41,5 @@ isOpenLog= false;
 isOpenAdd= false;
 isOpenMan= false;
 
-
-  drawerEventFire(){
-    this.drawerEvent.emit("DrawerToggleEvent");
-  }
-
-  navigateCategory(category:string){
-    this.router.navigate(['/home/gerne/'+category+'/1']);
-  }
 
 }

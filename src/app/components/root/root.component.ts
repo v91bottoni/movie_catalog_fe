@@ -23,12 +23,12 @@ export class RootComponent {
       drawer.classList.add('hide');
         document.removeEventListener('click', this.close);
     }
-    
+
 
   }
-  close = (event:MouseEvent)=>{ 
+  close = (event:MouseEvent)=>{
       if(!this.drawer.classList.contains('hide')){
-        this.drawer.classList.add('hide'); 
+        this.drawer.classList.add('hide');
         document.removeEventListener('click', this.close);
       }
     }
