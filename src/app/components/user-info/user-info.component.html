@@ -1,109 +1,151 @@
 <div class="user-container">
     <mat-card *ngIf="userForm">
+        
         <mat-card-header>
             <mat-card-title><strong> User Details! </strong></mat-card-title>
-          </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
+        </mat-card-header>
 
-                <!-- Name input -->
-                <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name" placeholder="Name" type="string" required>
-                </mat-form-field>
+        <mat-card-content>
 
-                <!-- Surname input -->
-                <mat-form-field>
-                    <mat-label>Surname</mat-label>
-                    <input matInput formControlName="surname" placeholder="Surname" type="string" required>
-                </mat-form-field>
+            <mat-grid-list cols="2" rowHeight="3:1">
 
-                <!-- CF input -->
-                <mat-form-field>
-                    <mat-label>Fiscal Code</mat-label>
-                    <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required readonly="true">
-                </mat-form-field>
-
-                <!-- Email input -->
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Email" type="email" required readonly="true">
-                </mat-form-field>
-
-                <!-- Birthdate input -->
-                <mat-form-field appearance="fill" class="example-form-field">
-                    <mat-label>Birthdate</mat-label>
-                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
-                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                      <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                      </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
-
-                <!-- Role input -->
-                <mat-form-field>
-                    <mat-label>Role</mat-label>
-                    <input matInput formControlName="role" placeholder="Role" type="string" required readonly="true">
-                </mat-form-field>
-
-                <!-- Button -->
-                <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Update</button>
-
-                <!-- Name Errors -->
-                <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
-
-                    <div *ngIf="name?.errors?.['required']">
-                        Nome is required.
-                    </div>
-
-                    <div *ngIf="name?.errors?.['minlength']">
-                        Nome must be at least 3 characters long.
-                    </div>
-
-                </mat-error>
-
-                <!-- Surname Errors -->
-                <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
                     
-                    <div *ngIf="surname?.errors?.['required']">
-                        Surname is required.
-                    </div>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        
+                        <!-- Name input -->
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Name" type="string" required>
+                        </mat-form-field>
 
-                    <div *ngIf="surname?.errors?.['minlength']">
-                        Surname must be at least 3 characters long.
-                    </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+                        <!-- Surname input -->
+                        <mat-form-field>
+                            <mat-label>Surname</mat-label>
+                            <input matInput formControlName="surname" placeholder="Surname" type="string" required>
+                        </mat-form-field>  
+                        
+                    </mat-grid-tile>
                     
-                </mat-error>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
 
-                <!-- Fiscal Code Errors -->
-                <mat-error *ngIf="cf?.invalid && (cf?.dirty || cf?.touched)">
-                    <div *ngIf="cf?.errors?.['required']">
-                        Fiscal Code is required.
-                    </div>
+                        <!-- CF input -->
+                        <mat-form-field>
+                            <mat-label>Fiscal Code</mat-label>
+                            <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required readonly="true">
+                        </mat-form-field>
 
-                    <div *ngIf="cf?.errors?.['minlength']">
-                        Fiscal code must be 16 characters long.
-                    </div>
+                    </mat-grid-tile>
 
-                </mat-error>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
 
-                <!-- Birthdate Errors -->
-                <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
-                    Birthdate is required.
-                </mat-error>
+                        <!-- Email input -->
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Email" type="email" required readonly="true">
+                        </mat-form-field>
 
-                <mat-error *ngIf="invalidAge">
-                    Invalid Age.
-                </mat-error>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
 
-                <mat-error *ngIf="invalidInput">
-                    Invalid Input.
-                </mat-error>
+                        <!-- Birthdate input -->
+                        <mat-form-field appearance="fill" class="example-form-field">
+                            <mat-label>Birthdate</mat-label>
+                            <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
+                            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                            </mat-datepicker>
+                        </mat-form-field>    
+
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <!-- Button -->
+                        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Update</button>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                        <!-- Name Errors -->
+                        <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+
+                            <div *ngIf="name?.errors?.['required']">
+                                Nome is required.
+                            </div>
+
+                            <div *ngIf="name?.errors?.['minlength']">
+                                Nome must be at least 3 characters long.
+                            </div>
+
+                        </mat-error>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+
+                        <!-- Surname Errors -->
+                        <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+                            
+                            <div *ngIf="surname?.errors?.['required']">
+                                Surname is required.
+                            </div>
+
+                            <div *ngIf="surname?.errors?.['minlength']">
+                                Surname must be at least 3 characters long.
+                            </div>
+                            
+                        </mat-error>
+
+                        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="cf?.invalid && (cf?.dirty || cf?.touched)">
+
+                            <!-- Fiscal Code Errors -->
+                            <mat-error *ngIf="cf?.invalid && (cf?.dirty || cf?.touched)">
+                                <div *ngIf="cf?.errors?.['required']">
+                                    Fiscal Code is required.
+                                </div>
+
+                                <div *ngIf="cf?.errors?.['minlength']">
+                                    Fiscal code must be 16 characters long.
+                                </div>
+
+                            </mat-error>
+
+                        </mat-grid-tile>
+
+                        <mat-grid-tile [colspan]="2" [rowspan]="1"  *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
+
+                            <!-- Birthdate Errors -->
+                            <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
+                                Birthdate is required.
+                            </mat-error>
+
+                        </mat-grid-tile>
+
+                        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidAge">
+
+                            <mat-error *ngIf="invalidAge">
+                                Invalid Age.
+                            </mat-error>
+                            
+                        </mat-grid-tile>
+
+                        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidInput">
+                            <mat-error *ngIf="invalidInput">
+                                Invalid Input.
+                            </mat-error>
+                        </mat-grid-tile>
+
+                    </mat-grid-tile>
+                </form>
                 
-            </form>
-      </mat-card-content>
+            </mat-grid-list>
+
+        </mat-card-content>
     </mat-card>
 </div>
