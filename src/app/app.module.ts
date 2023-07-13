@@ -49,10 +49,13 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 
+
+
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { RootComponent } from './components/root/root.component';
+import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
 import {MatStepperModule} from '@angular/material/stepper';
 
 
@@ -81,6 +84,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     InsertMovieComponent,
     InsertMovieDialogComponent,
     RootComponent,
+    UpdateMovieSuccessfullDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +116,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatExpansionModule,
     MatCheckboxModule,
     MatSortModule,
+    MatStepperModule,
     MatChipsModule,
     MatStepperModule,
   ],

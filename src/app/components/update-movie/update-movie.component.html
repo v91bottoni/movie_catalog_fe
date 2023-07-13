@@ -1,306 +1,226 @@
-<form [formGroup]="updateForm">
+<form [formGroup]="updateForm"  >
 <table class="mat-elevation-z8 demo-table">
 <tr>
-  <th colspan="2" >
-    <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="back">
+  <th >
+    <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <h1>UPDATE MOVIE</h1>
   </th>
 </tr>
-
 <tr>
-  <td class="tabTd"><label  title="Campo Obbligatorio">Title *</label></td>
-  <td class="tabTd">
-    <mat-form-field appearance="fill">
-      <mat-label for="actors">Title</mat-label>
-      <input matInput #actors  id="title" name="title" type="text" placeholder="Title.." formControlName="title">
-      <mat-error>Inserire Title!</mat-error>
-    </mat-form-field>
-  </td>
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="updateForm">
+      <form [formGroup]="updateForm">
 
-</tr>
+        <ng-template #generality matStepLabel><p *ngIf="genOK" >Movie Generality</p><p *ngIf="!genOK" class="error">Movie Generality</p></ng-template>
 
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Actors *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="actors">Actors</mat-label>
-        <input matInput #actors  id="actors" name="actors" type="text" placeholder="Actors.." formControlName="actors">
-        <mat-error>Inserire Actors!</mat-error>
-      </mat-form-field>
-    </td>
-
-</tr>
-
-<tr>
-  <td class="tabTd"><label  title="Campo Obbligatorio">Year *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="year">Year</mat-label>
-        <input matInput #year id="year" name="year" type="text" placeholder="Year.." formControlName="year">
-        <mat-error>Inserire Year!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">Director *</label></td>
-      <td class="tabTd">
         <mat-form-field appearance="fill">
-          <mat-label for="director">Director</mat-label>
-          <input matInput #director  id="director" name="director" type="text" placeholder="Director.." formControlName="director">
-          <mat-error>Inserire Director!</mat-error>
-        </mat-form-field>
-      </td>
-</tr>
+          <mat-label for="actors">Title</mat-label>
+            <input title="Campo Obbligatorio" matInput #actors  id="title" name="title" type="text" placeholder="Title.." formControlName="title">
+            <mat-error>Inserire Title!</mat-error>
+          </mat-form-field>
 
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">Genere *</label></td>
-      <td class="tabTd">
+          <mat-form-field appearance="fill">
+            <mat-label for="year">Year</mat-label>
+            <input title="Campo Obbligatorio" matInput #year id="year" name="year" type="text" placeholder="Year.." formControlName="year">
+            <mat-error>Inserire Year!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="genre">Genere</mat-label>
+            <input title="Campo Obbligatorio" matInput #genre id="genre" name="genre" type="text" placeholder="Genere.." formControlName="genre">
+            <mat-error>Inserire Genere!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+          <mat-label for="plot">Plot</mat-label>
+            <textarea title="Campo Obbligatorio" matInput #plot id="plot" name="plot" placeholder="Plot.." formControlName="plot"></textarea>
+            <mat-error>Inserire Plot!</mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="fill">
-          <mat-label for="genre">Genere</mat-label>
-          <input matInput #genre id="genre" name="genre" type="text" placeholder="Genere.." formControlName="genre">
-          <mat-error>Inserire Genere!</mat-error>
+          <mat-label for="type">Type</mat-label>
+          <input title="Campo Obbligatorio" matInput #type id="type" name="type" type="text" placeholder="Type.." formControlName="type">
+          <mat-error>Inserire Type!</mat-error>
         </mat-form-field>
-    </td>
-</tr>
 
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Plot *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="plot">Plot</mat-label>
-          <textarea matInput #plot id="plot" name="plot" placeholder="Plot.." formControlName="plot"></textarea>
-          <mat-error>Inserire Plot!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
+        <mat-form-field appearance="fill">
+          <mat-label for="totalseasons" >Total Seasons</mat-label>
+          <input  matInput #totalseasons id="totalseasons" name="totalseasons" type="number" min="0" value="0" formControlName="totalseasons">
+        </mat-form-field>
 
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">Awards *</label></td>
-      <td class="tabTd">
+
+        <mat-form-field appearance="fill">
+          <mat-label for="released">Released</mat-label>
+          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepicker" #released id="released" name="released" formControlName="released">
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #datepicker>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+          <mat-error>Inserire Released!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="runtime">Runtime</mat-label>
+          <input title="Campo Obbligatorio" matInput #runtime id="runtime" name="runtime" type="text" placeholder="Runtime.." formControlName="runtime">
+          <mat-error>Inserire Runtime!</mat-error>
+        </mat-form-field>
+
+
+
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="updateForm" >
+      <ng-template #production matStepLabel><p *ngIf="proOK" >Production Info</p><p *ngIf="!proOK" class="error">Production Info</p></ng-template>
+      <form [formGroup]="updateForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label for="production">Production</mat-label>
+          <input title="Campo Obbligatorio" matInput #production id="production" name="production" type="text" placeholder="Production.." formControlName="production">
+          <mat-error>Inserire Production!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="actors">Actors</mat-label>
+          <input title="Campo Obbligatorio" matInput #actors  id="actors" name="actors" type="text" placeholder="Actors.." formControlName="actors">
+          <mat-error>Inserire Actors!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="writer">Writer</mat-label>
+          <input title="Campo Obbligatorio" matInput #writer id="writer" name="writer" type="text" placeholder="Writer.." formControlName="writer">
+          <mat-error>Inserire Writer!</mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="language">Language</mat-label>
+            <input title="Campo Obbligatorio" matInput #language id="language" name="language" type="text" placeholder="Language.." formControlName="language">
+            <mat-error>Inserire Language!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+              <mat-label for="director">Director</mat-label>
+              <input title="Campo Obbligatorio" matInput #director  id="director" name="director" type="text" placeholder="Director.." formControlName="director">
+              <mat-error>Inserire Director!</mat-error>
+            </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="poster">Poster</mat-label>
+          <input title="Campo Obbligatorio" matInput #poster id="poster" name="poster" type="text"placeholder="Poster.." formControlName="poster">
+          <mat-error>Inserire Poster!</mat-error>
+        </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label for="country">Country</mat-label>
+              <input title="Campo Obbligatorio" matInput #country id="country" name="country" type="text" placeholder="Country.." formControlName="country">
+              <mat-error>Inserire Country!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label for="dvd">DVD</mat-label>
+              <input title="Campo Obbligatorio" matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
+              <mat-error>Inserire DVD!</mat-error>
+            </mat-form-field>
+
+
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+      <mat-step [stepControl]="updateForm" >
+       <ng-template  matStepLabel><p *ngIf="othOK" >Other Info</p><p *ngIf="!othOK" class="error">Other Info</p></ng-template>
+      <form [formGroup]="updateForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label for="website">Website</mat-label>
+          <input title="Campo Obbligatorio" matInput #website id="website" name="website" type="text" placeholder="Website.." formControlName="website">
+          <mat-error>Inserire Website!</mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="fill">
           <mat-label for="awards">Awards</mat-label>
-          <input matInput #awards id="awards" name="awards" type="text" placeholder="Awards.." formControlName="awards">
-          <mat-error>Inserire Awards!</mat-error>
+            <input title="Campo Obbligatorio" matInput #awards id="awards" name="awards" type="text" placeholder="Awards.." formControlName="awards">
+            <mat-error>Inserire Awards!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="imdbrating">Rating</mat-label>
+          <input title="Campo Obbligatorio" matInput #imdbrating id="imdbrating" name="imdbrating" type="number" min="0" max="10" value="0" formControlName="imdbrating">
+          <mat-error>Inserire Rating!</mat-error>
         </mat-form-field>
-    </td>
-</tr>
 
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">BoxOffice *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="boxoffice">Box Office</mat-label>
-        <input matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
-        <mat-error>Inserire Box Office!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
+        <mat-form-field appearance="fill">
+          <mat-label for="boxoffice">Box Office</mat-label>
+          <input title="Campo Obbligatorio" matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
+          <mat-error>Inserire Box Office!</mat-error>
+        </mat-form-field>
 
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">Country *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="country">Country</mat-label>
-        <input matInput #country id="country" name="country" type="text" placeholder="Country.." formControlName="country">
-        <mat-error>Inserire Country!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
+        <mat-form-field appearance="fill">
+          <mat-label for="imdbvotes">Imdbvotes</mat-label>
+          <input title="Campo Obbligatorio" matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="Imdbvotes.." formControlName="imdbvotes">
+          <mat-error>Inserire Imdbvotes!</mat-error>
+        </mat-form-field>
 
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">DVD *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="dvd">DVD</mat-label>
-        <input matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
-        <mat-error>Inserire DVD!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
+        <mat-form-field appearance="fill">
+          <mat-label for="metascore">Metascore</mat-label>
+          <input title="Campo Obbligatorio" matInput #metascore id="metascore" name="metascore" type="text"placeholder="Metascore.." formControlName="metascore">
+          <mat-error>Inserire Metascore!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="rated">Rated</mat-label>
+          <input title="Campo Obbligatorio" matInput #rated id="rated" name="rated" type="text" placeholder="Rated.." formControlName="rated">
+          <mat-error>Inserire Rated!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+          <mat-label for="response">Response</mat-label>
+          <mat-select title="Campo Obbligatorio"  formControlName="response">
+            <mat-option value="True">True</mat-option>
+            <mat-option value="False">False</mat-option>
+          </mat-select>
+          <mat-error>Inserire Response!</mat-error>
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <div class="demo-button-container">
+        <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
+          UPDATE DATA
+        </button>
+        <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
+          CANCEL
+        </button>
+      </div>
 
 
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Imdbrating *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="imdbrating">Rating</mat-label>
-        <input matInput #imdbrating id="imdbrating" name="imdbrating" type="number" min="0" max="10" value="0" formControlName="imdbrating">
-        <mat-error>Inserire Rating!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Imdbvotes *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="imdbvotes">Imdbvotes</mat-label>
-        <input matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="Imdbvotes.." formControlName="imdbvotes">
-        <mat-error>Inserire Imdbvotes!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Language *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="language">Language</mat-label>
-        <input matInput #language id="language" name="language" type="text" placeholder="Language.." formControlName="language">
-        <mat-error>Inserire Language!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label   title="Campo Obbligatorio">Metascore *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="metascore">Metascore</mat-label>
-        <input matInput #metascore id="metascore" name="metascore" type="text"placeholder="Metascore.." formControlName="metascore">
-        <mat-error>Inserire Metascore!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Poster *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="poster">Poster</mat-label>
-        <input matInput #poster id="poster" name="poster" type="text"placeholder="Poster.." formControlName="poster">
-        <mat-error>Inserire Poster!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Production *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="production">Production</mat-label>
-        <input matInput #production id="production" name="production" type="text" placeholder="Production.." formControlName="production">
-        <mat-error>Inserire Production!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Rated *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="rated">Rated</mat-label>
-        <input matInput #rated id="rated" name="rated" type="text" placeholder="Rated.." formControlName="rated">
-        <mat-error>Inserire Rated!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Released *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="released">Released</mat-label>
-        <input matInput [matDatepicker]="datepicker" #released id="released" name="released" formControlName="released">
-        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                      <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                      </mat-datepicker-actions>
-                    </mat-datepicker>
-        <mat-error>Inserire Released!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-  <td class="tabTd"><label for="response" title="Campo Obbligatorio">Response *</label></td>
-    <td class="tabTd">
-      <mat-form-field  appearance="fill">
-        <mat-label for="response">Response</mat-label>
-        <mat-select  formControlName="response">
-          <mat-option value="True">True</mat-option>
-          <mat-option value="False">False</mat-option>
-        </mat-select>
-        <mat-error>Inserire Response!</mat-error>
-      </mat-form-field>
-    </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Runtime *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="runtime">Runtime</mat-label>
-        <input matInput #runtime id="runtime" name="runtime" type="text" placeholder="Runtime.." formControlName="runtime">
-        <mat-error>Inserire Runtime!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label>Total Seasons *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="totalseasons" >Total Seasons</mat-label>
-        <input matInput #totalseasons id="totalseasons" name="totalseasons" type="number" min="0" value="0" formControlName="totalseasons">
-        <mat-error>Inserire Total Seasons!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Type *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="type">Type</mat-label>
-        <input matInput #type id="type" name="type" type="text" placeholder="Type.." formControlName="type">
-        <mat-error>Inserire Type!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Website *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="website">Website</mat-label>
-        <input matInput #website id="website" name="website" type="text" placeholder="Website.." formControlName="website">
-        <mat-error>Inserire Website!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
-
-<tr>
-    <td class="tabTd"><label  title="Campo Obbligatorio">Writer *</label></td>
-    <td class="tabTd">
-      <mat-form-field appearance="fill">
-        <mat-label for="writer">Writer</mat-label>
-        <input matInput #writer id="writer" name="writer" type="text" placeholder="Writer.." formControlName="writer">
-                 <mat-error>Inserire Writer!</mat-error>
-      </mat-form-field>
-  </td>
-</tr>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 
 
 
-<tr>
-  <td class="tabTh" colspan="2">
-    <div class="demo-button-container">
-      <button mat-raised-button color="primary" (click)="updateData()" class="demo-button">
-        Update data
-      </button>
-      <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
-        Exit
-      </button>
-    </div>
-
-  </td>
-
-</tr>
-</table>
+      </tr>
+    </table>
 </form>

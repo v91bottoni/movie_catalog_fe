@@ -3,7 +3,7 @@
 }
 .search{
   margin: 20px 20px 0 5px;
-  min-width: 150px;
+  min-width: 100px;
   width: 32vw;
 }
 .hide{
@@ -28,9 +28,30 @@
   transform: scale(101%);
   cursor: pointer;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .welcome {
       display: none ;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homeLinkOn {
+      display: none ;
+  }
+  .homeLinkOff {
+    display:block;
+    display: grid;
+  }
+  .homeLinkOff:hover{
+    text-shadow: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .homeLinkOn {
+      display: block ;
+  }
+  .homeLinkOff {
+    display:none;
   }
 }
 

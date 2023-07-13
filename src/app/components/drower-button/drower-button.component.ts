@@ -25,6 +25,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         animate('0.2s')
       ]),
     ]),
+
   ],
   templateUrl: './drower-button.component.html',
   styleUrls: ['./drower-button.component.scss']
@@ -33,7 +34,6 @@ export class DrowerButtonComponent {
 
   constructor(private router: Router, protected util : UtilityService){ }
 
-  @Output()drawerEvent = new EventEmitter<string>;
 panelOpenState = false;
 isOpenHome= false;
 isOpenCat= false;
@@ -42,13 +42,5 @@ isOpenLog= false;
 isOpenAdd= false;
 isOpenMan= false;
 
-
-  drawerEventFire(){
-    this.drawerEvent.emit("DrawerToggleEvent");
-  }
-
-  navigateCategory(category:string){
-    this.router.navigate(['/home/gerne/'+category+'/1']);
-  }
 
 }

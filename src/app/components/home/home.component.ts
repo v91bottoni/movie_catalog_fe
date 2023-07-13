@@ -23,26 +23,28 @@ export class HomeComponent implements OnInit {
   home: boolean= false;
   gerne: boolean= false;
   category!:String;
-  // ngVersion: string = VERSION.full;
-  // matVersion: string = '5.1.0';
-  // breakpoint!: number;
+  currentChipsValue: String = "-1"
+
+  chipsCategory: String[] = this.movieService.categories;
 
 
   ngOnInit(): void {
 
-    // this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
-
     // this.route.snapshot.paramMap.get("pag")
+
+    if (localStorage.getItem("chipsValue")) {
+      this.currentChipsValue = localStorage.getItem("chipsValue") as string;
+    }
     
 
     this.route.params.subscribe(params => {
 
       if(params['gerne']){
-
         this.page=Number(params['page']);
 
 
         this.category=params ['gerne'];
+        if(this.currentChipsValue!= this.category) this.currentChipsValue = this.category;
         this.movieService.getMovieByGenre(params['gerne'], params['page']).subscribe(res=>{
 
 
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
       }
 
       else if(params['pag']){
+        this.currentChipsValue = "-1";
         this.page=Number(params['pag'])
         this.movieService.getAllMovies(params['pag'] , 'imdbrating').subscribe(res=>{
 
@@ -75,6 +78,7 @@ export class HomeComponent implements OnInit {
       }
 
       else{
+        this.currentChipsValue = "-1";
         this.router.navigate(['/home/page/1'])
       }
 
@@ -112,12 +116,16 @@ export class HomeComponent implements OnInit {
   openMovieDetails(movieId: string): void {
     this.router.navigate(['/movies', movieId]);
   }
-  // onResize(event: UIEvent) {
-  //   const target = event.target as Window;
-  //   this.breakpoint = (target.innerWidth <= 400) ? 1 : 6;
-  // }
 
+  goToCategory(chips:String){
 
+    localStorage.setItem('chipsValue', String(chips));
+    this.router.navigateByUrl('/home/gerne/'+chips+'/1')
+  }
 
+  goHome(){
+    this.currentChipsValue = "-1"
+    this.router.navigateByUrl('/home/page/1')
+  }
 
 }
