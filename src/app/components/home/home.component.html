@@ -1,5 +1,6 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
+<!-- Swtich Cards - List -->
 <mat-button-toggle-group style="margin: 2%;" value="selected">
     <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
     <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
@@ -9,9 +10,9 @@
 
 <!-- Chips -->
 <div class="chips">
-<mat-chip-listbox aria-label="Fish selection" >
-    <mat-chip-option routerLink="/home" selected> All </mat-chip-option>
-    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory" > {{chips}} </mat-chip-option>
+<mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
+    <mat-chip-option routerLink="/home" value="-1"> All </mat-chip-option>
+    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{chips}}</mat-chip-option>
 </mat-chip-listbox>
 </div>
 
