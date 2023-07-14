@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit{
 
@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit{
     this.invalidAge = false;
     this.cfAlreadyUsed = false;
     this.emailAlreadyUsed = false;
+    
     this.authService.registerUser(this.registerForm.value).subscribe( res => {
       
       if(res != null){
