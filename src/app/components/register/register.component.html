@@ -9,7 +9,8 @@
             <mat-vertical-stepper class="stepper" [linear]="false" #stepper [animationDuration]='"200ms"'>
             <mat-step>
                 <p></p>
-                <ng-template matStepLabel>Anagraphic Data</ng-template>
+                <ng-template matStepLabel *ngIf="!(name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid)">Anagraphic Data</ng-template>
+                <ng-template matStepLabel *ngIf="name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid"><mat-error>Anagraphic Data</mat-error></ng-template>
                 <!-- Name input -->
                 <mat-form-field>
                     <mat-label>Name</mat-label>
@@ -46,7 +47,8 @@
             </mat-step>
             <mat-step>
                 <p></p>
-                <ng-template matStepLabel>Account Data</ng-template>
+                <ng-template matStepLabel *ngIf="!(email?.invalid || password?.invalid)">Account Data</ng-template>
+                <ng-template matStepLabel *ngIf="email?.invalid || password?.invalid"><mat-error>Account Data</mat-error></ng-template>
 
                 <!-- Email input -->
                 <mat-form-field>
