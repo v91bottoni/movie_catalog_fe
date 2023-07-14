@@ -92,7 +92,7 @@ export class NavbarComponent implements OnInit{
     this.searchElem = elem;
     elem.classList.toggle("hide");
     if(this.searchIcon == "search") {
-      this.searchIcon = "visibility_off";
+      this.searchIcon = "close";
       this.addKeyEvent(elem);
     }
     else {

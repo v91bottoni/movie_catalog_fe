@@ -5,6 +5,22 @@
   <span class="home homeLinkOn" routerLink="home">MOVIE CATALOGUE</span>
   <span class="home homeLinkOff" routerLink="home"><mat-icon>home</mat-icon></span>
   <span class="example-spacer"></span>
+
+  <button  (click)="toggleSearchBar(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon >{{searchIcon}}</mat-icon>
+  </button>
+  <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Welcome {{util.username}}!</mat-label>
+
+  <button  (click)="toggleProfile()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-label class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
+    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">person</mat-icon>
+    </div>
+    <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>LOG OUT</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>
+  </mat-label>
+
+</mat-toolbar>
 <section #search class="hide" >
   <mat-form-field  class="search" appearance="fill" >
     <mat-label>Search </mat-label>
@@ -24,19 +40,3 @@
   </mat-form-field>
 
 </section>
-
-<button  (click)="toggleSearchBar(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-  <mat-icon >{{searchIcon}}</mat-icon>
-</button>
-<mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">Welcome {{util.username}}!</mat-label>
-
-<button  (click)="toggleProfile()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-  <mat-icon>account_circle</mat-icon>
-</button>
-  <mat-label class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
-    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;">PROFILE<mat-icon class="proIcon">person</mat-icon>
-    </div>
-    <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>LOG OUT</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>
-  </mat-label>
-
-</mat-toolbar>

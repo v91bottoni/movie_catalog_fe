@@ -123,8 +123,8 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
     },
-    { 
-      provide: MAT_DATE_LOCALE, useValue: 'en-GB' 
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'en-GB'
     },
     MatNativeDateModule,
   ],

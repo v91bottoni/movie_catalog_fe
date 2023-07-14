@@ -150,7 +150,7 @@
         </div>
       </form>
     </mat-step>
-      <mat-step [stepControl]="updateForm" >
+    <mat-step [stepControl]="updateForm" >
        <ng-template  matStepLabel><p *ngIf="othOK" >Other Info</p><p *ngIf="!othOK" class="error">Other Info</p></ng-template>
       <form [formGroup]="updateForm">
 
@@ -204,30 +204,16 @@
           </mat-select>
           <mat-error>Inserire Response!</mat-error>
         </mat-form-field>
-
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel><mat-label>Done</mat-label></ng-template>
-      <mat-panel-title *ngIf="updateForm.valid; else elseDone"><h1>Steps Completed!</h1> <br>
-      Now you can choose to Update you data changes or cancel and exit!
-      </mat-panel-title>
-      <ng-template #elseDone><mat-panel-title><h1 class="error">Steps Incompleted!</h1> <br>
-        You can now verify and correct your data inputs or cancel and exit!</mat-panel-title>
-      </ng-template>
+        <br>
 
       <div class="demo-button-container">
         <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
           <mat-label *ngIf="!updateForm.valid">VERIFY</mat-label>
           <mat-label *ngIf="updateForm.valid">UPDATE DATA</mat-label>
         </button>
-        <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
+        <!-- <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
           CANCEL
-        </button>
+        </button> -->
       </div>
 
 
@@ -235,6 +221,7 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="reset()">Reset</button>
       </div>
+      </form>
     </mat-step>
   </mat-stepper>
 
