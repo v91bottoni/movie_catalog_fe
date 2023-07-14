@@ -5,6 +5,7 @@ import { ForgotPasswordSuccessfulDialogComponent } from 'src/app/dialogs/forgot-
 import { ForgotPasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
 import { SpinnerDialogComponent } from 'src/app/dialogs/spinner-dialog/spinner-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,7 +14,12 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit{
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private alert: SnackbarService
+    ) { }
 
   passwordResetForm!: FormGroup;
 
@@ -31,10 +37,10 @@ export class ForgotPasswordComponent implements OnInit{
   onSubmit(){
     this.openSpinner('200ms', '1000ms');
     this.authService.recoverPassword(this.passwordResetForm.value.email).subscribe( res => {
-      this.openSuccessDialog('200ms', '1000ms');
+      this.alert.openNotice("Email sent, check your inbox.", "Ok");
     }, (res) => {
       console.log(res);
-      this.openFailureDialog('200ms', '1000ms');
+      this.alert.openNotice("Double check your email.", "Ok");
     })
   }
 
@@ -49,21 +55,4 @@ export class ForgotPasswordComponent implements OnInit{
 
     setTimeout(() => dialogRef.close(), 3000);
   }
-
-  openSuccessDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ForgotPasswordSuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
-  openFailureDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ForgotPasswordUnsuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
 }

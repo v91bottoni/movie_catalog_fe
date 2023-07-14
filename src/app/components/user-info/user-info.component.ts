@@ -6,6 +6,7 @@ import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/us
 import { UpdateStates } from 'src/app/enums/updateStates';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UserService } from 'src/app/service/user.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
@@ -51,8 +52,15 @@ export class UserInfoComponent implements OnInit{
   get birthdate() { return this.userForm.get('birthdate')}
   get role()      { return this.userForm.get('role')}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog,
-    private router: Router, private util:UtilityService){}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private authService: AuthService, 
+    public dialog: MatDialog,
+    private router: Router, 
+    private util:UtilityService,
+    private alert: SnackbarService
+    ){}
 
   onSubmit(){
 
@@ -69,7 +77,7 @@ export class UserInfoComponent implements OnInit{
 
     this.authService.updateUser(userRes).subscribe(res=>{
       console.log(res);
-      this.openDialog('200ms', '1000ms');
+      this.alert.openNotice("Update completed successfully.", "Ok");
 
     },
     (res) => {
@@ -85,18 +93,7 @@ export class UserInfoComponent implements OnInit{
 
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(UserUpdateDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
   goBack(){
     this.router.navigate([this.util.backpage]);
   }
-
-
-
 }
