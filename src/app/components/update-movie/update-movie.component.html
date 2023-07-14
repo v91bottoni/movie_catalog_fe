@@ -53,9 +53,9 @@
 
         <mat-form-field appearance="fill">
           <mat-label for="released">Released</mat-label>
-          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepicker" #released id="released" name="released" formControlName="released">
-          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                      <mat-datepicker #datepicker>
+          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerRelased" #released id="released" name="released" formControlName="released">
+          <mat-datepicker-toggle matIconSuffix [for]="datepickerRelased"></mat-datepicker-toggle>
+                      <mat-datepicker #datepickerRelased>
                         <mat-datepicker-actions>
                           <button mat-button matDatepickerCancel>Cancel</button>
                           <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -132,9 +132,9 @@
           -->
             <mat-form-field appearance="fill">
               <mat-label for="dvd">DVD</mat-label>
-              <input title="Campo Obbligatorio" matInput [matDatepicker]="datepicker" #dvd id="dvd" name="released" formControlName="dvd">
-              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                          <mat-datepicker #datepicker>
+              <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerDvd" #dvd id="dvd" name="released" formControlName="dvd">
+              <mat-datepicker-toggle matIconSuffix [for]="datepickerDvd"></mat-datepicker-toggle>
+                          <mat-datepicker #datepickerDvd>
                             <mat-datepicker-actions>
                               <button mat-button matDatepickerCancel>Cancel</button>
                               <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -212,11 +212,18 @@
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel><mat-label>Done</mat-label></ng-template>
+      <mat-panel-title *ngIf="updateForm.valid; else elseDone"><h1>Steps Completed!</h1> <br>
+      Now you can choose to Update you data changes or cancel and exit!
+      </mat-panel-title>
+      <ng-template #elseDone><mat-panel-title><h1 class="error">Steps Incompleted!</h1> <br>
+        You can now verify and correct your data inputs or cancel and exit!</mat-panel-title>
+      </ng-template>
 
       <div class="demo-button-container">
         <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
-          UPDATE DATA
+          <mat-label *ngIf="!updateForm.valid">VERIFY</mat-label>
+          <mat-label *ngIf="updateForm.valid">UPDATE DATA</mat-label>
         </button>
         <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
           CANCEL
