@@ -124,12 +124,24 @@
               <mat-error>Inserire Country!</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+          <!--   <mat-form-field appearance="fill">
               <mat-label for="dvd">DVD</mat-label>
               <input title="Campo Obbligatorio" matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
               <mat-error>Inserire DVD!</mat-error>
             </mat-form-field>
-
+          -->
+            <mat-form-field appearance="fill">
+              <mat-label for="dvd">DVD</mat-label>
+              <input title="Campo Obbligatorio" matInput [matDatepicker]="datepicker" #dvd id="dvd" name="released" formControlName="dvd">
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                          <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel>Cancel</button>
+                              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                          </mat-datepicker>
+              <mat-error>Inserire DVD!</mat-error>
+            </mat-form-field>
 
 
         <div>
@@ -162,7 +174,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label for="boxoffice">Box Office</mat-label>
-          <input title="Campo Obbligatorio" matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
+          <input title="Campo Obbligatorio" matInput type="number" value="0" min="0" #boxoffice id="boxoffice" name="boxoffice"  placeholder="Box Office.." formControlName="boxoffice">
           <mat-error>Inserire Box Office!</mat-error>
         </mat-form-field>
 
