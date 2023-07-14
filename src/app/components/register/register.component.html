@@ -4,8 +4,13 @@
             <mat-card-title><strong> Register! </strong></mat-card-title>
           </mat-card-header>
       <mat-card-content>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
 
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
+            <mat-vertical-stepper class="stepper" [linear]="false" #stepper [animationDuration]='"200ms"'>
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel *ngIf="!(name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid)">Anagraphic Data</ng-template>
+                <ng-template matStepLabel *ngIf="name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid"><mat-error>Anagraphic Data</mat-error></ng-template>
                 <!-- Name input -->
                 <mat-form-field>
                     <mat-label>Name</mat-label>
@@ -18,11 +23,32 @@
                     <input matInput formControlName="surname" placeholder="Surname" type="string" required>
                 </mat-form-field>
 
+                 <!-- Birthdate input -->
+                 <mat-form-field appearance="fill" class="example-form-field">
+                    <mat-label>Birthdate</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+
                 <!-- CF input -->
                 <mat-form-field>
                     <mat-label>Fiscal Code</mat-label>
                     <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required>
                 </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext type="button">Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel *ngIf="!(email?.invalid || password?.invalid)">Account Data</ng-template>
+                <ng-template matStepLabel *ngIf="email?.invalid || password?.invalid"><mat-error>Account Data</mat-error></ng-template>
 
                 <!-- Email input -->
                 <mat-form-field>
@@ -46,22 +72,10 @@
                         </button>
                 </mat-form-field>
 
-                <!-- Birthdate input -->
-                <mat-form-field appearance="fill" class="example-form-field">
-                    <mat-label>Birthdate</mat-label>
-                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
-                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker>
-                      <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                      </mat-datepicker-actions>
-                    </mat-datepicker>
-                </mat-form-field>
-
-                <!-- Button -->
-                <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Register</button>
-
+                <div>
+                    <button mat-button matStepperPrevious type="button">Back</button>
+                </div>
+                
                 <!-- Name Errors -->
                 <mat-error *ngIf="name?.invalid && (name?.dirty && name?.touched)">
 
@@ -104,7 +118,7 @@
                 <mat-error *ngIf="password?.value !== confirmpassword?.value && password?.touched && confirmpassword?.touched && password?.dirty && confirmpassword?.dirty">
                     The passwords do not match.
                 </mat-error>
-                <mat-error *ngIf="confirmpassword?.invalid && (confirmpassword?.dirty || confirmpassword?.touched)">
+                <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
                     Must insert a valid password.
                 </mat-error>
                 <mat-error *ngIf="confirmpassword?.invalid && (confirmpassword?.dirty || confirmpassword?.touched)">
@@ -132,7 +146,14 @@
                     Email already used.
                 </mat-error>
                 
-            </form>
+            </mat-step>
+        </mat-vertical-stepper>
+
+        <!-- Button -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Register</button>
+
+    </form>
+
             <mat-card-footer>
                 <mat-grid-list cols="2" rowHeight="20px">
                     <mat-grid-tile>

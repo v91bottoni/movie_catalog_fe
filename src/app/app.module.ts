@@ -18,7 +18,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -116,11 +116,15 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     MatSortModule,
     MatStepperModule,
     MatChipsModule,
+    MatStepperModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
+    },
+    { 
+      provide: MAT_DATE_LOCALE, useValue: 'en-GB' 
     },
     MatNativeDateModule,
   ],
