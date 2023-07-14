@@ -49,8 +49,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 import {MatStepperModule} from '@angular/material/stepper';
-
-
+import {MatSnackBarModule, matSnackBarAnimations} from '@angular/material/snack-bar';
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
@@ -116,15 +115,13 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     MatSortModule,
     MatStepperModule,
     MatChipsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
-    },
-    { 
-      provide: MAT_DATE_LOCALE, useValue: 'en-GB' 
     },
     MatNativeDateModule,
   ],

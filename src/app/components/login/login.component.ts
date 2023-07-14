@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginStates } from 'src/app/enums/loginStates';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   badCredentials: boolean = false;
   userDisabled: boolean = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private util:UtilityService) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private util:UtilityService, private alert: SnackbarService) { }
 
   ngOnInit(): void {
 
@@ -48,6 +50,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
         this.util.username = res.user.name;
         this.util.role = res.user.role.role;
+
+        this.alert.openNotice("Login successful", "OK");
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){
