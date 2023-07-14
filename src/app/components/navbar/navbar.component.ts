@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, from, map, startWith } from 'rxjs';
+import { Observable,  map, startWith } from 'rxjs';
 import { MovieService } from 'src/app/service/movie.service';
 import { SearchService } from 'src/app/service/search.service';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -19,7 +19,8 @@ import { UtilityService } from 'src/app/service/utility.service';
         opacity: 1,
       })),
       state('closed', style({
-        transform:'scale(1%)',
+
+        transform:'scale(1%) translate(50px, -200px)',
         opacity: 0,
       })),
       transition('open => closed', [
@@ -56,29 +57,38 @@ export class NavbarComponent implements OnInit{
   filteredOptions!: Observable<string[]>;
 
   ngOnInit(): void {
-
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map(value => this._filter(value || ' ')),
     );
-
   }
-  private _filter(value: string): string[] {
-    let filterValue = value;
-    this.movieservice.searchMovie(filterValue, 1).subscribe(resp=>{
-      let movies = resp.movieList;
-      if(movies){
-        this.options = [];
-        movies.forEach(movie=>{this.options.push(movie.title)});
-      }
-      else this.options=[];
 
+  private _filter(value: string): string[] {
+    let filterValue = value.toLowerCase();
+      this.movieservice.searchMovie(filterValue, 1).subscribe(resp=>{
+        if(resp){
+          let movies = resp.movieList;
+          if(movies){
+            this.options = [];
+            movies.forEach(movie=>{this.options.push(movie.title)});
+          }
+          else this.options=[];
+        }
     });
+
     return this.options.filter(option =>  option.toLowerCase().includes(filterValue));
   }
 
-
-  toggle(elem:HTMLElement){
+  toggleProfile(){
+    if(this.isOpen){
+      this.isOpen = false;
+      document.removeEventListener('click', this.closeProfile);
+    }else{
+      this.isOpen = true;
+      setTimeout(() => {document.addEventListener('click', this.closeProfile)}, 1);
+    }
+  }
+  toggleSearchBar(elem:HTMLElement){
     this.searchElem = elem;
     elem.classList.toggle("hide");
     if(this.searchIcon == "search") {
@@ -103,20 +113,27 @@ export class NavbarComponent implements OnInit{
 
 
 
-  fun = (event:KeyboardEvent) => {
+
+  closeProfile = ()=>{
+    this.isOpen = false;
+    document.removeEventListener('click', this.closeProfile);
+  }
+
+  keyPressSearch = (event:KeyboardEvent) => {
     if(event.key == 'Enter'){
       this.router.navigate(["search"]);
       //this.toggle(this.searchElem);
       setTimeout(()=>{this.searchService.nextParam(this.searchTerm); },0);
 
     }
-  };
-  addKeyEvent(ele:HTMLElement){
-    ele.addEventListener("keydown" , this.fun)}
-
-  removeKeyEvent(ele:HTMLElement){
-    ele.removeEventListener("keydown", this.fun);
   }
+
+  addKeyEvent(ele:HTMLElement){
+    ele.addEventListener("keydown" , this.keyPressSearch)}
+
+    removeKeyEvent(ele:HTMLElement){
+      ele.removeEventListener("keydown", this.keyPressSearch);
+    }
 
 
   logOut(){
