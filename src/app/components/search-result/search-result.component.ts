@@ -21,13 +21,13 @@ export class SearchResultComponent {
   displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating'];
   cardView:boolean = true;
   constructor(private service:MovieService, private router: Router,
-    private searchService:SearchService, public dialog: MatDialog,public utilityService:UtilityService) {
+    private searchService:SearchService, public dialog: MatDialog, public utilityService:UtilityService) {
       this.utilityService.backpage = "search";
       setTimeout(()=>{
         if(this.title == undefined){
-          // this.title = this.searchService.oldSearch;
+           this.title = this.searchService.oldSearch;
           // this.page = this.searchService.oldSearchPage;
-          this.title = " ";
+          // this.title = " ";
           this.renderList();
         }
       }, 200);

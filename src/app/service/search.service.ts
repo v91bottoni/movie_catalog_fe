@@ -8,12 +8,13 @@ const search$ :Subject<string> = new Subject<string>();
   providedIn: 'root'
 })
 export class SearchService {
- // oldSearch:string=" ";
+  oldSearch:string=" ";
   // oldSearchPage :number = 1;
   constructor() { }
 
   nextParam(param:string){
-   // this.oldSearch = param;
+    this.oldSearch = param;
+    if(param == '') this.oldSearch = ' ';
    // this.oldSearchPage = 1;
     search$.next(param);
   }

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { UpdateStates } from 'src/app/enums/updateStates';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 
 @Component({
@@ -19,11 +21,11 @@ export class UserInfoComponent implements OnInit{
   user!: user;
   invalidAge: boolean = false;
   invalidInput: boolean = false;
-  
+
   ngOnInit(): void {
 
     this.userService.getUserById( Number(localStorage.getItem("userID")) ).subscribe(res=>{
-      
+
       this.user=res;
       console.log(res);
       this.userForm = this.formBuilder.group(
@@ -37,8 +39,8 @@ export class UserInfoComponent implements OnInit{
         }
       )
     })
-    
-    
+
+
 
   }
 
@@ -49,12 +51,13 @@ export class UserInfoComponent implements OnInit{
   get birthdate() { return this.userForm.get('birthdate')}
   get role()      { return this.userForm.get('role')}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog){}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog,
+    private router: Router, private util:UtilityService){}
 
   onSubmit(){
 
     let userRes: user = this.user;
-    
+
     userRes.name=this.userForm.value.name;
     userRes.surname=this.userForm.value.surname;
     userRes.email=this.userForm.value.email;
@@ -62,16 +65,16 @@ export class UserInfoComponent implements OnInit{
     userRes.role=this.user.role;
 
     console.log(userRes);
-    
+
 
     this.authService.updateUser(userRes).subscribe(res=>{
       console.log(res);
       this.openDialog('200ms', '1000ms');
-      
+
     },
     (res) => {
-      
-      if(res.error.msg == UpdateStates.invalidAge){        
+
+      if(res.error.msg == UpdateStates.invalidAge){
         this.invalidAge = true;
       }
       if(res.error.msg == UpdateStates.invalidInput){
@@ -88,6 +91,10 @@ export class UserInfoComponent implements OnInit{
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  goBack(){
+    this.router.navigate([this.util.backpage]);
   }
 
 

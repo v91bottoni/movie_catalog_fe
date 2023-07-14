@@ -2,13 +2,19 @@
   <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon  >menu</mat-icon>
   </button>
-  <span class="home welcome" routerLink="home">MOVIE CATALOGUE</span>
+  <span class="home homeLinkOn" routerLink="home">MOVIE CATALOGUE</span>
+  <span class="home homeLinkOff" routerLink="home"><mat-icon>home</mat-icon></span>
   <span class="example-spacer"></span>
 <section #search class="hide" >
   <mat-form-field  class="search" appearance="fill" >
     <mat-label>Search </mat-label>
-    <input  matInput #param  [(ngModel)]="searchTerm" />
-    <button class="btn" matPrefix routerLink="search" (click)="searchFilm(param.value, search)">
+    <input  matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="searchTerm" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option (click)="searchFilm(searchTerm)" *ngFor="let option of filteredOptions|async " [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <button class="btn" matPrefix routerLink="search" (click)="searchFilm(searchTerm)">
       <mat-icon  matPrefix style="color: black;">search</mat-icon>
     </button>
 

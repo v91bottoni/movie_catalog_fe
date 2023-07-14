@@ -1,5 +1,6 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
+<!-- Swtich Cards - List -->
 <mat-button-toggle-group style="margin: 2%;" value="selected">
     <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
     <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
@@ -7,26 +8,18 @@
     <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
 </mat-button-toggle-group>
 
+<!-- Chips -->
 <div class="chips">
-<mat-chip-listbox aria-label="Fish selection">
-    <!-- <mat-chip-option color="accent" *ngIf="category" selected>{{category}}</mat-chip-option> -->
-    <mat-chip-option color="accent" routerLink="/home/gerne/Action/1">Action</mat-chip-option>
-    <mat-chip-option color="accent">Adventure</mat-chip-option>
-    <mat-chip-option color="accent">Animation</mat-chip-option>
-    <mat-chip-option color="accent">Comedy</mat-chip-option>
-    <mat-chip-option color="accent">Crime</mat-chip-option>
-    <mat-chip-option color="accent">Drama</mat-chip-option>
-    <mat-chip-option color="accent">Documentary</mat-chip-option>
-    <mat-chip-option color="accent">Fantasy</mat-chip-option>
-    <mat-chip-option color="accent">Romance</mat-chip-option>
-    <mat-chip-option color="accent">Thriller</mat-chip-option>
+<mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
+    <mat-chip-option routerLink="/home" value="-1"> All </mat-chip-option>
+    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{chips}}</mat-chip-option>
 </mat-chip-listbox>
 </div>
+
 </mat-grid-list>
+
 <mat-spinner class="loader" *ngIf="!response"></mat-spinner>
 <mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">
-<!-- <mat-grid-list [cols]="breakpoint" rowHeight="35%" (window:resize)="onResize($event)"> -->
-
 
         <mat-card *ngFor="let result of response.movieList" class="card" >
 
@@ -56,14 +49,6 @@
               </mat-card-actions>
 
         </mat-card>
-
-
-    <!-- <mat-paginator
-    [length]="(response.maxPageNumber * 10)"
-    [pageSize]="10">
-    </mat-paginator> -->
-
-
 
 </mat-grid-list>
 
@@ -98,6 +83,8 @@
          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+
+<!-- Page -->
 <section class="pageButton">
 <mat-button-toggle-group value="current" style="margin: 3%;">
     <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>

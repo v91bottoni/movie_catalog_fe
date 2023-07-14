@@ -1,11 +1,11 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
   <mat-button-toggle-group style="margin: 2%;" value="selected">
-    <mat-button-toggle value="selected" *ngIf="cardView"> Cards </mat-button-toggle>
-    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> Cards </mat-button-toggle>
-    <mat-button-toggle value="selected" *ngIf="!cardView"> List </mat-button-toggle>
-    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> List </mat-button-toggle>
-  </mat-button-toggle-group>
+    <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="!cardView"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+</mat-button-toggle-group>
 
 </mat-grid-list>
 
@@ -49,7 +49,7 @@
 
 
   </mat-grid-list>
-
+  <div class="table">
   <table mat-table [dataSource]="movieList" *ngIf="movieList && !cardView">
 
       <!-- Title Column -->
@@ -79,6 +79,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  </div>
 <section class="pageButton">
   <mat-button-toggle-group  value="current" style="margin: 3%;">
     <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>
