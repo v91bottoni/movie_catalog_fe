@@ -1,5 +1,9 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
+    
+
+    <!-- <div *ngIf="hover">aaaa</div> -->
+
 <!-- Swtich Cards - List -->
 <mat-button-toggle-group style="margin: 2%;" value="selected">
     <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
@@ -21,32 +25,21 @@
 <mat-spinner class="loader" *ngIf="!response"></mat-spinner>
 <mat-grid-list cols="4" rowHeight="1:2.5" *ngIf="response && cardView" class="card-grid">
 
-        <mat-card *ngFor="let result of response.movieList" class="card" >
+        <mat-card *ngFor="let result of response.movieList" class="card" (mouseenter)="setHover(false, result.imdbid)" (mouseleave)="setHover(true, '')" (click)="openDialog(result.imdbid)">
 
-            <img mat-card-image [src]="result.poster" class="card-poster">
+            <img mat-card-image [src]="result.poster" class="card-poster" >
 
-            <mat-card-header>
-                <mat-card-title class="card-title">
+            <mat-card-header *ngIf="!hover && idHover == result.imdbid">
+                <mat-card-title class="card-title" >
                     <b> {{result.title}} </b>
                 </mat-card-title>
             </mat-card-header>
 
-            <mat-card-content>
-                <mat-card-content class="card-text">
+            <mat-card-content *ngIf="!hover && idHover == result.imdbid">
+                <mat-card-content class="card-text" >
                     {{result.plot}}
                 </mat-card-content>
             </mat-card-content>
-
-            <mat-card-actions>
-                <button
-                mat-stroked-button
-                color="primary"
-                class="mat-button"
-                (click)="openDialog(result.imdbid)"
-              >
-                More Details
-              </button>
-              </mat-card-actions>
 
         </mat-card>
 
@@ -54,7 +47,7 @@
 
 <div class="table">
     <table mat-table [dataSource]="movies" *ngIf="response && !cardView">
-
+        
         <!-- Title Column -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef> Title </th>
@@ -78,9 +71,16 @@
             <th mat-header-cell *matHeaderCellDef> IMDB Rating </th>
             <td mat-cell *matCellDef="let movie"> {{movie.imdbrating}} </td>
         </ng-container>
+
+        <!-- Bottone -->
+        <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let movie"> <button mat-raised-button color="primary" (click)="openDialog(movie.imdbid)"> Details </button> </td>
+        </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="riga" ></tr>
+
     </table>
 </div>
 

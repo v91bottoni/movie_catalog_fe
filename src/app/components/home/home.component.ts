@@ -19,11 +19,13 @@ export class HomeComponent implements OnInit {
   maxPage!: number;
   cardView: boolean = true;
   movies!: Movie[];
-  displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating'];
+  displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating', 'button'];
   home: boolean= false;
   gerne: boolean= false;
   category!:String;
   currentChipsValue: String = "-1"
+  hover: boolean = true;
+  idHover!: string;
 
   chipsCategory: String[] = this.movieService.categories;
 
@@ -126,6 +128,11 @@ export class HomeComponent implements OnInit {
   goHome(){
     this.currentChipsValue = "-1"
     this.router.navigateByUrl('/home/page/1')
+  }
+
+  setHover(value: boolean, id:string) {
+    this.hover = value;
+    this.idHover = id;
   }
 
 }
