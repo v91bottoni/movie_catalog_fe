@@ -10,7 +10,7 @@
     <mat-label>Search </mat-label>
     <input  matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="searchTerm" />
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option (click)="searchFilm(searchTerm)" *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option routerLink="search" (click)="searchFilm(searchTerm)" *ngFor="let option of filteredOptions | async" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
