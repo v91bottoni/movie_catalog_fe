@@ -19,6 +19,7 @@
 .btn:hover{
   transform:translate(-1px, -1px);
 }
+
 .home{
   margin-left: 10px;
   transition: 0.4s;
@@ -77,6 +78,7 @@
 }
 .proElement{
   padding: 10px 20px;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 .proElement:hover{
