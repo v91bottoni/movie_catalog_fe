@@ -1,5 +1,6 @@
 <!-- Nav Bar da visualizzare solo dopo il log utente -->
-<app-navbar *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-navbar>
+<div class="navbar"><app-navbar *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-navbar>
+</div>
 <mat-drawer-container class="example-container" >
   <div  #drawer class="sidenav hide" >
     <app-drower-button *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-drower-button>
