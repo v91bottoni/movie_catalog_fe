@@ -16,6 +16,7 @@ import { ExpiredialogComponent } from '../dialogs/expiredialog/expiredialog.comp
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  refreshON : boolean=false;
 
   constructor(private router: Router, private util:UtilityService, private authservice:AuthService,public dialog: MatDialog) {}
 
@@ -31,8 +32,13 @@ export class AuthInterceptor implements HttpInterceptor {
     const jsonReq = this.autenticatedRequest(req, localStorage.getItem('token')+"");
 
 
-
-    //this.refresh(localStorage.getItem('token'));
+    if(!this.refreshON){
+      this.refreshON = true;
+      setTimeout(()=>{
+        this.refresh(localStorage.getItem('refreshToken'));
+        this.refreshON = false;
+      }, 10000);
+    }
     return next.handle(jsonReq).pipe(
 
       tap({
@@ -104,6 +110,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
   logout(){
     //console.log("log out");
+    this.refreshON = false;
     localStorage.clear();
     this.util.role = null;
     this.util.username = null;

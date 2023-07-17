@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-        this.refresh();
         this.currentChipsValue = "-2";
 
 
@@ -61,27 +60,6 @@ export class HomeComponent implements OnInit {
   setHover(value: boolean, id:string) {
     this.hover = value;
     this.idHover = id;
-  }
-
-  refresh(){
-    let token = localStorage.getItem('token');
-    if(token){
-      this.authService.refreshTok(token).subscribe(res=>{
-        if(res != null){
-          if(res.token){
-           // console.log("Refresh Avvenuto");
-            localStorage.setItem('role', res.user.role.role || '');
-            localStorage.setItem('userID', res.user.id.toString() || '');
-            localStorage.setItem('userName', res.user.name || '');
-            localStorage.setItem('token', res.token || '');
-            localStorage.setItem('refreshToken', res.refreshToken || '');
-            this.util.role = res.user.role.role;
-            this.util.username = res.user.name;
-          }
-        }
-
-      });
-    }
   }
 
 }
