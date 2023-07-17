@@ -14,6 +14,7 @@ import { RoleGuardService } from './service/role-guard.service';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { RootComponent } from './components/root/root.component';
+import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
 
 const routes: Routes = [
 
@@ -46,12 +47,12 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "home/page/:pag",
-        component: HomeComponent
+        path: "home/page/:pag", 
+        component: CardsDisplayComponent
       },
       {
-        path: 'home/gerne/:gerne/:page',
-        component: HomeComponent
+        path: "home/gerne/:gerne/:pag", 
+        component: CardsDisplayComponent
       },
       {
         path: 'userInfo',
