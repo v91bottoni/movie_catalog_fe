@@ -33,7 +33,7 @@
 .card-text {
   overflow:hidden;
   display:-webkit-box;
-  -webkit-line-clamp:10;
+  -webkit-line-clamp:4;
   -webkit-box-orient:vertical;
   transition: all 3.5s ease-out;
 }

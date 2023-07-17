@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, HostListener, OnInit, VERSION } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
@@ -26,11 +26,15 @@ export class CardsDisplayComponent implements OnInit{
   currentChipsValue: String = "-1"
   hover: boolean = true;
   idHover!: string;
+  gridCols!: number;
+  
 
   chipsCategory: String[] = this.movieService.categories;
 
 
   ngOnInit(): void {
+
+    this.updateGridCols();
 
     let bool: string = localStorage.getItem("cardView") as string
     
@@ -154,5 +158,23 @@ export class CardsDisplayComponent implements OnInit{
   goUpdate(imdbid:string){
     this.router.navigate(['/updateMovie/'+imdbid])
   }
+
+  updateGridCols() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.gridCols = 1;
+    } else if (screenWidth < 600) {
+      this.gridCols = 2;
+    } else if (screenWidth < 800) {
+      this.gridCols = 3;
+    } else {
+      this.gridCols = 4;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateGridCols();
+}
 
 }
