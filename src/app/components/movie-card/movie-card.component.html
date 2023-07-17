@@ -1,0 +1,20 @@
+<mat-card class="card" (mouseenter)="setHover(false, movie.imdbid)" (mouseleave)="setHover(true, '')" (click)="openDialog(movie.imdbid)" *ngIf="movie">
+
+    <img mat-card-image [src]="movie.poster" class="card-poster" *ngIf="hover || idHover !== movie.imdbid">
+    
+    <mat-card-content *ngIf="!hover && idHover == movie.imdbid" class="card-poster">
+        <mat-card-header class="card-header">
+            <button mat-icon-button (click)="goUpdate(movie.imdbid)"> <mat-icon>edit</mat-icon> </button>
+        </mat-card-header>
+        <mat-card-title class="card-title content" >
+            <b> <h3> {{movie.title}} </h3> </b>
+        </mat-card-title>
+        <mat-card-content class="card-text" >
+            {{movie.plot}}
+        </mat-card-content>
+        <mat-card-actions class="vote">
+            <p><b>Rated:</b> {{movie.imdbrating}}</p>
+        </mat-card-actions>
+    </mat-card-content>
+
+</mat-card>

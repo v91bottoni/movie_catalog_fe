@@ -1,0 +1,18 @@
+<div class="slider">
+    
+    <h1 class="title" (click)="viewAll(title)"> {{title}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1>
+    <hr>
+    
+    <div class="slide">
+    <button mat-icon-button> <mat-icon>chevron_left</mat-icon> </button>
+    
+    <mat-grid-list cols="4" rowHeight="1.4:2.7" class="slider-grid">
+        
+        <mat-grid-tile *ngFor="let result of movies" >
+            <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-icon-button> <mat-icon>chevron_right</mat-icon> </button>
+    </div>
+
+</div>
