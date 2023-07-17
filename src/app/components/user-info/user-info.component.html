@@ -11,9 +11,16 @@
         <mat-card-content>
 
             <mat-grid-list cols="2" rowHeight="3:1">
-
+                <div *ngIf="user" class="user-avatar">
+                    <div class="user-icon">
+                        {{ user.name.charAt(0) }} {{ user.surname.charAt(0) }}
+                    </div>
+                </div>
+                <br>
                 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
 
+                    
+        
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 
                         <!-- Name input -->
