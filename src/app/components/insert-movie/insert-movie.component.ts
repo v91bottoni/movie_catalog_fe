@@ -15,6 +15,9 @@ import { UtilityService } from 'src/app/service/utility.service';
   templateUrl: './insert-movie.component.html',
   styleUrls: ['./insert-movie.component.scss']
 })
+
+
+
 export class InsertMovieComponent {
   movie!:Movie;
   submitted = false;
