@@ -39,4 +39,8 @@ export class AuthService {
   changePassword(token: string, pwd: string):Observable<userres>{
     return this.http.post<userres>(this.authApiUrl + 'recover-password/' + token, pwd);
   }
+
+  refreshTok(token: string):Observable<userres>{
+    return this.http.get<userres>(this.authApiUrl + 'refresh/' + token);
+  }
 }
