@@ -6,6 +6,7 @@ import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -29,13 +30,13 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.refresh();
     // this.route.snapshot.paramMap.get("pag")
 
     if (localStorage.getItem("chipsValue")) {
       this.currentChipsValue = localStorage.getItem("chipsValue") as string;
     }
-    
+
 
     this.route.params.subscribe(params => {
 
@@ -87,7 +88,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService,public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private util:UtilityService) {
+  constructor(private movieService: MovieService,public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private util:UtilityService , private authService:AuthService) {
     this.util.backpage = "home";
    }
 
@@ -126,6 +127,27 @@ export class HomeComponent implements OnInit {
   goHome(){
     this.currentChipsValue = "-1"
     this.router.navigateByUrl('/home/page/1')
+  }
+
+  refresh(){
+    let token = localStorage.getItem('token');
+    if(token){
+      this.authService.refreshTok(token).subscribe(res=>{
+        if(res != null){
+          if(res.token){
+           // console.log("Refresh Avvenuto");
+            localStorage.setItem('role', res.user.role.role || '');
+            localStorage.setItem('userID', res.user.id.toString() || '');
+            localStorage.setItem('userName', res.user.name || '');
+            localStorage.setItem('token', res.token || '');
+            localStorage.setItem('refreshToken', res.refreshToken || '');
+            this.util.role = res.user.role.role;
+            this.util.username = res.user.name;
+          }
+        }
+
+      });
+    }
   }
 
 }

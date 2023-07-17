@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
     this.userDisabled = false;
     this.authService.login(this.loginForm.value).subscribe(res => {
         //logged successfully
-
+      console.log(res);
+      localStorage.setItem('refreshToken', res.refreshToken || '');
         localStorage.setItem('role', res.user.role.role || '');
         localStorage.setItem('userID', res.user.id.toString() || '');
         localStorage.setItem('userName', res.user.name || '');

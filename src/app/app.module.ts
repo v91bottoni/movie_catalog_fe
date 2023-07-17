@@ -56,6 +56,7 @@ import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert
 import {MatChipsModule} from '@angular/material/chips';
 import { RootComponent } from './components/root/root.component';
 import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
+import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     InsertMovieDialogComponent,
     RootComponent,
     UpdateMovieSuccessfullDialogComponent,
+    ExpiredialogComponent,
   ],
   imports: [
     BrowserModule,
