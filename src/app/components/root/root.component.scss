@@ -1,17 +1,22 @@
+.navbar{
+  position: -webkit-stiky;
+  position: sticky;
+  z-index: 3;
+  top: 0;
+}
 .example-container {
     min-height: 100%;
     margin:  0;
-  
+
   }
-  
+
   .sidenav{
-    z-index: 3;
+    z-index: 2;
     background: none ;
-    position: absolute;
+    position: fixed;
+    top: 70px;
     transition: 0.7s ease;
   }
   .hide{
-    transform: translateY(-600px);
-  
+    transform: translateX(-300px) skewX(-60deg);
   }
-  

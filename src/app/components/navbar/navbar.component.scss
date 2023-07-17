@@ -1,10 +1,12 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
 .search{
-  margin: 20px 20px 0 5px;
-  min-width: 150px;
-  width: 32vw;
+  display: flex;
+  margin: 20px auto;
+  min-width: 200px;
+  width: 40vw;
 }
 .hide{
   display: none;
@@ -18,6 +20,7 @@
 .btn:hover{
   transform:translate(-1px, -1px);
 }
+
 .home{
   margin-left: 10px;
   transition: 0.4s;
@@ -28,9 +31,30 @@
   transform: scale(101%);
   cursor: pointer;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .welcome {
       display: none ;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homeLinkOn {
+      display: none ;
+  }
+  .homeLinkOff {
+    display:block;
+    display: grid;
+  }
+  .homeLinkOff:hover{
+    text-shadow: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .homeLinkOn {
+      display: block ;
+  }
+  .homeLinkOff {
+    display:none;
   }
 }
 
@@ -43,25 +67,25 @@
   width: fit-content;
 }
 .profilelabel{
-  text-align: left;
+  text-align: right;
   color: black;
   z-index: 3;
   position: absolute;
-  right: 5px;
   top: 65px;
+  right: 5px;
   border: solid 1px rgba(0,0,0,0.2);
   border-radius: 5px;
   background: white;
 }
 .proElement{
-  padding: 7px 15px;
+  padding: 10px 20px;
+  transition: 0.3s ease;
   cursor: pointer;
-
 }
 .proElement:hover{
   background: rgba(0,0,0,0.2);
 }
 .proIcon{
-margin: 0 0 0 5px;
-transform: translateY(25%);
+  margin: 0 0 0 10px;
+  transform: translateY(25%);
 }

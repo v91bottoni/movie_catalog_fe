@@ -1,8 +1,8 @@
 <form [formGroup]="updateForm"  >
 <table class="mat-elevation-z8 demo-table">
 <tr>
-  <th colspan="2" >
-    <button routerLink="/movies/{{movie?.imdbid}}" type="button" mat-raised-button color="primary"  class="back">
+  <th >
+    <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <h1>UPDATE MOVIE</h1>
@@ -53,9 +53,9 @@
 
         <mat-form-field appearance="fill">
           <mat-label for="released">Released</mat-label>
-          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepicker" #released id="released" name="released" formControlName="released">
-          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                      <mat-datepicker #datepicker>
+          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerRelased" #released id="released" name="released" formControlName="released">
+          <mat-datepicker-toggle matIconSuffix [for]="datepickerRelased"></mat-datepicker-toggle>
+                      <mat-datepicker #datepickerRelased>
                         <mat-datepicker-actions>
                           <button mat-button matDatepickerCancel>Cancel</button>
                           <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -124,12 +124,24 @@
               <mat-error>Inserire Country!</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+          <!--   <mat-form-field appearance="fill">
               <mat-label for="dvd">DVD</mat-label>
               <input title="Campo Obbligatorio" matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
               <mat-error>Inserire DVD!</mat-error>
             </mat-form-field>
-
+          -->
+            <mat-form-field appearance="fill">
+              <mat-label for="dvd">DVD</mat-label>
+              <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerDvd" #dvd id="dvd" name="released" formControlName="dvd">
+              <mat-datepicker-toggle matIconSuffix [for]="datepickerDvd"></mat-datepicker-toggle>
+                          <mat-datepicker #datepickerDvd>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel>Cancel</button>
+                              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                          </mat-datepicker>
+              <mat-error>Inserire DVD!</mat-error>
+            </mat-form-field>
 
 
         <div>
@@ -138,7 +150,7 @@
         </div>
       </form>
     </mat-step>
-      <mat-step [stepControl]="updateForm" >
+    <mat-step [stepControl]="updateForm" >
        <ng-template  matStepLabel><p *ngIf="othOK" >Other Info</p><p *ngIf="!othOK" class="error">Other Info</p></ng-template>
       <form [formGroup]="updateForm">
 
@@ -162,7 +174,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label for="boxoffice">Box Office</mat-label>
-          <input title="Campo Obbligatorio" matInput  #boxoffice id="boxoffice" name="boxoffice" type="text" placeholder="Box Office.." formControlName="boxoffice">
+          <input title="Campo Obbligatorio" matInput type="number" value="0" min="0" #boxoffice id="boxoffice" name="boxoffice"  placeholder="Box Office.." formControlName="boxoffice">
           <mat-error>Inserire Box Office!</mat-error>
         </mat-form-field>
 
@@ -192,23 +204,16 @@
           </mat-select>
           <mat-error>Inserire Response!</mat-error>
         </mat-form-field>
-
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+        <br>
 
       <div class="demo-button-container">
         <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
-          UPDATE DATA
+          <mat-label *ngIf="!updateForm.valid">VERIFY</mat-label>
+          <mat-label *ngIf="updateForm.valid">UPDATE DATA</mat-label>
         </button>
-        <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
+        <!-- <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
           CANCEL
-        </button>
+        </button> -->
       </div>
 
 
@@ -216,6 +221,7 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="reset()">Reset</button>
       </div>
+      </form>
     </mat-step>
   </mat-stepper>
 

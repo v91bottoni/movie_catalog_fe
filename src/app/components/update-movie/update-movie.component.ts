@@ -17,27 +17,24 @@ import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-mo
 export class UpdateMovieComponent {
   movie:Movie| null = null;
   submitted = false;
-  updateForm: FormGroup = this.formbuilder.group({    actors :['', Validators.required],    awards :['', Validators.required],    boxoffice :['', Validators.required],    country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],    genre :['', Validators.required],    imdbid :['', Validators.required],    imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    language :['', Validators.required],    metascore :['', Validators.required],    plot :['', Validators.required],    poster :['', Validators.required],    production :['', Validators.required],    rated :['', Validators.required],    released :['', Validators.required],    response :['', Validators.required],    runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],    website :['', Validators.required],    writer :['', Validators.required],    year :['', Validators.required]  });
-  controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
+  updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :['', Validators.required],    imdbrating :[''],    imdbvotes :[''],    language :[''],    metascore :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],    response :[''],    runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
+  //controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
 
   genNames:string[] = [ 'plot',    'released',    'runtime',   'genre',    'title',    'totalseason',    'type', 'year'];
   prodNames:string[] = ['actors',      'country',    'director',    'dvd',     'language',    'poster',    'production','writer'];
   otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',      'metascore',    'rated',      'response',   'website'];
 
-  //generalityForm:FormGroup = this.formbuilder.group({     genre :['', Validators.required],   plot :['', Validators.required],    released :['', Validators.required],   runtime :['', Validators.required],    title :['', Validators.required],    totalseasons:['', Validators.required],    type :['', Validators.required],        year :['', Validators.required]  });
-  //productionForm:FormGroup = this.formbuilder.group({    actors :['', Validators.required],   country:['', Validators.required],    director :['', Validators.required],    dvd :['', Validators.required],     language :['', Validators.required],     poster :['', Validators.required],    production :['', Validators.required],   writer :['', Validators.required] });
-  //otherInfoForm:FormGroup = this.formbuilder.group({    awards :['', Validators.required],    boxoffice :['', Validators.required],   imdbrating :['', Validators.required],    imdbvotes :['', Validators.required],    metascore :['', Validators.required], rated :['', Validators.required],    response :['', Validators.required],  website :['', Validators.required] });;
-generalityFormValid = false;
+
   constructor(  private formbuilder:FormBuilder, private service:MovieService,
     private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService, public dialog: MatDialog){
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
-this.service.getMovieById(idMovie).subscribe(resp =>{
-  this.movie = resp;
-  console.log(this.movie);
-  this.reset();
-});
+      this.service.getMovieById(idMovie).subscribe(resp =>{
+        this.movie = resp;
+        console.log(this.movie);
+        this.reset();
+      });
 
-      }
+  }
 
 
         updateData() {
@@ -47,7 +44,9 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
           if(this.updateForm.valid){
             let movie :Movie = this.updateForm.value;
             movie.imdbid = this.movie?.imdbid+"";
-            //console.log(movie);
+            if(movie.boxoffice!= null && !movie.boxoffice.startsWith('$')){
+              movie.boxoffice= "$" + movie.boxoffice;
+            }
             this.service.updateMovie(movie).subscribe(resp =>{
               if(resp != null){
                 this.dialog.open(UpdateMovieSuccessfullDialogComponent)
@@ -62,6 +61,14 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
             });
           }
         }
+
+        goBack(){
+          this.route.navigate([this.util.backpage]);
+          this.service.movieid = this.movie?.imdbid+"";
+          this.dialog.open(MovieDetailsComponent);
+
+        }
+
         exit(){
           console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
@@ -110,29 +117,29 @@ this.service.getMovieById(idMovie).subscribe(resp =>{
           this.proOK = true;
           this.othOK = true;
           this.updateForm = this.formbuilder.group({
-            actors : [this.movie?.actors,{validators:[Validators.required],updateOn:"change"}],
-            awards : [this.movie?.awards,{validators:[Validators.required],updateOn:"change"}],
-            boxoffice : [this.movie?.boxoffice,{validators:[Validators.required],updateOn:"change"}],
-            country: [this.movie?.country,{validators:[Validators.required],updateOn:"change"}],
-            director : [this.movie?.director,{validators:[Validators.required],updateOn:"change"}],
-            dvd : [this.movie?.dvd,{validators:[Validators.required],updateOn:"change"}],
+            actors : [this.movie?.actors],
+            awards : [this.movie?.awards],
+            boxoffice : [this.movie?.boxoffice],
+            country: [this.movie?.country],
+            director : [this.movie?.director],
+            dvd : [this.movie?.dvd],
             genre : [this.movie?.genre,{validators:[Validators.required],updateOn:"change"}],
-            imdbrating : [this.movie?.imdbrating,{validators:[Validators.required],updateOn:"change"}],
-            imdbvotes : [this.movie?.imdbvotes,{validators:[Validators.required],updateOn:"change"}],
-            language : [this.movie?.language,{validators:[Validators.required],updateOn:"change"}],
-            metascore : [this.movie?.metascore,{validators:[Validators.required],updateOn:"change"}],
+            imdbrating : [this.movie?.imdbrating],
+            imdbvotes : [this.movie?.imdbvotes],
+            language : [this.movie?.language],
+            metascore : [this.movie?.metascore],
             plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
             poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
-            production : [this.movie?.production,{validators:[Validators.required],updateOn:"change"}],
-            rated : [this.movie?.rated,{validators:[Validators.required],updateOn:"change"}],
-            released : [this.movie?.released,{validators:[Validators.required],updateOn:"change"}],
-            response : [this.movie?.response?'True':'False',{validators:[Validators.required],updateOn:"change"}],
-            runtime : [this.movie?.runtime,{validators:[Validators.required],updateOn:"change"}],
+            production : [this.movie?.production],
+            rated : [this.movie?.rated],
+            released : [this.movie?.released],
+            response : [this.movie?.response],
+            runtime : [this.movie?.runtime],
             title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
             totalseasons : [this.movie?.totalseasons],
-            type : [this.movie?.type,{validators:[Validators.required],updateOn:"change"}],
-            website : [this.movie?.website,{validators:[Validators.required],updateOn:"change"}],
-            writer : [this.movie?.writer,{validators:[Validators.required],updateOn:"change"}],
+            type : [this.movie?.type],
+            website : [this.movie?.website],
+            writer : [this.movie?.writer],
             year : [this.movie?.year,{validators:[Validators.required],updateOn:"change"}],
           });
 

@@ -50,10 +50,6 @@ const routes: Routes = [
         path: "home/page/:pag", 
         component: CardsDisplayComponent
       },
-      { 
-        path: 'home/gerne/:gerne/:page', 
-        component: CardsDisplayComponent
-      },
       {
         path: 'userInfo',
         component: UserInfoComponent
@@ -66,7 +62,7 @@ const routes: Routes = [
             expectedRoles: ['super_admin', 'admin']
         }
       },
-      {  
+      {
         path: 'insertMovie',
         component:InsertMovieComponent,
         canActivate: [RoleGuardService],
@@ -78,7 +74,7 @@ const routes: Routes = [
         path: 'search',
         component: SearchResultComponent,
       },
-      { 
+      {
         path: 'management',
         component: UserManagementComponent,
         canActivate: [RoleGuardService],
@@ -90,12 +86,12 @@ const routes: Routes = [
         path: 'errorPage',
         component: ErrorComponent
       },
-      { 
-        path: 'noContent', 
+      {
+        path: 'noContent',
         component: ErrorComponent
       },
-      { 
-        path: 'searchError', 
+      {
+        path: 'searchError',
         component: ErrorComponent
       },
       {

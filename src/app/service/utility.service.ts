@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class UtilityService {
   username:string|null;
   role:string|null|undefined;
+  drawerOpen:boolean = false;
   backpage = "home";
 
   constructor(){

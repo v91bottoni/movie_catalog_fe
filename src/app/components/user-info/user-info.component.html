@@ -1,6 +1,9 @@
 <div class="user-container">
     <mat-card *ngIf="userForm">
-        
+      <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+
         <mat-card-header>
             <mat-card-title><strong> User Details! </strong></mat-card-title>
         </mat-card-header>
@@ -10,9 +13,9 @@
             <mat-grid-list cols="2" rowHeight="3:1">
 
                 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
-                    
+
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        
+
                         <!-- Name input -->
                         <mat-form-field>
                             <mat-label>Name</mat-label>
@@ -27,10 +30,10 @@
                         <mat-form-field>
                             <mat-label>Surname</mat-label>
                             <input matInput formControlName="surname" placeholder="Surname" type="string" required>
-                        </mat-form-field>  
-                        
+                        </mat-form-field>
+
                     </mat-grid-tile>
-                    
+
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
 
                         <!-- CF input -->
@@ -63,7 +66,7 @@
                                 <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                             </mat-datepicker-actions>
                             </mat-datepicker>
-                        </mat-form-field>    
+                        </mat-form-field>
 
                     </mat-grid-tile>
 
@@ -91,7 +94,7 @@
 
                         <!-- Surname Errors -->
                         <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
-                            
+
                             <div *ngIf="surname?.errors?.['required']">
                                 Surname is required.
                             </div>
@@ -99,7 +102,7 @@
                             <div *ngIf="surname?.errors?.['minlength']">
                                 Surname must be at least 3 characters long.
                             </div>
-                            
+
                         </mat-error>
 
                         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="cf?.invalid && (cf?.dirty || cf?.touched)">
@@ -122,30 +125,31 @@
 
                             <!-- Birthdate Errors -->
                             <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
-                                Birthdate is required.
-                            </mat-error>
+                              Birthdate is required.
+                          </mat-error>
 
-                        </mat-grid-tile>
+                      </mat-grid-tile>
 
-                        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidAge">
+                      <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidAge">
 
-                            <mat-error *ngIf="invalidAge">
-                                Invalid Age.
-                            </mat-error>
-                            
-                        </mat-grid-tile>
+                          <mat-error *ngIf="invalidAge">
+                              Invalid Age.
+                          </mat-error>
 
-                        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidInput">
-                            <mat-error *ngIf="invalidInput">
-                                Invalid Input.
-                            </mat-error>
-                        </mat-grid-tile>
+                      </mat-grid-tile>
 
-                    </mat-grid-tile>
-                </form>
-                
-            </mat-grid-list>
+                      <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="invalidInput">
+                          <mat-error *ngIf="invalidInput">
+                              Invalid Input.
+                          </mat-error>
+                      </mat-grid-tile>
 
-        </mat-card-content>
-    </mat-card>
+                  </mat-grid-tile>
+              </form>
+
+          </mat-grid-list>
+
+      </mat-card-content>
+  </mat-card>
 </div>
+
