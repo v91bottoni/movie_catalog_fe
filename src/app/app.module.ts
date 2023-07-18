@@ -93,7 +93,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
