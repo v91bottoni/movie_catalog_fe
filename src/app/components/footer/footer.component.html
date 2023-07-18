@@ -4,7 +4,7 @@
       <tr >
       <td>
         <div class="cardContainer">
-          <h1 >SOCIAL</h1>
+          <h1>{{'footer.social' | translate}}</h1>
           <mat-list>
             <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/facebook.png"/><mat-label class="pullUp">Facebook</mat-label></mat-list-item>
             <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/instagram.png"/><mat-label class="pullUp">Instagram</mat-label></mat-list-item>
@@ -15,33 +15,33 @@
       </td>
       <td>
         <div class="cardContainer hide">
-          <h1 >ABOUT US</h1>
+          <h1 >{{'footer.about' | translate}}</h1>
           <mat-list>
-            <mat-list-item (click)="goTop()"><mat-label>Factory</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()"><mat-label>Our Team</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()"><mat-label>Our Values</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>{{'footer.team' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>{{'footer.values' | translate}}</mat-label></mat-list-item>
           </mat-list>
         </div>
       </td>
       <td>
         <div class="cardContainer hide">
-          <h1>LINK</h1>
+          <h1>{{'footer.link' | translate}}</h1>
           <mat-list>
-            <mat-list-item (click)="goTop()" routerLink="home"><mat-label>Home</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()" routerLink="userInfo"><mat-label>Profile</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()" routerLink="search"><mat-label>Search</mat-label></mat-list-item>
-            <mat-list-item (click)="logout()" routerLink="login"><mat-label>Log Out</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="home"><mat-label>{{'footer.home' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="userInfo"><mat-label>{{'footer.profile' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="search"><mat-label>{{'footer.search' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="logout()" routerLink="login"><mat-label>{{'footer.logout' | translate}}</mat-label></mat-list-item>
           </mat-list>
         </div>
       </td>
         <td>
 
-          <div *ngIf="util.username != null" class="cardContainer hide">
-            <h1>ADMIN TOOLS</h1>
+          <div *ngIf="util.role != 'public' || util.role != null" class="cardContainer hide">
+            <h1>{{'footer.tools' | translate}}</h1>
             <mat-list>
-              <mat-list-item (click)="goTop()" routerLink="management"><mat-label>Management</mat-label></mat-list-item>
-              <mat-list-item (click)="goTop()" routerLink="insertMovie"><mat-label>Insert Film</mat-label></mat-list-item>
-              <mat-list-item (click)="goTop()" routerLink="search"><mat-label>Update Movie</mat-label></mat-list-item>
+              <mat-list-item *ngIf="util.role == 'super_admin'" (click)="goTop()" routerLink="management"><mat-label>{{'footer.management' | translate}}</mat-label></mat-list-item>
+              <mat-list-item (click)="goTop()" routerLink="insertMovie"><mat-label>{{'footer.add' | translate}}</mat-label></mat-list-item>
+              <mat-list-item (click)="goTop()" routerLink="search"><mat-label>{{'footer.update' | translate}}</mat-label></mat-list-item>
             </mat-list>
           </div>
         </td>

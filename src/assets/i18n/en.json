@@ -100,5 +100,21 @@
         "cf" : "Fiscal Code",
         "role" : "Role",
         "diabledAt" : "Disabled At"
-    }
+    },
+    "footer" :{
+      "social" : "SOCIAL",
+      "about" : "ABOUT US",
+      "link" : "LINKS",
+      "tools": "ADMIN TOOLS",
+      "factory" : "Factory",
+      "team" : "Our Team",
+      "values" : "OurValues",
+      "home": "Home",
+      "profile" : "Profile",
+      "search" : "Search",
+      "logout" : "Log Out",
+      "management" : "Management",
+      "add" : "Insert Movie",
+      "update" : "Update Movie"
+  }
 }

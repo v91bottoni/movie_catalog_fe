@@ -100,5 +100,21 @@
         "cf" : "Codice Fiscale",
         "role" : "Ruolo",
         "diabledAt" : "Disabilitato il"
-    }
+    },
+    "footer" :{
+      "social" : "SOCIAL",
+      "about" : "SU DI NOI",
+      "link" : "COLLEGAMENTI",
+      "tools": "AMMINISTAZIONE",
+      "factory" : "L' Azienda",
+      "team" : "Chi siamo",
+      "values" : "I nostri valori",
+      "home": "Home",
+      "profile" : "Profilo",
+      "search" : "Ricerca",
+      "logout" : "Esci",
+      "management" : "Gestionale",
+      "add" : "Inserisci Film",
+      "update" : "Modifica Movie"
+  }
 }
