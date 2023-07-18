@@ -60,7 +60,7 @@ import { CardsDisplayComponent } from './components/cards-display/cards-display.
 import { SliderComponent } from './components/slider/slider.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +88,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     InsertMovieDialogComponent,
     RootComponent,
     UpdateMovieSuccessfullDialogComponent,
+    ExpiredialogComponent,
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
