@@ -68,7 +68,6 @@ export class NavbarComponent {
 
   logOut(){
     sessionStorage.clear();
-    localStorage.clear();
     this.util.username = null;
     this.util.role = null;
   }

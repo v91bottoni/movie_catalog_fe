@@ -1,40 +1,35 @@
 <div *ngIf="dataSource" class="table">
-
-    <mat-form-field>
-        <mat-label>Search...</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Example: Mario Rossi" #input>
-    </mat-form-field>
         
         <div>
         <table mat-table [dataSource]="dataSource">
         
             <!-- ID Column -->
             <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.id' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.id}} </td>
             </ng-container>
         
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.name' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
         
             <!-- Surname Column -->
             <ng-container matColumnDef="surname">
-            <th mat-header-cell *matHeaderCellDef> Surname </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.surname' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.surname}} </td>
             </ng-container>
         
             <!-- Email Column -->
             <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email Address </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.email' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.email}} </td>
             </ng-container>
     
             <!-- Role Column -->
             <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.role' | translate }} </th>
             <td mat-cell *matCellDef="let row">
                 <span *ngIf="row.role.role == 'super_admin'"> {{row.role.role}}</span>
                 <mat-form-field *ngIf="row.role.role != 'super_admin'" class="select">
@@ -49,7 +44,7 @@
     
             <!-- disabledAt Column -->
             <ng-container matColumnDef="disabledAt">
-            <th mat-header-cell *matHeaderCellDef> Disabled At </th>
+            <th mat-header-cell *matHeaderCellDef> {{ 'user.disabledAt' | translate }} </th>
             <td mat-cell *matCellDef="let row">
                 <input *ngIf="row.role.role != 'super_admin'" type="checkbox" [checked]="row.disabledAt" (change)="disableUser(row)">
                 {{row.disabledAt}}
@@ -58,11 +53,6 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-            <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
         </table>
     </div>
 </div>

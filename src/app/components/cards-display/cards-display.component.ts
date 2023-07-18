@@ -38,7 +38,7 @@ export class CardsDisplayComponent implements OnInit{
 
     this.updateGridCols();
 
-    let bool: string = localStorage.getItem("cardView") as string
+    let bool: string = sessionStorage.getItem("cardView") as string
     
     if(bool === 'true'){
       this.cardView=true;
@@ -49,8 +49,8 @@ export class CardsDisplayComponent implements OnInit{
 
     // this.route.snapshot.paramMap.get("pag")
 
-    if (localStorage.getItem("chipsValue")) {
-      this.currentChipsValue = localStorage.getItem("chipsValue") as string;
+    if (sessionStorage.getItem("chipsValue")) {
+      this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
     }
     
 
@@ -151,11 +151,11 @@ export class CardsDisplayComponent implements OnInit{
     
     if(this.cardView){
       this.cardView=false;
-      localStorage.setItem('cardView', 'false');
+      sessionStorage.setItem('cardView', 'false');
     } 
     else{
       this.cardView=true;
-      localStorage.setItem('cardView', 'true');
+      sessionStorage.setItem('cardView', 'true');
     }
   }
 
@@ -166,7 +166,7 @@ export class CardsDisplayComponent implements OnInit{
 
   goToCategory(chips:String){
 
-    localStorage.setItem('chipsValue', String(chips));
+    sessionStorage.setItem('chipsValue', String(chips));
     this.router.navigateByUrl('/home/gerne/'+chips+'/1')
   }
 

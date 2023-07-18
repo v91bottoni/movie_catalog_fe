@@ -11,11 +11,11 @@ export class UtilityService {
   backpage = "home";
 
   constructor(){
-    if(localStorage.getItem("userName"))
-      this.username = localStorage.getItem("userName");
+    if(sessionStorage.getItem("userName"))
+      this.username = sessionStorage.getItem("userName");
     else this.username = null;
-    if(localStorage.getItem("role"))
-      this.role = localStorage.getItem("role");
+    if(sessionStorage.getItem("role"))
+      this.role = sessionStorage.getItem("role");
     else this.role = null;
   }
 }

@@ -21,7 +21,10 @@ export class UserManagementComponent implements OnInit{
 
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'role', 'disabledAt'];
 
-  constructor(private authService: AuthService, private userService: UserService, private dialog: MatDialog) {}
+  constructor(
+    private authService: AuthService, 
+    private userService: UserService, 
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.fetchAllUsers();

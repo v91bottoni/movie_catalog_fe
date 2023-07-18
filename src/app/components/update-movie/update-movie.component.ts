@@ -7,6 +7,7 @@ import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -25,8 +26,13 @@ export class UpdateMovieComponent {
   otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',      'metascore',    'rated',      'response',   'website'];
 
 
-  constructor(  private formbuilder:FormBuilder, private service:MovieService,
-    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService, public dialog: MatDialog){
+  constructor(
+    private formbuilder:FormBuilder, 
+    private service:MovieService,
+    private route :Router, 
+    private activatedRoute:ActivatedRoute, 
+    private util:UtilityService, 
+    public dialog: MatDialog) {
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
         this.movie = resp;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ChangePasswordSuccessfulDialogComponent } from 'src/app/dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
 import { ChangePasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
@@ -13,7 +14,12 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ChangePasswordComponent implements OnInit{
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(
+    private authService: AuthService, 
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private dialog: MatDialog) { }
 
   token!: string;
   passwordResetForm!: FormGroup;
