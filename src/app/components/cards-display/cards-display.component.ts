@@ -22,6 +22,8 @@ export class CardsDisplayComponent implements OnInit{
   displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating', 'button', 'edit'];
   home: boolean= false;
   gerne: boolean= false;
+  search: boolean= false;
+  keyword!: string;
   category!:String;
   currentChipsValue: String = "-1"
   hover: boolean = true;
@@ -70,6 +72,7 @@ export class CardsDisplayComponent implements OnInit{
 
           this.home=false;
           this.gerne= true;
+          this.search=false;
 
         })
       }
@@ -85,11 +88,32 @@ export class CardsDisplayComponent implements OnInit{
 
           this.home=true;
           this.gerne= false;
+          this.search=false;
 
 
           console.log(this.response);
         })
 
+      } else if(params['keyword']){
+        this.page=Number(params['pg']);
+
+
+        this.keyword=params['keyword'];
+        this.currentChipsValue = "-1";
+        this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res=>{
+
+          
+
+          this.maxPage=res.maxPageNumber;
+          this.movies=res.movieList;
+          this.response=res;
+
+
+          this.home=false;
+          this.gerne= false;
+          this.search=true;
+
+        })
       }
 
       else{
@@ -120,6 +144,7 @@ export class CardsDisplayComponent implements OnInit{
     this.util.backpage = '/home/page/'+pag;
     if(this.home) this.router.navigate(['/home/page/'+pag]);
     if(this.gerne) this.router.navigate(['/home/gerne/'+ this.category+'/'+pag]);
+    if(this.search) this.router.navigate(['/home/search/'+ this.keyword+'/'+pag]);
   }
 
   switchView(){

@@ -51,8 +51,12 @@ const routes: Routes = [
         component: CardsDisplayComponent
       },
       {
-        path: "home/gerne/:gerne/:pag", 
+        path: "home/gerne/:gerne/:page", 
         component: CardsDisplayComponent
+      },
+      {
+        path: 'home/search/:keyword/:pg',
+        component: CardsDisplayComponent,
       },
       {
         path: 'userInfo',

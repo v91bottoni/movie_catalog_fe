@@ -122,9 +122,10 @@ export class NavbarComponent implements OnInit{
   keyPressSearch = (event:KeyboardEvent) => {
     if(event.key == 'Enter'){
       this.router.navigate(["search"]);
+      
       //this.toggle(this.searchElem);
       setTimeout(()=>{this.searchService.nextParam(this.searchTerm); },0);
-
+      // this.router.navigate(["home/search/"+this.searchTerm+'/1']);
     }
   }
 
