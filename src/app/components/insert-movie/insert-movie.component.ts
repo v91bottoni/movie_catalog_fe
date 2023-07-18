@@ -9,11 +9,15 @@ import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
+
 @Component({
   selector: 'app-insert-movie',
   templateUrl: './insert-movie.component.html',
   styleUrls: ['./insert-movie.component.scss']
 })
+
+
+
 export class InsertMovieComponent {
   movie!:Movie;
   submitted = false;
@@ -84,7 +88,7 @@ export class InsertMovieComponent {
           this.movieService.saveMovie(this.insertForm.value).subscribe(res=>{
             console.log(res);
             this.openDialog('200ms', '1000ms');
-            
+
           })
         }
 

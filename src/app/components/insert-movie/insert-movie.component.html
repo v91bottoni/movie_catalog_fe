@@ -1,20 +1,41 @@
-<div class="user-container">
+<div class="insert-container">
   <mat-card *ngIf="insertForm">
-      <mat-card-header>
-          <mat-card-title><strong> Insert Movie! </strong></mat-card-title>
-        </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="insertForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
-
-              <!-- ImdbId input -->
-              <mat-form-field>
-                  <mat-label>IMDB-ID</mat-label>
-                  <input matInput formControlName="imdbid" placeholder="imdbid" type="string" required>
-              </mat-form-field>
-
-              <!-- ImdbId Errors -->
-              <mat-error *ngIf="imdbid?.invalid && (imdbid?.dirty || imdbid?.touched)">
-
+    <mat-card-header>
+      <mat-card-title><strong> Insert Movie! </strong></mat-card-title>
+    </mat-card-header>
+     <mat-card-content>
+      <form
+        [formGroup]="insertForm"
+        (ngSubmit)="onSubmit()"
+        style="display: flex; flex-direction: column; align-items: center" >
+        <mat-stepper>
+          <mat-step [stepControl]="insertForm">
+            <form [formGroup]="insertForm">
+              <ng-template matStepLabel>Movie Info</ng-template>
+              <p></p>
+              <!-- <mat-form-field appearance="fill"> -->
+                <!-- IMDB -->
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field appearance="fill">
+                      <mat-label>IMDB-ID</mat-label>
+                      <input matInput placeholder="imdbid" formControlName="imdbid" type="string" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!-- <mat-label>IMDB-ID</mat-label>
+                <input
+                  matInput
+                  placeholder="imdbid"
+                  formControlName="imdbid"
+                  type="string"
+                  required
+                /> -->
+              <!-- </mat-form-field> -->
+              <!-- IMDB error-->
+              <mat-error
+                *ngIf="imdbid?.invalid && (imdbid?.dirty || imdbid?.touched)"
+              >
                 <div *ngIf="imdbid?.errors?.['required']">
                   IMDB-ID is required.
                 </div>
@@ -23,105 +44,73 @@
                   IMDB-ID must be at least 5 characters long.
                 </div>
 
-                <div *ngIf="imdbid?.errors?.['pattern']">
-                  Invalid IMDB-ID.
-                </div>
-
-            </mat-error>
-
-              <!-- Title input -->
-              <mat-form-field>
-                <mat-label>Title</mat-label>
-                <input matInput formControlName="title" placeholder="Title" type="string" required>
-            </mat-form-field>
-
-              <!-- Title Errors -->
-              <mat-error *ngIf="title?.invalid && (title?.dirty || title?.touched)">
-
-                  <div *ngIf="title?.errors?.['required']">
-                      Title is required.
-                  </div>
-
-                  <div *ngIf="title?.errors?.['minlength']">
-                      Title must be at least 3 characters long.
-                  </div>
-
-                  <div *ngIf="title?.errors?.['maxlength']">
-                    Title must be 100 characters long.
-                  </div>
-
+                <div *ngIf="imdbid?.errors?.['pattern']">Invalid IMDB-ID.</div>
               </mat-error>
 
-              <!-- Actors input -->
+              <!--Title-->
               <mat-form-field>
-                  <mat-label>Actors</mat-label>
-                  <input matInput formControlName="actors" placeholder="Actors" type="string" required>
+                <mat-label>Title</mat-label>
+                <input
+                  matInput
+                  formControlName="title"
+                  placeholder="Title"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
-              <!-- Actors Errors -->
-              <mat-error *ngIf="actors?.invalid && (actors?.dirty || actors?.touched)">
-
-                <div *ngIf="actors?.errors?.['required']">
-                  Actors are required.
+              <!-- Title Errors -->
+              <mat-error
+                *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+              >
+                <div *ngIf="title?.errors?.['required']">
+                  Title is required.
                 </div>
 
-                <div *ngIf="actors?.errors?.['minlength']">
-                  Actors must be at least 2 characters long.
+                <div *ngIf="title?.errors?.['minlength']">
+                  Title must be at least 3 characters long.
                 </div>
 
-                <div *ngIf="actors?.errors?.['maxlength']">
-                  Actors must be 100 characters long.
+                <div *ngIf="title?.errors?.['maxlength']">
+                  Title must be 100 characters long.
                 </div>
-
-            </mat-error>
+              </mat-error>
 
               <!-- Year input -->
               <mat-form-field>
-                  <mat-label>Year</mat-label>
-                  <input matInput formControlName="year" placeholder="Year" type="string" required>
+                <mat-label>Year</mat-label>
+                <input
+                  matInput
+                  formControlName="year"
+                  placeholder="Year"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
               <!-- Year Errors -->
-              <mat-error *ngIf="year?.invalid && (year?.dirty || year?.touched)">
-
-                <div *ngIf="year?.errors?.['required']">
-                  Year is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Director input -->
-              <mat-form-field>
-                  <mat-label>Director</mat-label>
-                  <input matInput formControlName="director" placeholder="Director" type="string" required>
-              </mat-form-field>
-
-              <!-- Director Errors -->
-              <mat-error *ngIf="director?.invalid && (director?.dirty || director?.touched)">
-
-                <div *ngIf="director?.errors?.['required']">
-                  Director is required.
-                </div>
-
-                <div *ngIf="director?.errors?.['minlength']">
-                  Director must be at least 3 characters long.
-                </div>
-
-                <div *ngIf="director?.errors?.['maxlength']">
-                  Director must be 50 characters long.
-                </div>
-
-            </mat-error>
+              <mat-error
+                *ngIf="year?.invalid && (year?.dirty || year?.touched)"
+              >
+                <div *ngIf="year?.errors?.['required']">Year is required.</div>
+              </mat-error>
 
               <!-- Genre input -->
               <mat-form-field>
-                  <mat-label>Genre</mat-label>
-                  <input matInput formControlName="genre" placeholder="Genre" type="genre" required>
+                <mat-label>Genre</mat-label>
+                <input
+                  matInput
+                  formControlName="genre"
+                  placeholder="Genre"
+                  type="genre"
+                  required
+                />
               </mat-form-field>
 
               <!-- Genre Errors -->
-              <mat-error *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)">
-
+              <mat-error
+                *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)"
+              >
                 <div *ngIf="genre?.errors?.['required']">
                   Genre are required.
                 </div>
@@ -133,21 +122,25 @@
                 <div *ngIf="genre?.errors?.['maxlength']">
                   Genre must be 100 characters long.
                 </div>
-
-            </mat-error>
+              </mat-error>
 
               <!-- Plot input -->
               <mat-form-field>
-                  <mat-label>Plot</mat-label>
-                  <input matInput formControlName="plot" placeholder="Plot" type="string" required>
+                <mat-label>Plot</mat-label>
+                <textarea
+                  matInput
+                  formControlName="plot"
+                  placeholder="Plot"
+                  type="string"
+                  required
+                ></textarea>
               </mat-form-field>
 
               <!-- Plot Errors -->
-              <mat-error *ngIf="plot?.invalid && (plot?.dirty || plot?.touched)">
-
-                <div *ngIf="plot?.errors?.['required']">
-                  Plot is required.
-                </div>
+              <mat-error
+                *ngIf="plot?.invalid && (plot?.dirty || plot?.touched)"
+              >
+                <div *ngIf="plot?.errors?.['required']">Plot is required.</div>
 
                 <div *ngIf="plot?.errors?.['minlength']">
                   Plot must be at least 10 characters long.
@@ -156,176 +149,224 @@
                 <div *ngIf="plot?.errors?.['maxlength']">
                   Plot must be 500 characters long.
                 </div>
-
-            </mat-error>
-
-              <!-- Awards input -->
-              <mat-form-field>
-                  <mat-label>Awards</mat-label>
-                  <input matInput formControlName="awards" placeholder="Awards" type="string" required>
-              </mat-form-field>
-
-              <!-- Awards Errors -->
-              <mat-error *ngIf="awards?.invalid && (awards?.dirty || awards?.touched)">
-
-                <div *ngIf="awards?.errors?.['required']">
-                  Awards are required.
-                </div>
-
-                <div *ngIf="awards?.errors?.['minlength']">
-                  Awards must be at least 2 characters long.
-                </div>
-
-                <div *ngIf="awards?.errors?.['maxlength']">
-                  Awards must be 100 characters long.
-                </div>
-
-            </mat-error>
-
-              <!-- BoxOffice input -->
-              <mat-form-field>
-                  <mat-label>BoxOffice</mat-label>
-                  <input matInput formControlName="boxoffice" placeholder="BoxOffice" type="string" required>
-              </mat-form-field>
-
-              <!-- BoxOffice Errors -->
-              <mat-error *ngIf="boxoffice?.invalid && (boxoffice?.dirty || boxoffice?.touched)">
-
-                <div *ngIf="boxoffice?.errors?.['required']">
-                  Box Office is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Country input -->
-              <mat-form-field>
-                  <mat-label>Country</mat-label>
-                  <input matInput formControlName="country" placeholder="Country" type="string" required>
-              </mat-form-field>
-
-              <!-- Country Errors -->
-              <mat-error *ngIf="country?.invalid && (country?.dirty || country?.touched)">
-
-                <div *ngIf="country?.errors?.['required']">
-                  Country is required.
-                </div>
-
-                <div *ngIf="country?.errors?.['minlength']">
-                  Country must be at least 2 characters long.
-                </div>
-
-                <div *ngIf="country?.errors?.['maxlength']">
-                  Country must be 100 characters long.
-                </div>
-
-            </mat-error>
-
-              <!-- DVD input -->
-              <!-- <mat-form-field>
-                  <mat-label>DVD</mat-label>
-                  <input matInput formControlName="dvd" placeholder="DVD" type="string" required>
-              </mat-form-field> -->
+              </mat-error>
 
               <mat-form-field appearance="fill" class="example-form-field">
-                <mat-label>DVD</mat-label>
-                <input matInput [matDatepicker]="datepicker" formControlName="dvd" required>
-                <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker>
+                <mat-label>Released</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="datepickerreleased"
+                  formControlName="released"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="datepickerreleased"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #datepickerreleased>
                   <mat-datepicker-actions>
                     <button mat-button matDatepickerCancel>Cancel</button>
-                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      matDatepickerApply
+                    >
+                      Apply
+                    </button>
                   </mat-datepicker-actions>
                 </mat-datepicker>
               </mat-form-field>
 
-              <!-- DVD Errors -->
-              <mat-error *ngIf="dvd?.invalid && (dvd?.dirty || dvd?.touched)">
-
-                <div *ngIf="dvd?.errors?.['required']">
-                  DVD is required.
+              <!-- Released Errors -->
+              <mat-error
+                *ngIf="
+                  released?.invalid && (released?.dirty || released?.touched)
+                "
+              >
+                <div *ngIf="released?.errors?.['required']">
+                  Released is required.
                 </div>
+              </mat-error>
 
-            </mat-error>
-
-              <!-- IMDB-Rating input -->
+              <!-- Runtime input -->
               <mat-form-field>
-                  <mat-label>ImdbRating</mat-label>
-                  <input matInput formControlName="imdbrating" placeholder="ImdbRating" type="string" required>
+                <mat-label>Runtime</mat-label>
+                <input
+                  matInput
+                  formControlName="runtime"
+                  placeholder="Runtime"
+                  type="number"
+                  required
+                />
               </mat-form-field>
 
-              <!-- IMDB-Rating Errors -->
-              <mat-error *ngIf="imdbrating?.invalid && (imdbrating?.dirty || imdbrating?.touched)">
-
-                <div *ngIf="imdbrating?.errors?.['required']">
-                  IMDB-Rating is required.
+              <!-- Runtime Errors -->
+              <mat-error
+                *ngIf="runtime?.invalid && (runtime?.dirty || runtime?.touched)"
+              >
+                <div *ngIf="runtime?.errors?.['required']">
+                  Runtime is required.
                 </div>
+              </mat-error>
 
-            </mat-error>
-
-              <!-- IMDB-Votes input -->
+              <!-- Total Season input -->
               <mat-form-field>
-                  <mat-label>ImdbVotes</mat-label>
-                  <input matInput formControlName="imdbvotes" placeholder="ImdbVotes" type="string" required>
+                <mat-label>Total Seasons</mat-label>
+                <input
+                  matInput
+                  formControlName="totalseasons"
+                  placeholder="Total Seasons"
+                  type="number"
+                  min="0"
+                />
               </mat-form-field>
 
-              <!-- IMDB-Votes Errors -->
-              <mat-error *ngIf="imdbvotes?.invalid && (imdbvotes?.dirty || imdbvotes?.touched)">
-
-                <div *ngIf="imdbvotes?.errors?.['required']">
-                  IMDB-Votes is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Language input -->
+              <!-- Type input -->
               <mat-form-field>
-                  <mat-label>Language</mat-label>
-                  <input matInput formControlName="language" placeholder="Language" type="string" required>
-
-              <!-- Language Errors -->
-              <mat-error *ngIf="language?.invalid && (language?.dirty || language?.touched)">
-
-                <div *ngIf="language?.errors?.['required']">
-                  Language are required.
-                </div>
-
-                <div *ngIf="language?.errors?.['minlength']">
-                  Language must be at least 3 characters long.
-                </div>
-
-                <div *ngIf="language?.errors?.['maxlength']">
-                  Language must be 50 characters long.
-                </div>
-
-            </mat-error>
-
-          </mat-form-field>
-
-
-              <!-- MetaScore input -->
-              <mat-form-field>
-                  <mat-label>MetaScore</mat-label>
-                  <input matInput formControlName="metascore" placeholder="MetaScore" type="string" required>
+                <mat-label>Type</mat-label>
+                <input
+                  matInput
+                  formControlName="type"
+                  placeholder="Type"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
-              <!-- MetaScore Errors -->
-              <mat-error *ngIf="metascore?.invalid && (metascore?.dirty || metascore?.touched)">
+              <!-- Type Errors -->
+              <mat-error
+                *ngIf="type?.invalid && (type?.dirty || type?.touched)"
+              >
+                <div *ngIf="type?.errors?.['required']">Type are required.</div>
 
-                <div *ngIf="metascore?.errors?.['required']">
-                  MetaScore are required.
+                <div *ngIf="type?.errors?.['minlength']">
+                  Type must be at least 2 characters long.
                 </div>
 
-            </mat-error>
+                <div *ngIf="type?.errors?.['maxlength']">
+                  Type must be 10 characters long.
+                </div>
+              </mat-error>
+
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+
+          <mat-step [stepControl]="insertForm" label="Production Info">
+            <p></p>
+            <form [formGroup]="insertForm">
+
+              <!-- Production input -->
+              <mat-form-field>
+                <mat-label>Production</mat-label>
+                <input
+                  matInput
+                  formControlName="production"
+                  placeholder="Production"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- Production Errors -->
+              <mat-error
+                *ngIf="
+                  production?.invalid &&
+                  (production?.dirty || production?.touched)
+                "
+              >
+                <div *ngIf="production?.errors?.['required']">
+                  Production is required.
+                </div>
+
+                <div *ngIf="production?.errors?.['minlength']">
+                  Production must be at least 2 characters long.
+                </div>
+
+                <div *ngIf="production?.errors?.['maxlength']">
+                  Production must be 100 characters long.
+                </div>
+              </mat-error>
+
+              <!-- Actors input -->
+              <mat-form-field>
+                <mat-label>Actors</mat-label>
+                <input
+                  matInput
+                  formControlName="actors"
+                  placeholder="Actors"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- Actors Errors -->
+              <mat-error
+                *ngIf="actors?.invalid && (actors?.dirty || actors?.touched)"
+              >
+                <div *ngIf="actors?.errors?.['required']">
+                  Actors are required.
+                </div>
+
+                <div *ngIf="actors?.errors?.['minlength']">
+                  Actors must be at least 2 characters long.
+                </div>
+
+                <div *ngIf="actors?.errors?.['maxlength']">
+                  Actors must be 100 characters long.
+                </div>
+              </mat-error>
+
+              <!-- Director input -->
+              <mat-form-field>
+                <mat-label>Director</mat-label>
+                <input
+                  matInput
+                  formControlName="director"
+                  placeholder="Director"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- Director Errors -->
+              <mat-error
+                *ngIf="
+                  director?.invalid && (director?.dirty || director?.touched)
+                "
+              >
+                <div *ngIf="director?.errors?.['required']">
+                  Director is required.
+                </div>
+
+                <div *ngIf="director?.errors?.['minlength']">
+                  Director must be at least 3 characters long.
+                </div>
+
+                <div *ngIf="director?.errors?.['maxlength']">
+                  Director must be 50 characters long.
+                </div>
+              </mat-error>
 
               <!-- Poster input -->
               <mat-form-field>
-                  <mat-label>Poster</mat-label>
-                  <input matInput formControlName="poster" placeholder="Poster" type="string" required>
+                <mat-label>Poster</mat-label>
+                <input
+                  matInput
+                  formControlName="poster"
+                  placeholder="Poster"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
               <!-- Poster Errors -->
-              <mat-error *ngIf="poster?.invalid && (poster?.dirty || poster?.touched)">
-
+              <mat-error
+                *ngIf="poster?.invalid && (poster?.dirty || poster?.touched)"
+              >
                 <div *ngIf="poster?.errors?.['required']">
                   Poster is required.
                 </div>
@@ -341,141 +382,154 @@
                 <div *ngIf="poster?.errors?.['pattern']">
                   Poster must be a valid URL.
                 </div>
+              </mat-error>
 
-            </mat-error>
-
-              <!-- Production input -->
+              <!-- Country input -->
               <mat-form-field>
-                  <mat-label>Production</mat-label>
-                  <input matInput formControlName="production" placeholder="Production" type="string" required>
+                <mat-label>Country</mat-label>
+                <input
+                  matInput
+                  formControlName="country"
+                  placeholder="Country"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
-              <!-- Production Errors -->
-              <mat-error *ngIf="production?.invalid && (production?.dirty || production?.touched)">
-
-                <div *ngIf="production?.errors?.['required']">
-                  Production is required.
+              <!-- Country Errors -->
+              <mat-error
+                *ngIf="country?.invalid && (country?.dirty || country?.touched)"
+              >
+                <div *ngIf="country?.errors?.['required']">
+                  Country is required.
                 </div>
 
-                <div *ngIf="production?.errors?.['minlength']">
-                  Production must be at least 2 characters long.
+                <div *ngIf="country?.errors?.['minlength']">
+                  Country must be at least 2 characters long.
                 </div>
 
-                <div *ngIf="production?.errors?.['maxlength']">
-                  Production must be 100 characters long.
+                <div *ngIf="country?.errors?.['maxlength']">
+                  Country must be 100 characters long.
                 </div>
+              </mat-error>
 
-            </mat-error>
-
-              <!-- Rated input -->
-              <mat-form-field>
-                  <mat-label>Rated</mat-label>
-                  <input matInput formControlName="rated" placeholder="Rated" type="string" required>
-              </mat-form-field>
-
-              <!-- Rated Errors -->
-              <mat-error *ngIf="rated?.invalid && (rated?.dirty || rated?.touched)">
-
-                <div *ngIf="rated?.errors?.['required']">
-                  Rated is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Released input -->
-              <!-- <mat-form-field>
-                  <mat-label>Released</mat-label>
-                  <input matInput formControlName="released" placeholder="Released" type="string" required>
-              </mat-form-field> -->
               <mat-form-field appearance="fill" class="example-form-field">
-                <mat-label>Released</mat-label>
-                <input matInput [matDatepicker]="datepickerreleased" formControlName="released" required>
-                <mat-datepicker-toggle matIconSuffix [for]="datepickerreleased"></mat-datepicker-toggle>
-                <mat-datepicker #datepickerreleased>
+                <mat-label>DVD</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="datepicker"
+                  formControlName="dvd"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="datepicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
                   <mat-datepicker-actions>
                     <button mat-button matDatepickerCancel>Cancel</button>
-                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      matDatepickerApply
+                    >
+                      Apply
+                    </button>
                   </mat-datepicker-actions>
                 </mat-datepicker>
-            </mat-form-field>
-
-              <!-- Released Errors -->
-              <mat-error *ngIf="released?.invalid && (released?.dirty || released?.touched)">
-
-                <div *ngIf="released?.errors?.['required']">
-                  Released is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Response input -->
-              <mat-form-field>
-                  <mat-label>Response</mat-label>
-                  <input matInput formControlName="response" placeholder="Response" type="boolean" required>
               </mat-form-field>
 
-              <!-- Response Errors -->
-              <mat-error *ngIf="response?.invalid && (response?.dirty || response?.touched)">
+              <!-- DVD Errors -->
+              <mat-error *ngIf="dvd?.invalid && (dvd?.dirty || dvd?.touched)">
+                <div *ngIf="dvd?.errors?.['required']">DVD is required.</div>
+              </mat-error>
 
-                <div *ngIf="response?.errors?.['required']">
-                  Response is required.
-                </div>
-
-            </mat-error>
-
-              <!-- Runtime input -->
+              <!-- Writer input -->
               <mat-form-field>
-                  <mat-label>Runtime</mat-label>
-                  <input matInput formControlName="runtime" placeholder="Runtime" type="number" required>
+                <mat-label>Writer</mat-label>
+                <input
+                  matInput
+                  formControlName="writer"
+                  placeholder="Writer"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
-              <!-- Runtime Errors -->
-              <mat-error *ngIf="runtime?.invalid && (runtime?.dirty || runtime?.touched)">
-
-                <div *ngIf="runtime?.errors?.['required']">
-                  Runtime is required.
+              <!-- Writer Errors -->
+              <mat-error
+                *ngIf="writer?.invalid && (writer?.dirty || writer?.touched)"
+              >
+                <div *ngIf="writer?.errors?.['required']">
+                  Writer are required.
                 </div>
 
-            </mat-error>
+                <div *ngIf="writer?.errors?.['minlength']">
+                  Writer must be at least 2 characters long.
+                </div>
 
-              <!-- Total Season input -->
+                <div *ngIf="writer?.errors?.['maxlength']">
+                  Writer must be 400 characters long.
+                </div>
+              </mat-error>
+
+              <!-- Language input -->
               <mat-form-field>
-                  <mat-label>Total Seasons</mat-label>
-                  <input matInput formControlName="totalseasons" placeholder="Total Seasons" type="number" min="0">
+                <mat-label>Language</mat-label>
+                <input
+                  matInput
+                  formControlName="language"
+                  placeholder="Language"
+                  type="string"
+                  required
+                />
+
+                <!-- Language Errors -->
+                <mat-error
+                  *ngIf="
+                    language?.invalid && (language?.dirty || language?.touched)
+                  "
+                >
+                  <div *ngIf="language?.errors?.['required']">
+                    Language are required.
+                  </div>
+
+                  <div *ngIf="language?.errors?.['minlength']">
+                    Language must be at least 3 characters long.
+                  </div>
+
+                  <div *ngIf="language?.errors?.['maxlength']">
+                    Language must be 50 characters long.
+                  </div>
+                </mat-error>
               </mat-form-field>
 
-              <!-- Type input -->
-              <mat-form-field>
-                  <mat-label>Type</mat-label>
-                  <input matInput formControlName="type" placeholder="Type" type="string" required>
-              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
 
-              <!-- Type Errors -->
-              <mat-error *ngIf="type?.invalid && (type?.dirty || type?.touched)">
-
-                <div *ngIf="type?.errors?.['required']">
-                  Type are required.
-                </div>
-
-                <div *ngIf="type?.errors?.['minlength']">
-                  Type must be at least 2 characters long.
-                </div>
-
-                <div *ngIf="type?.errors?.['maxlength']">
-                  Type must be 10 characters long.
-                </div>
-
-            </mat-error>
-
+          <mat-step [stepControl]="insertForm" label="Other Info">
+            <p></p>
+            <form [formGroup]="insertForm">
               <!-- Website input -->
               <mat-form-field>
-                  <mat-label>Website</mat-label>
-                  <input matInput formControlName="website" placeholder="Website" type="string" required>
+                <mat-label>Website</mat-label>
+                <input
+                  matInput
+                  formControlName="website"
+                  placeholder="Website"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
               <!-- WebSite Errors -->
-              <mat-error *ngIf="website?.invalid && (website?.dirty || website?.touched)">
-
+              <mat-error
+                *ngIf="website?.invalid && (website?.dirty || website?.touched)"
+              >
                 <div *ngIf="website?.errors?.['required']">
                   WebSite is required.
                 </div>
@@ -488,56 +542,193 @@
                   WebSite must be 50 characters long.
                 </div>
 
-                <div *ngIf="website?.errors?.['pattern']">
-                  Invalid WebSite.
-                </div>
+                <div *ngIf="website?.errors?.['pattern']">Invalid WebSite.</div>
+              </mat-error>
 
-            </mat-error>
-
-              <!-- Writer input -->
+              <!-- Awards input -->
               <mat-form-field>
-                  <mat-label>Writer</mat-label>
-                  <input matInput formControlName="writer" placeholder="Writer" type="string" required>
+                <mat-label>Awards</mat-label>
+                <input
+                  matInput
+                  formControlName="awards"
+                  placeholder="Awards"
+                  type="string"
+                  required
+                />
               </mat-form-field>
 
-              <!-- Writer Errors -->
-              <mat-error *ngIf="writer?.invalid && (writer?.dirty || writer?.touched)">
-
-                <div *ngIf="writer?.errors?.['required']">
-                  Writer are required.
+              <!-- Awards Errors -->
+              <mat-error
+                *ngIf="awards?.invalid && (awards?.dirty || awards?.touched)"
+              >
+                <div *ngIf="awards?.errors?.['required']">
+                  Awards are required.
                 </div>
 
-                <div *ngIf="writer?.errors?.['minlength']">
-                  Writer must be at least 2 characters long.
+                <div *ngIf="awards?.errors?.['minlength']">
+                  Awards must be at least 2 characters long.
                 </div>
 
-                <div *ngIf="writer?.errors?.['maxlength']">
-                  Writer must be 400 characters long.
+                <div *ngIf="awards?.errors?.['maxlength']">
+                  Awards must be 100 characters long.
                 </div>
+              </mat-error>
 
-            </mat-error>
+              <!-- IMDB-Rating input -->
+              <mat-form-field>
+                <mat-label>ImdbRating</mat-label>
+                <input
+                  matInput
+                  formControlName="imdbrating"
+                  placeholder="ImdbRating"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
 
+              <!-- IMDB-Rating Errors -->
+              <mat-error
+                *ngIf="
+                  imdbrating?.invalid &&
+                  (imdbrating?.dirty || imdbrating?.touched)
+                "
+              >
+                <div *ngIf="imdbrating?.errors?.['required']">
+                  IMDB-Rating is required.
+                </div>
+              </mat-error>
+
+              <!-- IMDB-Votes input -->
+              <mat-form-field>
+                <mat-label>ImdbVotes</mat-label>
+                <input
+                  matInput
+                  formControlName="imdbvotes"
+                  placeholder="ImdbVotes"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- IMDB-Votes Errors -->
+              <mat-error
+                *ngIf="
+                  imdbvotes?.invalid && (imdbvotes?.dirty || imdbvotes?.touched)
+                "
+              >
+                <div *ngIf="imdbvotes?.errors?.['required']">
+                  IMDB-Votes is required.
+                </div>
+              </mat-error>
+
+              <!-- MetaScore input -->
+              <mat-form-field>
+                <mat-label>MetaScore</mat-label>
+                <input
+                  matInput
+                  formControlName="metascore"
+                  placeholder="MetaScore"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- MetaScore Errors -->
+              <mat-error
+                *ngIf="
+                  metascore?.invalid && (metascore?.dirty || metascore?.touched)
+                "
+              >
+                <div *ngIf="metascore?.errors?.['required']">
+                  MetaScore are required.
+                </div>
+              </mat-error>
+
+              <!-- Rated input -->
+              <mat-form-field>
+                <mat-label>Rated</mat-label>
+                <input
+                  matInput
+                  formControlName="rated"
+                  placeholder="Rated"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- Rated Errors -->
+              <mat-error
+                *ngIf="rated?.invalid && (rated?.dirty || rated?.touched)"
+              >
+                <div *ngIf="rated?.errors?.['required']">
+                  Rated is required.
+                </div>
+              </mat-error>
+
+              <!-- BoxOffice input -->
+              <mat-form-field>
+                <mat-label>BoxOffice</mat-label>
+                <input
+                  matInput
+                  formControlName="boxoffice"
+                  placeholder="BoxOffice"
+                  type="string"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- BoxOffice Errors -->
+              <mat-error
+                *ngIf="
+                  boxoffice?.invalid && (boxoffice?.dirty || boxoffice?.touched)
+                "
+              >
+                <div *ngIf="boxoffice?.errors?.['required']">
+                  Box Office is required.
+                </div>
+              </mat-error>
+
+              <!-- Response input -->
+              <mat-form-field>
+                <mat-label>Response</mat-label>
+                <input
+                  matInput
+                  formControlName="response"
+                  placeholder="Response"
+                  type="boolean"
+                  required
+                />
+              </mat-form-field>
+
+              <!-- Response Errors -->
+              <mat-error
+                *ngIf="
+                  response?.invalid && (response?.dirty || response?.touched)
+                "
+              >
+                <div *ngIf="response?.errors?.['required']">
+                  Response is required.
+                </div>
+              </mat-error>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="insertForm.invalid">Insert</button>
+              </div>
+            </form>
+          </mat-step>
+
+
+
+
+              <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
               <!-- Button -->
-              <button mat-raised-button color="primary" type="submit" [disabled]="insertForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Insert</button>
+              <!-- <button mat-raised-button color="primary" type="submit" [disabled]="insertForm.invalid" >Insert</button> -->
 
-              <!-- Name Errors -->
-              <!-- <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
 
-                  <div *ngIf="name?.errors?.['required']">
-                      Nome is required.
-                  </div>
 
-                  <div *ngIf="name?.errors?.['minlength']">
-                      Nome must be at least 3 characters long.
-                  </div>
-
-              </mat-error> -->
-
-              <!-- <mat-error *ngIf="invalidInput">
-                  Invalid Input.
-              </mat-error> -->
-
-          </form>
-    </mat-card-content>
+        </mat-stepper>
+      </form>
+     </mat-card-content>
   </mat-card>
 </div>
+

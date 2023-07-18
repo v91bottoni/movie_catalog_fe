@@ -48,7 +48,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
-import {MatStepperModule} from '@angular/material/stepper';
+
 
 
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
@@ -59,6 +59,7 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
 import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import {MatStepperModule} from '@angular/material/stepper';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -126,7 +127,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSortModule,
     MatStepperModule,
     MatChipsModule,
-    MatStepperModule
+    MatStepperModule,
+
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
