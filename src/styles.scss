@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
+body{
+  padding-top:80px;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
@@ -15,7 +18,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
   }
-  
+
   @media (max-width: 1100px){
     .table {
       width: 90%;
@@ -43,7 +46,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   mat-chip-option{
     transition: 500ms;
   }
-  
+
   mat-chip-option:hover{
     transform: scale(1.1);
   }
@@ -62,7 +65,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.486);
     transition: 500ms;
   }
-  
+
   .card:hover{
     cursor: pointer;
 }

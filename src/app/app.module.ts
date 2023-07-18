@@ -59,6 +59,7 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
 import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     InsertMovieDialogComponent,
     RootComponent,
     UpdateMovieSuccessfullDialogComponent,
+    ExpiredialogComponent,
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
