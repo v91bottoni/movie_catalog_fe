@@ -1,221 +1,222 @@
 <div class="user-container">
   <mat-card *ngIf="insertForm">
       <mat-card-header>
-          <mat-card-title><strong> Insert Movie! </strong></mat-card-title>
+          <mat-card-title><strong> {{ 'message.insertMovie' | translate }} </strong></mat-card-title>
         </mat-card-header>
     <mat-card-content>
       <form [formGroup]="insertForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
 
               <!-- ImdbId input -->
               <mat-form-field>
-                  <mat-label>IMDB-ID</mat-label>
-                  <input matInput formControlName="imdbid" placeholder="imdbid" type="string" required>
+                  <mat-label>{{ 'movie.imdbid' | translate }}</mat-label>
+                  <input matInput formControlName="imdbid" placeholder="{{ 'movie.imdbid' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- ImdbId Errors -->
               <mat-error *ngIf="imdbid?.invalid && (imdbid?.dirty || imdbid?.touched)">
 
                 <div *ngIf="imdbid?.errors?.['required']">
-                  IMDB-ID is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.imdbid' | translate) } }}
                 </div>
 
                 <div *ngIf="imdbid?.errors?.['minlength']">
                   IMDB-ID must be at least 5 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.imdbid' | translate), 'num' : '5'} }}
                 </div>
 
                 <div *ngIf="imdbid?.errors?.['pattern']">
-                  Invalid IMDB-ID.
+                  {{ 'message.error.invalidObj' | translate: { 'obj' : ('movie.imdbid' | translate)} }}
                 </div>
 
             </mat-error>
 
               <!-- Title input -->
               <mat-form-field>
-                <mat-label>Title</mat-label>
-                <input matInput formControlName="title" placeholder="Title" type="string" required>
+                <mat-label>{{ 'movie.title' | translate }}</mat-label>
+                <input matInput formControlName="title" placeholder="{{ 'movie.title' | translate }}" type="string" required>
             </mat-form-field>
 
               <!-- Title Errors -->
               <mat-error *ngIf="title?.invalid && (title?.dirty || title?.touched)">
 
                   <div *ngIf="title?.errors?.['required']">
-                      Title is required.
+                    {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.title' | translate) } }}
                   </div>
 
                   <div *ngIf="title?.errors?.['minlength']">
-                      Title must be at least 3 characters long.
+                    {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.title' | translate), 'num' : '3'} }}
                   </div>
 
                   <div *ngIf="title?.errors?.['maxlength']">
-                    Title must be 100 characters long.
+                    {{ 'message.error.longMax' | translate: {'obj' : ('movie.title' | translate), 'num' : '100'} }}
                   </div>
 
               </mat-error>
 
               <!-- Actors input -->
               <mat-form-field>
-                  <mat-label>Actors</mat-label>
-                  <input matInput formControlName="actors" placeholder="Actors" type="string" required>
+                  <mat-label>{{ 'movie.actors' | translate }}</mat-label>
+                  <input matInput formControlName="actors" placeholder="{{ 'movie.actors' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Actors Errors -->
               <mat-error *ngIf="actors?.invalid && (actors?.dirty || actors?.touched)">
 
                 <div *ngIf="actors?.errors?.['required']">
-                  Actors are required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.actors' | translate) } }}
                 </div>
 
                 <div *ngIf="actors?.errors?.['minlength']">
-                  Actors must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.actors' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="actors?.errors?.['maxlength']">
-                  Actors must be 100 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.actors' | translate), 'num' : '100'} }}
                 </div>
 
             </mat-error>
 
               <!-- Year input -->
               <mat-form-field>
-                  <mat-label>Year</mat-label>
-                  <input matInput formControlName="year" placeholder="Year" type="string" required>
+                  <mat-label> {{ 'movie.year' | translate }} </mat-label>
+                  <input matInput formControlName="year" placeholder="{{ 'movie.year' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Year Errors -->
               <mat-error *ngIf="year?.invalid && (year?.dirty || year?.touched)">
 
                 <div *ngIf="year?.errors?.['required']">
-                  Year is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.year' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- Director input -->
               <mat-form-field>
-                  <mat-label>Director</mat-label>
-                  <input matInput formControlName="director" placeholder="Director" type="string" required>
+                  <mat-label> {{ 'movie.director' | translate }} </mat-label>
+                  <input matInput formControlName="director" placeholder="{{ 'movie.director' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Director Errors -->
               <mat-error *ngIf="director?.invalid && (director?.dirty || director?.touched)">
 
                 <div *ngIf="director?.errors?.['required']">
-                  Director is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.director' | translate) } }}
                 </div>
 
                 <div *ngIf="director?.errors?.['minlength']">
-                  Director must be at least 3 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.director' | translate), 'num' : '3'} }}
                 </div>
 
                 <div *ngIf="director?.errors?.['maxlength']">
-                  Director must be 50 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.director' | translate), 'num' : '50'} }}
                 </div>
 
             </mat-error>
 
               <!-- Genre input -->
               <mat-form-field>
-                  <mat-label>Genre</mat-label>
-                  <input matInput formControlName="genre" placeholder="Genre" type="genre" required>
+                  <mat-label> {{ 'movie.genre' | translate }} </mat-label>
+                  <input matInput formControlName="genre" placeholder="{{ 'movie.genre' | translate }}" type="genre" required>
               </mat-form-field>
 
               <!-- Genre Errors -->
               <mat-error *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)">
 
                 <div *ngIf="genre?.errors?.['required']">
-                  Genre are required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.genre' | translate) } }}
                 </div>
 
                 <div *ngIf="genre?.errors?.['minlength']">
-                  Genre must be at least 3 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.genre' | translate), 'num' : '3'} }}
                 </div>
 
                 <div *ngIf="genre?.errors?.['maxlength']">
-                  Genre must be 100 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.genre' | translate), 'num' : '100'} }}
                 </div>
 
             </mat-error>
 
               <!-- Plot input -->
               <mat-form-field>
-                  <mat-label>Plot</mat-label>
-                  <input matInput formControlName="plot" placeholder="Plot" type="string" required>
+                  <mat-label> {{ 'movie.plot' | translate }} </mat-label>
+                  <input matInput formControlName="plot" placeholder="{{ 'movie.plot' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Plot Errors -->
               <mat-error *ngIf="plot?.invalid && (plot?.dirty || plot?.touched)">
 
                 <div *ngIf="plot?.errors?.['required']">
-                  Plot is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.plot' | translate) } }}
                 </div>
 
                 <div *ngIf="plot?.errors?.['minlength']">
-                  Plot must be at least 10 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.plot' | translate), 'num' : '10'} }}
                 </div>
 
                 <div *ngIf="plot?.errors?.['maxlength']">
-                  Plot must be 500 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.plot' | translate), 'num' : '500'} }}
                 </div>
 
             </mat-error>
 
               <!-- Awards input -->
               <mat-form-field>
-                  <mat-label>Awards</mat-label>
-                  <input matInput formControlName="awards" placeholder="Awards" type="string" required>
+                  <mat-label>{{ 'movie.awards' | translate }}</mat-label>
+                  <input matInput formControlName="awards" placeholder="{{ 'movie.awards' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Awards Errors -->
               <mat-error *ngIf="awards?.invalid && (awards?.dirty || awards?.touched)">
 
                 <div *ngIf="awards?.errors?.['required']">
-                  Awards are required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.awards' | translate) } }}
                 </div>
 
                 <div *ngIf="awards?.errors?.['minlength']">
-                  Awards must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.awards' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="awards?.errors?.['maxlength']">
-                  Awards must be 100 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.awards' | translate), 'num' : '100'} }}
                 </div>
 
             </mat-error>
 
               <!-- BoxOffice input -->
               <mat-form-field>
-                  <mat-label>BoxOffice</mat-label>
-                  <input matInput formControlName="boxoffice" placeholder="BoxOffice" type="string" required>
+                  <mat-label> {{ 'movie.boxoffice' | translate }} </mat-label>
+                  <input matInput formControlName="boxoffice" placeholder="{{ 'movie.boxoffice' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- BoxOffice Errors -->
               <mat-error *ngIf="boxoffice?.invalid && (boxoffice?.dirty || boxoffice?.touched)">
 
                 <div *ngIf="boxoffice?.errors?.['required']">
-                  Box Office is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.boxoffice' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- Country input -->
               <mat-form-field>
-                  <mat-label>Country</mat-label>
-                  <input matInput formControlName="country" placeholder="Country" type="string" required>
+                  <mat-label> {{ 'movie.country' | translate }} </mat-label>
+                  <input matInput formControlName="country" placeholder="{{ 'movie.country' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Country Errors -->
               <mat-error *ngIf="country?.invalid && (country?.dirty || country?.touched)">
 
                 <div *ngIf="country?.errors?.['required']">
-                  Country is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.country' | translate) } }}
                 </div>
 
                 <div *ngIf="country?.errors?.['minlength']">
-                  Country must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.country' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="country?.errors?.['maxlength']">
-                  Country must be 100 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.country' | translate), 'num' : '100'} }}
                 </div>
 
             </mat-error>
@@ -227,7 +228,7 @@
               </mat-form-field> -->
 
               <mat-form-field appearance="fill" class="example-form-field">
-                <mat-label>DVD</mat-label>
+                <mat-label> {{ 'movie.dvd' | translate }} </mat-label>
                 <input matInput [matDatepicker]="datepicker" formControlName="dvd" required>
                 <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
@@ -242,59 +243,59 @@
               <mat-error *ngIf="dvd?.invalid && (dvd?.dirty || dvd?.touched)">
 
                 <div *ngIf="dvd?.errors?.['required']">
-                  DVD is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.dvd' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- IMDB-Rating input -->
               <mat-form-field>
-                  <mat-label>ImdbRating</mat-label>
-                  <input matInput formControlName="imdbrating" placeholder="ImdbRating" type="string" required>
+                  <mat-label> {{ 'movie.imdbRating' | translate }} </mat-label>
+                  <input matInput formControlName="imdbrating" placeholder="{{ 'movie.imdbRating' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- IMDB-Rating Errors -->
               <mat-error *ngIf="imdbrating?.invalid && (imdbrating?.dirty || imdbrating?.touched)">
 
                 <div *ngIf="imdbrating?.errors?.['required']">
-                  IMDB-Rating is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.imdbRating' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- IMDB-Votes input -->
               <mat-form-field>
-                  <mat-label>ImdbVotes</mat-label>
-                  <input matInput formControlName="imdbvotes" placeholder="ImdbVotes" type="string" required>
+                  <mat-label> {{'movie.imdbVotes' | translate }} </mat-label>
+                  <input matInput formControlName="imdbvotes" placeholder="{{ 'movie.imdbVotes' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- IMDB-Votes Errors -->
               <mat-error *ngIf="imdbvotes?.invalid && (imdbvotes?.dirty || imdbvotes?.touched)">
 
                 <div *ngIf="imdbvotes?.errors?.['required']">
-                  IMDB-Votes is required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.imdbVotes' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- Language input -->
               <mat-form-field>
-                  <mat-label>Language</mat-label>
-                  <input matInput formControlName="language" placeholder="Language" type="string" required>
+                  <mat-label>{{ 'movie.language' | translate }}</mat-label>
+                  <input matInput formControlName="language" placeholder="{{ 'movie.language' | translate }}" type="string" required>
 
               <!-- Language Errors -->
               <mat-error *ngIf="language?.invalid && (language?.dirty || language?.touched)">
 
                 <div *ngIf="language?.errors?.['required']">
-                  Language are required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.language' | translate) } }}
                 </div>
 
                 <div *ngIf="language?.errors?.['minlength']">
-                  Language must be at least 3 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.language' | translate), 'num' : '3'} }}
                 </div>
 
                 <div *ngIf="language?.errors?.['maxlength']">
-                  Language must be 50 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' : ('movie.language' | translate), 'num' : '50'} }}
                 </div>
 
             </mat-error>
@@ -304,80 +305,80 @@
 
               <!-- MetaScore input -->
               <mat-form-field>
-                  <mat-label>MetaScore</mat-label>
-                  <input matInput formControlName="metascore" placeholder="MetaScore" type="string" required>
+                  <mat-label> {{ 'movie.metascore' | translate }} </mat-label>
+                  <input matInput formControlName="metascore" placeholder="{{ 'movie.metascore' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- MetaScore Errors -->
               <mat-error *ngIf="metascore?.invalid && (metascore?.dirty || metascore?.touched)">
 
                 <div *ngIf="metascore?.errors?.['required']">
-                  MetaScore are required.
+                  {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.metascore' | translate) } }}
                 </div>
 
             </mat-error>
 
               <!-- Poster input -->
               <mat-form-field>
-                  <mat-label>Poster</mat-label>
-                  <input matInput formControlName="poster" placeholder="Poster" type="string" required>
+                  <mat-label> {{ 'movie.poster' | translate }} </mat-label>
+                  <input matInput formControlName="poster" placeholder="{{ 'movie.poster' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Poster Errors -->
               <mat-error *ngIf="poster?.invalid && (poster?.dirty || poster?.touched)">
 
                 <div *ngIf="poster?.errors?.['required']">
-                  Poster is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.poster' | translate)}  }}
                 </div>
 
                 <div *ngIf="poster?.errors?.['minlength']">
-                  Poster must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' :  ('movie.poster' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="poster?.errors?.['maxlength']">
-                  Poster must be 200 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' :  ('movie.poster' | translate), 'num' : '200'} }}
                 </div>
 
                 <div *ngIf="poster?.errors?.['pattern']">
-                  Poster must be a valid URL.
+                  {{ 'message.error.invalidUrl' | translate }}
                 </div>
 
             </mat-error>
 
               <!-- Production input -->
               <mat-form-field>
-                  <mat-label>Production</mat-label>
-                  <input matInput formControlName="production" placeholder="Production" type="string" required>
+                  <mat-label>{{ 'movie.production' | translate }}</mat-label>
+                  <input matInput formControlName="production" placeholder="{{ 'movie.production' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Production Errors -->
               <mat-error *ngIf="production?.invalid && (production?.dirty || production?.touched)">
 
                 <div *ngIf="production?.errors?.['required']">
-                  Production is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.production' | translate)}  }}
                 </div>
 
                 <div *ngIf="production?.errors?.['minlength']">
-                  Production must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' :  ('movie.production' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="production?.errors?.['maxlength']">
-                  Production must be 100 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' :  ('movie.production' | translate), 'num' : '100'} }}
                 </div>
 
             </mat-error>
 
               <!-- Rated input -->
               <mat-form-field>
-                  <mat-label>Rated</mat-label>
-                  <input matInput formControlName="rated" placeholder="Rated" type="string" required>
+                  <mat-label>{{ 'movie.rated' | translate }}</mat-label>
+                  <input matInput formControlName="rated" placeholder="{{ 'movie.rated' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Rated Errors -->
               <mat-error *ngIf="rated?.invalid && (rated?.dirty || rated?.touched)">
 
                 <div *ngIf="rated?.errors?.['required']">
-                  Rated is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.rated' | translate)}  }}
                 </div>
 
             </mat-error>
@@ -388,13 +389,13 @@
                   <input matInput formControlName="released" placeholder="Released" type="string" required>
               </mat-form-field> -->
               <mat-form-field appearance="fill" class="example-form-field">
-                <mat-label>Released</mat-label>
+                <mat-label>{{ 'movie.released' | translate }}</mat-label>
                 <input matInput [matDatepicker]="datepickerreleased" formControlName="released" required>
                 <mat-datepicker-toggle matIconSuffix [for]="datepickerreleased"></mat-datepicker-toggle>
                 <mat-datepicker #datepickerreleased>
                   <mat-datepicker-actions>
-                    <button mat-button matDatepickerCancel>Cancel</button>
-                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    <button mat-button matDatepickerCancel>{{ 'button.cancel' | translate }}</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>{{ 'button.apply' | translate }}</button>
                   </mat-datepicker-actions>
                 </mat-datepicker>
             </mat-form-field>
@@ -403,122 +404,122 @@
               <mat-error *ngIf="released?.invalid && (released?.dirty || released?.touched)">
 
                 <div *ngIf="released?.errors?.['required']">
-                  Released is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.released' | translate)}  }}
                 </div>
 
             </mat-error>
 
               <!-- Response input -->
               <mat-form-field>
-                  <mat-label>Response</mat-label>
-                  <input matInput formControlName="response" placeholder="Response" type="boolean" required>
+                  <mat-label>{{ 'movie.response' | translate }}</mat-label>
+                  <input matInput formControlName="response" placeholder="{{ 'movie.response' | translate }}" type="boolean" required>
               </mat-form-field>
 
               <!-- Response Errors -->
               <mat-error *ngIf="response?.invalid && (response?.dirty || response?.touched)">
 
                 <div *ngIf="response?.errors?.['required']">
-                  Response is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.response' | translate)}  }}
                 </div>
 
             </mat-error>
 
               <!-- Runtime input -->
               <mat-form-field>
-                  <mat-label>Runtime</mat-label>
-                  <input matInput formControlName="runtime" placeholder="Runtime" type="number" required>
+                  <mat-label>{{ 'movie.runtime' | translate }}</mat-label>
+                  <input matInput formControlName="runtime" placeholder="{{ 'movie.runtime' | translate }}" type="number" required>
               </mat-form-field>
 
               <!-- Runtime Errors -->
               <mat-error *ngIf="runtime?.invalid && (runtime?.dirty || runtime?.touched)">
 
                 <div *ngIf="runtime?.errors?.['required']">
-                  Runtime is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.runtime' | translate)}  }}
                 </div>
 
             </mat-error>
 
               <!-- Total Season input -->
               <mat-form-field>
-                  <mat-label>Total Seasons</mat-label>
-                  <input matInput formControlName="totalseasons" placeholder="Total Seasons" type="number" min="0">
+                  <mat-label>{{ 'movie.totalSeasons' | translate }}</mat-label>
+                  <input matInput formControlName="totalseasons" placeholder="{{ 'movie.totalSeasons' | translate }}" type="number" min="0">
               </mat-form-field>
 
               <!-- Type input -->
               <mat-form-field>
-                  <mat-label>Type</mat-label>
-                  <input matInput formControlName="type" placeholder="Type" type="string" required>
+                  <mat-label>{{ 'movie.type' | translate }}</mat-label>
+                  <input matInput formControlName="type" placeholder="{{ 'movie.type' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Type Errors -->
               <mat-error *ngIf="type?.invalid && (type?.dirty || type?.touched)">
 
                 <div *ngIf="type?.errors?.['required']">
-                  Type are required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.type' | translate)}  }}
                 </div>
 
                 <div *ngIf="type?.errors?.['minlength']">
-                  Type must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' :  ('movie.type' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="type?.errors?.['maxlength']">
-                  Type must be 10 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' :  ('movie.type' | translate), 'num' : '10'} }}
                 </div>
 
             </mat-error>
 
               <!-- Website input -->
               <mat-form-field>
-                  <mat-label>Website</mat-label>
-                  <input matInput formControlName="website" placeholder="Website" type="string" required>
+                  <mat-label>{{ 'movie.website' | translate }}</mat-label>
+                  <input matInput formControlName="website" placeholder="{{ 'movie.website' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- WebSite Errors -->
               <mat-error *ngIf="website?.invalid && (website?.dirty || website?.touched)">
 
                 <div *ngIf="website?.errors?.['required']">
-                  WebSite is required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.website' | translate)}  }}
                 </div>
 
                 <div *ngIf="website?.errors?.['minlength']">
-                  WebSite must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' :  ('movie.website' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="website?.errors?.['maxlength']">
-                  WebSite must be 50 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' :  ('movie.website' | translate), 'num' : '50'} }}
                 </div>
 
                 <div *ngIf="website?.errors?.['pattern']">
-                  Invalid WebSite.
+                  {{ 'message.error.invalidUrl' | translate }}
                 </div>
 
             </mat-error>
 
               <!-- Writer input -->
               <mat-form-field>
-                  <mat-label>Writer</mat-label>
-                  <input matInput formControlName="writer" placeholder="Writer" type="string" required>
+                  <mat-label>{{ 'movie.writer' | translate }}</mat-label>
+                  <input matInput formControlName="writer" placeholder="{{ 'movie.writer' | translate }}" type="string" required>
               </mat-form-field>
 
               <!-- Writer Errors -->
               <mat-error *ngIf="writer?.invalid && (writer?.dirty || writer?.touched)">
 
                 <div *ngIf="writer?.errors?.['required']">
-                  Writer are required.
+                  {{ 'message.error.isRequired' | translate:  {'obj' : ('movie.writer' | translate)}  }}
                 </div>
 
                 <div *ngIf="writer?.errors?.['minlength']">
-                  Writer must be at least 2 characters long.
+                  {{ 'message.error.longAtLeast' | translate: {'obj' :  ('movie.writer' | translate), 'num' : '2'} }}
                 </div>
 
                 <div *ngIf="writer?.errors?.['maxlength']">
-                  Writer must be 400 characters long.
+                  {{ 'message.error.longMax' | translate: {'obj' :  ('movie.writer' | translate), 'num' : '400'} }}
                 </div>
 
             </mat-error>
 
               <!-- Button -->
-              <button mat-raised-button color="primary" type="submit" [disabled]="insertForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Insert</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="insertForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'button.insert' | translate }}</button>
 
               <!-- Name Errors -->
               <!-- <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">

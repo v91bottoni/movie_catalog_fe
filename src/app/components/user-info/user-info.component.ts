@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { UpdateStates } from 'src/app/enums/updateStates';
 import { user } from 'src/app/models/user';
@@ -24,7 +25,7 @@ export class UserInfoComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.userService.getUserById( Number(localStorage.getItem("userID")) ).subscribe(res=>{
+    this.userService.getUserById( Number(sessionStorage.getItem("userID")) ).subscribe(res=>{
 
       this.user=res;
       console.log(res);
@@ -51,8 +52,13 @@ export class UserInfoComponent implements OnInit{
   get birthdate() { return this.userForm.get('birthdate')}
   get role()      { return this.userForm.get('role')}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog,
-    private router: Router, private util:UtilityService){}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private authService: AuthService, 
+    public dialog: MatDialog,
+    private router: Router, 
+    private util:UtilityService) { }
 
   onSubmit(){
 

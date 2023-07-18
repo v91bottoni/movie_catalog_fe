@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { InsertMovieDialogComponent } from 'src/app/dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import { Regex } from 'src/app/enums/regex';
 import { Movie } from 'src/app/models/movie';
@@ -19,9 +20,14 @@ export class InsertMovieComponent {
   submitted = false;
   insertForm!: FormGroup;
 
-  constructor(  private formbuilder:FormBuilder, private service:MovieService,
-    private route :Router, private activatedRoute:ActivatedRoute, private util:UtilityService,
-    private movieService: MovieService, public dialog: MatDialog){
+  constructor( 
+    private formbuilder:FormBuilder, 
+    private service:MovieService,
+    private route :Router, 
+    private activatedRoute:ActivatedRoute, 
+    private util:UtilityService,
+    private movieService: MovieService, 
+    public dialog: MatDialog) {
 
       this.insertForm = this.formbuilder.group({
       actors : ["",{validators:[Validators.required, Validators.minLength(2),  Validators.maxLength(100)]}],

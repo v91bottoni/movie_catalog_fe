@@ -18,25 +18,31 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const s = req.url.toLowerCase();
 
+    console.log(req);
+    
+    if(s.includes("i18n")){
+      return next.handle(req);
+    }
+
     if(s.includes("auth")){
       return next.handle(req);
     }
 
     const jsonReq = req.clone({
       setHeaders: {
-        Authorization: 'Bearer ' + localStorage.getItem('token')
+        Authorization: 'Bearer ' + sessionStorage.getItem('token')
       }
     })
-    if(!localStorage.getItem('token')) return EMPTY;
+    if(!sessionStorage.getItem('token')) return EMPTY;
 
     return next.handle(jsonReq).pipe(
       tap({
         error: (error) => {
-          if(localStorage.getItem('token')){
+          if(sessionStorage.getItem('token')){
             // console.log(error.error);
-            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
 
-            localStorage.clear();
+            sessionStorage.clear();
             this.util.role = null;
             this.util.username = null;
             this.router.navigateByUrl('/login')

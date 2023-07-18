@@ -18,11 +18,15 @@ export class LoginComponent implements OnInit {
   badCredentials: boolean = false;
   userDisabled: boolean = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private util:UtilityService) { }
-
+  constructor(
+    private authService: AuthService, 
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private util: UtilityService) {}
+    
   ngOnInit(): void {
 
-    localStorage.clear();
+    sessionStorage.clear();
 
     this.loginForm = this.formBuilder.group(
       {
@@ -41,10 +45,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(res => {
         //logged successfully
 
-        localStorage.setItem('role', res.user.role.role || '');
-        localStorage.setItem('userID', res.user.id.toString() || '');
-        localStorage.setItem('userName', res.user.name || '');
-        localStorage.setItem('token', res.token || '');
+        sessionStorage.setItem('role', res.user.role.role || '');
+        sessionStorage.setItem('userID', res.user.id.toString() || '');
+        sessionStorage.setItem('userName', res.user.name || '');
+        sessionStorage.setItem('token', res.token || '');
         this.router.navigateByUrl('/home');
         this.util.username = res.user.name;
         this.util.role = res.user.role.role;

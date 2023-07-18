@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable,  map, startWith } from 'rxjs';
 import { MovieService } from 'src/app/service/movie.service';
 import { SearchService } from 'src/app/service/search.service';
@@ -36,8 +37,11 @@ import { UtilityService } from 'src/app/service/utility.service';
 })
 export class NavbarComponent implements OnInit{
   username: string| null = "";
-  constructor(private searchService : SearchService, private movieservice:MovieService, protected util: UtilityService,
-    private router:Router){
+  constructor(
+    private searchService: SearchService, 
+    private movieservice:MovieService, 
+    protected util: UtilityService,
+    private router:Router) {
       this.movieservice.searchMovie(' ', 1).subscribe(resp=>{
         let movies = resp.movieList;
         if(movies){
@@ -138,7 +142,6 @@ export class NavbarComponent implements OnInit{
 
   logOut(){
     sessionStorage.clear();
-    localStorage.clear();
     this.util.username = null;
     this.util.role = null;
   }

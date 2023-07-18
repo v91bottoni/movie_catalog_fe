@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { UtilityService } from 'src/app/service/utility.service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -32,7 +33,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class DrowerButtonComponent {
 
-  constructor(private router: Router, protected util : UtilityService){ }
+  constructor(
+    private router: Router, 
+    protected util : UtilityService) { }
 
 panelOpenState = false;
 isOpenHome= false;

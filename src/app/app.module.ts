@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorComponent } from './components/error/error.component';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -57,6 +57,14 @@ import {MatChipsModule} from '@angular/material/chips';
 import { RootComponent } from './components/root/root.component';
 import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +91,7 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     InsertMovieDialogComponent,
     RootComponent,
     UpdateMovieSuccessfullDialogComponent,
+    LanguagePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,18 +125,24 @@ import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-su
     MatSortModule,
     MatStepperModule,
     MatChipsModule,
-    MatStepperModule
+    MatStepperModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    })
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
     },
-    {
-      provide: MAT_DATE_LOCALE, useValue: 'en-GB'
-    },
     MatNativeDateModule,
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

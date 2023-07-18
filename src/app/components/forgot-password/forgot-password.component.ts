@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { ForgotPasswordSuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-successful-dialog/forgot-password-successful-dialog.component';
 import { ForgotPasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
 import { SpinnerDialogComponent } from 'src/app/dialogs/spinner-dialog/spinner-dialog.component';
@@ -13,7 +14,10 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit{
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(
+    private authService: AuthService, 
+    private formBuilder: FormBuilder, 
+    private dialog: MatDialog) { }
 
   passwordResetForm!: FormGroup;
 
