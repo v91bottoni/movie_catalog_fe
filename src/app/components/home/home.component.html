@@ -3,7 +3,7 @@
 <!-- Chips -->
 <div class="chips">
 <mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
-    <mat-chip-option routerLink="/home/page/1" value="-1"> All </mat-chip-option>
+    <mat-chip-option routerLink="/home/page/1" value="-1"> {{ 'menu.all' | translate }} </mat-chip-option>
     <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{chips}}</mat-chip-option>
 </mat-chip-listbox>
 </div>

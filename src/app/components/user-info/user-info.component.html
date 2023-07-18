@@ -5,7 +5,7 @@
       </button>
 
         <mat-card-header>
-            <mat-card-title><strong> User Details! </strong></mat-card-title>
+            <mat-card-title><strong> {{ 'menu.userDetails' | translate }} </strong></mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
@@ -25,8 +25,8 @@
 
                         <!-- Name input -->
                         <mat-form-field>
-                            <mat-label>Name</mat-label>
-                            <input matInput formControlName="name" placeholder="Name" type="string" required>
+                            <mat-label>{{ 'user.name' | translate }}</mat-label>
+                            <input matInput formControlName="name" placeholder="{{ 'user.name' | translate }}" type="string" required>
                         </mat-form-field>
 
                     </mat-grid-tile>
@@ -35,8 +35,8 @@
 
                         <!-- Surname input -->
                         <mat-form-field>
-                            <mat-label>Surname</mat-label>
-                            <input matInput formControlName="surname" placeholder="Surname" type="string" required>
+                            <mat-label>{{ 'user.surname' | translate }}</mat-label>
+                            <input matInput formControlName="surname" placeholder="{{ 'user.surname' | translate }}" type="string" required>
                         </mat-form-field>
 
                     </mat-grid-tile>
@@ -45,8 +45,8 @@
 
                         <!-- CF input -->
                         <mat-form-field>
-                            <mat-label>Fiscal Code</mat-label>
-                            <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required readonly="true">
+                            <mat-label>{{ 'user.cf' | translate }}</mat-label>
+                            <input matInput formControlName="cf" placeholder="{{ 'user.cf' | translate }}" type="string" required readonly="true">
                         </mat-form-field>
 
                     </mat-grid-tile>
@@ -55,8 +55,8 @@
 
                         <!-- Email input -->
                         <mat-form-field>
-                            <mat-label>Email</mat-label>
-                            <input matInput formControlName="email" placeholder="Email" type="email" required readonly="true">
+                            <mat-label>{{ 'user.email' | translate }}</mat-label>
+                            <input matInput formControlName="email" placeholder="{{ 'user.email' | translate }}" type="email" required readonly="true">
                         </mat-form-field>
 
                     </mat-grid-tile>
@@ -64,13 +64,13 @@
 
                         <!-- Birthdate input -->
                         <mat-form-field appearance="fill" class="example-form-field">
-                            <mat-label>Birthdate</mat-label>
+                            <mat-label>{{ 'user.birthdate' | translate }}</mat-label>
                             <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
                             <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                             <mat-datepicker #datepicker>
                             <mat-datepicker-actions>
-                                <button mat-button matDatepickerCancel>Cancel</button>
-                                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                <button mat-button matDatepickerCancel>{{ 'menu.cancel' | translate }}</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>{{ 'menu.apply' | translate }}</button>
                             </mat-datepicker-actions>
                             </mat-datepicker>
                         </mat-form-field>
@@ -79,7 +79,7 @@
 
                     <mat-grid-tile [colspan]="colSpan" [rowspan]="1">
                         <!-- Button -->
-                        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Update</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'menu.update' | translate }}</button>
                     </mat-grid-tile>
 
                     <mat-grid-tile [colspan]="colSpan" [rowspan]="1" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
@@ -87,11 +87,11 @@
                         <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
 
                             <div *ngIf="name?.errors?.['required']">
-                                Nome is required.
+                                {{ 'message.error.isRequired' | translate:  {'obj' : ('user.name' | translate)}  }}
                             </div>
 
                             <div *ngIf="name?.errors?.['minlength']">
-                                Nome must be at least 3 characters long.
+                                {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.nome' | translate), 'num' : '3'} }}
                             </div>
 
                         </mat-error>
@@ -103,11 +103,11 @@
                         <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
 
                             <div *ngIf="surname?.errors?.['required']">
-                                Surname is required.
+                                {{ 'message.error.isRequired' | translate:  {'obj' : ('user.surname' | translate)}  }}
                             </div>
 
                             <div *ngIf="surname?.errors?.['minlength']">
-                                Surname must be at least 3 characters long.
+                                {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.nome' | translate), 'num' : '3'} }}
                             </div>
 
                         </mat-error>
@@ -117,11 +117,11 @@
                             <!-- Fiscal Code Errors -->
                             <mat-error *ngIf="cf?.invalid && (cf?.dirty || cf?.touched)">
                                 <div *ngIf="cf?.errors?.['required']">
-                                    Fiscal Code is required.
+                                    {{ 'message.error.isRequired' | translate:  {'obj' : ('user.cf' | translate)}  }}
                                 </div>
 
                                 <div *ngIf="cf?.errors?.['minlength']">
-                                    Fiscal code must be 16 characters long.
+                                    {{ 'message.error.longNum' | translate: {'obj' :  ('user.cf' | translate), 'num' : '16'} }}
                                 </div>
 
                             </mat-error>
@@ -132,7 +132,7 @@
 
                             <!-- Birthdate Errors -->
                             <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
-                              Birthdate is required.
+                                {{ 'message.error.isRequired' | translate:  {'obj' : ('user.birthdate' | translate)}  }}
                           </mat-error>
 
                       </mat-grid-tile>
@@ -140,14 +140,14 @@
                       <mat-grid-tile [colspan]="colSpan" [rowspan]="1" *ngIf="invalidAge">
 
                           <mat-error *ngIf="invalidAge">
-                              Invalid Age.
+                            {{ 'message.error.invalidAge' | translate }}
                           </mat-error>
 
                       </mat-grid-tile>
 
                       <mat-grid-tile [colspan]="colSpan" [rowspan]="1" *ngIf="invalidInput">
                           <mat-error *ngIf="invalidInput">
-                              Invalid Input.
+                            {{ 'message.error.invalidInput' | translate }}
                           </mat-error>
                       </mat-grid-tile>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import  { UtilityService } from 'src/app/service/utility.service';
@@ -16,8 +17,7 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-    protected utilityService : UtilityService
-  ) {}
+    protected utilityService : UtilityService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

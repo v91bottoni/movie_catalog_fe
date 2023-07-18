@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorComponent } from './components/error/error.component';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -63,6 +63,13 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatListModule} from '@angular/material/list';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -94,7 +101,8 @@ import {MatListModule} from '@angular/material/list';
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
-    FooterComponent
+    FooterComponent,
+    LanguagePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +138,14 @@ import {MatListModule} from '@angular/material/list';
     MatChipsModule,
     MatStepperModule,
     MatListModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    })
 
   ],
   providers: [
@@ -137,11 +153,9 @@ import {MatListModule} from '@angular/material/list';
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
     },
-    {
-      provide: MAT_DATE_LOCALE, useValue: 'en-GB'
-    },
     MatNativeDateModule,
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

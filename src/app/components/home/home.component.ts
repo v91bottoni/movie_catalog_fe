@@ -6,6 +6,7 @@ import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { TranslateService } from '@ngx-translate/core';
 import { SliderComponent } from '../slider/slider.component';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -38,8 +39,15 @@ export class HomeComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService,public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private util:UtilityService, private authService:AuthService) {
-    this.util.backpage = "home";
+  constructor(
+    private movieService: MovieService,
+    public dialog: MatDialog, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private util: UtilityService, 
+    private authService:AuthService) {
+      
+      this.util.backpage = "home";
   }
 
   openDialog(imdbid: string){
@@ -53,7 +61,7 @@ export class HomeComponent implements OnInit {
 
   goToCategory(chips:String){
 
-    localStorage.setItem('chipsValue', String(chips));
+    sessionStorage.setItem('chipsValue', String(chips));
     this.router.navigateByUrl('/home/gerne/'+chips+'/1')
   }
 

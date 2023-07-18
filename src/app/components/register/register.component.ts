@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Regex } from 'src/app/enums/regex';
 import { RegisterStates } from 'src/app/enums/registerStates';
 import { AuthService } from 'src/app/service/auth.service';
@@ -20,7 +21,10 @@ export class RegisterComponent implements OnInit{
   cfAlreadyUsed: boolean = false;
   invalidAge: boolean = false;
 
-   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+   constructor(
+    private authService: AuthService, 
+    private formBuilder: FormBuilder, 
+    private router: Router) { }
 
   ngOnInit(): void {
     

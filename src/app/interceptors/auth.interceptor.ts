@@ -23,19 +23,25 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const s = req.url.toLowerCase();
 
+    console.log(req);
+    
+    if(s.includes("i18n")){
+      return next.handle(req);
+    }
+
     if(s.includes("auth")){
       return next.handle(req);
     }
 
-    if(!localStorage.getItem('token')) return EMPTY;
+    if(!sessionStorage.getItem('token')) return EMPTY;
 
-    const jsonReq = this.autenticatedRequest(req, localStorage.getItem('token')+"");
+    const jsonReq = this.autenticatedRequest(req, sessionStorage.getItem('token')+"");
 
 
     if(!this.refreshON){
       this.refreshON = true;
       setTimeout(()=>{
-        this.refresh(localStorage.getItem('refreshToken'));
+        this.refresh(sessionStorage.getItem('refreshToken'));
         this.refreshON = false;
       }, 10000);
     }
@@ -46,8 +52,8 @@ export class AuthInterceptor implements HttpInterceptor {
         error: (error) => {
           this.router.navigateByUrl('errorPage');
           console.log("Token Scaduto - Refresh");
-          if(localStorage.getItem('refreshToken')){
-            let refreshTok = localStorage.getItem('refreshToken')+"";
+          if(sessionStorage.getItem('refreshToken')){
+            let refreshTok = sessionStorage.getItem('refreshToken')+"";
             this.authservice.refreshTok(refreshTok).subscribe(res=>{
 
             if(res != null){
@@ -111,53 +117,19 @@ export class AuthInterceptor implements HttpInterceptor {
   logout(){
     //console.log("log out");
     this.refreshON = false;
-    localStorage.clear();
+    sessionStorage.clear();
     this.util.role = null;
     this.util.username = null;
     this.router.navigateByUrl('/login');
   }
   login(res:userres){
    // console.log("Refreshing Token, logging in");
-    localStorage.setItem('role', res.user.role.role || '');
-    localStorage.setItem('userID', res.user.id.toString() || '');
-    localStorage.setItem('userName', res.user.name || '');
-    localStorage.setItem('token', res.token || '');
-    localStorage.setItem('refreshToken', res.refreshToken || '');
+   sessionStorage.setItem('role', res.user.role.role || '');
+   sessionStorage.setItem('userID', res.user.id.toString() || '');
+   sessionStorage.setItem('userName', res.user.name || '');
+   sessionStorage.setItem('token', res.token || '');
+   sessionStorage.setItem('refreshToken', res.refreshToken || '');
     this.util.role = res.user.role.role;
     this.util.username = res.user.name;
   }
 }
-
-
-
-
-
-/*if(localStorage.getItem('refreshToken')){
-  let refreshTok = localStorage.getItem('refreshToken')+"";
-  localStorage.removeItem('refreshToken');
-  this.authservice.refreshTok(refreshTok).subscribe(res=>{
-          //console.log(res);
-        if(res != null){
-          if(res.token){
-            console.log("Refresh Avvenuto");
-            localStorage.setItem('role', res.user.role.role || '');
-            localStorage.setItem('userID', res.user.id.toString() || '');
-            localStorage.setItem('userName', res.user.name || '');
-            localStorage.setItem('token', res.token || '');
-            localStorage.setItem('refreshToken', res.refreshToken || '');
-            this.util.role = res.user.role.role;
-            this.util.username = res.user.name;
-
-
-          }else{
-            console.log("Refresh Fallito");
-            localStorage.clear();
-            this.util.role = null;
-            this.util.username = null;
-            this.router.navigateByUrl('/login')
-            setTimeout(() => console.log("Sessione scaduta"), 100);
-        }
-      }
-
-  });
-}*/
