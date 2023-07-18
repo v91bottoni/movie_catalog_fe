@@ -47,11 +47,11 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "home/page/:pag", 
+        path: "home/page/:pag",
         component: CardsDisplayComponent
       },
       {
-        path: "home/gerne/:gerne/:pag", 
+        path: "home/gerne/:gerne/:pag",
         component: CardsDisplayComponent
       },
       {
@@ -77,6 +77,10 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchResultComponent,
+        canActivate: [RoleGuardService],
+        data:{
+            expectedRoles: ['public','super_admin', 'admin']
+        }
       },
       {
         path: 'management',

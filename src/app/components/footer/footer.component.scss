@@ -5,6 +5,7 @@
 }
 .footerToolBar{
 padding:220px 0 250px 0;
+width: 100%;
 min-height: fit-content;
 text-align: center;
 }
@@ -61,4 +62,11 @@ mat-list-item{
 .pullUp{
   position: absolute;
   transform: translateY(30%);
+}
+@media screen and (max-width: 900px) {
+  .hide{
+    display: none;
+  }
+
+
 }

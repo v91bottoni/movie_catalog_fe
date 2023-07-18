@@ -10,5 +10,17 @@ export class FooterComponent {
   constructor(protected util :UtilityService){
 
   }
+  logout(){
+    localStorage.clear();
+    this.util.username = null;
+    this.util.role = null;
+  }
+  goTop(){
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
 
 }

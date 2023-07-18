@@ -1,46 +1,47 @@
 <div class="footer" >
   <mat-toolbar class="footerToolBar" color="primary">
     <table>
-      <tr>
+      <tr >
       <td>
         <div class="cardContainer">
-          <h1>SOCIAL</h1>
+          <h1 class="hide">SOCIAL</h1>
           <mat-list>
-            <mat-list-item><img class="socialLogo" src="../assets/img/facebook.png"/><mat-label class="pullUp">Facebook</mat-label></mat-list-item>
-            <mat-list-item><img class="socialLogo" src="../assets/img/instagram.png"/><mat-label class="pullUp">Instagram</mat-label></mat-list-item>
-            <mat-list-item><img class="socialLogo" src="../assets/img/youtube.png"/><mat-label class="pullUp">YouTube</mat-label></mat-list-item>
-            <mat-list-item><img class="socialLogo" src="../assets/img/tiktok.png"/><mat-label class="pullUp">TikTok</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/facebook.png"/><mat-label class="pullUp">Facebook</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/instagram.png"/><mat-label class="pullUp">Instagram</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/youtube.png"/><mat-label class="pullUp">YouTube</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><img class="socialLogo" src="../assets/img/tiktok.png"/><mat-label class="pullUp">TikTok</mat-label></mat-list-item>
           </mat-list>
         </div>
       </td>
       <td>
-        <div class="cardContainer">
-          <h1>ABOUT US</h1>
+        <div class="cardContainer hide">
+          <h1 >ABOUT US</h1>
           <mat-list>
-            <mat-list-item><mat-label>Factory</mat-label></mat-list-item>
-            <mat-list-item><mat-label>Our Team</mat-label></mat-list-item>
-            <mat-list-item><mat-label>Our Values</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>Factory</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>Our Team</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()"><mat-label>Our Values</mat-label></mat-list-item>
           </mat-list>
         </div>
       </td>
       <td>
-        <div class="cardContainer">
+        <div class="cardContainer hide">
           <h1>LINK</h1>
           <mat-list>
-            <mat-list-item><mat-label>Home</mat-label></mat-list-item>
-            <mat-list-item><mat-label>Profile</mat-label></mat-list-item>
-            <mat-list-item><mat-label>Search</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="home"><mat-label>Home</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="userInfo"><mat-label>Profile</mat-label></mat-list-item>
+            <mat-list-item (click)="goTop()" routerLink="search"><mat-label>Search</mat-label></mat-list-item>
+            <mat-list-item (click)="logout()" routerLink="login"><mat-label>Log Out</mat-label></mat-list-item>
           </mat-list>
         </div>
       </td>
         <td>
 
-          <div *ngIf="util.username != null" class="cardContainer">
+          <div *ngIf="util.username != null" class="cardContainer hide">
             <h1>ADMIN TOOLS</h1>
             <mat-list>
-              <mat-list-item><mat-label>Management</mat-label></mat-list-item>
-              <mat-list-item><mat-label>Insert Film</mat-label></mat-list-item>
-              <mat-list-item><mat-label>Update Movie</mat-label></mat-list-item>
+              <mat-list-item (click)="goTop()" routerLink="management"><mat-label>Management</mat-label></mat-list-item>
+              <mat-list-item (click)="goTop()" routerLink="insertMovie"><mat-label>Insert Film</mat-label></mat-list-item>
+              <mat-list-item (click)="goTop()" routerLink="search"><mat-label>Update Movie</mat-label></mat-list-item>
             </mat-list>
           </div>
         </td>
