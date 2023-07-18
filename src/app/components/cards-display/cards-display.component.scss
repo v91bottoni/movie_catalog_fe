@@ -1,0 +1,29 @@
+.loader {
+    margin: 100px auto;
+  }
+  
+  .mat-button{
+    width: 15;
+    margin: 27.5% auto;
+  }
+
+  .pageButton{
+    text-align: center;
+  }
+  
+  .chips{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top: 3%;
+  }
+
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    background: whitesmoke;
+  }

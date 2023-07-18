@@ -2,24 +2,7 @@
   flex: 1 1 auto;
 }
 
-.search{
-  display: flex;
-  margin: 20px auto;
-  min-width: 200px;
-  width: 40vw;
-}
-.hide{
-  display: none;
-}
-.btn{
-  border:none;
-  background: none;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-.btn:hover{
-  transform:translate(-1px, -1px);
-}
+
 
 .home{
   margin-left: 10px;

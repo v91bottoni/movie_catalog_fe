@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(res => {
         //logged successfully
 
+        sessionStorage.setItem('refreshToken', res.refreshToken || '');
         sessionStorage.setItem('role', res.user.role.role || '');
         sessionStorage.setItem('userID', res.user.id.toString() || '');
         sessionStorage.setItem('userName', res.user.name || '');

@@ -48,7 +48,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
-import {MatStepperModule} from '@angular/material/stepper';
+
 
 
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
@@ -56,6 +56,12 @@ import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert
 import {MatChipsModule} from '@angular/material/chips';
 import { RootComponent } from './components/root/root.component';
 import { UpdateMovieSuccessfullDialogComponent } from './dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
+import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -91,6 +97,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     InsertMovieDialogComponent,
     RootComponent,
     UpdateMovieSuccessfullDialogComponent,
+    ExpiredialogComponent,
+    CardsDisplayComponent,
+    SliderComponent,
+    MovieCardComponent,
+    FooterComponent
     LanguagePickerComponent,
   ],
   imports: [

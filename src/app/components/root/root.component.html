@@ -1,9 +1,32 @@
 <!-- Nav Bar da visualizzare solo dopo il log utente -->
-<div class="navbar"><app-navbar *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-navbar>
+<div *ngIf="util.username != null">
+  <app-navbar class="navbar"  (drawerEvent)="toggle(drawer)"></app-navbar>
+  <section #search  >
+    <mat-form-field  class="search" appearance="fill" >
+      <mat-label>Search </mat-label>
+      <input (focus)="focusSearchBar(search)" (blur)="focusSearchBar(search)" matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="searchTerm" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option routerLink="search" (click)="searchFilm(searchTerm)" *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+      <button class="btn" matPrefix routerLink="search" (click)="searchFilm(searchTerm)">
+        <mat-icon  matPrefix style="color: black;">search</mat-icon>
+      </button>
+      <button class="btn" matSuffix (click)="searchTerm=''">
+        <mat-icon style="color: black;">close</mat-icon>
+      </button>
+
+    </mat-form-field>
+
+  </section>
+
 </div>
-<mat-drawer-container class="example-container" >
-  <div  #drawer class="sidenav hide" >
+
+  <div #drawer  class="sidenav hide" >
     <app-drower-button *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-drower-button>
   </div>
+<div class="pagecontainer">
   <router-outlet></router-outlet>
-</mat-drawer-container>
+</div>
+<app-footer class="footer" *ngIf="util.username != null"></app-footer>

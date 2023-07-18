@@ -7,7 +7,7 @@
   <span class="home homeLinkOff" routerLink="home"><mat-icon>home</mat-icon></span>
   <span class="example-spacer"></span>
 
-  <button  (click)="toggleSearchBar(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <!--<button  (click)="toggleSearchBar(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon >{{searchIcon}}</mat-icon>
   </button>
   <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">{{ 'message.welcome' | translate }} {{util.username}}!</mat-label>
@@ -25,22 +25,4 @@
   <app-language-picker style="margin-top: 1%"></app-language-picker>
 
 </mat-toolbar>
-<section #search class="hide" >
-  <mat-form-field  class="search" appearance="fill" >
-    <mat-label>{{ 'menu.search' | translate }} </mat-label>
-    <input  matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="searchTerm" />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option routerLink="search" (click)="searchFilm(searchTerm)" *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-    <button class="btn" matPrefix routerLink="search" (click)="searchFilm(searchTerm)">
-      <mat-icon  matPrefix style="color: black;">search</mat-icon>
-    </button>
-    <button class="btn" matSuffix (click)="searchTerm=''">
-      <mat-icon style="color: black;">close</mat-icon>
-    </button>
 
-  </mat-form-field>
-
-</section>
