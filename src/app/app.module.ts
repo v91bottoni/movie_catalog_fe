@@ -61,6 +61,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.compo
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
