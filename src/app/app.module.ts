@@ -101,7 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
-    FooterComponent
+    FooterComponent,
     LanguagePickerComponent,
   ],
   imports: [

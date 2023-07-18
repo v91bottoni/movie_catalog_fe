@@ -18,7 +18,8 @@
         "updateData" : "UPDATE DATA",
         "updateMovie" : "UPDATE MOVIE",
         "userDetails" : "USER DETAILS",
-        "update" : "Update"
+        "update" : "Update",
+        "all" : "All"
     },
     "message": {
         "login" : "Login!",

@@ -18,7 +18,8 @@
         "updateData" : "AGGIORNA",
         "updateMovie" : "AGGIORNA FILM",
         "userDetails" : "DETTAGLI UTENTE",
-        "update" : "Aggiorna"
+        "update" : "Aggiorna",
+        "all" : "Tutte"
     },
     "message": {
         "login" : "Accedi!",
