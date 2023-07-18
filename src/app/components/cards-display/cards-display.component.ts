@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, HostListener, OnInit, VERSION } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
@@ -22,15 +22,21 @@ export class CardsDisplayComponent implements OnInit{
   displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating', 'button', 'edit'];
   home: boolean= false;
   gerne: boolean= false;
+  search: boolean= false;
+  keyword!: string;
   category!:String;
   currentChipsValue: String = "-1"
   hover: boolean = true;
   idHover!: string;
+  gridCols!: number;
+  
 
   chipsCategory: String[] = this.movieService.categories;
 
 
   ngOnInit(): void {
+
+    this.updateGridCols();
 
     let bool: string = localStorage.getItem("cardView") as string
     
@@ -66,6 +72,7 @@ export class CardsDisplayComponent implements OnInit{
 
           this.home=false;
           this.gerne= true;
+          this.search=false;
 
         })
       }
@@ -81,11 +88,32 @@ export class CardsDisplayComponent implements OnInit{
 
           this.home=true;
           this.gerne= false;
+          this.search=false;
 
 
           console.log(this.response);
         })
 
+      } else if(params['keyword']){
+        this.page=Number(params['pg']);
+
+
+        this.keyword=params['keyword'];
+        this.currentChipsValue = "-1";
+        this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res=>{
+
+          
+
+          this.maxPage=res.maxPageNumber;
+          this.movies=res.movieList;
+          this.response=res;
+
+
+          this.home=false;
+          this.gerne= false;
+          this.search=true;
+
+        })
       }
 
       else{
@@ -116,6 +144,7 @@ export class CardsDisplayComponent implements OnInit{
     this.util.backpage = '/home/page/'+pag;
     if(this.home) this.router.navigate(['/home/page/'+pag]);
     if(this.gerne) this.router.navigate(['/home/gerne/'+ this.category+'/'+pag]);
+    if(this.search) this.router.navigate(['/home/search/'+ this.keyword+'/'+pag]);
   }
 
   switchView(){
@@ -154,5 +183,23 @@ export class CardsDisplayComponent implements OnInit{
   goUpdate(imdbid:string){
     this.router.navigate(['/updateMovie/'+imdbid])
   }
+
+  updateGridCols() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.gridCols = 1;
+    } else if (screenWidth < 600) {
+      this.gridCols = 2;
+    } else if (screenWidth < 800) {
+      this.gridCols = 3;
+    } else {
+      this.gridCols = 4;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateGridCols();
+}
 
 }

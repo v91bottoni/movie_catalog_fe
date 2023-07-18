@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -21,8 +21,12 @@ export class UserInfoComponent implements OnInit{
   user!: user;
   invalidAge: boolean = false;
   invalidInput: boolean = false;
+  gridCols!: number;
+  colSpan!: number;
 
   ngOnInit(): void {
+
+    this.updateGridCols();
 
     this.userService.getUserById( Number(localStorage.getItem("userID")) ).subscribe(res=>{
 
@@ -95,6 +99,22 @@ export class UserInfoComponent implements OnInit{
 
   goBack(){
     this.router.navigate([this.util.backpage]);
+  }
+
+  updateGridCols() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.gridCols = 1;
+      this.colSpan = 1;
+    } else {
+      this.gridCols = 2;
+      this.colSpan = 2;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateGridCols();
   }
 
 
