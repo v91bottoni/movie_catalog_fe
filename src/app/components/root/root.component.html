@@ -23,7 +23,10 @@
 
 </div>
 
-  <div #drawer class="sidenav hide" >
+  <div #drawer  class="sidenav hide" >
     <app-drower-button *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-drower-button>
   </div>
+<div class="pagecontainer">
   <router-outlet></router-outlet>
+</div>
+<app-footer class="footer" *ngIf="util.username != null"></app-footer>

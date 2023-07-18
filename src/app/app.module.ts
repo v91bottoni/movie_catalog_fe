@@ -60,6 +60,7 @@ import { CardsDisplayComponent } from './components/cards-display/cards-display.
 import { SliderComponent } from './components/slider/slider.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.compo
     CardsDisplayComponent,
     SliderComponent,
     MovieCardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

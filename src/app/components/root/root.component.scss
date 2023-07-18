@@ -33,3 +33,13 @@
   .hide{
     transform: translateX(-300px) skewX(-60deg);
   }
+
+  .pagecontainer{
+    min-height: 100%;
+    height: fit-content;
+
+  }
+.footer{
+  position: static;
+  bottom: 0;
+}
