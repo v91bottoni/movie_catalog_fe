@@ -62,6 +62,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 import {MatStepperModule} from '@angular/material/stepper';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatStepperModule,
     MatChipsModule,
     MatStepperModule,
+    MatListModule,
 
   ],
   providers: [

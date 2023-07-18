@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  constructor(protected util :UtilityService){
+
+  }
 
 }

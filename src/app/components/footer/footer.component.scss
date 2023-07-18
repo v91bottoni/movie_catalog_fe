@@ -4,6 +4,27 @@
   width: 100%;
 }
 .footerToolBar{
-padding:100px;
+padding:300px 0 300px 0;
+min-height: fit-content;
+text-align: center;
 }
 
+.copyRight{
+  display: flex;
+  font-size: small;
+}
+.cardContainer{
+  margin: 0 10px;
+  text-align: left;
+  width: 20%;
+  height: 400px;
+}
+.cardContainer mat-list-item:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.socialLogo{
+  display: inline;
+  width: 30px;
+ margin-right: 10px;
+}

@@ -1,3 +1,41 @@
 <div class="footer" >
-  <mat-toolbar class="footerToolBar" color="primary">Example</mat-toolbar>
+  <mat-toolbar class="footerToolBar" color="primary">
+    <div class="cardContainer">
+      <h1>SOCIAL</h1>
+      <mat-list>
+        <mat-list-item><img class="socialLogo" src="../assets/img/facebook.png"/><mat-label>Facebook</mat-label></mat-list-item>
+        <mat-list-item><img class="socialLogo" src="../assets/img/instagram.png"/><mat-label>Instagram</mat-label></mat-list-item>
+        <mat-list-item><img class="socialLogo" src="../assets/img/youtube.png"/><mat-label>YouTube</mat-label></mat-list-item>
+        <mat-list-item><img class="socialLogo" src="../assets/img/tiktok.png"/><mat-label>TikTok</mat-label></mat-list-item>
+      </mat-list>
+    </div>
+    <div class="cardContainer">
+      <h1>ABOUT US</h1>
+      <mat-list>
+        <mat-list-item><mat-label>Factory</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Our Team</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Our Values</mat-label></mat-list-item>
+      </mat-list>
+    </div>
+    <div class="cardContainer">
+      <h1>LINK</h1>
+      <mat-list>
+        <mat-list-item><mat-label>Home</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Profile</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Search</mat-label></mat-list-item>
+      </mat-list>
+    </div>
+    <div *ngIf="util.username != null" class="cardContainer">
+      <h1>ADMIN TOOLS</h1>
+      <mat-list>
+        <mat-list-item><mat-label>Management</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Insert FIlm</mat-label></mat-list-item>
+        <mat-list-item><mat-label>Update Movie</mat-label></mat-list-item>
+        <mat-list-item><mat-label>TikTok</mat-label></mat-list-item>
+      </mat-list>
+    </div>
+
+    <br>
+    <p class="copyRight">© Copyright 2023 - Movie Catalog S.r.l. - P.IVA. 00000000000</p>
+  </mat-toolbar>
 </div>
