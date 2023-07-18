@@ -62,7 +62,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 import {MatStepperModule} from '@angular/material/stepper';
 import { ExpiredialogComponent } from './dialogs/expiredialog/expiredialog.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import {MatListModule} from '@angular/material/list';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
@@ -137,6 +137,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatStepperModule,
     MatChipsModule,
     MatStepperModule,
+    MatListModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -145,6 +146,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'en'
     })
+
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
