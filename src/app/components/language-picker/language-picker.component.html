@@ -1,5 +1,5 @@
 <div class="languageSelector">
-    <mat-form-field>
+    <mat-form-field appearance="outline" selected>
       <mat-select [value]="selectedLanguage.value" (valueChange)="changeLang($event)">
         <mat-select-trigger>
             <img [src]="selectedLanguage.img" class="flag"/>
