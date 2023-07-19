@@ -29,7 +29,8 @@ export class CardsDisplayComponent implements OnInit{
   hover: boolean = true;
   idHover!: string;
   gridCols!: number;
-  
+  colsNumber!: number;
+
 
   chipsCategory: String[] = this.movieService.categories;
 
@@ -37,9 +38,10 @@ export class CardsDisplayComponent implements OnInit{
   ngOnInit(): void {
 
     this.updateGridCols();
+    this.updateColsNumber();
 
     let bool: string = sessionStorage.getItem("cardView") as string
-    
+
     if(bool === 'true'){
       this.cardView=true;
     }
@@ -52,7 +54,7 @@ export class CardsDisplayComponent implements OnInit{
     if (sessionStorage.getItem("chipsValue")) {
       this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
     }
-    
+
 
     this.route.params.subscribe(params => {
 
@@ -101,17 +103,20 @@ export class CardsDisplayComponent implements OnInit{
         this.keyword=params['keyword'];
         this.currentChipsValue = "-1";
         this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res=>{
-
-          
-
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList;
-          this.response=res;
+          if(res){
+            this.maxPage=res.maxPageNumber;
+            this.movies=res.movieList;
+            this.response=res;
 
 
-          this.home=false;
-          this.gerne= false;
-          this.search=true;
+            this.home=false;
+            this.gerne= false;
+            this.search=true;
+          }else{
+            this.router.navigate(["searchError"]);
+          }
+
+
 
         })
       }
@@ -148,11 +153,11 @@ export class CardsDisplayComponent implements OnInit{
   }
 
   switchView(){
-    
+
     if(this.cardView){
       this.cardView=false;
       sessionStorage.setItem('cardView', 'false');
-    } 
+    }
     else{
       this.cardView=true;
       sessionStorage.setItem('cardView', 'true');
@@ -197,9 +202,21 @@ export class CardsDisplayComponent implements OnInit{
     }
   }
 
+  updateColsNumber(){
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.colsNumber = 1;
+    } else {
+      this.colsNumber = 2;
+    }
+  }
+
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateGridCols();
+    this.updateColsNumber();
 }
 
 }

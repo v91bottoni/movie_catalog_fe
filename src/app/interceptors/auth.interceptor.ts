@@ -23,8 +23,8 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const s = req.url.toLowerCase();
 
-    console.log(req);
-    
+    //console.log(req);
+
     if(s.includes("i18n")){
       return next.handle(req);
     }
@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
         error: (error) => {
           this.router.navigateByUrl('errorPage');
           console.log("Token Scaduto - Refresh");
-          if(sessionStorage.getItem('refreshToken')){
+          if(sessionStorage.getItem('refreshToken') && s.includes("refresh")){
             let refreshTok = sessionStorage.getItem('refreshToken')+"";
             this.authservice.refreshTok(refreshTok).subscribe(res=>{
 
