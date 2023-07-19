@@ -1,0 +1,232 @@
+<form [formGroup]="updateForm"  >
+<table class="mat-elevation-z8 demo-table">
+<tr>
+  <th >
+    <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <h1>{{ 'menu.updateMovie' | translate }}</h1>
+  </th>
+</tr>
+<tr>
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="updateForm">
+      <form [formGroup]="updateForm">
+
+        <ng-template #generality matStepLabel><p *ngIf="genOK" >{{ 'menu.movieGeneralities' | translate }}</p><p *ngIf="!genOK" class="error">{{ 'menu.movieGeneralities' | translate }}</p></ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="actors">{{ 'movie.title' | translate }}</mat-label>
+            <input title="Campo Obbligatorio" matInput #actors  id="title" name="title" type="text" placeholder="{{ 'movie.title' | translate }}" formControlName="title">
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.title' | translate)}  }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="year">{{ 'movie.year' | translate }}</mat-label>
+            <input title="Campo Obbligatorio" matInput #year id="year" name="year" type="text" placeholder="{{ 'movie.year' | translate }}" formControlName="year">
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.year' | translate)}  }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="genre">{{ 'movie.genre' | translate }}</mat-label>
+            <input title="Campo Obbligatorio" matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+          <mat-label for="plot">{{ 'movie.plot' | translate }}</mat-label>
+            <textarea title="Campo Obbligatorio" matInput #plot id="plot" name="plot" placeholder="{{ 'movie.plot' | translate }}" formControlName="plot"></textarea>
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.plot' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="type">{{ 'movie.type' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #type id="type" name="type" type="text" placeholder="{{ 'movie.type' | translate }}" formControlName="type">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.type' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="totalseasons" >{{ 'movie.totalSeasons' | translate }}</mat-label>
+          <input  matInput #totalseasons id="totalseasons" name="totalseasons" type="number" min="0" value="0" formControlName="totalseasons">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label for="released">{{ 'movie.released' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerRelased" #released id="released" name="released" formControlName="released">
+          <mat-datepicker-toggle matIconSuffix [for]="datepickerRelased"></mat-datepicker-toggle>
+                      <mat-datepicker #datepickerRelased>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>{{ 'button.cancel' | translate }}</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>{{ 'button.apply' | translate }}</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.released' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="runtime">{{ 'movie.runtime' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #runtime id="runtime" name="runtime" type="text" placeholder="{{ 'movie.runtime' | translate }}" formControlName="runtime">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.runtime' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+
+
+
+        <div>
+          <button mat-button matStepperNext>{{ 'button.next' | translate }}</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="updateForm" >
+      <ng-template #production matStepLabel><p *ngIf="proOK" >{{ 'menu.productionInfo' | translate }}</p><p *ngIf="!proOK" class="error">{{ 'menu.productionInfo' | translate }}</p></ng-template>
+      <form [formGroup]="updateForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label for="production">{{ 'movie.production' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #production id="production" name="production" type="text" placeholder="{{ 'movie.production' | translate }}" formControlName="production">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.production' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="actors">{{ 'movie.actors' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #actors  id="actors" name="actors" type="text" placeholder="{{ 'movie.actors' | translate }}" formControlName="actors">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.actors' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="writer">{{ 'movie.writer' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #writer id="writer" name="writer" type="text" placeholder="{{ 'movie.writer' | translate }}" formControlName="writer">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.writer' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="language">{{ 'movie.language' | translate }}</mat-label>
+            <input title="Campo Obbligatorio" matInput #language id="language" name="language" type="text" placeholder="{{ 'movie.language' | translate }}" formControlName="language">
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.language' | translate)}  }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+              <mat-label for="director">{{ 'movie.director' | translate }}</mat-label>
+              <input title="Campo Obbligatorio" matInput #director  id="director" name="director" type="text" placeholder="{{ 'movie.direcotr' | translate }}" formControlName="director">
+              <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.director' | translate)}  }}</mat-error>
+            </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="poster">{{ 'movie.poster' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #poster id="poster" name="poster" type="text"placeholder="{{ 'movie.poster' | translate }}" formControlName="poster">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.poster' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label for="country">{{ 'movie.country' | translate }}</mat-label>
+              <input title="Campo Obbligatorio" matInput #country id="country" name="country" type="text" placeholder="{{ 'movie.country' | translate }}" formControlName="country">
+              <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.country' | translate)}  }}</mat-error>
+            </mat-form-field>
+
+          <!--   <mat-form-field appearance="fill">
+              <mat-label for="dvd">DVD</mat-label>
+              <input title="Campo Obbligatorio" matInput #dvd id="dvd" name="dvd" type="text" placeholder="DVD" formControlName="dvd">
+              <mat-error>Inserire DVD!</mat-error>
+            </mat-form-field>
+          -->
+            <mat-form-field appearance="fill">
+              <mat-label for="dvd">{{ 'movie.dvd' | translate }}</mat-label>
+              <input title="Campo Obbligatorio" matInput [matDatepicker]="datepickerDvd" #dvd id="dvd" name="released" formControlName="dvd">
+              <mat-datepicker-toggle matIconSuffix [for]="datepickerDvd"></mat-datepicker-toggle>
+                          <mat-datepicker #datepickerDvd>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel>{{ 'menu.cancel' | translate }}</button>
+                              <button mat-raised-button color="primary" matDatepickerApply>{{ 'menu.apply' | translate }}</button>
+                            </mat-datepicker-actions>
+                          </mat-datepicker>
+              <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.dvd' | translate)}  }}</mat-error>
+            </mat-form-field>
+
+
+        <div>
+          <button mat-button matStepperPrevious>{{ 'button.back' | translate }}</button>
+          <button mat-button matStepperNext>{{ 'button.next' | translate }}</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="updateForm" >
+       <ng-template  matStepLabel><p *ngIf="othOK" >{{ 'menu.otherInfo' | translate }}</p><p *ngIf="!othOK" class="error">{{ 'menu.otherInfo' | translate }}</p></ng-template>
+      <form [formGroup]="updateForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label for="website">{{ 'movie.website' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #website id="website" name="website" type="text" placeholder="{{ 'movie.website' | translate }}" formControlName="website">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.website' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="awards">{{ 'movie.awards' | translate }}</mat-label>
+            <input title="Campo Obbligatorio" matInput #awards id="awards" name="awards" type="text" placeholder="{{ 'movie.awards' | translate }}" formControlName="awards">
+            <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.awards' | translate)}  }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="imdbrating">{{ 'movie.rating' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #imdbrating id="imdbrating" name="imdbrating" type="number" min="0" max="10" value="0" formControlName="imdbrating">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.rating' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="boxoffice">{{ 'movie.boxoffice' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput type="number" value="0" min="0" #boxoffice id="boxoffice" name="boxoffice"  placeholder="{{ 'movie.boxoffice' | translate }}" formControlName="boxoffice">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.boxoffice' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="imdbvotes">{{ 'movie.imdbVotes' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="{{ 'movie.imdbVotes' | translate }}" formControlName="imdbvotes">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.imdbVotes' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="metascore">{{ 'movie.metascore' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #metascore id="metascore" name="metascore" type="text"placeholder="{{ 'movie.metascore' | translate }}" formControlName="metascore">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.metascore' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label for="rated">{{ 'movie.rated' | translate }}</mat-label>
+          <input title="Campo Obbligatorio" matInput #rated id="rated" name="rated" type="text" placeholder="{{ 'movie.rated' | translate }}" formControlName="rated">
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.rated' | translate)}  }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+          <mat-label for="response">{{ 'movie.response' | translate }}</mat-label>
+          <mat-select title="Campo Obbligatorio"  formControlName="response">
+            <mat-option value="True">{{ 'menu.true' | translate }}</mat-option>
+            <mat-option value="False">{{ 'menu.false' | translate }}</mat-option>
+          </mat-select>
+          <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.response' | translate)}  }}</mat-error>
+        </mat-form-field>
+        <br>
+
+      <div class="demo-button-container">
+        <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
+          <mat-label *ngIf="!updateForm.valid">{{ 'menu.verify' | translate }}</mat-label>
+          <mat-label *ngIf="updateForm.valid">{{ 'menu.updateData' | translate }}</mat-label>
+        </button>
+        <!-- <button (click)="exit()" type="button" mat-raised-button color="primary"  class="demo-button">
+          CANCEL
+        </button> -->
+      </div>
+
+
+      <div>
+        <button mat-button matStepperPrevious>{{ 'button.back' | translate }}</button>
+        <button mat-button (click)="reset()">{{ 'button.reset' | translate }}</button>
+      </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+
+
+
+      </tr>
+    </table>
+</form>

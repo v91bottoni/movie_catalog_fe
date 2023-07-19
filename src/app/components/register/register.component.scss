@@ -1,0 +1,36 @@
+.register-container {
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  mat-card {
+    width: 35%;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+
+  @media (max-width: 1000px) {
+    mat-card {
+      width: 80%;
+    }
+  }
+
+  mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  mat-card-title {
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 10%;
+    width: 100%;
+  }
+
+  .stepper{
+    width: 100%;
+  }

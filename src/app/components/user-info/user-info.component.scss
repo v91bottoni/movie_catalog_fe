@@ -1,0 +1,138 @@
+.user-container {
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  mat-card {
+    width: 35%;
+  }
+  mat-form-field {
+    width: 100%;
+    padding-right: 2%;
+  }
+
+  /* input{
+    text-align: center;
+  } */
+
+  @media (max-width: 1000px) {
+    mat-card {
+      width: 80%;
+    }
+  }
+
+  mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  mat-card-title {
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 10%;
+    width: 100%;
+  }
+
+ .person-icon {
+    font-size: 500%;
+}
+.back{
+  text-align: center;
+  width: 30px;
+  padding-left: 20px;
+  margin: 15px 0 0 15px;
+}
+
+.user-container {
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+mat-card {
+  width: 35%;
+}
+mat-form-field {
+  width: 100%;
+  padding-right: 2%;
+}
+
+/* input{
+  text-align: center;
+} */
+
+@media (max-width: 1000px) {
+  mat-card {
+    width: 80%;
+  }
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 10%;
+  width: 100%;
+}
+
+.person-icon {
+  font-size: 500%;
+}
+
+.back{
+text-align: center;
+width: 30px;
+padding-left: 20px;
+margin: 15px 0 0 15px;
+}
+
+/* Stile dell'icona dell'utente */
+.user-icon {
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 90px;
+height: 90px;
+border-radius: 50%;
+background-color: #484848;
+color: #ffffff;
+font-size: 36px;
+font-weight: 700;
+margin-right: 10px;
+text-transform: uppercase;
+overflow: hidden;
+border: 3px solid #003ffc;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: border-color 0.3s ease;
+}
+
+
+/* Stile delle iniziali dell'utente */
+.user-initials {
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Aggiungi una leggera ombra al testo */
+}
+
+/* Stile per centrare l'avatar orizzontalmente */
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Optional: Add some spacing below the avatar */
+}
+

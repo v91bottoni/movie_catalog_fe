@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" style="min-width: 300px;">
+  <button (click)="drawerEventFire()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="home homeLinkOn" routerLink="home"> {{ 'menu.title' | translate }} </span>
+  <span class="home homeLinkOff" routerLink="home"><mat-icon>home</mat-icon></span>
+  <span class="example-spacer"></span>
+
+  <!-- <button  (click)="toggleSearchBar(search)" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon >{{searchIcon}}</mat-icon>
+  </button> -->
+  
+  <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">{{ 'message.welcome' | translate }} {{util.username}}!</mat-label>
+
+  <button  (click)="toggleProfile()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-label class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
+    <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;"> {{ 'menu.profile' | translate }} <mat-icon class="proIcon">person</mat-icon>
+    </div>
+    <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>{{ 'menu.logout' | translate }}</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>
+  </mat-label>
+  
+  <!-- TODO: SELETTORE LINGUA -->
+  <app-language-picker style="margin-top: 1%"></app-language-picker>
+
+</mat-toolbar>
+

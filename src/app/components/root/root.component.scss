@@ -1,0 +1,45 @@
+
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  top: 0;
+}
+.search{
+  display: block;
+  margin: 80px auto 20px auto;
+  min-width: 200px;
+  width: 40vw;
+}
+.btn{
+  border:none;
+  background: none;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.btn:hover{
+  transform:translate(-1px, -1px);
+}
+
+
+
+  .sidenav{
+    z-index: 2;
+    background: none ;
+    position: fixed;
+    top: 70px;
+    transition: 0.7s ease;
+  }
+  .hide{
+    transform: translateX(-300px) skewX(-60deg);
+  }
+
+  .pagecontainer{
+    min-height: 100%;
+    height: fit-content;
+
+  }
+.footer{
+  position: static;
+  bottom: 0;
+}

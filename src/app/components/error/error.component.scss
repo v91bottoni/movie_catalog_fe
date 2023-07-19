@@ -1,0 +1,19 @@
+.example-ripple-container {
+  cursor: pointer;
+  text-align: center;
+  width: fit-content;
+  padding :20px;
+  margin: 10vh auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+p{
+font-family: 'Times New Roman', Times, serif;
+margin-top: 100px;
+margin-bottom: 50px;
+max-width: 500px;
+}
