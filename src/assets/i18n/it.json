@@ -131,7 +131,10 @@
   "nocontent":"Inserire almeno un criterio di ricerca!"
 },
 "errormessage":{
+  "title":"Errore",
   "errorpage":"Un Errore non ha permesso il caricamento dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.",
+  "nocontent":"Nessun Contentuto da visualizzare",
+  "nosearchres":"Nessun risultato corrisponde ai criteri di ricerca.",
   "default": "Qualcosa è andato storto.. riprova piàù tardi"
 }
 }

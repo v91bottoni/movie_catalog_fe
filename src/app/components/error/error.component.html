@@ -1,11 +1,11 @@
-<div class="example-ripple-container mat-elevation-z4"
+<div (click)="getMessage()" class="example-ripple-container mat-elevation-z4"
 matRipple
 [matRippleCentered]="centered"
 [matRippleDisabled]="disabled"
 [matRippleUnbounded]="unbounded"
 [matRippleRadius]="radius"
 [matRippleColor]="color">
-  <h1>Errore</h1>
+  <h1 >{{'errormessage.title' | translate}}</h1>
      <hr>
      <p>
        {{message}}

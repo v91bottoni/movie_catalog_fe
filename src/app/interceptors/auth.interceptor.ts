@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const s = req.url.toLowerCase();
 
-    console.log(req);
+    //console.log(req);
 
     if(s.includes("i18n")){
       return next.handle(req);
