@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import  { UtilityService } from 'src/app/service/utility.service';
+
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -12,12 +13,15 @@ import  { UtilityService } from 'src/app/service/utility.service';
 export class MovieDetailsComponent implements OnInit {
   movie!: Movie;
   passedValue: string = '';
-  moviePosterUrl: string = ''; // Aggiungi questa proprietà per l'URL del poster
-
+  moviePosterUrl: string = ''; 
+  movies: any; 
+  currentChipsValue: string | number = '-1'; 
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-    protected utilityService : UtilityService) { }
+    protected utilityService : UtilityService,
+    private router:Router
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -25,6 +29,7 @@ export class MovieDetailsComponent implements OnInit {
       this.getMovieById();
     });
   }
+
 
   getMovieById() {
     this.movieService.getMovieById(this.movieService.movieid).subscribe(

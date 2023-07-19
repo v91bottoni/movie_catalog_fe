@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, VERSION } from '@angular/core';
+import { Component, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
