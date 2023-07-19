@@ -3,7 +3,6 @@ import { UtilityService } from 'src/app/service/utility.service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-
 @Component({
   selector: 'app-drower-button',
   animations: [
@@ -32,7 +31,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class DrowerButtonComponent {
 
-  constructor(private router: Router, protected util : UtilityService){ }
+  constructor(
+    private router: Router, 
+    protected util : UtilityService) { }
 
 panelOpenState = false;
 isOpenHome= false;

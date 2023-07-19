@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
@@ -32,6 +32,8 @@ export class CardsDisplayComponent implements OnInit {
   hover: boolean = true;
   idHover!: string;
   gridCols!: number;
+  colsNumber!: number;
+
 
   chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
 
@@ -46,21 +48,25 @@ export class CardsDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.updateGridCols();
+    this.updateColsNumber();
 
-    let bool: string = sessionStorage.getItem("cardView") as string;
+    let bool: string = sessionStorage.getItem("cardView") as string
 
-    if (bool === 'true') {
-      this.cardView = true;
+    if(bool === 'true'){
+      this.cardView=true;
     }
     if (bool === 'false') {
       this.cardView = false;
     }
 
+    // this.route.snapshot.paramMap.get("pag")
+
     if (sessionStorage.getItem("chipsValue")) {
       this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
     }
+    
 
     this.route.params.subscribe(params => {
       if (params['gerne']) {
@@ -155,11 +161,11 @@ else{
   }
 
   switchView(){
-    
+
     if(this.cardView){
       this.cardView=false;
       sessionStorage.setItem('cardView', 'false');
-    } 
+    }
     else{
       this.cardView=true;
       sessionStorage.setItem('cardView', 'true');
@@ -210,8 +216,21 @@ else{
     }
   }
 
+  updateColsNumber(){
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.colsNumber = 1;
+    } else {
+      this.colsNumber = 2;
+    }
+  }
+
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateGridCols();
+    this.updateColsNumber();
 }
+
 }

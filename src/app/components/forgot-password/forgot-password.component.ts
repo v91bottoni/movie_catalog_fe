@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ForgotPasswordSuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-successful-dialog/forgot-password-successful-dialog.component';
-import { ForgotPasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialogComponent } from 'src/app/dialogs/spinner-dialog/spinner-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,7 +13,12 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit{
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   passwordResetForm!: FormGroup;
 
@@ -31,10 +36,10 @@ export class ForgotPasswordComponent implements OnInit{
   onSubmit(){
     this.openSpinner('200ms', '1000ms');
     this.authService.recoverPassword(this.passwordResetForm.value.email).subscribe( res => {
-      this.openSuccessDialog('200ms', '1000ms');
+      this.alert.openSuccess(this.translate.instant('message.emailSent'), this.translate.instant('button.ok'));
     }, (res) => {
       console.log(res);
-      this.openFailureDialog('200ms', '1000ms');
+      this.alert.openError(this.translate.instant('message.error.mailNotFound'), this.translate.instant('button.ok'));
     })
   }
 
@@ -49,21 +54,4 @@ export class ForgotPasswordComponent implements OnInit{
 
     setTimeout(() => dialogRef.close(), 3000);
   }
-
-  openSuccessDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ForgotPasswordSuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
-  openFailureDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ForgotPasswordUnsuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
 }

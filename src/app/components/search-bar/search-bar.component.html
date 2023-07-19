@@ -1,0 +1,19 @@
+<section #search  >
+  <mat-form-field  class="search" appearance="fill" >
+    <mat-label>Search </mat-label>
+    <input (focus)="focusSearchBar(search)" (blur)="focusSearchBar(search)" matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="searchTerm" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option (click)="searchFilm()" *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <button class="btn"  matPrefix  (click)="searchFilm()">
+      <mat-icon  matPrefix style="color: black;">search</mat-icon>
+    </button>
+    <button class="btn" matSuffix (click)="searchTerm=''">
+      <mat-icon style="color: black;">close</mat-icon>
+    </button>
+
+  </mat-form-field>
+
+</section>

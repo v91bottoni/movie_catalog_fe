@@ -15,7 +15,7 @@
   
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close><mat-icon>clear</mat-icon>
-      Close</button>
-    <button mat-flat-button mat-dialog-close *ngIf="utilityService.role!= null && utilityService.role != 'public'" routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial><mat-icon>update</mat-icon>Update</button>
+      {{ 'button.close' | translate }}</button>
+    <button mat-flat-button mat-dialog-close *ngIf="utilityService.role!= null && utilityService.role != 'public'" routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial><mat-icon>update</mat-icon>{{ 'button.update' | translate }}</button>
   </mat-dialog-actions>
 </mat-dialog-content>

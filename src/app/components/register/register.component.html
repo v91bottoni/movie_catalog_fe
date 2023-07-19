@@ -1,7 +1,7 @@
 <div class="register-container">
     <mat-card *ngIf="registerForm">
         <mat-card-header>
-            <mat-card-title><strong> Register! </strong></mat-card-title>
+            <mat-card-title><strong> {{ 'message.register' | translate }} </strong></mat-card-title>
           </mat-card-header>
       <mat-card-content>
 
@@ -9,56 +9,56 @@
             <mat-vertical-stepper class="stepper" [linear]="false" #stepper [animationDuration]='"200ms"'>
             <mat-step>
                 <p></p>
-                <ng-template matStepLabel *ngIf="!(name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid)">Anagraphic Data</ng-template>
-                <ng-template matStepLabel *ngIf="name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid"><mat-error>Anagraphic Data</mat-error></ng-template>
+                <ng-template matStepLabel *ngIf="!(name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid)">{{ 'menu.anagraphicData' | translate }}</ng-template>
+                <ng-template matStepLabel *ngIf="name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid"><mat-error>{{ 'menu.anagraphicData' | translate }}</mat-error></ng-template>
                 <!-- Name input -->
                 <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name" placeholder="Name" type="string" required>
+                    <mat-label>{{ 'user.name' | translate }}</mat-label>
+                    <input matInput formControlName="name" placeholder="{{ 'user.name' | translate }}" type="string" required>
                 </mat-form-field>
 
                 <!-- Surname input -->
                 <mat-form-field>
-                    <mat-label>Surname</mat-label>
-                    <input matInput formControlName="surname" placeholder="Surname" type="string" required>
+                    <mat-label>{{ 'user.surname' | translate }}</mat-label>
+                    <input matInput formControlName="surname" placeholder="{{ 'user.surname' | translate }}" type="string" required>
                 </mat-form-field>
 
                  <!-- Birthdate input -->
                  <mat-form-field appearance="fill" class="example-form-field">
-                    <mat-label>Birthdate</mat-label>
+                    <mat-label>{{ 'user.birthdate' | translate }}</mat-label>
                     <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
                     <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #datepicker>
                       <mat-datepicker-actions>
-                        <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        <button mat-button matDatepickerCancel>{{ 'button.cancel' | translate }}</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>{{ 'button.apply' | translate }}</button>
                       </mat-datepicker-actions>
                     </mat-datepicker>
                 </mat-form-field>
 
                 <!-- CF input -->
                 <mat-form-field>
-                    <mat-label>Fiscal Code</mat-label>
-                    <input matInput formControlName="cf" placeholder="Codice Fiscale" type="string" required>
+                    <mat-label>{{ 'user.cf' | translate }}</mat-label>
+                    <input matInput formControlName="cf" placeholder="{{ 'user.cf' | translate }}" type="string" required>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext type="button">Next</button>
+                    <button mat-button matStepperNext type="button">{{ 'button.next' | translate }}</button>
                 </div>
             </mat-step>
             <mat-step>
                 <p></p>
-                <ng-template matStepLabel *ngIf="!(email?.invalid || password?.invalid)">Account Data</ng-template>
-                <ng-template matStepLabel *ngIf="email?.invalid || password?.invalid"><mat-error>Account Data</mat-error></ng-template>
+                <ng-template matStepLabel *ngIf="!(email?.invalid || password?.invalid)">{{ 'menu.accountData' | translate }}</ng-template>
+                <ng-template matStepLabel *ngIf="email?.invalid || password?.invalid"><mat-error>{{ 'menu.accountData' | translate }}</mat-error></ng-template>
 
                 <!-- Email input -->
                 <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Email" type="email" required>
+                    <mat-label>{{ 'user.email' | translate }}</mat-label>
+                    <input matInput formControlName="email" placeholder="{{ 'user.email' | translate }}" type="email" required>
                 </mat-form-field>
 
                 <!-- Password input -->
                 <mat-form-field>
-                    <input matInput formControlName="password" placeholder="Password" [type]="hidePass ? 'password' : 'text'" required>
+                    <input matInput formControlName="password" placeholder="{{ 'user.pwd' | translate }}" [type]="hidePass ? 'password' : 'text'" required>
                         <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hidePass = !hidePass">
                             <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
@@ -66,25 +66,25 @@
 
                 <!-- ConfirmPassword input -->
                 <mat-form-field>
-                    <input matInput formControlName="confirmpassword" placeholder="Confirm Password" [type]="hideCPass ? 'password' : 'text'" required>
+                    <input matInput formControlName="confirmpassword" placeholder="{{ 'user.confirmPwd' | translate }}" [type]="hideCPass ? 'password' : 'text'" required>
                         <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hideCPass = !hideCPass">
                             <mat-icon>{{hideCPass ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                 </mat-form-field>
 
                 <div>
-                    <button mat-button matStepperPrevious type="button">Back</button>
+                    <button mat-button matStepperPrevious type="button">{{ 'button.back' | translate }}</button>
                 </div>
                 
                 <!-- Name Errors -->
                 <mat-error *ngIf="name?.invalid && (name?.dirty && name?.touched)">
 
                     <div *ngIf="name?.errors?.['required']">
-                        Name is required.
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.name' | translate)}  }}
                     </div>
 
                     <div *ngIf="name?.errors?.['minlength']">
-                        Name must be at least 3 characters long.
+                        {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.name' | translate), 'num' : '3'} }}
                     </div>
 
                 </mat-error>
@@ -93,11 +93,11 @@
                 <mat-error *ngIf="surname?.invalid && (surname?.dirty && surname?.touched)">
                     
                     <div *ngIf="surname?.errors?.['required']">
-                        Surname is required.
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.surname' | translate)}  }}
                     </div>
 
                     <div *ngIf="surname?.errors?.['minlength']">
-                        Surname must be at least 3 characters long.
+                        {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.surname' | translate), 'num' : '3'} }}
                     </div>
                     
                 </mat-error>
@@ -105,52 +105,52 @@
                 <!-- Fiscal Code Errors -->
                 <mat-error *ngIf="cf?.invalid && (cf?.dirty && cf?.touched)">
                     <div *ngIf="cf?.errors?.['required']">
-                        Fiscal Code is required.
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.cf' | translate)}  }}
                     </div>
 
                     <div *ngIf="cf?.errors?.['minlength']">
-                        Fiscal code must be 16 characters long.
+                        {{ 'message.error.longNum' | translate:  {'obj' : ('user.cf' | translate), 'num' : '16'}  }}
                     </div>
 
                 </mat-error>
 
                 <!-- Password Errors -->
                 <mat-error *ngIf="password?.value !== confirmpassword?.value && password?.touched && confirmpassword?.touched && password?.dirty && confirmpassword?.dirty">
-                    The passwords do not match.
+                    {{ 'message.error.passwordMatch' | translate }}
                 </mat-error>
                 <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-                    Must insert a valid password.
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.password' | translate)}  }}
                 </mat-error>
                 <mat-error *ngIf="confirmpassword?.invalid && (confirmpassword?.dirty || confirmpassword?.touched)">
-                    Must insert a valid password.
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.password' | translate)}  }}
                 </mat-error>
 
                 <!-- Errors -->
                 <mat-error *ngIf="email?.invalid && email?.dirty && email?.touched">
-                    Must insert a valid email.
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.email' | translate)}  }}
                 </mat-error>
 
                 <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
-                    Birthdate is required.
+                    {{ 'message.error.isRequired' | translate:  {'obj' : ('user.birthdate' | translate)}  }}
                 </mat-error>
 
                 <mat-error *ngIf="invalidAge">
-                    Invalid Age.
+                    {{ 'message.error.invalidAge' | translate }}
                 </mat-error>
 
                 <mat-error *ngIf="cfAlreadyUsed">
-                    CF already used.
+                    {{ 'message.error.cfAlreadyUsed' | translate }}
                 </mat-error>
 
                 <mat-error *ngIf="emailAlreadyUsed">
-                    Email already used.
+                    {{ 'message.error.emailAlreadyUsed' | translate }}
                 </mat-error>
                 
             </mat-step>
         </mat-vertical-stepper>
 
         <!-- Button -->
-        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Register</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'button.register' | translate }}</button>
 
     </form>
 
@@ -159,7 +159,7 @@
                     <mat-grid-tile>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <a style="display: flex; text-align: end; " routerLink="/login">I already have an account.</a>
+                        <a style="display: flex; text-align: end; " routerLink="/login">{{ 'message.iAlreadyHaveAnAccount' | translate }}</a>
                     </mat-grid-tile>
                 </mat-grid-list>
             </mat-card-footer>

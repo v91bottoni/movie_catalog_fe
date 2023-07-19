@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { UpdateStates } from 'src/app/enums/updateStates';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UserService } from 'src/app/service/user.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
@@ -21,10 +23,14 @@ export class UserInfoComponent implements OnInit{
   user!: user;
   invalidAge: boolean = false;
   invalidInput: boolean = false;
+  gridCols!: number;
+  colSpan!: number;
 
   ngOnInit(): void {
 
-    this.userService.getUserById( Number(localStorage.getItem("userID")) ).subscribe(res=>{
+    this.updateGridCols();
+
+    this.userService.getUserById( Number(sessionStorage.getItem("userID")) ).subscribe(res=>{
 
       this.user=res;
       console.log(res);
@@ -51,8 +57,15 @@ export class UserInfoComponent implements OnInit{
   get birthdate() { return this.userForm.get('birthdate')}
   get role()      { return this.userForm.get('role')}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, public dialog: MatDialog,
-    private router: Router, private util:UtilityService){}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private authService: AuthService, 
+    public dialog: MatDialog,
+    private router: Router, 
+    private util:UtilityService,
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   onSubmit(){
 
@@ -69,7 +82,8 @@ export class UserInfoComponent implements OnInit{
 
     this.authService.updateUser(userRes).subscribe(res=>{
       console.log(res);
-      this.openDialog('200ms', '1000ms');
+      this.alert.openSuccess(this.translate.instant('message.updateSuccess'), this.translate.instant('button.ok'));
+
 
     },
     (res) => {
@@ -85,16 +99,24 @@ export class UserInfoComponent implements OnInit{
 
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(UserUpdateDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
   goBack(){
     this.router.navigate([this.util.backpage]);
+  }
+
+  updateGridCols() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.gridCols = 1;
+      this.colSpan = 1;
+    } else {
+      this.gridCols = 2;
+      this.colSpan = 2;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateGridCols();
   }
 
 

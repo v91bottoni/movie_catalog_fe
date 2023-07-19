@@ -1,14 +1,13 @@
+
 .navbar{
-  position: -webkit-stiky;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   z-index: 3;
   top: 0;
 }
-.example-container {
-    min-height: 100%;
-    margin:  0;
 
-  }
+
+
 
   .sidenav{
     z-index: 2;
@@ -18,5 +17,17 @@
     transition: 0.7s ease;
   }
   .hide{
-    transform: translateX(-300px) skewX(-60deg);
+    transform: translateX(-500px) skewX(-60deg);
   }
+
+  .pagecontainer{
+    min-height: 100%;
+    height: fit-content;
+
+    padding: 100px 0 200px 0;
+
+  }
+.footer{
+  position: static;
+  bottom: 0;
+}

@@ -12,7 +12,7 @@ export class RoleGuardService implements CanActivate{
 
   canActivate(route: ActivatedRouteSnapshot):boolean {
     const expectedRoles: string[] = route.data['expectedRoles'];
-    const role = localStorage.getItem('role');
+    const role = sessionStorage.getItem('role');
     let token: boolean = false;
 
     if(role == '') {

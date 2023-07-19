@@ -6,7 +6,7 @@
     <div class="slide">
     <button mat-icon-button> <mat-icon>chevron_left</mat-icon> </button>
     
-    <mat-grid-list cols="4" rowHeight="1.4:2.7" class="slider-grid">
+    <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" class="slider-grid">
         
         <mat-grid-tile *ngFor="let result of movies" >
             <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card>

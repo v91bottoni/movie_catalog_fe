@@ -1,40 +1,43 @@
 <div class="login-container">
+    <div style="top: 0; right: 0; position: absolute; float: right">
+        <app-language-picker></app-language-picker>
+    </div>
     <mat-card>
         <mat-card-header>
-            <mat-card-title><strong>LOGIN!</strong></mat-card-title>
+            <mat-card-title><strong> {{ 'message.login' | translate }} </strong></mat-card-title>
           </mat-card-header>
       <mat-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
             <mat-form-field>
-                <input matInput formControlName="email" placeholder="Email" type="email" required>
+                <input matInput formControlName="email" placeholder="{{ 'user.email' | translate }}" type="email" required> 
                 <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-                        Must insert a valid email address.
+                        {{ 'message.error.invalidObj' | translate: { 'obj': ('user.email' | translate )} }}
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput formControlName="password" placeholder="Password" [type]="hidePass ? 'password' : 'text'" required>
+                <input matInput formControlName="password" placeholder="{{ 'user.pwd' | translate }}" [type]="hidePass ? 'password' : 'text'" required>
                     <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hidePass = !hidePass">
                         <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-                        Must insert a valid password.
+                        {{ 'message.error.invalidObj' | translate: { 'obj': ('user.pwd' | translate )} }}
                     </mat-error>
             </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">Login</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'button.login' | translate }}</button>
                 <mat-error *ngIf="badCredentials">
-                    Mail/Password combination not recognized.
+                    {{ 'message.error.emailPasswordNotRecognized' | translate }}
                 </mat-error>
                 <mat-error *ngIf="userDisabled">
-                    The user is currently disabled.
+                    {{ 'message.error.userDisabled' | translate }}
                 </mat-error>
         </form>
             <mat-card-footer>
                 <mat-grid-list cols="2" rowHeight="50px">
                     <mat-grid-tile>
-                        <a routerLink="/register">Register now...</a>
+                        <a routerLink="/register">{{ 'message.registerNow' | translate }}</a>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <a style="display: flex; text-align: end; " routerLink="/forgot-password">Forgot Password</a>
+                        <a style="display: flex; text-align: end; " routerLink="/forgot-password">{{ 'message.forgotPassword' | translate }}</a>
                     </mat-grid-tile>
                 </mat-grid-list>
             </mat-card-footer>

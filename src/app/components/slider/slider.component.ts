@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
@@ -22,8 +22,13 @@ export class SliderComponent implements OnInit {
 
   hover: boolean = true;
   idHover!: string;
+
+  gridCols!: number;
   
   ngOnInit(): void {
+    
+    this.updateGridCols();
+
       if(this.type=="all"){
         this.movieService.getAllMovies().subscribe(res=>{
           this.maxPage=res.maxPageNumber;
@@ -60,5 +65,23 @@ export class SliderComponent implements OnInit {
       this.router.navigate(['/home/page/1']);
     else
       this.router.navigate(['/home/gerne/'+title+'/1'])
+  }
+
+  updateGridCols() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.gridCols = 1;
+    } else if (screenWidth < 600) {
+      this.gridCols = 2;
+    } else if (screenWidth < 800) {
+      this.gridCols = 3;
+    } else {
+      this.gridCols = 4;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateGridCols();
   }
 }

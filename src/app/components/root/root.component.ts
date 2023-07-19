@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Scroll } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable, map, startWith } from 'rxjs';
+import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -9,22 +12,21 @@ import { UtilityService } from 'src/app/service/utility.service';
 })
 export class RootComponent {
 
+
   title = 'movie-catalog-fe';
   drawer!:HTMLElement;
-  constructor(protected util :UtilityService){}
+  constructor(protected util: UtilityService){}
 
   toggle(drawer:HTMLElement){
     this.drawer=drawer;
     if(drawer.classList.contains('hide')){
       drawer.classList.remove('hide');
-      this.util.drawerOpen=true;
       setTimeout(() => {
         document.addEventListener('click', this.close);
         document.addEventListener('scroll', this.closeScrollFun);
       }, 1);
     }else{
       drawer.classList.add('hide');
-      this.util.drawerOpen=false;
       document.removeEventListener('click', this.close);
       document.removeEventListener('scroll', this.closeScrollFun);
     }
@@ -34,7 +36,6 @@ export class RootComponent {
   close = (event:MouseEvent)=>{
       if(!this.drawer.classList.contains('hide')){
         this.drawer.classList.add('hide');
-        this.util.drawerOpen=false;
         document.removeEventListener('click', this.close);
         document.removeEventListener('scroll', this.closeScrollFun);
       }
@@ -43,10 +44,11 @@ export class RootComponent {
     if(window.scrollY>400){
       if(!this.drawer.classList.contains('hide')){
         this.drawer.classList.add('hide');
-        this.util.drawerOpen = false;
         document.removeEventListener('click', this.close);
         document.removeEventListener('scroll', this.closeScrollFun);
       }
     }
   }
+
+
 }
