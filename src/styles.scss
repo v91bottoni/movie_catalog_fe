@@ -3,6 +3,7 @@
 html,
 body {
   height: 100%;
+  background-color: whitesmoke;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
 }
 
 .mat-mdc-standard-chip {
-  --mdc-chip-elevated-container-color: whitesmoke;
+  --mdc-chip-elevated-container-color: white;
   --mdc-chip-elevated-disabled-container-color: #e0e0e0;
   --mdc-chip-label-text-color: #212121;
   --mdc-chip-disabled-label-text-color: #212121;
@@ -87,7 +88,7 @@ mat-chip-option:hover {
 :root {
   --success-color: #198754;
   --delete-color: #dc3545;
-  --background-color: #f5f5f5;
+  --background-color: white;
 }
 
 .success-snackbar {
