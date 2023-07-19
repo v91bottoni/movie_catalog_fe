@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+.movie-card {
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-details {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.movie-poster {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 20px;
+}
+
+.movie-info {
+  flex: 1 1 auto;
+}
+
+.movie-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.movie-year {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.movie-plot {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 16px;
+}

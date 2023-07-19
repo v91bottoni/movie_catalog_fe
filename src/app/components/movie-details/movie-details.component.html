@@ -1,0 +1,21 @@
+
+  <mat-dialog-content *ngIf="movie"  class="movie-card">
+    <div class="movie-details">
+      <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
+      <div class="movie-info">
+        <div class="movie-title">{{ movie.title }}</div>
+        <div class="movie-year">{{ 'movie.released' | translate }}: {{ movie.year }}</div>
+        <mat-chip-listbox aria-label="Genre selection" [value]="currentChipsValue">
+          <mat-chip-option color="accent"  value="-1"> {{ movie.genre }} </mat-chip-option>
+        </mat-chip-listbox>
+        <div class="movie-plot">{{ movie.plot }}</div>
+        <div class="movie-actors"><u>{{ movie.actors }}</u></div>
+      </div>
+    </div>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close><mat-icon>clear</mat-icon>
+      {{ 'button.close' | translate }}</button>
+    <button mat-flat-button mat-dialog-close *ngIf="utilityService.role!= null && utilityService.role != 'public'" routerLink="/updateMovie/{{movie.imdbid}}" cdkFocusInitial><mat-icon>update</mat-icon>{{ 'button.update' | translate }}</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

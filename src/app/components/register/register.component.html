@@ -1,0 +1,168 @@
+<div class="register-container">
+    <mat-card *ngIf="registerForm">
+        <mat-card-header>
+            <mat-card-title><strong> {{ 'message.register' | translate }} </strong></mat-card-title>
+          </mat-card-header>
+      <mat-card-content>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
+            <mat-vertical-stepper class="stepper" [linear]="false" #stepper [animationDuration]='"200ms"'>
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel *ngIf="!(name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid)">{{ 'menu.anagraphicData' | translate }}</ng-template>
+                <ng-template matStepLabel *ngIf="name?.invalid || surname?.invalid || birthdate?.invalid ||cf?.invalid"><mat-error>{{ 'menu.anagraphicData' | translate }}</mat-error></ng-template>
+                <!-- Name input -->
+                <mat-form-field>
+                    <mat-label>{{ 'user.name' | translate }}</mat-label>
+                    <input matInput formControlName="name" placeholder="{{ 'user.name' | translate }}" type="string" required>
+                </mat-form-field>
+
+                <!-- Surname input -->
+                <mat-form-field>
+                    <mat-label>{{ 'user.surname' | translate }}</mat-label>
+                    <input matInput formControlName="surname" placeholder="{{ 'user.surname' | translate }}" type="string" required>
+                </mat-form-field>
+
+                 <!-- Birthdate input -->
+                 <mat-form-field appearance="fill" class="example-form-field">
+                    <mat-label>{{ 'user.birthdate' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>{{ 'button.cancel' | translate }}</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>{{ 'button.apply' | translate }}</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+
+                <!-- CF input -->
+                <mat-form-field>
+                    <mat-label>{{ 'user.cf' | translate }}</mat-label>
+                    <input matInput formControlName="cf" placeholder="{{ 'user.cf' | translate }}" type="string" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext type="button">{{ 'button.next' | translate }}</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <p></p>
+                <ng-template matStepLabel *ngIf="!(email?.invalid || password?.invalid)">{{ 'menu.accountData' | translate }}</ng-template>
+                <ng-template matStepLabel *ngIf="email?.invalid || password?.invalid"><mat-error>{{ 'menu.accountData' | translate }}</mat-error></ng-template>
+
+                <!-- Email input -->
+                <mat-form-field>
+                    <mat-label>{{ 'user.email' | translate }}</mat-label>
+                    <input matInput formControlName="email" placeholder="{{ 'user.email' | translate }}" type="email" required>
+                </mat-form-field>
+
+                <!-- Password input -->
+                <mat-form-field>
+                    <input matInput formControlName="password" placeholder="{{ 'user.pwd' | translate }}" [type]="hidePass ? 'password' : 'text'" required>
+                        <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hidePass = !hidePass">
+                            <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                </mat-form-field>
+
+                <!-- ConfirmPassword input -->
+                <mat-form-field>
+                    <input matInput formControlName="confirmpassword" placeholder="{{ 'user.confirmPwd' | translate }}" [type]="hideCPass ? 'password' : 'text'" required>
+                        <button type="button" mat-icon-button matSuffix class="mat-icon-button" (click)="hideCPass = !hideCPass">
+                            <mat-icon>{{hideCPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                </mat-form-field>
+
+                <div>
+                    <button mat-button matStepperPrevious type="button">{{ 'button.back' | translate }}</button>
+                </div>
+                
+                <!-- Name Errors -->
+                <mat-error *ngIf="name?.invalid && (name?.dirty && name?.touched)">
+
+                    <div *ngIf="name?.errors?.['required']">
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.name' | translate)}  }}
+                    </div>
+
+                    <div *ngIf="name?.errors?.['minlength']">
+                        {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.name' | translate), 'num' : '3'} }}
+                    </div>
+
+                </mat-error>
+
+                <!-- Surname Errors -->
+                <mat-error *ngIf="surname?.invalid && (surname?.dirty && surname?.touched)">
+                    
+                    <div *ngIf="surname?.errors?.['required']">
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.surname' | translate)}  }}
+                    </div>
+
+                    <div *ngIf="surname?.errors?.['minlength']">
+                        {{ 'message.error.longAtLeast' | translate: {'obj' :  ('user.surname' | translate), 'num' : '3'} }}
+                    </div>
+                    
+                </mat-error>
+
+                <!-- Fiscal Code Errors -->
+                <mat-error *ngIf="cf?.invalid && (cf?.dirty && cf?.touched)">
+                    <div *ngIf="cf?.errors?.['required']">
+                        {{ 'message.error.isRequired' | translate:  {'obj' : ('user.cf' | translate)}  }}
+                    </div>
+
+                    <div *ngIf="cf?.errors?.['minlength']">
+                        {{ 'message.error.longNum' | translate:  {'obj' : ('user.cf' | translate), 'num' : '16'}  }}
+                    </div>
+
+                </mat-error>
+
+                <!-- Password Errors -->
+                <mat-error *ngIf="password?.value !== confirmpassword?.value && password?.touched && confirmpassword?.touched && password?.dirty && confirmpassword?.dirty">
+                    {{ 'message.error.passwordMatch' | translate }}
+                </mat-error>
+                <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.password' | translate)}  }}
+                </mat-error>
+                <mat-error *ngIf="confirmpassword?.invalid && (confirmpassword?.dirty || confirmpassword?.touched)">
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.password' | translate)}  }}
+                </mat-error>
+
+                <!-- Errors -->
+                <mat-error *ngIf="email?.invalid && email?.dirty && email?.touched">
+                    {{ 'message.error.invalidObj' | translate:  {'obj' : ('user.email' | translate)}  }}
+                </mat-error>
+
+                <mat-error *ngIf="birthdate?.invalid && (birthdate?.dirty || birthdate?.touched)">
+                    {{ 'message.error.isRequired' | translate:  {'obj' : ('user.birthdate' | translate)}  }}
+                </mat-error>
+
+                <mat-error *ngIf="invalidAge">
+                    {{ 'message.error.invalidAge' | translate }}
+                </mat-error>
+
+                <mat-error *ngIf="cfAlreadyUsed">
+                    {{ 'message.error.cfAlreadyUsed' | translate }}
+                </mat-error>
+
+                <mat-error *ngIf="emailAlreadyUsed">
+                    {{ 'message.error.emailAlreadyUsed' | translate }}
+                </mat-error>
+                
+            </mat-step>
+        </mat-vertical-stepper>
+
+        <!-- Button -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'button.register' | translate }}</button>
+
+    </form>
+
+            <mat-card-footer>
+                <mat-grid-list cols="2" rowHeight="20px">
+                    <mat-grid-tile>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <a style="display: flex; text-align: end; " routerLink="/login">{{ 'message.iAlreadyHaveAnAccount' | translate }}</a>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+</div>

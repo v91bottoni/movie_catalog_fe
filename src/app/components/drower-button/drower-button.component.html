@@ -1,0 +1,71 @@
+
+<div  (mouseleave)="isOpenHome = false;"  class="panel">
+  <mat-icon  (mouseenter)="isOpenHome = true;"   routerLink="home">home</mat-icon>
+  <mat-label [@openClose]="isOpenHome ? 'open' : 'closed'"   routerLink="home" class="panelLabel">
+    {{ 'menu.home' | translate }}
+  </mat-label>
+</div>
+<div *ngIf="util.role == 'admin' || util.role == 'super_admin'" (mouseleave)="isOpenAdd = false;"  class="panel" >
+  <mat-icon (mouseenter)="isOpenAdd = true;"   routerLink="insertMovie">note_add</mat-icon>
+  <mat-label   [@openClose]="isOpenAdd ? 'open' : 'closed'"   routerLink="insertMovie" class="panelLabel">
+    {{ 'menu.addFilm' | translate }}
+  </mat-label>
+</div>
+<div *ngIf="util.role == 'super_admin'" (mouseleave)="isOpenMan = false;"  class="panel" >
+  <mat-icon (mouseenter)="isOpenMan = true;"  routerLink="management">build</mat-icon>
+  <mat-label   [@openClose]="isOpenMan ? 'open' : 'closed'"   routerLink="management" class="panelLabel">
+    {{ 'menu.management' | translate }}
+  </mat-label>
+</div>
+<!--<div (mouseleave)="isOpenProf = false;" (click)="drawerEventFire()"  routerLink="userInfo" class="panel" >
+  <mat-icon (mouseenter)="isOpenProf = true;">account_box</mat-icon>
+  <mat-label   [@openClose]="isOpenProf ? 'open' : 'closed'" >PROFILE</mat-label>
+</div>
+<div (mouseleave)="isOpenLog = false;" (click)="drawerEventFire()"  routerLink="login" class="panel" >
+  <mat-icon (mouseenter)="isOpenLog = true;">account_circle</mat-icon>
+  <mat-label   [@openClose]="isOpenLog ? 'open' : 'closed'" >LOG OUT</mat-label>
+</div>-->
+
+ <!-- <mat-accordion color="primary" >
+  <mat-expansion-panel hideToggle>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel  (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+        <mat-icon (mouseenter)="isOpenCat = true;"
+        (mouseleave)="isOpenCat = false;">toc</mat-icon>
+        <mat-label  #home [@openClose]="isOpenCat ? 'open' : 'closed'" >CATEGORY</mat-label>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Action/1">Action</a></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Adventure/1">Adventure</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Animation/1">Animation</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Comedy/1">Comedy</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Crime/1">Crime</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Drama/1">Drama</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Documentary/1">Documentary</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Fantasy/1">Fantasy</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Romance/1">Romance</a><br></p>
+    <p class="space"><a class="category" (click)="drawerEventFire()" routerLink="/home/gerne/Thriller/1">Thriller</a><br></p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
+ <mat-menu #category="matMenu">
+  <button mat-menu-item >Action</button>
+  <button mat-menu-item >Adventure</button>
+  <button mat-menu-item >Animation</button>
+  <button mat-menu-item >Comedy</button>
+  <button mat-menu-item >Crime</button>
+  <button mat-menu-item >Drama</button>
+  <button mat-menu-item >Documentary</button>
+  <button mat-menu-item >Fantasy</button>
+  <button mat-menu-item >Romance</button>
+  <button mat-menu-item >Thriller</button>
+[matMenuTriggerFor]="category" da mettere mel bottone categorie
+</mat-menu> -->
+
