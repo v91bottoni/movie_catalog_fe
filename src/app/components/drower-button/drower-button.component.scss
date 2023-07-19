@@ -19,6 +19,16 @@ button{
 }
 .panelLabel:hover{
   box-shadow: 0 0 5px rgba(0,0,0,0.2)  , inset 0 0 8px rgba(0,0,0,0.2);
+  animation: movelabel 0.5s;
+  animation-delay: 0.3s;
+}
+@keyframes movelabel{
+  0%  {transform:rotateZ(0deg)}
+  25%  {transform:rotateZ(-40deg)}
+  50%  {transform:rotateZ(15deg)}
+  75%  {transform:rotateZ(-5deg)}
+  95%  {transform:rotateZ(2deg)}
+  100%  {}
 }
 
 mat-icon{
@@ -32,8 +42,16 @@ box-shadow: 2px 2px rgba(0,0,0,0.2) , inset 0 0 2px rgba(0, 0, 0, 0.4);
 cursor: pointer;
 }
 mat-icon:hover{
-  transform:  translate(-2px, -2px) ;
+  //transform:  translate(-2px, -2px) ;
   box-shadow: 6px 6px  rgba(0, 0, 0, 0.501)  , inset 0 0 5px rgba(0, 0, 0, 0.4);
+  animation: move 0.5s ;
+  animation-delay: 0.1s;
+}
+@keyframes move{
+  5%   {transform: skewX(1deg) }
+  25%  { transform: skewX(-2deg) }
+  50%  { transform: skewX(3deg) }
+
 }
 
 .category:hover{

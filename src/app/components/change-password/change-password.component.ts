@@ -1,6 +1,8 @@
+import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 
@@ -16,7 +18,8 @@ export class ChangePasswordComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router: Router, 
     private route: ActivatedRoute,
-    private alert: SnackbarService) { }
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   token!: string;
   passwordResetForm!: FormGroup;
@@ -37,7 +40,7 @@ export class ChangePasswordComponent implements OnInit{
     },
     () => {
       setTimeout(() => this.router.navigateByUrl("/"), 2500);
-      this.alert.openError("Password recovery token expired", "Ok");
+      this.alert.openError(this.translate.instant('message.error.pwdRecoveryTknExpired'), this.translate.instant('button.ok'));
     })
   }
 
@@ -46,10 +49,10 @@ export class ChangePasswordComponent implements OnInit{
 
   onSubmit(){
     this.authService.changePassword(this.token, this.passwordResetForm.value.password).subscribe( (res) => {
-      this.alert.openSuccess("Password changed successfully", "Ok");
+      this.alert.openSuccess(this.translate.instant('message.pwdChangeSuccess'), this.translate.instant('button.ok'));
       
     }, () => {
-      this.alert.openError("Error changing password", "Ok");
+      this.alert.openError(this.translate.instant('message.error.pwdChangeError'), this.translate.instant('button.ok'));
     })
   }
 }

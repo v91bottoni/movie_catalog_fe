@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialogComponent } from 'src/app/dialogs/spinner-dialog/spinner-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
@@ -16,8 +17,8 @@ export class ForgotPasswordComponent implements OnInit{
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private alert: SnackbarService
-    ) { }
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   passwordResetForm!: FormGroup;
 
@@ -35,10 +36,10 @@ export class ForgotPasswordComponent implements OnInit{
   onSubmit(){
     this.openSpinner('200ms', '1000ms');
     this.authService.recoverPassword(this.passwordResetForm.value.email).subscribe( res => {
-      this.alert.openSuccess("Email sent, check your inbox.", "Ok");
+      this.alert.openSuccess(this.translate.instant('message.emailSent'), this.translate.instant('button.ok'));
     }, (res) => {
       console.log(res);
-      this.alert.openError("Double check your email.", "Ok");
+      this.alert.openError(this.translate.instant('message.error.mailNotFound'), this.translate.instant('button.ok'));
     })
   }
 

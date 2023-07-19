@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
-import { SearchResultComponent} from './components/search-result/search-result.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
@@ -14,6 +13,7 @@ import { RoleGuardService } from './service/role-guard.service';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { RootComponent } from './components/root/root.component';
+import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
 
 const routes: Routes = [
 
@@ -46,12 +46,16 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "home/page/:pag", 
-        component: HomeComponent
+        path: "home/page/:pag",
+        component: CardsDisplayComponent
       },
-      { 
-        path: 'home/gerne/:gerne/:page', 
-        component: HomeComponent
+      {
+        path: "home/gerne/:gerne/:page",
+        component: CardsDisplayComponent
+      },
+      {
+        path: 'home/search/:keyword/:pg',
+        component: CardsDisplayComponent,
       },
       {
         path: 'userInfo',
@@ -65,7 +69,7 @@ const routes: Routes = [
             expectedRoles: ['super_admin', 'admin']
         }
       },
-      {  
+      {
         path: 'insertMovie',
         component:InsertMovieComponent,
         canActivate: [RoleGuardService],
@@ -73,11 +77,8 @@ const routes: Routes = [
             expectedRoles: ['super_admin', 'admin']
         }
       },
+
       {
-        path: 'search',
-        component: SearchResultComponent,
-      },
-      { 
         path: 'management',
         component: UserManagementComponent,
         canActivate: [RoleGuardService],
@@ -89,12 +90,12 @@ const routes: Routes = [
         path: 'errorPage',
         component: ErrorComponent
       },
-      { 
-        path: 'noContent', 
+      {
+        path: 'noContent',
         component: ErrorComponent
       },
-      { 
-        path: 'searchError', 
+      {
+        path: 'searchError',
         component: ErrorComponent
       },
       {

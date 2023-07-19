@@ -10,16 +10,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .table {
   width: 70%;
   margin-left: auto;
@@ -60,6 +50,36 @@ mat-chip-option {
 
 mat-chip-option:hover {
   transform: scale(1.1);
+}
+
+.slider {
+  max-width: 95%;
+  margin: 3%;
+}
+
+.card {
+  display: inline-flex;
+  width: fit-content;
+  min-width: 200px;
+  height: fit-content;
+  margin: 3%;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.486);
+  transition: 500ms;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-grid {
+  text-align: center;
+  width: 90%;
+  margin: 5%;
+  margin-bottom: 5%;
+}
+
+.card-poster {
+  aspect-ratio: 5 / 8;
 }
 
 //snackbar styles

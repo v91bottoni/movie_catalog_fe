@@ -1,17 +1,33 @@
-.example-container {
-    min-height: 100%;
-    margin:  0;
-  
-  }
-  
+
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  top: 0;
+}
+
+
+
+
   .sidenav{
-    z-index: 3;
+    z-index: 2;
     background: none ;
-    position: absolute;
+    position: fixed;
+    top: 70px;
     transition: 0.7s ease;
   }
   .hide{
-    transform: translateY(-600px);
-  
+    transform: translateX(-500px) skewX(-60deg);
   }
-  
+
+  .pagecontainer{
+    min-height: 100%;
+    height: fit-content;
+
+    padding: 100px 0 200px 0;
+
+  }
+.footer{
+  position: static;
+  bottom: 0;
+}

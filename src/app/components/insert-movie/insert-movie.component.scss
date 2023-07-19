@@ -1,16 +1,17 @@
-.user-container {
-  background-color: #F5F5F5;
+.insert-container {
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 324vh;
+  height: 100vh;
 }
 mat-card {
-  width: 35%;
+  width: 45%;
   height: fit-content;
 }
 mat-form-field {
-  width: 100%;
+  width: 45%;
+  padding-right: 5%;
 }
 
 /* input{
@@ -34,9 +35,22 @@ mat-card-title {
   font-size: 40px;
   padding-bottom: 10%;
   width: 100%;
+
 }
 
-mat-error{
+mat-error {
   margin-top: -6%;
   margin-bottom: 1%;
+
 }
+
+.form{
+  padding-bottom: 5%;
+}
+
+.col{
+  width:215%;
+
+}
+
+
