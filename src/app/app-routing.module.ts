@@ -47,11 +47,11 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "home/page/:pag", 
+        path: "home/all", 
         component: CardsDisplayComponent
       },
       {
-        path: "home/gerne/:gerne/:pag", 
+        path: "home/gerne/:gerne", 
         component: CardsDisplayComponent
       },
       {

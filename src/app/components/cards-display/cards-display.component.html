@@ -15,7 +15,8 @@
 <!-- Chips -->
 <div class="chips">
 <mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
-    <mat-chip-option routerLink="/home/page/1" value="-1"> All </mat-chip-option>
+    <mat-chip-option routerLink="/home/all" value="-1"> 
+       All  </mat-chip-option>
     <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{chips}}</mat-chip-option>
 </mat-chip-listbox>
 </div>
@@ -80,20 +81,8 @@
     </table>
 </div>
 
-<!-- Page -->
-<section class="pageButton">
-<mat-button-toggle-group value="current" style="margin: 3%;">
-    <mat-button-toggle value="more-next" *ngIf="page-1<=0" disabled="true">«</mat-button-toggle>
-    <mat-button-toggle value="more-next" *ngIf="page-1>0" (click)="navigatePage(page-1)">«</mat-button-toggle>
-    <mat-button-toggle value="more-previous" *ngIf="page-2>0" (click)="navigatePage(page-2)">{{page-2}}</mat-button-toggle>
-    <mat-button-toggle value="previous" *ngIf="page-1>0" (click)="navigatePage(page-1)">{{page-1}}</mat-button-toggle>
 
-    <mat-button-toggle value="current" disabled="true">{{page}}</mat-button-toggle>
-
-    <mat-button-toggle value="next" *ngIf="page+1<=maxPage" (click)="navigatePage(page+1)">{{page+1}}</mat-button-toggle>
-    <mat-button-toggle value="more-next" *ngIf="page+2<=maxPage" (click)="navigatePage(page+2)">{{page+2}}</mat-button-toggle>
-    <mat-button-toggle value="more-next" *ngIf="page+1<=maxPage" (click)="navigatePage(page+1)">»</mat-button-toggle>
-    <mat-button-toggle value="more-next" *ngIf="page+1>maxPage" disabled="true">»</mat-button-toggle>
-</mat-button-toggle-group>
-</section>
-
+<mat-paginator [length]="maxPage*pageSize" [pageSize]="pageSize"
+               [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons
+               (page)="paginatorPageChange($event)">
+</mat-paginator>
