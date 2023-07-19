@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateMovieComponent } from './components/update-movie/update-movie.component';
-import { SearchResultComponent} from './components/search-result/search-result.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
@@ -78,14 +77,7 @@ const routes: Routes = [
             expectedRoles: ['super_admin', 'admin']
         }
       },
-      {
-        path: 'search',
-        component: SearchResultComponent,
-        canActivate: [RoleGuardService],
-        data:{
-            expectedRoles: ['public','super_admin', 'admin']
-        }
-      },
+
       {
         path: 'management',
         component: UserManagementComponent,
