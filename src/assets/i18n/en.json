@@ -114,18 +114,14 @@
   "footer" :{
     "social" : "SOCIAL",
     "about" : "ABOUT US",
-    "link" : "LINKS",
+    "contacts" : "CONTACTS",
     "tools": "ADMIN TOOLS",
     "factory" : "Factory",
     "team" : "Our Team",
     "values" : "Our Values",
-    "home": "Home",
-    "profile" : "Profile",
-    "search" : "Search",
-    "logout" : "Log Out",
-    "management" : "Management",
-    "add" : "Insert Movie",
-    "update" : "Update Movie"
+    "telephone":"Telephone : ",
+    "mail":"E-mail : ",
+    "address":"Address : "
 },
 "searcherror":{
   "nocontent":"Enter at least one search criteria!"
