@@ -136,5 +136,17 @@
   "nocontent":"Nessun Contentuto da visualizzare",
   "nosearchres":"Nessun risultato corrisponde ai criteri di ricerca.",
   "default": "Qualcosa è andato storto.. riprova piàù tardi"
+},
+"updatemovie":{
+  "title":"FILM AGGIORNATO",
+  "msg":"Modifiche al film effettuate con successo!",
+  "continue":"CONTINUA",
+  "viewchanges":"VEDI MODIFICHE"
+},
+"expire":{
+  "title":"SESSIONE SCADUTA",
+  "msg":"Vuoi Proseguire?",
+  "yes":"SI",
+  "no":"NO"
 }
 }

@@ -136,5 +136,17 @@
   "nocontent":"No content to display",
   "nosearchres":"No results match your search criteria.",
   "default": "Something went wrong. Please try again later"
+},
+"updatemovie":{
+  "title":"MOVIE UPDATED",
+  "msg":"Movie update completed successfully!",
+  "continue":"CONTINUE",
+  "viewchanges":"VIEW CHANGES"
+},
+"expire":{
+  "title":"SESSION EXPIRED",
+  "msg":"Do you want to Continue?",
+  "yes":"YES",
+  "no":"NO"
 }
 }

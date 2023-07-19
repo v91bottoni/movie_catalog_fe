@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subject, map } from 'rxjs';
 import { ErrorMessages } from 'src/app/enums/errorMessages';
 import { SnackbarService } from 'src/app/service/snackbar.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-error',
@@ -19,7 +20,7 @@ export class ErrorComponent {
   color: string = "rgba(255,0,0,0.6)";
   message!:string;
   url = this.route.url;
-constructor(private route:Router,private translate:TranslateService,private alert: SnackbarService,){
+constructor(private route:Router,private translate:TranslateService,private util: UtilityService){
 this.getMessage();
 }
 getMessage(){
@@ -28,6 +29,9 @@ getMessage(){
     this.url.includes("noContent")? this.message = this.translate.instant("errormessage.nocontent"):
     this.url.includes("searchError")? this.message = this.translate.instant("errormessage.nosearchres") : this.message =  this.translate.instant("errormessage.default");
   },0);
+}
+goBack(){
+  this.route.navigate([this.util.backpage]);
 }
 
 

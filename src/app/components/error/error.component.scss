@@ -1,7 +1,7 @@
 .example-ripple-container {
   cursor: pointer;
   text-align: center;
-  width: fit-content;
+  width: 60%;
   padding :20px;
   margin: 10vh auto;
   user-select: none;
@@ -11,9 +11,15 @@
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
 }
+
 p{
 font-family: 'Times New Roman', Times, serif;
-margin-top: 100px;
-margin-bottom: 50px;
+margin : 100px auto;
 max-width: 500px;
+}
+.back{
+  text-align: center;
+  width: 30px;
+  float: left;
+  padding-left: 20px;
 }
