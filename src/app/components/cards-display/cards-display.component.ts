@@ -29,6 +29,7 @@ export class CardsDisplayComponent implements OnInit{
   hover: boolean = true;
   idHover!: string;
   gridCols!: number;
+  colsNumber!: number;
   
 
   chipsCategory: String[] = this.movieService.categories;
@@ -37,6 +38,7 @@ export class CardsDisplayComponent implements OnInit{
   ngOnInit(): void {
 
     this.updateGridCols();
+    this.updateColsNumber();
 
     let bool: string = sessionStorage.getItem("cardView") as string
     
@@ -197,9 +199,21 @@ export class CardsDisplayComponent implements OnInit{
     }
   }
 
+  updateColsNumber(){
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 400) {
+      this.colsNumber = 1;
+    } else {
+      this.colsNumber = 2;
+    }
+  }
+
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateGridCols();
+    this.updateColsNumber();
 }
 
 }
