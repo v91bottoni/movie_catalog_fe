@@ -32,6 +32,11 @@
       "iAlreadyHaveAnAccount" : "Ho già un account.",
       "insertMovie" : "Inserisci Film!",
       "welcome" : "Benvenuto",
+      "loginSuccess" : "Accesso eseguito.",
+      "registrationSuccess" : "Registrato con successo.",
+      "pwdChangeSuccess" : "Password modificata con successo.",
+      "updateSuccess" : "Aggiornato con successo.",
+      "emailSent" : "Controlla la tua casella di posta.",
       "error" : {
           "isRequired" : "{{obj}} è un campo necessario.",
           "invalidObj" : "Devi inserire un {{obj}} valido.",
@@ -45,7 +50,11 @@
           "invalidAge" : "Età invalida.",
           "invalidInput" : "Input invalido.",
           "cfAlreadyUsed" : "Questo Codice Fiscale è già stato utilizzato.",
-          "emailAlreadyUsed" : "Questa Email è già stata utilizzata."
+          "emailAlreadyUsed" : "Questa Email è già stata utilizzata.",
+          "pwdRecoveryTknExpired" : "Il token per recuperare la Password è scaduto.",
+          "pwdChangeError" : "Errore nel cambiare Password.",
+          "mailNotFound" : "Controlla bene se la mail fornita è giusta.",
+          "error" : "Si è verificato un errore."
       }
   },
   "button": {
@@ -60,7 +69,8 @@
       "next" : "Avanti",
       "back" : "Indietro",
       "register" : "Registrati",
-      "reset" : "Reset"
+      "reset" : "Reset",
+      "ok" : "OK"
   },
   "movie" : {
       "title" : "Titolo",

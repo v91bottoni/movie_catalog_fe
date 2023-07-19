@@ -1,11 +1,10 @@
+import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ChangePasswordSuccessfulDialogComponent } from 'src/app/dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
-import { ChangePasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,11 +14,12 @@ import { AuthService } from 'src/app/service/auth.service';
 export class ChangePasswordComponent implements OnInit{
 
   constructor(
-    private authService: AuthService, 
-    private formBuilder: FormBuilder, 
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
     private router: Router, 
-    private route: ActivatedRoute, 
-    private dialog: MatDialog) { }
+    private route: ActivatedRoute,
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   token!: string;
   passwordResetForm!: FormGroup;
@@ -40,7 +40,7 @@ export class ChangePasswordComponent implements OnInit{
     },
     () => {
       setTimeout(() => this.router.navigateByUrl("/"), 2500);
-      alert("Password recovery token expired");
+      this.alert.openError(this.translate.instant('message.error.pwdRecoveryTknExpired'), this.translate.instant('button.ok'));
     })
   }
 
@@ -49,26 +49,10 @@ export class ChangePasswordComponent implements OnInit{
 
   onSubmit(){
     this.authService.changePassword(this.token, this.passwordResetForm.value.password).subscribe( (res) => {
-      this.openSuccessDialog('200ms', '1000ms');
+      this.alert.openSuccess(this.translate.instant('message.pwdChangeSuccess'), this.translate.instant('button.ok'));
       
     }, () => {
-      this.openFalureDialog('200ms', '1000ms');
+      this.alert.openError(this.translate.instant('message.error.pwdChangeError'), this.translate.instant('button.ok'));
     })
-  }
-
-  openSuccessDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ChangePasswordSuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
-  openFalureDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ChangePasswordUnsuccessfulDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
   }
 }

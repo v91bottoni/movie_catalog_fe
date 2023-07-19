@@ -7,8 +7,6 @@ import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
-
 
 @Component({
   selector: 'app-update-movie',

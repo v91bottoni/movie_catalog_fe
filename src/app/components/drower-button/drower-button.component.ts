@@ -2,8 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { UtilityService } from 'src/app/service/utility.service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { TranslateService } from '@ngx-translate/core';
-
 
 @Component({
   selector: 'app-drower-button',

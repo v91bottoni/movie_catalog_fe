@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Regex } from 'src/app/enums/regex';
 import { RegisterStates } from 'src/app/enums/registerStates';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,9 @@ export class RegisterComponent implements OnInit{
    constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder, 
-    private router: Router) { }
+    private router: Router,
+    private alert: SnackbarService,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     
@@ -63,7 +66,7 @@ export class RegisterComponent implements OnInit{
       
       if(res != null){
         setTimeout(() => this.router.navigateByUrl('/login'), 2500);
-        alert("Registration successful");
+        this.alert.openSuccess(this.translate.instant('message.registrationSuccess'), this.translate.instant('button.ok'));
       }
     }, 
     (res) => {
