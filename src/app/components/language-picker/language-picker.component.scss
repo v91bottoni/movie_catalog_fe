@@ -1,19 +1,19 @@
 .flag {
-    width: 16px;
-    //height: 20px;
-    //border: 1px solid black;
-    border-radius: 50%;
-    box-sizing: border-box;
-    //opacity: 0.5;
-  }
+  width: 16px;
+  //height: 20px;
+  //border: 1px solid black;
+  border-radius: 50%;
+  box-sizing: border-box;
+  //opacity: 0.5;
+}
 
-  .languageSelector{
-    width: auto;
-    margin: 1%;
-  }
+.languageSelector{
+  width: 80px;
+  margin: 1px;
+}
 
-  mat-form-field{
-    position: relative;
-    float: right;
-    width: 40%;
-  }
+mat-form-field{
+  position: relative;
+  float: right;
+  width: 100%;
+}
