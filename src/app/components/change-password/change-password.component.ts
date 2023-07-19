@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangePasswordSuccessfulDialogComponent } from 'src/app/dialogs/change-password-successful-dialog/change-password-successful-dialog.component';
-import { ChangePasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/change-password-unsuccessful-dialog/change-password-unsuccessful-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 

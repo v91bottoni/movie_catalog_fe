@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ForgotPasswordSuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-successful-dialog/forgot-password-successful-dialog.component';
-import { ForgotPasswordUnsuccessfulDialogComponent } from 'src/app/dialogs/forgot-password-unsuccessful-dialog/forgot-password-unsuccessful-dialog.component';
 import { SpinnerDialogComponent } from 'src/app/dialogs/spinner-dialog/spinner-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
@@ -40,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit{
       this.alert.openSuccess("Email sent, check your inbox.", "Ok");
     }, (res) => {
       console.log(res);
-      this.alert.openSuccess("Double check your email.", "Ok");
+      this.alert.openError("Double check your email.", "Ok");
     })
   }
 
