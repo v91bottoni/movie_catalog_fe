@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.movies);
 
         this.currentChipsValue = "-2";
 
