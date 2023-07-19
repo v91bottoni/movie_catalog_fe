@@ -2,9 +2,11 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -22,9 +24,11 @@ export class UserManagementComponent implements OnInit{
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'role', 'disabledAt'];
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private userService: UserService, 
-    private dialog: MatDialog) {}
+    private dialog: MatDialog,
+    private alert: SnackbarService,
+    private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.fetchAllUsers();
@@ -81,7 +85,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt == null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
-          this.openDialog('200ms', '1000ms');
+          this.alert.openSuccess(this.translate.instant('message.updateSuccess'), this.translate.instant('button.ok'));
         },
         () => {console.log("Unable to disable user");
         })
@@ -89,7 +93,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt != null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
-          this.openDialog('200ms', '1000ms');
+          this.alert.openSuccess(this.translate.instant('message.updateSuccess'), this.translate.instant('button.ok'));
         },
         () => {console.log("Unable to enable user");
         })
@@ -102,19 +106,10 @@ export class UserManagementComponent implements OnInit{
         user.role.id = role;
         this.authService.updateUser(user).subscribe ( () =>{
           this.fetchAllUsers();
-          this.openDialog('200ms', '1000ms');
+          this.alert.openSuccess(this.translate.instant('message.updateSuccess'), this.translate.instant('button.ok'));
         },
-        () => {console.log("Unable to update user");
+        () => {this.alert.openError(this.translate.instant('message.error.error'),  this.translate.instant('button.ok'));
         })
     } else this.fetchAllUsers();
   }
-
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(UserUpdateDialogComponent, {
-      width: '30%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-
 }

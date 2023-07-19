@@ -32,6 +32,11 @@
       "iAlreadyHaveAnAccount" : "I already have an account.",
       "insertMovie" : "Insert Movie!",
       "welcome" : "Welcome",
+      "loginSuccess" : "Logged in successfully.",
+      "registrationSuccess" : "Registered successfully.",
+      "pwdChangeSuccess" : "Password changed successfully.",
+      "updateSuccess" : "Updated successfully.",
+      "emailSent" : "Email sent, check your inbox.",
       "error" : {
           "isRequired" : "{{obj}} is required.",
           "invalidObj" : "Must insert a valid {{obj}}.",
@@ -45,7 +50,11 @@
           "invalidAge" : "Invalid Age.",
           "invalidInput" : "Invalid Input",
           "cfAlreadyUsed" : "This Fiscal Code was already used.",
-          "emailAlreadyUsed" : "This Email was already used."
+          "emailAlreadyUsed" : "This Email was already used.",
+          "pwdRecoveryTknExpired" : "Password recovery token expired.",
+          "pwdChangeError" : "Error changing password.",
+          "mailNotFound" : "Double check your spelling.",
+          "error" : "An error occurred."
       }
   },
   "button": {
@@ -60,7 +69,8 @@
       "next" : "Next",
       "back" : "Back",
       "register" : "Register",
-      "reset" : "Reset"
+      "reset" : "Reset",
+      "ok" : "OK"
   },
   "movie" : {
       "title" : "Title",

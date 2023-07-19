@@ -1,13 +1,10 @@
 import { Component, OnInit, VERSION, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
-import { response } from 'src/app/models/response';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
-import { TranslateService } from '@ngx-translate/core';
-import { SliderComponent } from '../slider/slider.component';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
