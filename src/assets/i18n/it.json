@@ -114,18 +114,14 @@
   "footer" :{
     "social" : "SOCIAL",
     "about" : "SU DI NOI",
-    "link" : "LINKS",
+    "contacts" : "CONTATTI",
     "tools": "AMMINISTAZIONE",
     "factory" : "L' Azienda",
     "team" : "Chi siamo",
     "values" : "I nostri valori",
-    "home": "Home",
-    "profile" : "Profilo",
-    "search" : "Ricerca",
-    "logout" : "Esci",
-    "management" : "Gestionale",
-    "add" : "Inserisci Film",
-    "update" : "Modifica Movie"
+    "telephone":"Telefono : ",
+    "mail":"E-mail : ",
+    "address":"Indirizzo : "
 },
 "searcherror":{
   "nocontent":"Inserire almeno un criterio di ricerca!"
