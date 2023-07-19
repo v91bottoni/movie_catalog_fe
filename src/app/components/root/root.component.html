@@ -7,7 +7,7 @@
     <app-drower-button *ngIf="util.username != null" (drawerEvent)="toggle(drawer)"></app-drower-button>
   </div>
   <div class="pagecontainer">
-  <app-search-bar></app-search-bar>
+
   <router-outlet></router-outlet>
 </div>
 <app-footer class="footer" *ngIf="util.username != null"></app-footer>

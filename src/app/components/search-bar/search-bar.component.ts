@@ -25,7 +25,7 @@ export class SearchBarComponent implements OnInit{
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => {this.loadOptions(value); return this._filter(value || ' ')})
+      map(value => {return this._filter(value)})
     );
   }
 
@@ -75,8 +75,11 @@ export class SearchBarComponent implements OnInit{
           else this.options=[];
         }
       });
+
     }
   }
+
+
 }
 
 
