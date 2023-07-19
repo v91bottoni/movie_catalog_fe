@@ -3,14 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
   }
   mat-card {
-    width: 15%;
-    min-width: 300px;
+    min-width: 40%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
   mat-form-field {
     width: 100%;
+    padding-bottom: 2%;
   }
 
   @media (min-width: 600px) {
@@ -30,4 +34,11 @@
     font-size: 40px;
     padding-bottom: 10%;
     width: 100%;
+  }
+
+  .logo{
+    width: 80%;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 10%;
   }
