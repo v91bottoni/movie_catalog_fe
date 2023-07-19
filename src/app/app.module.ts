@@ -66,6 +66,7 @@ import {MatListModule} from '@angular/material/list';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -103,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MovieCardComponent,
     FooterComponent,
     LanguagePickerComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
