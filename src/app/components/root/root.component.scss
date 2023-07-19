@@ -31,12 +31,13 @@
     transition: 0.7s ease;
   }
   .hide{
-    transform: translateX(-300px) skewX(-60deg);
+    transform: translateX(-500px) skewX(-60deg);
   }
 
   .pagecontainer{
     min-height: 100%;
     height: fit-content;
+    padding-bottom: 200px;
 
   }
 .footer{
