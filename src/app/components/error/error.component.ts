@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subject, map } from 'rxjs';
 import { ErrorMessages } from 'src/app/enums/errorMessages';
+import { SnackbarService } from 'src/app/service/snackbar.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-error',
@@ -15,12 +19,20 @@ export class ErrorComponent {
   radius: number = 30;
   color: string = "rgba(255,0,0,0.6)";
   message!:string;
-constructor(private route:Router){
-  let url = this.route.url;
-  url.includes("errorPage")? this.message = ErrorMessages.errorMessage:
-    url.includes("noContent")? this.message = ErrorMessages.noContentMessage:
-      url.includes("searchError")? this.message = ErrorMessages.noSearchResultMessage : ErrorMessages.defaultMessage;
-
-
+  url = this.route.url;
+constructor(private route:Router,private translate:TranslateService,private util: UtilityService){
+this.getMessage();
 }
+getMessage(){
+  setTimeout(()=>{
+    this.url.includes("errorPage")? this.message = this.translate.instant("errormessage.errorpage"):
+    this.url.includes("noContent")? this.message = this.translate.instant("errormessage.nocontent"):
+    this.url.includes("searchError")? this.message = this.translate.instant("errormessage.nosearchres") : this.message =  this.translate.instant("errormessage.default");
+  },0);
+}
+goBack(){
+  this.route.navigate([this.util.backpage]);
+}
+
+
 }
