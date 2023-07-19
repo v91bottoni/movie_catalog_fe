@@ -16,7 +16,6 @@ import { UpdateMovieComponent } from './components/update-movie/update-movie.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorComponent } from './components/error/error.component';
 import { DrowerButtonComponent } from './components/drower-button/drower-button.component';
-import { SearchResultComponent } from './components/search-result/search-result.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list'
@@ -66,6 +65,7 @@ import {MatListModule} from '@angular/material/list';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -79,7 +79,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateMovieComponent,
     NavbarComponent,
     DrowerButtonComponent,
-    SearchResultComponent,
     ErrorComponent,
     UserInfoComponent,
     MovieDetailsComponent,
@@ -103,6 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MovieCardComponent,
     FooterComponent,
     LanguagePickerComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
