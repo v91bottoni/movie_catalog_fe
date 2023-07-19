@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit{
 
   onSubmit(){
     this.authService.changePassword(this.token, this.passwordResetForm.value.password).subscribe( (res) => {
-      this.alert.openNotice("Password changed successfully", "Ok");
+      this.alert.openSuccess("Password changed successfully", "Ok");
       
     }, () => {
       this.alert.openError("Error changing password", "Ok");

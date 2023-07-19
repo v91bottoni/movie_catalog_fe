@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.util.username = res.user.name;
         this.util.role = res.user.role.role;
 
-        this.alert.openNotice("Login successful", "OK");
+        this.alert.openSuccess("Login successful", "OK");
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){

@@ -1,13 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .table {
-    width: 70%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+
+@media (max-width: 1100px) {
+  .table {
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
@@ -15,35 +40,51 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
   }
-  
-  @media (max-width: 1100px){
-    .table {
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 2%;
-      margin-bottom: 1%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-      overflow-x: auto;
-    }
-  }
+}
 
-  .mat-mdc-standard-chip {
-    --mdc-chip-elevated-container-color: whitesmoke;
-    --mdc-chip-elevated-disabled-container-color: #e0e0e0;
-    --mdc-chip-label-text-color: #212121;
-    --mdc-chip-disabled-label-text-color: #212121;
-    --mdc-chip-with-icon-icon-color: #212121;
-    --mdc-chip-with-icon-disabled-icon-color: #212121;
-    --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
-    --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
-    --mdc-chip-with-icon-selected-icon-color: #212121;
-  }
+.mat-mdc-standard-chip {
+  --mdc-chip-elevated-container-color: whitesmoke;
+  --mdc-chip-elevated-disabled-container-color: #e0e0e0;
+  --mdc-chip-label-text-color: #212121;
+  --mdc-chip-disabled-label-text-color: #212121;
+  --mdc-chip-with-icon-icon-color: #212121;
+  --mdc-chip-with-icon-disabled-icon-color: #212121;
+  --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
+  --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
+  --mdc-chip-with-icon-selected-icon-color: #212121;
+}
 
-  mat-chip-option{
-    transition: 500ms;
+mat-chip-option {
+  transition: 500ms;
+}
+
+mat-chip-option:hover {
+  transform: scale(1.1);
+}
+
+//snackbar styles
+
+:root {
+  --success-color: #198754;
+  --delete-color: #dc3545;
+  --background-color: #f5f5f5;
+}
+
+.success-snackbar {
+  color: white !important;
+  --mdc-snackbar-container-color: var(--success-color);
+
+  .mat-mdc-snack-bar-action {
+    color: white !important;
   }
-  
-  mat-chip-option:hover{
-    transform: scale(1.1);
+}
+
+.error-snackbar {
+  max-width: max-content !important;
+  color: white;
+  --mdc-snackbar-container-color: var(--delete-color);
+
+  .mat-mdc-snack-bar-action {
+    color: white !important;
   }
+}

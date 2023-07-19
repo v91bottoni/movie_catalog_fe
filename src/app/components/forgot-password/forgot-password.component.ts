@@ -37,10 +37,10 @@ export class ForgotPasswordComponent implements OnInit{
   onSubmit(){
     this.openSpinner('200ms', '1000ms');
     this.authService.recoverPassword(this.passwordResetForm.value.email).subscribe( res => {
-      this.alert.openNotice("Email sent, check your inbox.", "Ok");
+      this.alert.openSuccess("Email sent, check your inbox.", "Ok");
     }, (res) => {
       console.log(res);
-      this.alert.openNotice("Double check your email.", "Ok");
+      this.alert.openSuccess("Double check your email.", "Ok");
     })
   }
 

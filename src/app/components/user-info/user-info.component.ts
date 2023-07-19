@@ -77,7 +77,7 @@ export class UserInfoComponent implements OnInit{
 
     this.authService.updateUser(userRes).subscribe(res=>{
       console.log(res);
-      this.alert.openNotice("Update completed successfully.", "Ok");
+      this.alert.openSuccess("Update completed successfully.", "Ok");
 
     },
     (res) => {

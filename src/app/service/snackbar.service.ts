@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MatSnackBar, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,25 @@ export class SnackbarService {
 
   constructor(private snkbr: MatSnackBar) { }
 
-  openNotice(msg: string, btntxt: string){
-    this.snkbr.open(msg, btntxt, {
-      duration: 5000,
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      politeness: 'off'
-    });
+  openSuccess(msg: string, btntxt: string){
+
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['success-snackbar'];
+    config.duration = 5000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'bottom';
+
+    this.snkbr.open(msg, btntxt, config);
   }
 
   openError(msg: string, btntxt: string){
-    this.snkbr.open(msg, btntxt, {
-      duration: 5000,
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      politeness: 'off'
-    });
+
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['error-snackbar'];
+    config.duration = 5000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'bottom';
+
+    this.snkbr.open(msg, btntxt, config);
   }
 }

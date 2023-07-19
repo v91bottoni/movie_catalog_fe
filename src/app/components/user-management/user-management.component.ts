@@ -84,7 +84,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt == null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
-          this.alert.openNotice("Update completed successfully.", "Ok");
+          this.alert.openSuccess("Update completed successfully.", "Ok");
         },
         () => {console.log("Unable to disable user");
         })
@@ -92,7 +92,7 @@ export class UserManagementComponent implements OnInit{
     if(user.disabledAt != null){
         this.userService.disableUser(user).subscribe( () => {
           this.fetchAllUsers();
-          this.alert.openNotice("Update completed successfully.", "Ok");
+          this.alert.openSuccess("Update completed successfully.", "Ok");
         },
         () => {console.log("Unable to enable user");
         })
@@ -105,7 +105,7 @@ export class UserManagementComponent implements OnInit{
         user.role.id = role;
         this.authService.updateUser(user).subscribe ( () =>{
           this.fetchAllUsers();
-          this.alert.openNotice("Update completed successfully.", "Ok");
+          this.alert.openSuccess("Update completed successfully.", "Ok");
         },
         () => {this.alert.openError("An error occurred.", "Ok");
         })
