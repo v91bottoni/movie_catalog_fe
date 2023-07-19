@@ -126,5 +126,12 @@
     "management" : "Management",
     "add" : "Insert Movie",
     "update" : "Update Movie"
+},
+"searcherror":{
+  "nocontent":"Enter at least one search criteria!"
+},
+"errormessage":{
+  "errorpage":"An Error prevented the loading of the Contents.\nWe apologize and please wait and try again later.",
+  "default": "Something went wrong. Please try again later"
 }
 }

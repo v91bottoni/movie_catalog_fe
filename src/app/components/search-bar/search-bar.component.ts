@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, from, map, startWith,  } from 'rxjs';
 import { MovieService } from 'src/app/service/movie.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -13,7 +15,9 @@ import { UtilityService } from 'src/app/service/utility.service';
 export class SearchBarComponent implements OnInit{
 
   constructor( private movieservice:MovieService, protected util: UtilityService,
-    private router:Router){
+    private router:Router,private alert: SnackbarService,
+    private translate:TranslateService){
+      this.loadOptions(" ");
 
   }
   searchTerm = '';
@@ -30,7 +34,11 @@ export class SearchBarComponent implements OnInit{
   }
 
   searchFilm(){
-    this.router.navigate(['home/search/'+this.searchTerm+'/1']);
+    if(this.searchTerm == ''){
+      this.alert.openError(this.translate.instant('searcherror.nocontent'), "OK");
+    }else{
+      this.router.navigate(['home/search/'+this.searchTerm+'/1']);
+    }
   }
 
   focusSearchBar(elem:HTMLElement){
@@ -58,14 +66,12 @@ export class SearchBarComponent implements OnInit{
   private _filter(value: string): string[] {
     let filterValue = value.toLowerCase();
     this.loadOptions(filterValue);
-    //console.log(this.options);
-
     return this.options.filter(option =>  option.toLowerCase().includes(filterValue));
   }
 
-  loadOptions(filterValue:string){
-    if(filterValue != ''){
-      this.movieservice.searchMovie(filterValue, 1).subscribe(resp=>{
+  loadOptions(value:string){
+    if(value != ''){
+      this.movieservice.searchMovie(value, 1).subscribe(resp=>{
         if(resp){
           let movies = resp.movieList;
           if(movies){

@@ -126,5 +126,12 @@
     "management" : "Gestionale",
     "add" : "Inserisci Film",
     "update" : "Modifica Movie"
+},
+"searcherror":{
+  "nocontent":"Inserire almeno un criterio di ricerca!"
+},
+"errormessage":{
+  "errorpage":"Un Errore non ha permesso il caricamento dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.",
+  "default": "Qualcosa è andato storto.. riprova piàù tardi"
 }
 }
