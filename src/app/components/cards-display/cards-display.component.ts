@@ -61,6 +61,8 @@ export class CardsDisplayComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.goTop();
+
     this.updateGridCols();
     this.updateColsNumber();
 
@@ -142,6 +144,8 @@ else{
     this.movies = res.movieList;
     this.response = res;
   });
+
+  this.goTop()
 }
 
 })
@@ -193,13 +197,23 @@ else{
     if (chips === "All") {
       this.currentChipsValue = chips;
       this.router.navigateByUrl('/home/gerne/'+ this.currentChipsValue );
+      this.goTop()
     } else {
       this.currentChipsValue = chips;
     }
     sessionStorage.setItem('chipsValue', this.currentChipsValue);
     this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue);
+    this.goTop()
+    
   }
   
+  goTop(){
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
   
 
   goHome(){
