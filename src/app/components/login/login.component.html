@@ -25,12 +25,6 @@
                     </mat-error>
             </mat-form-field>
                 <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" style="width: 100%; margin-bottom: 5%; font-size: large;">{{ 'button.login' | translate }}</button>
-                <mat-error *ngIf="badCredentials">
-                    {{ 'message.error.emailPasswordNotRecognized' | translate }}
-                </mat-error>
-                <mat-error *ngIf="userDisabled">
-                    {{ 'message.error.userDisabled' | translate }}
-                </mat-error>
         </form>
             <mat-card-footer>
                 <mat-grid-list cols="2" rowHeight="50px">
