@@ -4,36 +4,48 @@ import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cards-display',
   templateUrl: './cards-display.component.html',
   styleUrls: ['./cards-display.component.scss']
 })
-export class CardsDisplayComponent implements OnInit{
-
+export class CardsDisplayComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  currentPage = 0; 
+  pageSize = 10; 
   response!: response;
   page!: number;
   maxPage!: number;
   cardView: boolean = true;
   movies!: Movie[];
-  displayedColumns: string[] = ['title', 'plot', 'writer' ,'imdbrating', 'button', 'edit'];
-  home: boolean= false;
-  gerne: boolean= false;
-  search: boolean= false;
+  displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
+  home: boolean = false;
+  gerne: boolean = false;
+  search: boolean = false;
   keyword!: string;
-  category!:String;
-  currentChipsValue: String = "-1"
+  category!: string;
+  currentChipsValue: string = "-1";
   hover: boolean = true;
   idHover!: string;
   gridCols!: number;
   colsNumber!: number;
-  
 
-  chipsCategory: String[] = this.movieService.categories;
 
+  chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
+
+  constructor(
+    private movieService: MovieService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    private util: UtilityService
+  ) {
+    this.util.backpage = "home";
+  }
 
   ngOnInit(): void {
 
@@ -41,12 +53,12 @@ export class CardsDisplayComponent implements OnInit{
     this.updateColsNumber();
 
     let bool: string = sessionStorage.getItem("cardView") as string
-    
+
     if(bool === 'true'){
       this.cardView=true;
     }
-    if(bool === 'false'){
-      this.cardView=false;
+    if (bool === 'false') {
+      this.cardView = false;
     }
 
     // this.route.snapshot.paramMap.get("pag")
@@ -57,80 +69,75 @@ export class CardsDisplayComponent implements OnInit{
     
 
     this.route.params.subscribe(params => {
-
-      if(params['gerne']){
-        this.page=Number(params['page']);
-
-
-        this.category=params ['gerne'];
-        if(this.currentChipsValue!= this.category) this.currentChipsValue = this.category;
-        this.movieService.getMovieByGenre(params['gerne'], params['page']).subscribe(res=>{
-
-
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList;
-          this.response=res;
-
-
-          this.home=false;
-          this.gerne= true;
-          this.search=false;
-
-        })
-      }
-
-      else if(params['pag']){
+      if (params['gerne']) {
+        this.page = Number(params['page']);
+        this.category = params['gerne'];
+        if (this.currentChipsValue != this.category) this.currentChipsValue = this.category;
+        this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
+          this.maxPage = res.maxPageNumber;
+          this.movies = res.movieList;
+          this.response = res;
+          this.home = false;
+          this.gerne = true;
+          this.search = false;
+        });
+      } else if (params['pag']) {
+        this.page = Number(params['pag']);
+        this.loadMovies();
+      } else if (params['keyword']) {
+        this.page = Number(params['pg']);
+        this.keyword = params['keyword'];
         this.currentChipsValue = "-1";
-        this.page=Number(params['pag'])
-        this.movieService.getAllMovies(params['pag'] , 'imdbrating').subscribe(res=>{
-
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList
-          this.response=res;
-
-          this.home=true;
-          this.gerne= false;
-          this.search=false;
-
-
-          console.log(this.response);
-        })
-
-      } else if(params['keyword']){
-        this.page=Number(params['pg']);
-
-
-        this.keyword=params['keyword'];
+        this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res => {
+          this.maxPage = res.maxPageNumber;
+          this.movies = res.movieList;
+          this.response = res;
+          this.home = false;
+          this.gerne = false;
+          this.search = true;
+        });
+      } else {
         this.currentChipsValue = "-1";
-        this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res=>{
-
-          
-
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList;
-          this.response=res;
-
-
-          this.home=false;
-          this.gerne= false;
-          this.search=true;
-
-        })
+        this.loadMovies();
       }
+    });
 
-      else{
-        this.currentChipsValue = "-1";
-        this.router.navigate(['/home/page/1'])
-      }
-
-  });
-
-
+    this.paginator.page.subscribe((event: PageEvent) => {
+       this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+      this.page = event.pageIndex + 1;
+      this.loadMovies();
+    });
   }
 
-  constructor(private movieService: MovieService,public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private util:UtilityService) {
-    this.util.backpage = "home";
-   }
+loadMovies() {
+this.route.params.subscribe(params=> {
+
+if(params['gerne']){
+  const pageSize = this.paginator.pageSize;
+  this.movieService.getMoviesByGenreWithPagination(params['gerne'],this.page, pageSize).subscribe(res => {
+    this.maxPage = res.maxPageNumber;
+    this.movies = res.movieList;
+    this.response = res;
+  });
+  
+
+}
+else{
+  const pageSize = this.paginator.pageSize;
+  this.movieService.getAllMoviesWithPagination(this.page, 'imdbrating', pageSize).subscribe(res => {
+    this.maxPage = res.maxPageNumber;
+    this.movies = res.movieList;
+    this.response = res;
+  });
+}
+
+})
+
+
+  
+}
+
 
    openDialog(imdbid: string){
     this.movieService.movieid = imdbid;
@@ -141,7 +148,11 @@ export class CardsDisplayComponent implements OnInit{
     });
   }
 
-
+  paginatorPageChange(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.loadMovies();
+  }
+  
   navigatePage(pag: number){
     this.util.backpage = '/home/page/'+pag;
     if(this.home) this.router.navigate(['/home/page/'+pag]);
@@ -150,11 +161,11 @@ export class CardsDisplayComponent implements OnInit{
   }
 
   switchView(){
-    
+
     if(this.cardView){
       this.cardView=false;
       sessionStorage.setItem('cardView', 'false');
-    } 
+    }
     else{
       this.cardView=true;
       sessionStorage.setItem('cardView', 'true');
@@ -165,12 +176,18 @@ export class CardsDisplayComponent implements OnInit{
   openMovieDetails(movieId: string): void {
     this.router.navigate(['/movies', movieId]);
   }
-
-  goToCategory(chips:String){
-
-    sessionStorage.setItem('chipsValue', String(chips));
-    this.router.navigateByUrl('/home/gerne/'+chips+'/1')
+  goToCategory(chips: string) {
+    if (chips === "All") {
+      this.currentChipsValue = chips;
+      this.router.navigateByUrl('/home/gerne/'+ this.currentChipsValue );
+    } else {
+      this.currentChipsValue = chips;
+    }
+    sessionStorage.setItem('chipsValue', this.currentChipsValue);
+    this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue);
   }
+  
+  
 
   goHome(){
     this.currentChipsValue = "-1"

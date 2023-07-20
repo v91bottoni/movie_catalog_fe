@@ -15,6 +15,10 @@ export class MovieService {
   categories: String[] = ["Action", "Adventure", "Animation", "Comedy", "Crime", 
                             "Drama", "Documentary", "Fantasy", "Romance", "Thriller"];
 
+                            chipsCategory: string[] = [ "Action", "Adventure", "Animation", "Comedy", "Crime", 
+                           "Drama", "Documentary", "Fantasy", "Romance", "Thriller"];
+
+
   searchMovie(title:string, page:number = 1):Observable<response>{
     return this.http.get<response>(this.apiUrl + 'title/' + title + '/' + page);
   }
@@ -38,6 +42,15 @@ export class MovieService {
   updateMovie(movie: Movie): Observable<Movie>{
     return this.http.post<Movie>(this.apiUrl + 'update', movie);
   }
+
+    getAllMoviesWithPagination(page: number = 1, sort: string = 'imdbrating', size: number = 10): Observable<response> {
+      return this.http.get<response>(this.apiUrl + `${page}/${sort}/${size}`);
+
+    }
+
+    getMoviesByGenreWithPagination(genre: string, page: number = 1, size: number = 10): Observable<response> {
+      return this.http.get<response>(`${this.apiUrl}size/${genre}/${page}/${size}`);
+    }
 
   constructor(private http: HttpClient) { }
 }

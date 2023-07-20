@@ -114,17 +114,35 @@
   "footer" :{
     "social" : "SOCIAL",
     "about" : "ABOUT US",
-    "link" : "LINKS",
+    "contacts" : "CONTACTS",
     "tools": "ADMIN TOOLS",
     "factory" : "Factory",
     "team" : "Our Team",
     "values" : "Our Values",
-    "home": "Home",
-    "profile" : "Profile",
-    "search" : "Search",
-    "logout" : "Log Out",
-    "management" : "Management",
-    "add" : "Insert Movie",
-    "update" : "Update Movie"
+    "telephone":"Telephone : ",
+    "mail":"E-mail : ",
+    "address":"Address : "
+},
+"searcherror":{
+  "nocontent":"Enter at least one search criteria!"
+},
+"errormessage":{
+  "title":"Error",
+  "errorpage":"An Error prevented the loading of the Contents.\nWe apologize and please wait and try again later.",
+  "nocontent":"No content to display",
+  "nosearchres":"No results match your search criteria.",
+  "default": "Something went wrong. Please try again later"
+},
+"updatemovie":{
+  "title":"MOVIE UPDATED",
+  "msg":"Movie update completed successfully!",
+  "continue":"CONTINUE",
+  "viewchanges":"VIEW CHANGES"
+},
+"expire":{
+  "title":"SESSION EXPIRED",
+  "msg":"Do you want to Continue?",
+  "yes":"YES",
+  "no":"NO"
 }
 }

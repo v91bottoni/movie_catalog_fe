@@ -1,11 +1,15 @@
+import { TranslateService } from "@ngx-translate/core";
+
+
 export enum ErrorMessages{
+
   //errorPage
-  errorMessage = 'Un Errore non Ha permesso il caricamento Dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.',
+  errorMessage = 'Un Errore non ha permesso il caricamento dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.',
   //noContent
   noContentMessage = 'Nessun Contentuto da visualizzare',
   //searchError
   noSearchResultMessage = 'Nessun risultato corrisponde ai criteri di ricerca.',
 
 
-  defaultMessage = 'Ci scusiamo per il problema, Riprovare più tardi.'
+  defaultMessage = 'Qualcosa è andato storto.. riprova piàù tardi'
 }

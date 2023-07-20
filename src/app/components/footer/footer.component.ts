@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MapDialogComponent } from 'src/app/dialogs/map-dialog/map-dialog.component';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { UtilityService } from 'src/app/service/utility.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  constructor(protected util :UtilityService){
+  constructor(protected util :UtilityService, public dialog:MatDialog){
 
   }
   logout(){
@@ -21,6 +23,9 @@ export class FooterComponent {
       left: 0,
       behavior: "smooth",
     });
+  }
+  openMap(){
+    this.dialog.open(MapDialogComponent);
   }
 
 }

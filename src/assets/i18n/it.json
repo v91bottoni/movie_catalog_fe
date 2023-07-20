@@ -114,17 +114,35 @@
   "footer" :{
     "social" : "SOCIAL",
     "about" : "SU DI NOI",
-    "link" : "LINKS",
+    "contacts" : "CONTATTI",
     "tools": "AMMINISTAZIONE",
     "factory" : "L' Azienda",
     "team" : "Chi siamo",
     "values" : "I nostri valori",
-    "home": "Home",
-    "profile" : "Profilo",
-    "search" : "Ricerca",
-    "logout" : "Esci",
-    "management" : "Gestionale",
-    "add" : "Inserisci Film",
-    "update" : "Modifica Movie"
+    "telephone":"Telefono : ",
+    "mail":"E-mail : ",
+    "address":"Indirizzo : "
+},
+"searcherror":{
+  "nocontent":"Inserire almeno un criterio di ricerca!"
+},
+"errormessage":{
+  "title":"Errore",
+  "errorpage":"Un Errore non ha permesso il caricamento dei Contetnuti.\nCi scusiamo e la preghiamo di attendere e riprovare più tardi.",
+  "nocontent":"Nessun Contentuto da visualizzare",
+  "nosearchres":"Nessun risultato corrisponde ai criteri di ricerca.",
+  "default": "Qualcosa è andato storto.. riprova piàù tardi"
+},
+"updatemovie":{
+  "title":"FILM AGGIORNATO",
+  "msg":"Modifiche al film effettuate con successo!",
+  "continue":"CONTINUA",
+  "viewchanges":"VEDI MODIFICHE"
+},
+"expire":{
+  "title":"SESSIONE SCADUTA",
+  "msg":"Vuoi Proseguire?",
+  "yes":"SI",
+  "no":"NO"
 }
 }
