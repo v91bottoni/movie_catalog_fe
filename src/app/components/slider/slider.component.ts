@@ -11,13 +11,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
   animations: [
-    trigger('slide', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('500ms', style({ transform: 'translateX(0)' }))
-      ]),
-      transition(':leave', [
-        animate('500ms', style({ transform: 'translateX(100%)' }))
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate(400)
       ])
     ])
   ]
@@ -40,6 +39,7 @@ export class SliderComponent implements OnInit {
 
   right:boolean=true;
   left:boolean=false;
+  animationState: string = 'left'
   
   ngOnInit(): void {
     
@@ -125,6 +125,7 @@ export class SliderComponent implements OnInit {
 
           this.right=true;
           this.left=true
+          this.animationState = 'right';
 
           this.movies=res.movieList
           this.maxPage=res.maxPageNumber;
@@ -145,6 +146,7 @@ export class SliderComponent implements OnInit {
 
           this.right=true;
           this.left=true
+          this.animationState = 'left';
 
           this.movies=res.movieList
           this.maxPage=res.maxPageNumber;
@@ -167,6 +169,7 @@ export class SliderComponent implements OnInit {
 
           this.right=true;
           this.left=true
+          this.animationState = 'right';
 
           this.movies=res.movieList
           this.maxPage=res.maxPageNumber;
@@ -187,6 +190,7 @@ export class SliderComponent implements OnInit {
 
           this.right=true;
           this.left=true
+          this.animationState = 'left';
 
           this.movies=res.movieList
           this.maxPage=res.maxPageNumber;
@@ -199,5 +203,14 @@ export class SliderComponent implements OnInit {
         });
       }
     }
+
+    if (direction === 'left') {
+      
+    } else if (direction === 'right') {
+      
+    }
   }
+
+  
+
 }

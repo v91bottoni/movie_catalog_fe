@@ -29,6 +29,7 @@ export class MovieCardComponent implements OnInit {
   hover: boolean = true;
   isHovered: boolean = false;
   idHover!: string;
+  timeout!: any;
 
   ngOnInit(): void {
     this.movieService.getMovieById(this.imdbid).subscribe(res => {
@@ -47,36 +48,43 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  setHover(value: boolean, id: string) {
+  // setHover(value: boolean, id: string) {
+  //   if (value == false)
+  //     setTimeout(() => {
+  //       this.isHovered = true;
+  //     },300);
+  //   if (value == true)
+  //     this.isHovered = false;
 
-    // setTimeout(() => {
-    if (value == false)
-      setTimeout(() => {
-        this.isHovered = true;
-      },300);
-    if (value == true)
-      this.isHovered = false;
-
-    this.hover = value;
-    this.idHover = id;
-    // },300);
-  }
+  //   this.hover = value;
+  //   this.idHover = id;
+  // }
 
   poster: boolean = true;
   info: boolean = false;
 
   hoverSet(type:string){
-    // setTimeout(() => {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
       if(type==='poster'){
         this.poster=false;
-        setTimeout(() => { this.info = true; }, 150);
+        setTimeout(() => { 
+          if(!this.poster){
+            this.info=true;
+          }
+         }, 155);
       }
 
       if(type==='info'){
         this.info=false;
-        setTimeout(() => {this.poster=true;}, 150);
-      }
-    // },1);
+        setTimeout(() => {
+          if(!this.info){
+            this.poster=true;
+          }
+        }, 155);
+      };
+    }, 156);
+        
   }
 
   goUpdate(imdbid: string) {
