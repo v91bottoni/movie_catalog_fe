@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hidePass: boolean = true;
 
-  badCredentials: boolean = false;
-  userDisabled: boolean = false;
-
   constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder, 
@@ -45,8 +42,6 @@ export class LoginComponent implements OnInit {
   get password()  { return this.loginForm.get('password')}
 
   onSubmit(){
-    this.badCredentials = false;
-    this.userDisabled = false;
     this.authService.login(this.loginForm.value).subscribe(res => {
         //logged successfully
 
@@ -63,10 +58,10 @@ export class LoginComponent implements OnInit {
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){
-          this.badCredentials = true;
+          this.alert.openError(this.translate.instant('message.error.emailPasswordNotRecognized'), this.translate.instant("button.ok"));
         }
         if(res.error.msg == LoginStates.userDisabled){
-          this.userDisabled = true;
+          this.alert.openError(this.translate.instant('message.error.userDisabled'), this.translate.instant("button.ok"));
         }
       }
     );
