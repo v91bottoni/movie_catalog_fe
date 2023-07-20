@@ -1,3 +1,4 @@
+@import '/src/custom-theme.scss';
 button{
   width: 100%;
   margin: 15px 0;
@@ -30,7 +31,6 @@ button{
   95%  {transform:rotateZ(2deg)}
   100%  {}
 }
-
 mat-icon{
 margin-right: 10px;
 border: solid 1px rgba(0,0,0,0.2);
@@ -42,8 +42,7 @@ box-shadow: 2px 2px rgba(0,0,0,0.2) , inset 0 0 2px rgba(0, 0, 0, 0.4);
 cursor: pointer;
 }
 mat-icon:hover{
-  //transform:  translate(-2px, -2px) ;
-  box-shadow: 6px 6px  rgba(0, 0, 0, 0.501)  , inset 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 6px 6px  rgba(0, 0, 0, 0.5)  , inset 0 0 5px rgba(0, 0, 0, 0.4);
   animation: move 0.5s ;
   animation-delay: 0.1s;
 }

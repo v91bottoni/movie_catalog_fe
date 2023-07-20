@@ -64,6 +64,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { MapDialogComponent } from './dialogs/map-dialog/map-dialog.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -142,7 +144,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
       defaultLanguage: 'en'
-    })
+    }),
+    ShareButtonsModule.withConfig({
+      debug:true
+    }),
+    ShareIconsModule,
 
   ],
   providers: [

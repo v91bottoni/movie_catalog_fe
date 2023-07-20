@@ -121,7 +121,8 @@
     "values" : "I nostri valori",
     "telephone":"Telefono : ",
     "mail":"E-mail : ",
-    "address":"Indirizzo : "
+    "address":"Indirizzo : ",
+    "arrow": "Clicca qui!"
 },
 "searcherror":{
   "nocontent":"Inserire almeno un criterio di ricerca!"

@@ -26,8 +26,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class CardsDisplayComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  currentPage = 0; 
-  pageSize = 10; 
+  currentPage = 0;
+  pageSize = 10;
   response!: response;
   page!: number;
   maxPage!: number;
@@ -80,7 +80,7 @@ export class CardsDisplayComponent implements OnInit {
     if (sessionStorage.getItem("chipsValue")) {
       this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
     }
-    
+
 
     this.route.params.subscribe(params => {
       if (params['gerne']) {
@@ -103,13 +103,19 @@ export class CardsDisplayComponent implements OnInit {
         this.keyword = params['keyword'];
         this.currentChipsValue = "-1";
         this.movieService.searchMoviePagination(params['keyword'],params['pg'],10).subscribe(res => {
-          this.maxPage = res.maxPageNumber;
-          this.movies = res.movieList;
-          this.response = res;
-          this.home = false;
-          this.gerne = false;
-          this.search = true;
+
+          if(res){
+            this.maxPage = res.maxPageNumber;
+            this.movies = res.movieList;
+            this.response = res;
+            this.home = false;
+            this.gerne = false;
+            this.search = true;
+          }else{
+            this.router.navigate(['searchError']);
+          }
         });
+
       } else {
         this.currentChipsValue = "-1";
         this.loadMovies();
@@ -135,22 +141,22 @@ if(params['gerne']){
     this.maxPage = res.maxPageNumber;
     this.movies = res.movieList;
     this.response = res;
-    
+
   });
-  this.goTop() 
+  this.goTop()
 
 }
 if(params['keyword']){
   const pageSize = this.paginator.pageSize;
-  
-  
+
+
   this.movieService.searchMoviePagination(params['keyword'],this.page,pageSize).subscribe(res => {
     this.maxPage = res.maxPageNumber;
     this.movies = res.movieList;
     this.response = res;
-    
+
   });
-  this.goTop() 
+  this.goTop()
 
 }
 else{
@@ -167,7 +173,7 @@ else{
 })
 
 
-  
+
 }
 
 
@@ -185,7 +191,7 @@ else{
     this.maxPage = Math.ceil(this.totalItems / this.pageSize);
     this.loadMovies();
   }
-  
+
   navigatePage(pag: number){
     this.util.backpage = '/home/page/'+pag;
     if(this.home) this.router.navigate(['/home/page/'+pag]);
@@ -220,9 +226,9 @@ else{
     sessionStorage.setItem('chipsValue', this.currentChipsValue);
     this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue);
     this.goTop()
-    
+
   }
-  
+
   goTop(){
     window.scrollTo({
       top: 0,
@@ -230,7 +236,7 @@ else{
       behavior: "smooth",
     });
   }
-  
+
 
   goHome(){
     this.currentChipsValue = "-1"
