@@ -7,11 +7,22 @@ import { UtilityService } from 'src/app/service/utility.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cards-display',
   templateUrl: './cards-display.component.html',
-  styleUrls: ['./cards-display.component.scss']
+  styleUrls: ['./cards-display.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate(400)
+      ])
+    ])
+  ]
 })
 export class CardsDisplayComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;

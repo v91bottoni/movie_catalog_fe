@@ -88,9 +88,9 @@ export class SliderComponent implements OnInit {
 
   viewAll(title:string){
     if(title==='For You')
-      this.router.navigate(['/home/page/1']);
+      this.router.navigate(['/home/all']);
     else
-      this.router.navigate(['/home/gerne/'+title+'/1'])
+      this.router.navigate(['/home/gerne/'+title])
   }
 
   updateGridCols() {
