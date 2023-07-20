@@ -282,4 +282,8 @@ else{
     this.updateColsNumber();
 }
 
+
+convertNumber(string:string):Number{
+  return Number(string);
+}
 }
