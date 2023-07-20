@@ -37,7 +37,7 @@ export class SearchBarComponent implements OnInit{
     if(this.searchTerm == ''){
       this.alert.openError(this.translate.instant('searcherror.nocontent'), this.translate.instant('button.ok'));
     }else{
-      this.router.navigate(['home/search/'+this.searchTerm+'/1']);
+      this.router.navigate(['home/search/'+this.searchTerm]);
     }
   }
 

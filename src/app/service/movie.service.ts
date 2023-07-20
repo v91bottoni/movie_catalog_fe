@@ -23,6 +23,11 @@ export class MovieService {
     return this.http.get<response>(this.apiUrl + 'title/' + title + '/' + page);
   }
 
+  searchMoviePagination(title: string, page: number = 1,  size: number = 10): Observable<response> {
+    return this.http.get<response>(this.apiUrl +'title/'+title+'/'+page+'/'+size);
+
+  }
+
   getMovieByGenre(genre:string, page:number = 1):Observable<response>{
     return this.http.get<response>(this.apiUrl + 'genre/' + genre + '/' + page);
   }
