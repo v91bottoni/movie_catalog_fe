@@ -94,7 +94,7 @@
 </div>
 
 
-<mat-paginator [length]="maxPage*pageSize" [pageSize]="pageSize"
+<mat-paginator class="custom-paginator" [length]="totalItems" [pageSize]="pageSize"
                [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons
                (page)="paginatorPageChange($event)">
 </mat-paginator>
