@@ -20,6 +20,7 @@ export class CardsDisplayComponent implements OnInit {
   response!: response;
   page!: number;
   maxPage!: number;
+  totalItems = 70;
   cardView: boolean = true;
   movies!: Movie[];
   displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
@@ -150,6 +151,7 @@ else{
 
   paginatorPageChange(event: PageEvent) {
     this.page = event.pageIndex + 1;
+    this.maxPage = Math.ceil(this.totalItems / this.pageSize);
     this.loadMovies();
   }
   
