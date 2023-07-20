@@ -4,11 +4,23 @@ import { MovieService } from 'src/app/service/movie.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
+  animations: [
+    trigger('slide', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('500ms', style({ transform: 'translateX(0)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms', style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class SliderComponent implements OnInit {
   
@@ -19,27 +31,41 @@ export class SliderComponent implements OnInit {
 
   movies!: Movie[];
   maxPage!: number;
+  current: number = 1
 
   hover: boolean = true;
   idHover!: string;
 
   gridCols!: number;
+
+  right:boolean=true;
+  left:boolean=false;
   
   ngOnInit(): void {
     
     this.updateGridCols();
 
       if(this.type=="all"){
-        this.movieService.getAllMovies().subscribe(res=>{
+        this.movieService.getAllMoviesWithPagination(1,'imdbrating',4).subscribe(res=>{
           this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList.slice(0,4)
+          this.movies=res.movieList
+
+          if(this.maxPage==1){
+            this.right=false
+          }
+          // this.movies=res.movieList.slice(0,4)
         });
       }
 
       if(this.type=="category"){
-        this.movieService.getMovieByGenre(this.category).subscribe(res=>{
+        this.movieService.getMoviesByGenreWithPagination( this.category, 1 ,4).subscribe(res=>{
           this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList.slice(0,4)
+          this.movies=res.movieList
+
+          if(this.maxPage==1){
+            this.right=false
+          }
+          // this.movies=res.movieList.slice(0,4)
         });
       }
   }
@@ -83,5 +109,95 @@ export class SliderComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateGridCols();
+  }
+
+  slide(direction:string){
+
+    let page:number = 0;
+    
+    if(this.type=="all"){
+      if(direction=="right"){
+
+        page=this.current+1
+        console.log(page);
+        
+        this.movieService.getAllMoviesWithPagination(page,'imdbrating',4).subscribe(res=>{
+
+          this.right=true;
+          this.left=true
+
+          this.movies=res.movieList
+          this.maxPage=res.maxPageNumber;
+          this.current=this.current+1;
+
+          if(page+1>=this.maxPage){
+            this.right=false;
+          }
+          // this.movies=res.movieList.slice(0,4)
+        });
+      }
+    }
+
+    if(this.type=="all"){
+      if(direction=="left"){
+        page=this.current-1;
+        this.movieService.getAllMoviesWithPagination( page ,'imdbrating',4).subscribe(res=>{
+
+          this.right=true;
+          this.left=true
+
+          this.movies=res.movieList
+          this.maxPage=res.maxPageNumber;
+          this.current=this.current-1;
+
+          if(page-1<=0){
+            this.left=false;
+          }
+          // this.movies=res.movieList.slice(0,4)
+        });
+      }
+    }
+
+    if(this.type=="category"){
+      if(direction=="right"){
+        page=this.current+1
+        console.log(page);
+        
+        this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+
+          this.right=true;
+          this.left=true
+
+          this.movies=res.movieList
+          this.maxPage=res.maxPageNumber;
+          this.current=this.current+1;
+
+          if(page+1>=this.maxPage){
+            this.right=false;
+          }
+          // this.movies=res.movieList.slice(0,4)
+        });
+      }
+    }
+
+    if(this.type=="category"){
+      if(direction=="left"){
+        page=this.current-1;
+        this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+
+          this.right=true;
+          this.left=true
+
+          this.movies=res.movieList
+          this.maxPage=res.maxPageNumber;
+          this.current=this.current-1;
+          // this.movies=res.movieList.slice(0,4)
+
+          if(page-1<=0){
+            this.left=false;
+          }
+        });
+      }
+    }
   }
 }

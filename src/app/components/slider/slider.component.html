@@ -4,15 +4,17 @@
     <hr>
     
     <div class="slide">
-    <button mat-icon-button> <mat-icon>chevron_left</mat-icon> </button>
+    <button mat-icon-button (click)="slide('left')" *ngIf="left"> <mat-icon>chevron_left</mat-icon> </button>
+    <button mat-icon-button *ngIf="!left" disabled> <mat-icon>chevron_left</mat-icon> </button>
     
     <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" class="slider-grid">
         
-        <mat-grid-tile *ngFor="let result of movies" >
+        <mat-grid-tile *ngFor="let result of movies" [@slide]>
             <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card>
         </mat-grid-tile>
     </mat-grid-list>
-    <button mat-icon-button> <mat-icon>chevron_right</mat-icon> </button>
+    <button mat-icon-button (click)="slide('right')" *ngIf="right"> <mat-icon>chevron_right</mat-icon> </button>
+    <button mat-icon-button *ngIf="!right" disabled> <mat-icon>chevron_right</mat-icon> </button>
     </div>
 
 </div>

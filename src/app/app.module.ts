@@ -61,6 +61,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MapDialogComponent } from './dialogs/map-dialog/map-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -94,6 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     LanguagePickerComponent,
     SearchBarComponent,
+    MapDialogComponent,
   ],
   imports: [
     BrowserModule,
