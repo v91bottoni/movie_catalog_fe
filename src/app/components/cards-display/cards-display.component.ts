@@ -102,7 +102,8 @@ export class CardsDisplayComponent implements OnInit {
         this.page = Number(params['pg']);
         this.keyword = params['keyword'];
         this.currentChipsValue = "-1";
-        this.movieService.searchMovie(params['keyword'], params['pg']).subscribe(res => {
+        this.movieService.searchMoviePagination(params['keyword'],params['pg'],10).subscribe(res => {
+
           if(res){
             this.maxPage = res.maxPageNumber;
             this.movies = res.movieList;
@@ -132,14 +133,30 @@ export class CardsDisplayComponent implements OnInit {
 loadMovies() {
 this.route.params.subscribe(params=> {
 
+  console.log(params['keyword']);
+
 if(params['gerne']){
   const pageSize = this.paginator.pageSize;
   this.movieService.getMoviesByGenreWithPagination(params['gerne'],this.page, pageSize).subscribe(res => {
     this.maxPage = res.maxPageNumber;
     this.movies = res.movieList;
     this.response = res;
-  });
 
+  });
+  this.goTop()
+
+}
+if(params['keyword']){
+  const pageSize = this.paginator.pageSize;
+
+
+  this.movieService.searchMoviePagination(params['keyword'],this.page,pageSize).subscribe(res => {
+    this.maxPage = res.maxPageNumber;
+    this.movies = res.movieList;
+    this.response = res;
+
+  });
+  this.goTop()
 
 }
 else{

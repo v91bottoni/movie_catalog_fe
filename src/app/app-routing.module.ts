@@ -54,7 +54,7 @@ const routes: Routes = [
         component: CardsDisplayComponent
       },
       {
-        path: 'home/search/:keyword/:pg',
+        path: 'home/search/:keyword',
         component: CardsDisplayComponent,
       },
       {
