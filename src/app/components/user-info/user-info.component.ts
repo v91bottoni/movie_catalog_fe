@@ -90,9 +90,11 @@ export class UserInfoComponent implements OnInit{
 
       if(res.error.msg == UpdateStates.invalidAge){
         this.invalidAge = true;
+        this.alert.openError(this.translate.instant('message.error.invalidAge'), this.translate.instant('button.ok'));
       }
       if(res.error.msg == UpdateStates.invalidInput){
         this.invalidInput = true;
+        this.alert.openError(this.translate.instant('message.error.invalidInput'), this.translate.instant('button.ok'));
       }
     }
     )
