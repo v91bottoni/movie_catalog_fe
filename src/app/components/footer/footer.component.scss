@@ -4,7 +4,7 @@
   width: 100%;
 }
 .footerToolBar{
-padding:220px 0 250px 0;
+padding:200px 0 200px 0;
 width: 100%;
 min-height: fit-content;
 text-align: center;
@@ -83,12 +83,14 @@ mat-icon{
   border-radius: 5px;
   width: 250px;
   height: 250px;
+  margin-right: 10px;
+
 }
 .navigate{
-  margin-left: 10px;
   transform: scale(200%);
   animation: move 5s;
   animation-iteration-count: infinite;
+  cursor: pointer;
 }
 @keyframes move {
   0%  {transform:scale(200%)}
@@ -98,4 +100,11 @@ mat-icon{
   95%  {transform: translateY(0) scale(200%) rotate(180deg) }
   100%  {transform:scale(200%) rotate(0)}
 
+}
+.footerlogo{
+  height: 60px;
+  filter: invert(100%);
+}
+.footerlogo:hover{
+  cursor: pointer;
 }
