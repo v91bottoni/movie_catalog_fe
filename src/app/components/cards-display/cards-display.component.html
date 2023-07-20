@@ -1,23 +1,17 @@
 
-<mat-grid-list [cols]="colsNumber" rowHeight="2:0.5">
-    <mat-grid-tile style="padding: 9%;">
-    <!-- Search Bar -->
-        <app-search-bar></app-search-bar>
-    </mat-grid-tile>
-
-    <mat-grid-tile style="padding: 9%;">
-    <!-- Swtich Cards - List -->
-    <mat-button-toggle-group value="selected" class="switch">
-        <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
-        <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
-        <mat-button-toggle value="selected" *ngIf="!cardView"> <mat-icon>menu</mat-icon> </mat-button-toggle>
-        <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
-    </mat-button-toggle-group>
-    </mat-grid-tile>
-
-</mat-grid-list>
-
 <mat-grid-list cols="1" style="text-align: center;">
+
+<!-- Search Bar -->
+<app-search-bar></app-search-bar>
+
+<!-- Swtich Cards - List -->
+ <mat-button-toggle-group value="selected" class="switch">
+    <mat-button-toggle value="selected" *ngIf="cardView"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="cards"*ngIf="!cardView" (click)="switchView()"> <mat-icon>view_carousel</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="selected" *ngIf="!cardView"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+    <mat-button-toggle value="list" *ngIf="cardView" (click)="switchView()"> <mat-icon>menu</mat-icon> </mat-button-toggle>
+</mat-button-toggle-group>
+
 <!-- Chips -->
 <div class="chips">
 <mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
