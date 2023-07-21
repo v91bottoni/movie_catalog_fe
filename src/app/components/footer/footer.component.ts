@@ -28,5 +28,4 @@ export class FooterComponent {
     this.dialog.open(MapDialogComponent);
   }
 
-
 }
