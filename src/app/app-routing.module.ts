@@ -100,7 +100,15 @@ const routes: Routes = [
         component: ErrorComponent
       },
       {
-        path: 'aboutus',
+        path: 'about_us',
+        component: AboutUsComponent
+      },
+      {
+        path: 'factory',
+        component: AboutUsComponent
+      },
+      {
+        path: 'values',
         component: AboutUsComponent
       },
       {

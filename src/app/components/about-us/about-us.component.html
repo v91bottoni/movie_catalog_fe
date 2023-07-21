@@ -1,8 +1,8 @@
 <mat-grid-list class="pcview" cols="4" rowHeight="500px" >
-    <mat-grid-tile class="img factory" [colspan]="3" [rowspan]="1">
+    <mat-grid-tile id="factory" class="img factory" [colspan]="3" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.factory' | translate}}</h2>
+                <h2 class="slide">{{'aboutus.factory' | translate}}</h2><hr>
 
             </mat-card-title>
             <mat-card-content>
@@ -14,21 +14,21 @@
     <mat-grid-tile class="contacts" [colspan]="1" [rowspan]="3">
         <mat-card>
             <mat-card-title>
-                <h2>{{'aboutus.contacts' | translate}}</h2>
+                <h2 class="slide">{{'aboutus.contacts' | translate}}</h2><hr>
 
             </mat-card-title>
             <mat-card-content>
             <mat-icon class="contactIcon">phone</mat-icon>080-5651234<br><br>
             <mat-icon class="contactIcon">mail</mat-icon>Moovies@gmail.com<br><br>
-            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4, NA<br>
+            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4 - NA<br>
 
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile class="img team" [colspan]="3" [rowspan]="1">
+    <mat-grid-tile id="about_us" class="img team" [colspan]="3" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.team' | translate}}</h2>
+                <h2  class="slide"> {{'aboutus.team' | translate}}</h2><hr>
 
             </mat-card-title>
             <mat-card-content>
@@ -37,10 +37,10 @@
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile class="img values" [colspan]="3" [rowspan]="1">
+    <mat-grid-tile id="values" class="img values" [colspan]="3" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.values' | translate}}</h2>
+                <h2  class="slide">{{'aboutus.values' | translate}}</h2><hr>
 
             </mat-card-title>
             <mat-card-content>
@@ -57,10 +57,10 @@
 
 
 <mat-grid-list class="mobileview" cols="1" rowHeight="300px" >
-    <mat-grid-tile class="img factory" [colspan]="1" [rowspan]="1">
+    <mat-grid-tile id="factoryMobile" class="img factory" [colspan]="1" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.factory' | translate}}</h2>
+                <h2  class="slide">{{'aboutus.factory' | translate}}</h2>
 
             </mat-card-title>
             <mat-card-content>
@@ -69,10 +69,10 @@
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile class="img team" [colspan]="1" [rowspan]="1">
+    <mat-grid-tile id="about_usMobile" class="img team" [colspan]="1" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.team' | translate}}</h2>
+                <h2 class="slide">{{'aboutus.team' | translate}}</h2>
 
             </mat-card-title>
             <mat-card-content>
@@ -81,10 +81,10 @@
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile class="img values" [colspan]="1" [rowspan]="1">
+    <mat-grid-tile id="valuesMobile"  class="img values" [colspan]="1" [rowspan]="1">
         <mat-card class="imagecard">
             <mat-card-title>
-                <h2>{{'aboutus.values' | translate}}</h2>
+                <h2 class="slide">{{'aboutus.values' | translate}}</h2>
 
             </mat-card-title>
             <mat-card-content>
@@ -102,7 +102,7 @@
             <mat-card-content>
             <mat-icon class="contactIcon">phone</mat-icon>080-5651234<br><br>
             <mat-icon class="contactIcon">mail</mat-icon>Moovies@gmail.com<br><br>
-            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4, NA<br>
+            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4 - NA<br>
     
             </mat-card-content>
         </mat-card>
