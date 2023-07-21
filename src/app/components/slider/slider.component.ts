@@ -42,32 +42,36 @@ export class SliderComponent implements OnInit {
   animationState: string = 'left'
   
   ngOnInit(): void {
-    
-    this.updateGridCols();
-
-      if(this.type=="all"){
-        this.movieService.getAllMoviesWithPagination(1,'imdbrating',4).subscribe(res=>{
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList
-
-          if(this.maxPage==1){
-            this.right=false
-          }
-          // this.movies=res.movieList.slice(0,4)
-        });
-      }
-
-      if(this.type=="category"){
-        this.movieService.getMoviesByGenreWithPagination( this.category, 1 ,4).subscribe(res=>{
-          this.maxPage=res.maxPageNumber;
-          this.movies=res.movieList
-
-          if(this.maxPage==1){
-            this.right=false
-          }
-          // this.movies=res.movieList.slice(0,4)
-        });
-      }
+  
+    this.updateGridCols(); //Aggiorna il numore di collonne in base alla grandezza dello schermo
+  
+    // Se il tipo è "all"
+    if(this.type=="all"){
+      // Ottieni tutti i film con paginazione
+      this.movieService.getAllMoviesWithPagination(1,'imdbrating',4).subscribe(res=>{
+        this.maxPage=res.maxPageNumber;
+        this.movies=res.movieList
+  
+        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
+        if(this.maxPage==1){
+          this.right=false
+        }
+      });
+    }
+  
+    // Se il tipo è "category"
+    if(this.type=="category"){
+      // Ottieni i film per genere con paginazione
+      this.movieService.getMoviesByGenreWithPagination(this.category, 1 ,4).subscribe(res=>{
+        this.maxPage=res.maxPageNumber;
+        this.movies=res.movieList
+  
+        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
+        if(this.maxPage==1){
+          this.right=false
+        }
+      });
+    }
   }
 
   constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router){}
@@ -111,106 +115,88 @@ export class SliderComponent implements OnInit {
     this.updateGridCols();
   }
 
-  slide(direction:string){
 
+  slide(direction:string){
     let page:number = 0;
     
-    if(this.type=="all"){
-      if(direction=="right"){
-
-        page=this.current+1
-        console.log(page);
-        
-        this.movieService.getAllMoviesWithPagination(page,'imdbrating',4).subscribe(res=>{
-
-          this.right=true;
-          this.left=true
-          this.animationState = 'right';
-
-          this.movies=res.movieList
-          this.maxPage=res.maxPageNumber;
-          this.current=this.current+1;
-
-          if(page+1>=this.maxPage){
-            this.right=false;
-          }
-          // this.movies=res.movieList.slice(0,4)
-        });
-      }
+    // Se il tipo è "all" e la direzione è "right"
+    if(this.type=="all" && direction=="right"){
+      // Incrementa la pagina corrente
+      page=this.current+1
+      console.log(page);
+      // Ottieni tutti i film con paginazione
+      this.movieService.getAllMoviesWithPagination(page,'imdbrating',4).subscribe(res=>{
+        this.right=true;
+        this.left=true
+        this.animationState = 'right';
+        this.movies=res.movieList
+        this.maxPage=res.maxPageNumber;
+        this.current=this.current+1;
+        // Se siamo sull'ultima pagina, disabilita il pulsante "Avanti"
+        if(page+1>=this.maxPage){
+          this.right=false;
+        }
+      });
     }
-
-    if(this.type=="all"){
-      if(direction=="left"){
-        page=this.current-1;
-        this.movieService.getAllMoviesWithPagination( page ,'imdbrating',4).subscribe(res=>{
-
-          this.right=true;
-          this.left=true
-          this.animationState = 'left';
-
-          this.movies=res.movieList
-          this.maxPage=res.maxPageNumber;
-          this.current=this.current-1;
-
-          if(page-1<=0){
-            this.left=false;
-          }
-          // this.movies=res.movieList.slice(0,4)
-        });
-      }
+  
+    // Se il tipo è "all" e la direzione è "left"
+    if(this.type=="all" && direction=="left"){
+      // Decrementa la pagina corrente
+      page=this.current-1;
+      // Ottieni tutti i film con paginazione
+      this.movieService.getAllMoviesWithPagination( page ,'imdbrating',4).subscribe(res=>{
+        this.right=true;
+        this.left=true
+        this.animationState = 'left';
+        this.movies=res.movieList
+        this.maxPage=res.maxPageNumber;
+        this.current=this.current-1;
+        // Se siamo sulla prima pagina, disabilita il pulsante "Indietro"
+        if(page-1<=0){
+          this.left=false;
+        }
+      });
     }
-
-    if(this.type=="category"){
-      if(direction=="right"){
-        page=this.current+1
-        console.log(page);
-        
-        this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
-
-          this.right=true;
-          this.left=true
-          this.animationState = 'right';
-
-          this.movies=res.movieList
-          this.maxPage=res.maxPageNumber;
-          this.current=this.current+1;
-
-          if(page+1>=this.maxPage){
-            this.right=false;
-          }
-          // this.movies=res.movieList.slice(0,4)
-        });
-      }
+  
+    // Se il tipo è "category" e la direzione è "right"
+    if(this.type=="category" && direction=="right"){
+      // Incrementa la pagina corrente
+      page=this.current+1
+      console.log(page);
+      // Ottieni i film per genere con paginazione
+      this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+        this.right=true;
+        this.left=true
+        this.animationState = 'right';
+        this.movies=res.movieList
+        this.maxPage=res.maxPageNumber;
+        this.current=this.current+1;
+        // Se siamo sull'ultima pagina, disabilita il pulsante "Avanti"
+        if(page+1>=this.maxPage){
+          this.right=false;
+        }
+      });
     }
-
-    if(this.type=="category"){
-      if(direction=="left"){
-        page=this.current-1;
-        this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
-
-          this.right=true;
-          this.left=true
-          this.animationState = 'left';
-
-          this.movies=res.movieList
-          this.maxPage=res.maxPageNumber;
-          this.current=this.current-1;
-          // this.movies=res.movieList.slice(0,4)
-
-          if(page-1<=0){
-            this.left=false;
-          }
-        });
-      }
-    }
-
-    if (direction === 'left') {
-      
-    } else if (direction === 'right') {
-      
+  
+    // Se il tipo è "category" e la direzione è "left"
+    if(this.type=="category" && direction=="left"){
+      // Decrementa la pagina corrente
+      page=this.current-1;
+      // Ottieni i film per genere con paginazione
+      this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+        this.right=true;
+        this.left=true
+        this.animationState = 'left';
+        this.movies=res.movieList
+        this.maxPage=res.maxPageNumber;
+        this.current=this.current-1;
+        // Se siamo sulla prima pagina, disabilita il pulsante "Indietro"
+        if(page-1<=0){
+          this.left=false;
+        }
+      });
     }
   }
-
   
 
 }
