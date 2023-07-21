@@ -37,6 +37,10 @@ export class UpdateMovieComponent {
         console.log(this.movie);
         this.reset();
       });
+      window.scrollTo({
+        top: 0,
+        behavior:'smooth'
+      });
 
   }
 

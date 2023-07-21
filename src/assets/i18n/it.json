@@ -76,7 +76,7 @@
       "title" : "Titolo",
       "plot" : "Trama",
       "writer" : "Sceneggiatore",
-      "imdbRating" : "Rating IMDB",
+      "imdbRating" : "Voto IMDB",
       "imdbid" : "IMDB-ID",
       "actors" : "Attori",
       "year" : "Anno",
@@ -145,5 +145,9 @@
   "msg":"Vuoi Proseguire?",
   "yes":"SI",
   "no":"NO"
-}
+},
+"tooltip":{
+    "obligatory":"Campo obbligatorio!"
+  }
+
 }

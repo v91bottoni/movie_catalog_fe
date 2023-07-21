@@ -4,7 +4,7 @@
       <div class="movie-poster" [style.background-image]="'url(' + moviePosterUrl + ')'"></div>
       <div class="movie-info">
         <div class="movie-title">{{ movie.title }}</div>
-        <div class="movie-year">{{ 'movie.released' }}: {{ movie.year }}</div>
+        <div class="movie-year">{{ 'movie.released' | translate }}: {{ movie.year }}</div>
         <mat-chip-listbox aria-label="Genre selection" [value]="currentChipsValue">
           <mat-chip disable color="accent"  value="-1"> {{ movie.genre }} </mat-chip>
         </mat-chip-listbox>
