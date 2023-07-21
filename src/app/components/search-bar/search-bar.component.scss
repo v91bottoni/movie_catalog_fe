@@ -1,0 +1,19 @@
+.search{
+  display: block;
+  margin: 20px auto;
+  min-width: 200px;
+  width: 40vw;
+}
+.btn{
+  border:none;
+  background: none;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.btn:hover{
+  transform:translate(-1px, -1px);
+}
+
+.mat-mdc-form-field-flex{
+  background: white;
+}

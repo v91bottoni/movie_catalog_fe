@@ -1,0 +1,12 @@
+<div mat-dialog-content style="padding: 10px 30px;">
+
+  <h1 mat-dialog-title> <b>{{'expire.title'| translate}}</b> </h1>
+  <div mat-dialog-content>
+    {{'expire.msg'| translate}}
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{'expire.yes'| translate}}</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>{{'expire.no'| translate}}</button>
+  </div>
+
+</div>

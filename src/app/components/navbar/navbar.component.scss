@@ -1,0 +1,80 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo{
+  max-width: 200px;
+  max-height: 50px;
+  margin-top: 1%;
+  filter: invert(100%);
+}
+mat-toolbar{
+  box-shadow: 0px 1px 10px 1px #11111176;
+}
+
+
+.home{
+  margin-left: 10px;
+  transition: 0.4s;
+  }
+.home:hover{
+  cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  .welcome {
+      display: none ;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homeLinkOn {
+      display: none ;
+  }
+  .homeLinkOff {
+    display:block;
+    display: grid;
+  }
+  .homeLinkOff:hover{
+    text-shadow: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .homeLinkOn {
+      display: block ;
+  }
+  .homeLinkOff {
+    display:none;
+  }
+}
+
+.panel{
+  text-align: left;
+  padding: 12px 5px 12px 24px;
+  box-shadow: none;
+  transition: 0.3s;
+  display: flex;
+  width: fit-content;
+}
+.profilelabel{
+  text-align: right;
+  color: black;
+  z-index: 3;
+  position: absolute;
+  top: 65px;
+  right: 5px;
+  border: solid 1px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background: white;
+}
+.proElement{
+  padding: 10px 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.proElement:hover{
+  background: rgba(0,0,0,0.2);
+}
+.proIcon{
+  margin: 0 0 0 10px;
+  transform: translateY(25%);
+}

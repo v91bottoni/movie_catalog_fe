@@ -1,0 +1,42 @@
+.loader {
+  margin: 100px auto;
+}
+
+.card-grid{
+  text-align: center;
+  width: 90%;
+  margin: 5%;
+  margin-bottom: 5%;
+}
+
+.card-text {
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  transition: all 3.5s ease-out;
+}
+
+.card-title {
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+
+.mat-button{
+  width: 15;
+  margin: 27.5% auto;
+}
+
+.pageButton{
+  text-align: center;
+}
+
+.chips{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-top: 3%;
+}
+

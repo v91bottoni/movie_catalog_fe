@@ -1,0 +1,15 @@
+<div class="navbar">
+  <div class="languageSelector">
+    <mat-menu #languageMenu="matMenu" yPosition="below" xPosition="after">
+      <button mat-menu-item *ngFor="let lang of languages" (click)="changeLang(lang.value)">
+        <img [src]="lang.img" class="flag" />
+        {{ lang.value | uppercase }}
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="languageMenu">
+      <img [src]="selectedLanguage.img" class="flag" />
+    
+    </button>
+  </div>
+</div>

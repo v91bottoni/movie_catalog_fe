@@ -1,0 +1,110 @@
+.footer{
+  bottom: 0;
+  height: fit-content;
+  width: 100%;
+}
+.footerToolBar{
+padding:200px 0 200px 0;
+width: 100%;
+min-height: fit-content;
+text-align: center;
+}
+h1{
+  margin: 0;
+  padding: 0;
+}
+table{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+table tr{
+  text-align: center;
+}
+table td{
+  min-width: fit-content;
+  width: 30%;
+  text-align: center;
+}
+
+
+.copyRight{
+  width: fit-content;
+  font-size: small;
+  margin: 0 auto;
+}
+.cardContainer{
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 5px 10px;
+  height: fit-content;
+}
+
+mat-list-item{
+  text-align: center;
+  margin:0 auto;
+  width: fit-content;
+  height: fit-content;
+}
+.cardContainer mat-list-item:hover{
+  font-weight: 900;
+  background: rgba(0,0,0,0.2);
+}
+.cardContainer mat-list-item:hover  mat-label{
+  transition: 0.2s;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.socialLogo{
+  display: inline;
+  width: 30px;
+ margin: 0 10px;
+ border-radius: 50%;
+ transition:  0.2s;
+}
+.socialLogo:hover{
+  transform: translate(-2px, -2px);
+  box-shadow: 0 0 10px white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .hide{
+    display: none;
+  }
+}
+
+mat-icon{
+  transform: translateY(20%);
+}
+.map{
+  border-radius: 5px;
+  width: 250px;
+  height: 250px;
+  margin-right: 10px;
+
+}
+.navigate{
+  transform: scale(200%);
+  animation: move 5s;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+@keyframes move {
+  0%  {transform:scale(200%)}
+  25%  {transform:scale(200%)}
+  50%  {transform:translateY(-215px) scale(200%) }
+  55%  {transform:translateY(-215px) rotate(180deg) scale(200%) }
+  95%  {transform: translateY(0) scale(200%) rotate(180deg) }
+  100%  {transform:scale(200%) rotate(0)}
+
+}
+.footerlogo{
+  height: 60px;
+  filter: invert(100%);
+}
+.footerlogo:hover{
+  cursor: pointer;
+}
