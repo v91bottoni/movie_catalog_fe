@@ -45,8 +45,6 @@ export class CardsDisplayComponent implements OnInit {
   idHover!: string;
   gridCols!: number;
   colsNumber!: number;
-
-
   chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
 
   constructor(
@@ -60,153 +58,122 @@ export class CardsDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    this.goTop(); // Scrolla la pagina verso l'alto
+    this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
+    this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
+    
+    let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
+    if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
+    if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
+    
+    // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
+    if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
 
-    this.goTop();
-
-    this.updateGridCols();
-    this.updateColsNumber();
-
-    let bool: string = sessionStorage.getItem("cardView") as string
-
-    if(bool === 'true'){
-      this.cardView=true;
-    }
-    if (bool === 'false') {
-      this.cardView = false;
-    }
-
-    // this.route.snapshot.paramMap.get("pag")
-
-    if (sessionStorage.getItem("chipsValue")) {
-      this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
-    }
-
-
-    this.route.params.subscribe(params => {
-      if (params['gerne']) {
-        this.page = Number(params['page']);
-        this.category = params['gerne'];
-        if (this.currentChipsValue != this.category) this.currentChipsValue = this.category;
-        this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
-          this.maxPage = res.maxPageNumber;
-          this.movies = res.movieList;
-          this.response = res;
-          this.home = false;
-          this.gerne = true;
-          this.search = false;
-        });
-      } else if (params['pag']) {
-        this.page = Number(params['pag']);
+    // Sottoscrivi al cambiamento dei parametri dell'URL
+    this.route.params.subscribe(params => {      
+      // Se esiste il parametro 'gerne' o 'keyword', carica i film filtrati per genere o per la ricerca
+      if(params['gerne'] || params['keyword']){ 
         this.loadMovies();
-      } else if (params['keyword']) {
-        this.page = Number(params['pg']);
-        this.keyword = params['keyword'];
-        this.currentChipsValue = "-1";
-        this.movieService.searchMoviePagination(params['keyword'],params['pg'],10).subscribe(res => {
-
-          if(res){
-            this.maxPage = res.maxPageNumber;
-            this.movies = res.movieList;
-            this.response = res;
-            this.home = false;
-            this.gerne = false;
-            this.search = true;
-          }else{
-            this.router.navigate(['searchError']);
-          }
-        });
-
-      } else {
+      }
+      // Altrimenti, imposta this.currentChipsValue a "-1" e carica i film
+      else{
         this.currentChipsValue = "-1";
         this.loadMovies();
       }
     });
 
+    // Sottoscrivi all'evento di cambio pagina del paginatore
     this.paginator.page.subscribe((event: PageEvent) => {
-       this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
+      // Aggiorna le variabili di paginazione
+      this.currentPage = event.pageIndex;
+      this.pageSize = event.pageSize;
       this.page = event.pageIndex + 1;
+      // Carica i film
       this.loadMovies();
     });
   }
 
-loadMovies() {
-this.route.params.subscribe(params=> {
+  loadMovies() {
+    // Sottoscrivi al cambio dei parametri dell'URL
+    this.route.params.subscribe(params => {
+  
+      // Se esiste il parametro 'gerne'
+      if (params['gerne']) {
+        // Recupera la dimensione della pagina dal paginatore
+        const pageSize = this.paginator.pageSize;
+        // Ottieni i film per genere con paginazione
+        this.movieService.getMoviesByGenreWithPagination(params['gerne'], this.page, pageSize || 10).subscribe(res => {
+          this.maxPage = res.maxPageNumber;
+          this.movies = res.movieList;
+          this.response = res;
+        });
+        // Scrolla la pagina verso l'alto
+        this.goTop();
+      }
+  
+      // Se esiste il parametro 'keyword'
+      if (params['keyword']) {
+        // Recupera la dimensione della pagina dal paginatore
+        const pageSize = this.paginator.pageSize;
+        // Cerca i film con paginazione
+        this.movieService.searchMoviePagination(params['keyword'], this.page, pageSize || 10).subscribe(res => {
+          this.maxPage = res.maxPageNumber;
+          this.movies = res.movieList;
+          this.response = res;
+        });
+        // Scrolla la pagina verso l'alto
+        this.goTop();
+      }
+      // Altrimenti
+      else {
+        // Recupera la dimensione della pagina dal paginatore
+        const pageSize = this.paginator.pageSize;
+        // Ottieni tutti i film con paginazione
+        this.movieService.getAllMoviesWithPagination(this.page, 'imdbrating', pageSize || 10).subscribe(res => {
+          this.maxPage = res.maxPageNumber;
+          this.movies = res.movieList;
+          this.response = res;
+        });
+        // Scrolla la pagina verso l'alto
+        this.goTop();
+      }
+    });
+  }
 
-  console.log(params['keyword']);
 
-if(params['gerne']){
-  const pageSize = this.paginator.pageSize;
-  this.movieService.getMoviesByGenreWithPagination(params['gerne'],this.page, pageSize).subscribe(res => {
-    this.maxPage = res.maxPageNumber;
-    this.movies = res.movieList;
-    this.response = res;
-
-  });
-  this.goTop()
-
-}
-if(params['keyword']){
-  const pageSize = this.paginator.pageSize;
-
-
-  this.movieService.searchMoviePagination(params['keyword'],this.page,pageSize).subscribe(res => {
-    this.maxPage = res.maxPageNumber;
-    this.movies = res.movieList;
-    this.response = res;
-
-  });
-  this.goTop()
-
-}
-else{
-  const pageSize = this.paginator.pageSize;
-  this.movieService.getAllMoviesWithPagination(this.page, 'imdbrating', pageSize).subscribe(res => {
-    this.maxPage = res.maxPageNumber;
-    this.movies = res.movieList;
-    this.response = res;
-  });
-
-  this.goTop()
-}
-
-})
-
-
-
-}
-
-
-   openDialog(imdbid: string){
-    this.movieService.movieid = imdbid;
-    const dialogRef = this.dialog.open(MovieDetailsComponent);
-
+  openDialog(imdbid: string){
+    
+    this.movieService.movieid = imdbid; // Imposta il movieid nel servizio movieService
+    const dialogRef = this.dialog.open(MovieDetailsComponent); // Apre il dialogo per i dettagli del film
+    
+    // Sottoscrivi all'evento di chiusura del dialogo
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   paginatorPageChange(event: PageEvent) {
+    // Aggiorna il numero di pagina corrente
     this.page = event.pageIndex + 1;
+    // Calcola il numero massimo di pagine
     this.maxPage = Math.ceil(this.totalItems / this.pageSize);
+    // Carica i film in base alla nuova pagina
     this.loadMovies();
   }
 
-  navigatePage(pag: number){
-    this.util.backpage = '/home/page/'+pag;
-    if(this.home) this.router.navigate(['/home/page/'+pag]);
-    if(this.gerne) this.router.navigate(['/home/gerne/'+ this.category+'/'+pag]);
-    if(this.search) this.router.navigate(['/home/search/'+ this.keyword+'/'+pag]);
-  }
-
   switchView(){
-
+    // Verifica se la visualizzazione corrente è quella a cards
     if(this.cardView){
+      // Se sì, cambia la visualizzazione a elenco
       this.cardView=false;
+      // Salva la preferenza di visualizzazione nella sessione
       sessionStorage.setItem('cardView', 'false');
     }
     else{
+      // Altrimenti, cambia la visualizzazione a cards
       this.cardView=true;
+      // Salva la preferenza di visualizzazione nella sessione
       sessionStorage.setItem('cardView', 'true');
     }
   }
@@ -215,18 +182,21 @@ else{
   openMovieDetails(movieId: string): void {
     this.router.navigate(['/movies', movieId]);
   }
+
   goToCategory(chips: string) {
+    // Verifica se il valore dei chips è "All"
     if (chips === "All") {
-      this.currentChipsValue = chips;
-      this.router.navigateByUrl('/home/gerne/'+ this.currentChipsValue );
-      this.goTop()
+      this.currentChipsValue = chips; // Imposta il valore corrente dei chips
+      this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
+      this.goTop(); // Scrolla la pagina verso l'alto
     } else {
+      // Altrimenti, imposta solo il valore corrente dei chips
       this.currentChipsValue = chips;
     }
-    sessionStorage.setItem('chipsValue', this.currentChipsValue);
-    this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue);
-    this.goTop()
-
+    
+    sessionStorage.setItem('chipsValue', this.currentChipsValue); // Salva il valore corrente dei chips nella sessione
+    this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
+    this.goTop(); // Scrolla la pagina verso l'alto
   }
 
   goTop(){
@@ -240,7 +210,7 @@ else{
 
   goHome(){
     this.currentChipsValue = "-1"
-    this.router.navigateByUrl('/home/page/1')
+    this.router.navigateByUrl('/home')
   }
 
   setHover(value: boolean, id:string) {
@@ -254,11 +224,11 @@ else{
 
   updateGridCols() {
     const screenWidth = window.innerWidth;
-    if (screenWidth < 400) {
+    if (screenWidth < 600) {
       this.gridCols = 1;
-    } else if (screenWidth < 600) {
+    } else if (screenWidth < 850) {
       this.gridCols = 2;
-    } else if (screenWidth < 800) {
+    } else if (screenWidth < 1040) {
       this.gridCols = 3;
     } else {
       this.gridCols = 4;
@@ -267,7 +237,7 @@ else{
 
   updateColsNumber(){
     const screenWidth = window.innerWidth;
-    if (screenWidth < 400) {
+    if (screenWidth < 600) {
       this.colsNumber = 1;
     } else {
       this.colsNumber = 2;
@@ -283,7 +253,7 @@ else{
 }
 
 
-convertNumber(string:string):Number{
-  return Number(string);
-}
+  convertNumber(string:string):Number{
+    return Number(string);
+  }
 }
