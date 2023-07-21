@@ -1,20 +1,29 @@
-<div class="slider">
-    
-    <h1 class="title" (click)="viewAll(title)"> {{title}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1>
-    <hr>
-    
-    <div class="slide">
-    <button mat-icon-button (click)="slide('left')" *ngIf="left" class="left"> <mat-icon>chevron_left</mat-icon> </button>
-    <button mat-icon-button *ngIf="!left" disabled> <mat-icon>chevron_left</mat-icon> </button>
-    
-    <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" class="slider-grid">
-        
-        <mat-grid-tile *ngFor="let result of movies" [@fadeInOut]>
-            <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-    <button mat-icon-button (click)="slide('right')" *ngIf="right" class="right"> <mat-icon>chevron_right</mat-icon> </button>
-    <button mat-icon-button *ngIf="!right" disabled> <mat-icon>chevron_right</mat-icon> </button>
-    </div>
-
+<div class="slider"> 
+     
+    <!-- Titolo dello slider --> 
+    <h1 class="title" (click)="viewAll(title)"> {{title}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1> 
+    <hr> 
+     
+    <div class="slide"> 
+        <!-- Pulsante per scorrere a sinistra --> 
+        <button mat-icon-button (click)="slide('left')" *ngIf="left" class="left"> <mat-icon>chevron_left</mat-icon> </button> 
+        <!-- Pulsante disabilitato per scorrere a sinistra quando non ci sono più elementi da visualizzare --> 
+        <button mat-icon-button *ngIf="!left" disabled> <mat-icon>chevron_left</mat-icon> </button> 
+     
+        <!-- Griglia delle Cards --> 
+        <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" class="slider-grid"> 
+             
+            <!-- Iterazione su ogni elemento della lista di film --> 
+            <mat-grid-tile *ngFor="let result of movies" [@fadeInOut]> 
+                <!-- Crad dei film --> 
+                <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card> 
+            </mat-grid-tile> 
+        </mat-grid-list> 
+         
+        <!-- Pulsante per scorrere a destra --> 
+        <button mat-icon-button (click)="slide('right')" *ngIf="right" class="right"> <mat-icon>chevron_right</mat-icon> </button> 
+        <!-- Pulsante disabilitato per scorrere a destra quando non ci sono più elementi da visualizzare --> 
+        <button mat-icon-button *ngIf="!right" disabled> <mat-icon>chevron_right</mat-icon> </button> 
+    </div> 
+ 
 </div>
