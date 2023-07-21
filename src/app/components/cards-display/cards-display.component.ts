@@ -31,7 +31,7 @@ export class CardsDisplayComponent implements OnInit {
   response!: response;
   page!: number;
   maxPage!: number;
-  totalItems = 70;
+  totalItems!: number;
   cardView: boolean = true;
   movies!: Movie[];
   displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
@@ -110,6 +110,7 @@ export class CardsDisplayComponent implements OnInit {
           this.maxPage = res.maxPageNumber;
           this.movies = res.movieList;
           this.response = res;
+          this.totalItems = res.totalElements;
         });
         // Scrolla la pagina verso l'alto
         this.goTop();
@@ -128,6 +129,7 @@ export class CardsDisplayComponent implements OnInit {
             this.home = false;
             this.gerne = false;
             this.search = true;
+            this.totalItems = res.totalElements;
           }else{
             this.router.navigate(['searchError']);
           }
@@ -144,6 +146,7 @@ export class CardsDisplayComponent implements OnInit {
           this.maxPage = res.maxPageNumber;
           this.movies = res.movieList;
           this.response = res;
+          this.totalItems = res.totalElements;
         });
         // Scrolla la pagina verso l'alto
         this.goTop();
@@ -169,6 +172,8 @@ export class CardsDisplayComponent implements OnInit {
             this.movies = res.movieList;
             // Assegna la risposta completa alla variabile 'response'
             this.response = res;
+            // Assegna il valore di 'totalElements' dalla risposta alla variabile 'totalItems'
+            this.totalItems = res.totalElements;
             // Imposta le variabili 'home', 'gerne' e 'search' per controllare la visualizzazione della pagina
             this.home = false;
             this.gerne = true;
@@ -194,6 +199,8 @@ firstLoadSearch() {
               this.movies = res.movieList;
               // Assegna la risposta completa alla variabile 'response'
               this.response = res;
+              // Assegna il valore di 'totalElements' dalla risposta alla variabile 'totalItems'
+              this.totalItems = res.totalElements;
               // Imposta le variabili 'home', 'gerne' e 'search' per controllare la visualizzazione della pagina
               this.home = false;
               this.gerne = false;
