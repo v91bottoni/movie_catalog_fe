@@ -66,6 +66,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -101,6 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchBarComponent,
     MapDialogComponent,
     SpinnerComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
