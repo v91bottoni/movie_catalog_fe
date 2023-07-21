@@ -58,81 +58,42 @@ export class CardsDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.goTop(); // Scrolla la pagina verso l'alto
+    this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
+    this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
+    
+    let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
+    if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
+    if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
+    
+    // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
+    if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
 
-    // Funzione per tornare in cima alla pagina
-    this.goTop();
-
-    // Aggiorna il numero di colonne nella griglia
-    this.updateGridCols();
-    this.updateColsNumber();
-
-    // Recupera il valore della vista delle card dalla sessione
-    let bool: string = sessionStorage.getItem("cardView") as string
-
-    // Imposta la vista delle card in base al valore recuperato
-    if(bool === 'true'){
-      this.cardView=true;
-    }
-    if (bool === 'false') {
-      this.cardView = false;
-    }
-
-    // Recupera il valore dei filtri dalle sessione
-    if (sessionStorage.getItem("chipsValue")) {
-      this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
-    }
-
-    // Gestisce i parametri dell'URL
+    // Sottoscrivi al cambiamento dei parametri dell'URL
     this.route.params.subscribe(params => {
-      if (params['gerne']) {
-        // Se è presente il parametro 'gerne', carica i film del genere specificato e imposta le variabili di stato
-        this.page = Number(params['page']);
-        this.category = params['gerne'];
-        if (this.currentChipsValue != this.category) this.currentChipsValue = this.category;
-          this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
-            this.maxPage = res.maxPageNumber;
-            this.movies = res.movieList;
-            this.response = res;
-            this.home = false;
-            this.gerne = true;
-            this.search = false;
-          });
-      } else if (params['pag']) {
-          // Se è presente il parametro 'pag', carica i film della pagina specificata
-          this.page = Number(params['pag']);
-          this.loadMovies();
-      } else if (params['keyword']) {
-        // Se è presente il parametro 'keyword', carica i film corrispondenti alla ricerca e imposta le variabili di stato
-        this.page = Number(params['pg']);
-        this.keyword = params['keyword'];
-        this.currentChipsValue = "-1";
-        this.movieService.searchMoviePagination(params['keyword'],params['pg'],10).subscribe(res => {
-
-          if(res){
-            this.maxPage = res.maxPageNumber;
-            this.movies = res.movieList;
-            this.response = res;
-            this.home = false;
-            this.gerne = false;
-            this.search = true;
-          }else{
-            this.router.navigate(['searchError']);
-          }
-        });
-
-      } else {
-        // Carica i film di default
-        this.currentChipsValue = "-1";
-        this.loadMovies();
-      }
+        // Se il parametro 'gerne' è presente, chiama il metodo firstLoadCategory()
+        if (params['gerne']) { 
+            this.firstLoadCategory(); 
+        } 
+        // Se il parametro 'keyword' è presente, chiama il metodo firstLoadSearch()
+        else if (params['keyword']) { 
+            this.firstLoadSearch(); 
+        } 
+        // Altrimenti, imposta la variabile currentChipsValue su "-1" e chiama il metodo loadMovies()
+        else { 
+            this.currentChipsValue = "-1"; 
+            this.loadMovies(); 
+        }
     });
 
-    // Gestisce l'evento di cambio pagina nella paginazione
+    // Sottoscrivi all'evento di cambio pagina del paginatore
     this.paginator.page.subscribe((event: PageEvent) => {
-       this.currentPage = event.pageIndex;
-       this.pageSize = event.pageSize;
-       this.page = event.pageIndex + 1;
-       this.loadMovies();
+      // Aggiorna le variabili di paginazione
+      this.currentPage = event.pageIndex;
+      this.pageSize = event.pageSize;
+      this.page = event.pageIndex + 1;
+      // Carica i film
+      this.loadMovies();
     });
 }
 
@@ -160,9 +121,16 @@ export class CardsDisplayComponent implements OnInit {
         const pageSize = this.paginator.pageSize;
         // Cerca i film con paginazione
         this.movieService.searchMoviePagination(params['keyword'], this.page, pageSize || 10).subscribe(res => {
-          this.maxPage = res.maxPageNumber;
-          this.movies = res.movieList;
-          this.response = res;
+          if(res){
+            this.maxPage = res.maxPageNumber;
+            this.movies = res.movieList;
+            this.response = res;
+            this.home = false;
+            this.gerne = false;
+            this.search = true;
+          }else{
+            this.router.navigate(['searchError']);
+          }
         });
         // Scrolla la pagina verso l'alto
         this.goTop();
@@ -182,6 +150,62 @@ export class CardsDisplayComponent implements OnInit {
       }
     });
   }
+
+  firstLoadCategory() {
+    // Sottoscrive ai parametri della rotta
+    this.route.params.subscribe(params => {
+        // Assegna il valore del parametro 'gerne' alla variabile 'category'
+        this.category = params['gerne'];
+        // Controlla se il valore corrente di 'currentChipsValue' è diverso dalla categoria corrente
+        // Se è diverso, aggiorna 'currentChipsValue' con il valore della categoria
+        if (this.currentChipsValue != this.category) {
+            this.currentChipsValue = this.category;
+        }
+        // Chiama il metodo getMovieByGenre del movieService, passando la categoria e il numero di pagina 1
+        this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
+            // Assegna il valore di 'maxPageNumber' dalla risposta alla variabile 'maxPage'
+            this.maxPage = res.maxPageNumber;
+            // Assegna la lista di film dalla risposta alla variabile 'movies'
+            this.movies = res.movieList;
+            // Assegna la risposta completa alla variabile 'response'
+            this.response = res;
+            // Imposta le variabili 'home', 'gerne' e 'search' per controllare la visualizzazione della pagina
+            this.home = false;
+            this.gerne = true;
+            this.search = false;
+        });
+    });
+}
+
+firstLoadSearch() {
+  // Sottoscrive ai parametri della rotta
+  this.route.params.subscribe(params => {
+      // Assegna il valore del parametro 'keyword' alla variabile 'keyword'
+      this.keyword = params['keyword'];
+      // Imposta il valore di 'currentChipsValue' a "-1"
+      this.currentChipsValue = "-1";
+      // Chiama il metodo searchMoviePagination del movieService, passando la parola chiave, il numero di pagina e il numero di risultati per pagina
+      this.movieService.searchMoviePagination(params['keyword'], params['pg'], 10).subscribe(res => {
+          // Controlla se la risposta esiste
+          if (res) {
+              // Assegna il valore di 'maxPageNumber' dalla risposta alla variabile 'maxPage'
+              this.maxPage = res.maxPageNumber;
+              // Assegna la lista di film dalla risposta alla variabile 'movies'
+              this.movies = res.movieList;
+              // Assegna la risposta completa alla variabile 'response'
+              this.response = res;
+              // Imposta le variabili 'home', 'gerne' e 'search' per controllare la visualizzazione della pagina
+              this.home = false;
+              this.gerne = false;
+              this.search = true;
+          } else {
+              // Se la risposta non esiste, reindirizza alla pagina di errore di ricerca
+              this.router.navigate(['searchError']);
+          }
+      });
+  });
+}
+
 
 
   openDialog(imdbid: string){
