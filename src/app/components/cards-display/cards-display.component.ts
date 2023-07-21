@@ -58,41 +58,83 @@ export class CardsDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.goTop(); // Scrolla la pagina verso l'alto
-    this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
-    this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
-    
-    let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
-    if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
-    if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
-    
-    // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
-    if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
 
-    // Sottoscrivi al cambiamento dei parametri dell'URL
-    this.route.params.subscribe(params => {      
-      // Se esiste il parametro 'gerne' o 'keyword', carica i film filtrati per genere o per la ricerca
-      if(params['gerne'] || params['keyword']){ 
-        this.loadMovies();
-      }
-      // Altrimenti, imposta this.currentChipsValue a "-1" e carica i film
-      else{
+    // Funzione per tornare in cima alla pagina
+    this.goTop();
+
+    // Aggiorna il numero di colonne nella griglia
+    this.updateGridCols();
+    this.updateColsNumber();
+
+    // Recupera il valore della vista delle card dalla sessione
+    let bool: string = sessionStorage.getItem("cardView") as string
+
+    // Imposta la vista delle card in base al valore recuperato
+    if(bool === 'true'){
+      this.cardView=true;
+    }
+    if (bool === 'false') {
+      this.cardView = false;
+    }
+
+    // Recupera il valore dei filtri dalle sessione
+    if (sessionStorage.getItem("chipsValue")) {
+      this.currentChipsValue = sessionStorage.getItem("chipsValue") as string;
+    }
+
+    // Gestisce i parametri dell'URL
+    this.route.params.subscribe(params => {
+      if (params['gerne']) {
+        // Se è presente il parametro 'gerne', carica i film del genere specificato e imposta le variabili di stato
+        this.page = Number(params['page']);
+        this.category = params['gerne'];
+        if (this.currentChipsValue != this.category) this.currentChipsValue = this.category;
+          this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
+            this.maxPage = res.maxPageNumber;
+            this.movies = res.movieList;
+            this.response = res;
+            this.home = false;
+            this.gerne = true;
+            this.search = false;
+          });
+      } else if (params['pag']) {
+          // Se è presente il parametro 'pag', carica i film della pagina specificata
+          this.page = Number(params['pag']);
+          this.loadMovies();
+      } else if (params['keyword']) {
+        // Se è presente il parametro 'keyword', carica i film corrispondenti alla ricerca e imposta le variabili di stato
+        this.page = Number(params['pg']);
+        this.keyword = params['keyword'];
+        this.currentChipsValue = "-1";
+        this.movieService.searchMoviePagination(params['keyword'],params['pg'],10).subscribe(res => {
+
+          if(res){
+            this.maxPage = res.maxPageNumber;
+            this.movies = res.movieList;
+            this.response = res;
+            this.home = false;
+            this.gerne = false;
+            this.search = true;
+          }else{
+            this.router.navigate(['searchError']);
+          }
+        });
+
+      } else {
+        // Carica i film di default
         this.currentChipsValue = "-1";
         this.loadMovies();
       }
     });
 
-    // Sottoscrivi all'evento di cambio pagina del paginatore
+    // Gestisce l'evento di cambio pagina nella paginazione
     this.paginator.page.subscribe((event: PageEvent) => {
-      // Aggiorna le variabili di paginazione
-      this.currentPage = event.pageIndex;
-      this.pageSize = event.pageSize;
-      this.page = event.pageIndex + 1;
-      // Carica i film
-      this.loadMovies();
+       this.currentPage = event.pageIndex;
+       this.pageSize = event.pageSize;
+       this.page = event.pageIndex + 1;
+       this.loadMovies();
     });
-  }
+}
 
   loadMovies() {
     // Sottoscrivi al cambio dei parametri dell'URL
