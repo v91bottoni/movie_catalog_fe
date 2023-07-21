@@ -148,5 +148,14 @@
 },
 "tooltip":{
     "obligatory":"Obligatory field!"
-  }
+  },
+  "aboutus" :{
+    "factory" : "FACTORY",
+    "team" : "OUR TEAMS",
+    "contacts" : "CONTACTS",
+    "values" : "OUR VALUES",
+    "factoryText" : "Our Company, born in 2023, offers the maximum content and the best films ever.",
+    "teamText":"Our trained and industry-experienced staff, at our locations throughout the country, will offer the best service ever and ensure you watch your favorite movies.",
+    "valuesText":"Our commitment is to offer a quality service and constantly updated content of the highest level."
+}
 }

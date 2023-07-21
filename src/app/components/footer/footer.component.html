@@ -6,9 +6,9 @@
         <div class="cardContainer">
           <h1 >{{'footer.about' | translate}}</h1>
           <mat-list>
-            <mat-list-item (click)="goTop()"><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()"><mat-label>{{'footer.team' | translate}}</mat-label></mat-list-item>
-            <mat-list-item (click)="goTop()"><mat-label>{{'footer.values' | translate}}</mat-label></mat-list-item>
+            <mat-list-item routerLink="aboutus" (click)="goTop()"><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
+            <mat-list-item routerLink="aboutus" (click)="goTop()"><mat-label>{{'footer.team' | translate}}</mat-label></mat-list-item>
+            <mat-list-item routerLink="aboutus" (click)="goTop()"><mat-label>{{'footer.values' | translate}}</mat-label></mat-list-item>
           </mat-list>
         </div>
         <div class="cardContainer">
@@ -21,7 +21,7 @@
             <img (click)="goTop()" class="socialLogo" src="../assets/img/youtube.png"/>
             <img (click)="goTop()" class="socialLogo" src="../assets/img/tiktok.png"/>
           </mat-list>-->
-          <share-buttons theme="circles-dark"
+          <share-buttons style="margin-top:20px;" theme="circles-dark"
           [include]="['facebook', 'email', 'linkedin', 'pinterest', 'twitter']"
           [showIcon]="true"
           [showText]="false">

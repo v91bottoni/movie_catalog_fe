@@ -1,0 +1,44 @@
+mat-card{
+    min-width: 100%;
+    min-height: 100%;
+}
+.imagecard{
+    background: none;
+    color: white;
+}
+mat-card h2{
+    margin-left: 20px;
+}
+mat-grid-list{
+    margin: 0 auto;
+    max-width: 95%;
+}
+.contactIcon{
+    margin-right: 10px;
+    transform: translateY(20%);
+}
+.img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+.factory{
+    background-image: url('https://galinewsblog.files.wordpress.com/2021/12/img-200123-o-29-1365-0-0-84b7487908d945400b1776407e1543c0.jpg');
+}
+.team{
+    background-image: url('https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/2020-08/shutterstock_1731284125_0.jpg?itok=89UrdUt_');
+}
+.values{
+    background-image: url('https://thestorytellers.com/wp-content/uploads/2018/05/07.-Value-of-Values-1024x478.jpg');
+}
+.mobileview{
+    display: none;
+}
+@media screen and (max-width: 1100px) {
+    .pcview{
+      display: none;
+    }
+    .mobileview{
+        display: block;
+      }
+  }
