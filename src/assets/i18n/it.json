@@ -145,5 +145,9 @@
   "msg":"Vuoi Proseguire?",
   "yes":"SI",
   "no":"NO"
-}
+},
+"tooltip":{
+    "obligatory":"Campo obbligatorio!"
+  }
+
 }

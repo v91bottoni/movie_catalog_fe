@@ -15,27 +15,27 @@
 
           <ng-template #generality matStepLabel><p *ngIf="genOK" >{{ 'menu.movieGeneralities' | translate }}</p><p *ngIf="!genOK" class="error">{{ 'menu.movieGeneralities' | translate }}</p></ng-template>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
             <mat-label for="actors">{{ 'movie.title' | translate }}</mat-label>
-              <input title="Campo Obbligatorio" matInput #actors  id="title" name="title" type="text" placeholder="{{ 'movie.title' | translate }}" formControlName="title">
+              <input  matInput #actors  id="title" name="title" type="text" placeholder="{{ 'movie.title' | translate }}" formControlName="title">
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.title' | translate)}  }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
               <mat-label for="year">{{ 'movie.year' | translate }}</mat-label>
-              <input title="Campo Obbligatorio" matInput #year id="year" name="year" type="text" placeholder="{{ 'movie.year' | translate }}" formControlName="year">
+              <input  matInput #year id="year" name="year" type="text" placeholder="{{ 'movie.year' | translate }}" formControlName="year">
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.year' | translate)}  }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
               <mat-label for="genre">{{ 'movie.genre' | translate }}</mat-label>
               <input  matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
             <mat-label for="plot">{{ 'movie.plot' | translate }}</mat-label>
-              <textarea title="Campo Obbligatorio" matInput #plot id="plot" name="plot" placeholder="{{ 'movie.plot' | translate }}" formControlName="plot"></textarea>
+              <textarea matInput #plot id="plot" name="plot" placeholder="{{ 'movie.plot' | translate }}" formControlName="plot"></textarea>
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.plot' | translate)}  }}</mat-error>
           </mat-form-field>
 
@@ -112,9 +112,9 @@
                 <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.director' | translate)}  }}</mat-error>
               </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
             <mat-label for="poster">{{ 'movie.poster' | translate }}</mat-label>
-            <input title="Campo Obbligatorio" matInput #poster id="poster" name="poster" type="text"placeholder="{{ 'movie.poster' | translate }}" formControlName="poster">
+            <input matInput #poster id="poster" name="poster" type="text"placeholder="{{ 'movie.poster' | translate }}" formControlName="poster">
             <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.poster' | translate)}  }}</mat-error>
           </mat-form-field>
 
