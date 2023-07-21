@@ -24,20 +24,15 @@
 </mat-grid-list>
 
 <mat-spinner class="loader" *ngIf="!response"></mat-spinner>
-<!-- <mat-grid-list cols="4" rowHeight="1.4:2.7" *ngIf="response && cardView" class="card-grid">
 
-
-        <mat-grid-tile *ngFor="let result of movies">
-            <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: auto;"></app-movie-card>
-        </mat-grid-tile>
-
-</mat-grid-list> -->
+<!-- Cards -->
 <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" *ngIf="response && cardView" class="card-grid" [@fadeInOut]>
     <mat-grid-tile *ngFor="let result of movies">
       <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: auto;" ></app-movie-card>
     </mat-grid-tile>
 </mat-grid-list>
 
+<!-- Table -->
 <div class="table">
     <table mat-table [dataSource]="movies" *ngIf="response && !cardView">
         

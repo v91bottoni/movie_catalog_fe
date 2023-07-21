@@ -95,11 +95,11 @@ export class SliderComponent implements OnInit {
 
   updateGridCols() {
     const screenWidth = window.innerWidth;
-    if (screenWidth < 400) {
+    if (screenWidth < 600) {
       this.gridCols = 1;
-    } else if (screenWidth < 600) {
+    } else if (screenWidth < 850) {
       this.gridCols = 2;
-    } else if (screenWidth < 800) {
+    } else if (screenWidth < 1040) {
       this.gridCols = 3;
     } else {
       this.gridCols = 4;
