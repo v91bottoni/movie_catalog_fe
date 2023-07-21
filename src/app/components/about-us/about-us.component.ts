@@ -11,7 +11,7 @@ export class AboutUsComponent {
    this.router.url.subscribe(val =>{
     let id=val[0].path;
     if(innerWidth<=1100) id += "Mobile";
-    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'})},0);
    });
   }
 }
