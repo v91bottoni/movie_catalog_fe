@@ -111,13 +111,13 @@
       "birthdate" : "Data di Nascita",
       "cf" : "Codice Fiscale",
       "role" : "Ruolo",
-      "diabledAt" : "Disabilitato il"
+      "disabledAt" : "Disabilitato il"
   },
   "footer" :{
     "social" : "SOCIAL",
     "about" : "SU DI NOI",
     "contacts" : "CONTATTI",
-    "tools": "AMMINISTAZIONE",
+    "contacttext": "Contatti",
     "factory" : "L' Azienda",
     "team" : "Chi siamo",
     "values" : "I nostri valori",

@@ -111,13 +111,13 @@
       "birthdate" : "Birthdate",
       "cf" : "Fiscal Code",
       "role" : "Role",
-      "diabledAt" : "Disabled At"
+      "disabledAt" : "Disabled At"
   },
   "footer" :{
     "social" : "SOCIAL",
     "about" : "ABOUT US",
     "contacts" : "CONTACTS",
-    "tools": "ADMIN TOOLS",
+    "contacttext": "Contact",
     "factory" : "Factory",
     "team" : "Our Team",
     "values" : "Our Values",
