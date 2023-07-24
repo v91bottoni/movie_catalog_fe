@@ -1,6 +1,6 @@
 <div class="footer">
   <div class="footerToolBar" color="primary">
-        <div class="cardContainer">
+        <div style="min-width: fit-content;" class="cardContainer">
           <h1 >{{'footer.about' | translate}}</h1>
           <mat-list>
             <mat-list-item routerLink="factory" ><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
@@ -51,8 +51,11 @@
         </div>
 
         <div class="cardContainer hide">
-          <h1 style="padding-right:20%;"><img class="footerlogo" title="Home Page" (click)="goTop()" routerLink="home" src="../assets/icons/logo-black.svg"/></h1>
-          <iframe (click)="openMap()" class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.67078515562!2d14.275250676397516!3d40.85715127137218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0804d660a4e1%3A0xe79085f124acad3b!2sSTEP%20SRL!5e0!3m2!1sit!2sit!4v1689779166307!5m2!1sit!2sit" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="maptitle" style="text-align: left;">
+            <img class="footerlogo" title="{{'footer.home'|translate}}" (click)="goTop()" routerLink="home" src="../assets/icons/logo-icon.svg"/>
+            <mat-label (click)="openMap()">{{'footer.openmap'|translate}}</mat-label>
+          </div>
+          <iframe  class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.67078515562!2d14.275250676397516!3d40.85715127137218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0804d660a4e1%3A0xe79085f124acad3b!2sSTEP%20SRL!5e0!3m2!1sit!2sit!4v1689779166307!5m2!1sit!2sit" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     <!--   <td>
         <div class="cardContainer">

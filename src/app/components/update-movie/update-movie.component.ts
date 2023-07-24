@@ -1,7 +1,7 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -25,11 +25,11 @@ export class UpdateMovieComponent {
 
 
   constructor(
-    private formbuilder:FormBuilder, 
+    private formbuilder:FormBuilder,
     private service:MovieService,
-    private route :Router, 
-    private activatedRoute:ActivatedRoute, 
-    private util:UtilityService, 
+    private route :Router,
+    private activatedRoute:ActivatedRoute,
+    private util:UtilityService,
     public dialog: MatDialog) {
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
