@@ -2,7 +2,7 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
 <!-- Search Bar -->
-<!-- <app-search-bar></app-search-bar> -->
+<app-search-bar></app-search-bar>
 
 <!-- Swtich Cards - List -->
  <mat-button-toggle-group value="selected" class="switch">
@@ -33,7 +33,7 @@
 </mat-grid-list>
 
 <!-- Table -->
-<div class="upperRow">
+<div class="upperRow" *ngIf="response && !cardView">
     <button mat-icon-button (click)="exportToPDF()">
         <mat-icon>picture_as_pdf</mat-icon>
     </button>
@@ -42,23 +42,23 @@
     </button>
 </div>
 <div class="table" #moviesTable>
-    <table mat-table [dataSource]="movies" *ngIf="response && !cardView">
+    <table mat-table [dataSource]="movies" *ngIf="response && !cardView" class="mat-elevation-z8">
         <!-- Title Column -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.title' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
+            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.title}}</p> </td>
         </ng-container>
     
         <!-- Plot Column -->
         <ng-container matColumnDef="plot">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.plot' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> {{movie.plot}} </td>
+            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.plot}}</p> </td>
         </ng-container>
     
         <!-- Writer Column -->
         <ng-container matColumnDef="writer">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.writer' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> {{movie.writer}} </td>
+            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.writer}}</p> </td>
         </ng-container>
     
         <!-- IMDB Rating Column -->
@@ -84,7 +84,7 @@
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row  *matRowDef="let row; columns: displayedColumns;" class="riga"></tr>
+        <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
 </div>

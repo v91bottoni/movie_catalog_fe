@@ -9,9 +9,9 @@
           <mat-chip disable color="accent" value="-1" *ngFor="let genre of movie.genre.split(',')">{{ genre }}</mat-chip>        </mat-chip-listbox>
         <div class="movie-plot">{{ movie.plot }}</div>
         <div class="movie-actors">
-          <u>
-            <a *ngFor="let actor of movie.actors.split(',')" [href]="'https://en.wikipedia.org/wiki/' + actor" target="_blank">{{ actor }}</a>
-          </u>
+          
+            <mat-icon>person_outline</mat-icon> <a *ngFor="let actor of movie.actors.split(',')" [href]="'https://en.wikipedia.org/wiki/' + actor" target="_blank">{{ actor }}</a>
+          
         </div>
               </div>
     </div>
