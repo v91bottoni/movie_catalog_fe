@@ -14,7 +14,7 @@ $bg : $movie-catalog-fe-theme;
   text-align: center;
   display: inline-flex;
 }
-h1{
+h2{
   margin: 0;
   padding: 0;
 }
@@ -35,7 +35,18 @@ share-buttons:hover{
   padding: 10px 0;
   font-size: small;
 }
+.divider{
+  margin:0 auto;
+  width: 30%;
+  border:1px solid rgba(0,0,0,0);
+  transition: 0.6s;
+}
+.divider:hover{
+  border-right: 1px solid rgba(255, 255, 255, 0.267);
+  border-left: 1px solid rgba(255, 255, 255, 0.267);
+}
 .cardContainer{
+  width: fit-content;
   text-align: center;
   margin:  0 auto;
   padding: 5px 10px;
@@ -49,12 +60,12 @@ mat-list-item{
   height: fit-content;
 }
 .cardContainer mat-list-item:hover{
-  font-weight: 900;
   background: rgba(0,0,0,0.2);
 }
 .cardContainer mat-list-item:hover  mat-label{
   transition: 0.2s;
-  letter-spacing: 2px;
+  font-weight: 900;
+  letter-spacing: 3px;
   color: white;
 }
 
@@ -62,6 +73,14 @@ mat-list-item{
 @media screen and (max-width: 900px) {
   .hide{
     display: none;
+  }
+  .divider{
+    width: 50%;
+  }
+  .cardContainer mat-list-item:hover  mat-label{
+    font-weight: 700;
+    letter-spacing: 0;
+    color: white;
   }
 }
 
@@ -91,4 +110,8 @@ mat-icon{
 }
 .maptitle mat-label{
   cursor: pointer;
+  transition: 0.2s;
+}
+.maptitle mat-label:hover{
+  text-shadow: 0 0 5px white;
 }
