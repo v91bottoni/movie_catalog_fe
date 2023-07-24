@@ -18,10 +18,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         opacity: 0,
       })),
       transition('open => closed', [
-        animate('0.5s')
+        animate('0.2s')
       ]),
       transition('closed => open', [
-        animate('0.2s')
+        animate('0.2s 300ms')
       ]),
     ]),
 
@@ -32,7 +32,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class DrowerButtonComponent {
 
   constructor(
-    private router: Router, 
+    private router: Router,
     protected util : UtilityService) { }
 
 panelOpenState = false;
