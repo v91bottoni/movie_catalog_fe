@@ -138,7 +138,7 @@ export class CardsDisplayComponent implements OnInit {
         this.goTop();
       }
       // Altrimenti
-      else {
+      else if(!params['gerne'] && !params['keyword']) {
         // Recupera la dimensione della pagina dal paginatore
         const pageSize = this.paginator.pageSize;
         // Ottieni tutti i film con paginazione
