@@ -24,19 +24,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class MovieCardComponent implements OnInit {
 
-  @Input() imdbid: string = '';
-  movie!: Movie;
+  @Input() movie!: Movie;
   hover: boolean = true;
   isHovered: boolean = false;
   idHover!: string;
   timeout!: any;
 
-  ngOnInit(): void {
-    // Chiamata al servizio per ottenere il film tramite l'ID
-    this.movieService.getMovieById(this.imdbid).subscribe(res => {
-      this.movie = res; // Assegnazione della risposta al film corrente
-    })
-}
+  ngOnInit(): void { }
 
   constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router) { }
 

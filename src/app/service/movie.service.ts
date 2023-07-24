@@ -37,7 +37,7 @@ export class MovieService {
   }
 
   getAllMovies(page: number = 1, sort: string = 'imdbrating'): Observable<response>{
-    return this.http.get<response>(this.apiUrl + page + '/' + sort);
+    return this.http.get<response>(this.apiUrl + 'all/' + page + '/' + sort);
   }
 
   saveMovie(movie: Movie): Observable<Movie>{
@@ -49,7 +49,7 @@ export class MovieService {
   }
 
     getAllMoviesWithPagination(page: number = 1, sort: string = 'imdbrating', size: number = 10): Observable<response> {
-      return this.http.get<response>(this.apiUrl + `${page}/${sort}/${size}`);
+      return this.http.get<response>(this.apiUrl + 'all/' + page + '/' + sort + '/' + size);
 
     }
 
