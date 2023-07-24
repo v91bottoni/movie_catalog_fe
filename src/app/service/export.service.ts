@@ -24,12 +24,10 @@ constructor() { }
 
   public exportAsPDFFile(json: any[], pdfFileName: string): void{
     const doc = new jsPDF();
-    console.log(json);
-    
     autoTable(doc, {
       body: json
-    })
-    doc.save(pdfFileName + '.pdf');
+    });
+    doc.save(pdfFileName + '_export_' + new Date().getTime() + '.pdf');
   }
   
 }

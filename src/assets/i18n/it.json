@@ -111,7 +111,7 @@
       "birthdate" : "Data di Nascita",
       "cf" : "Codice Fiscale",
       "role" : "Ruolo",
-      "diabledAt" : "Disabilitato il"
+      "disabledAt" : "Disabilitato il"
   },
   "footer" :{
     "social" : "SOCIAL",
