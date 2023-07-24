@@ -46,6 +46,7 @@ export class CardsDisplayComponent implements OnInit {
   gridCols!: number;
   colsNumber!: number;
   chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
+  smallList: boolean = false;
 
   constructor(
     private movieService: MovieService,
@@ -61,6 +62,7 @@ export class CardsDisplayComponent implements OnInit {
     this.goTop(); // Scrolla la pagina verso l'alto
     this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
     this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
+    this.updateSmallList();
     
     let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
     if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
@@ -308,6 +310,15 @@ firstLoadSearch() {
     }
   }
 
+  updateSmallList() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1000) {
+      this.smallList = true
+    } else {
+      this.smallList = false;
+    }
+  }
+
   updateColsNumber(){
     const screenWidth = window.innerWidth;
     if (screenWidth < 600) {
@@ -323,6 +334,7 @@ firstLoadSearch() {
   onResize(event: Event) {
     this.updateGridCols();
     this.updateColsNumber();
+    this.updateSmallList();
 }
 
 
