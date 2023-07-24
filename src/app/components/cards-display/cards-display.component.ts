@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ExportService } from 'src/app/service/export.service';
+import { DataSource } from '@angular/cdk/collections';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-cards-display',
@@ -46,13 +49,15 @@ export class CardsDisplayComponent implements OnInit {
   gridCols!: number;
   colsNumber!: number;
   chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
+  smallList: boolean = false;
 
   constructor(
     private movieService: MovieService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private util: UtilityService
+    private util: UtilityService,
+    private exportService: ExportService
   ) {
     this.util.backpage = "home";
   }
@@ -61,6 +66,7 @@ export class CardsDisplayComponent implements OnInit {
     this.goTop(); // Scrolla la pagina verso l'alto
     this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
     this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
+    this.updateSmallList();
     
     let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
     if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
@@ -308,6 +314,15 @@ firstLoadSearch() {
     }
   }
 
+  updateSmallList() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1000) {
+      this.smallList = true
+    } else {
+      this.smallList = false;
+    }
+  }
+
   updateColsNumber(){
     const screenWidth = window.innerWidth;
     if (screenWidth < 600) {
@@ -323,10 +338,34 @@ firstLoadSearch() {
   onResize(event: Event) {
     this.updateGridCols();
     this.updateColsNumber();
+    this.updateSmallList();
 }
 
 
   convertNumber(string:string):Number{
     return Number(string);
+  }
+
+  @ViewChild('moviesTable') moviesTable!: ElementRef;
+
+  exportToCSV(){
+    //TODO:da eliminare nel momento in cui i filtri vengono settati dal DB
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsExcelFile(filteredTable, 'excel');
+  }
+
+  exportToPDF(){
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsPDFFile(filteredTable, 'pdf');
+  }
+
+  createFilteredTable() : Partial<Movie>[]{
+    const filteredTable: Partial<Movie>[] = this.movies.map(x => ({
+      title: x.title,
+      plot: x.plot,
+      writer: x.writer,
+      rating: x.imdbrating
+    }));
+    return filteredTable;
   }
 }

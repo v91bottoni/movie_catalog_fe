@@ -4,8 +4,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { UserUpdateDialogComponent } from 'src/app/dialogs/user-update-dialog/user-update-dialog.component';
+import { Movie } from 'src/app/models/movie';
 import { user } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
+import { ExportService } from 'src/app/service/export.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -28,7 +30,8 @@ export class UserManagementComponent implements OnInit{
     private userService: UserService, 
     private dialog: MatDialog,
     private alert: SnackbarService,
-    private translate: TranslateService) {}
+    private translate: TranslateService,
+    private exportService: ExportService) {}
 
   ngOnInit(): void {
     this.fetchAllUsers();
@@ -111,5 +114,28 @@ export class UserManagementComponent implements OnInit{
         () => {this.alert.openError(this.translate.instant('message.error.error'),  this.translate.instant('button.ok'));
         })
     } else this.fetchAllUsers();
+  }
+
+  exportToCSV(){
+    //TODO:da eliminare nel momento in cui i filtri vengono settati dal DB
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsExcelFile(filteredTable, 'excel');
+  }
+
+  exportToPDF(){
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsPDFFile(filteredTable, 'pdf');
+  }
+
+  createFilteredTable() : Partial<user>[]{
+    const filteredTable: Partial<any>[] = this.userList.map(x => ({
+      id: x.id,
+      name: x.name,
+      surname: x.surname,
+      email: x.email,
+      role: x.role.role,
+      disabledAt: x.disabledAt
+    }));
+    return filteredTable;
   }
 }
