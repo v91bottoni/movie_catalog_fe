@@ -1,6 +1,6 @@
 <div class="user-container">
     <mat-card *ngIf="userForm">
-      <button (click)="goBack()" type="button" mat-raised-button color="primary"  class="back">
+      <button (click)="goBack()" type="button" mat-raised-button class="back">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
 
@@ -19,8 +19,8 @@
                 <br>
                 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center;">
 
-                    
-        
+
+
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 
                         <!-- Name input -->

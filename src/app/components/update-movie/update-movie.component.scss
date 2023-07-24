@@ -15,16 +15,16 @@
   margin: 15px;
   font-size: medium;
   min-width: fit-content;
-  font-size: x-large;
   padding: 20px 20px;
 }
 
 .back{
   text-align: center;
   width: 30px;
-  position: relative;
   float: left;
-  padding-left: 20px;
+}
+.back mat-icon{
+  margin: 0 auto;
 }
 
 td label{
