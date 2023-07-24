@@ -1,8 +1,5 @@
 <div class="footer">
-  <mat-toolbar class="footerToolBar" color="primary">
-    <table>
-      <tr>
-      <td>
+  <div class="footerToolBar" color="primary">
         <div class="cardContainer">
           <h1 >{{'footer.about' | translate}}</h1>
           <mat-list>
@@ -21,30 +18,42 @@
             <img (click)="goTop()" class="socialLogo" src="../assets/img/youtube.png"/>
             <img (click)="goTop()" class="socialLogo" src="../assets/img/tiktok.png"/>
           </mat-list>-->
-          <share-buttons style="margin-top:20px;" theme="circles-dark"
-          [include]="['facebook', 'email', 'linkedin', 'pinterest', 'twitter']"
+          <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+          [include]="['facebook']"
           [showIcon]="true"
-          [showText]="false">
+          [showText]="false"
+          title="https://www.facebook.com/mooviesSrl">
+        </share-buttons>
+        <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+          [include]="['email']"
+          [showIcon]="true"
+          [showText]="false"
+          title="moovies@gmail.com">
+        </share-buttons>
+        <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+          [include]="['linkedin']"
+          [showIcon]="true"
+          [showText]="false"
+          title="https://www.linkedin.com/mooviesSrl">
+        </share-buttons>
+        <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+          [include]="['whatsapp']"
+          [showIcon]="true"
+          [showText]="false"
+          title="3381212123">
+        </share-buttons>
+        <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+          [include]="['twitter']"
+          [showIcon]="true"
+          [showText]="false"
+          title="https://www.twitter.com/mooviesSrl">
         </share-buttons>
         </div>
-      </td>
-      <td class="hide">
-        <div class="cardContainer hide">
-          <h1>{{'footer.contacts' | translate}}</h1>
-          <mat-panel-description>
-            <mat-icon>phone</mat-icon><mat-label class="contactlabel"> {{'footer.telephone' | translate}}080-5651234</mat-label><br>
-            <mat-icon>mail</mat-icon><mat-label class="contactlabel"> {{'footer.mail' | translate}}Moovies@gmail.com</mat-label><br>
-            <mat-icon>room</mat-icon><mat-label class="contactlabel"> {{'footer.address' | translate}}Via Giovanni Porzio, 4, 80143 Napoli NA</mat-label><br>
-          </mat-panel-description>
-        </div>
-      </td>
-      <td class="hide">
+
         <div class="cardContainer hide">
           <h1 style="padding-right:20%;"><img class="footerlogo" title="Home Page" (click)="goTop()" routerLink="home" src="../assets/icons/logo-black.svg"/></h1>
-          <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.67078515562!2d14.275250676397516!3d40.85715127137218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0804d660a4e1%3A0xe79085f124acad3b!2sSTEP%20SRL!5e0!3m2!1sit!2sit!4v1689779166307!5m2!1sit!2sit" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <mat-icon title="{{'footer.arrow'| translate}}" (click)="openMap()" class="navigate">navigation</mat-icon>
+          <iframe (click)="openMap()" class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.67078515562!2d14.275250676397516!3d40.85715127137218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0804d660a4e1%3A0xe79085f124acad3b!2sSTEP%20SRL!5e0!3m2!1sit!2sit!4v1689779166307!5m2!1sit!2sit" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-      </td>
     <!--   <td>
         <div class="cardContainer">
           <h1>{{'footer.link' | translate}}</h1>
@@ -67,14 +76,8 @@
             </mat-list>
           </div>
         </td> -->
-  </tr>
-  <tr>
-    <td colspan="3">
-      <p class="copyRight">© Copyright 2023 - Moovies S.r.l. - P.IVA. 00000000000</p>
+        <br>
 
-    </td>
-  </tr>
-</table>
-
-  </mat-toolbar>
+      </div>
+      <div class="copyRight">© Copyright 2023 - Moovies S.r.l. - P.IVA. 00000000000</div>
 </div>
