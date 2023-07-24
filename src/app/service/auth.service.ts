@@ -16,6 +16,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  isLogged(): boolean{
+    return sessionStorage.getItem('userName') ? true : false;
+  }
+  
+  logout(): boolean{
+    if(sessionStorage.getItem('userName')){
+      sessionStorage.clear();
+      return true;
+    }
+    return false;
+  }
+
   login(user: loginUser):Observable<userres>{
     return this.http.post<userres>(this.authApiUrl + 'login', user);
   }

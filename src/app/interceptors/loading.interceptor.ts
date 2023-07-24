@@ -18,7 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor {
 
     const s = request.url.toLowerCase();
 
-    if(s.includes("title")){
+    if(s.includes("title") || s.includes("genre") || s.includes("all")){
       return next.handle(request);
     }
 

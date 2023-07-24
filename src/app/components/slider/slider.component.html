@@ -16,7 +16,7 @@
             <!-- Iterazione su ogni elemento della lista di film --> 
             <mat-grid-tile *ngFor="let result of movies" [@fadeInOut]> 
                 <!-- Crad dei film --> 
-                <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: 360px;"></app-movie-card> 
+                <app-movie-card [movie]="result" style="width: 90%; height: 360px;"></app-movie-card> 
             </mat-grid-tile> 
         </mat-grid-list> 
          
