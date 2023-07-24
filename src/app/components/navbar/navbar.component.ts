@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component,  Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { delay } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -12,12 +13,10 @@ import { UtilityService } from 'src/app/service/utility.service';
     trigger('openClose', [
       // ...
       state('open', style({
-
         transform:'scale(100%)',
         opacity: 1,
       })),
       state('closed', style({
-
         transform:'scale(1%) translate(50px, -200px)',
         opacity: 0,
       })),
@@ -35,7 +34,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 export class NavbarComponent {
   username: string| null = "";
   constructor(
-    protected util: UtilityService, 
+    protected util: UtilityService,
     private authService: AuthService,
     private alert: SnackbarService,
     private translate: TranslateService){

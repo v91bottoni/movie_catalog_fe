@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute,  Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-mo
   templateUrl: './update-movie.component.html',
   styleUrls: ['./update-movie.component.scss']
 })
-export class UpdateMovieComponent {
+export class UpdateMovieComponent implements OnDestroy{
   movie:Movie| null = null;
   submitted = false;
   updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :['', Validators.required],    imdbrating :[''],    imdbvotes :[''],    language :[''],    metascore :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],    response :[''],    runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
@@ -22,6 +22,11 @@ export class UpdateMovieComponent {
   genNames:string[] = [ 'plot',    'released',    'runtime',   'genre',    'title',    'totalseason',    'type', 'year'];
   prodNames:string[] = ['actors',      'country',    'director',    'dvd',     'language',    'poster',    'production','writer'];
   otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',      'metascore',    'rated',      'response',   'website'];
+  isHorizontal:boolean = !(window.innerWidth<1000);
+  resizing = () => {
+    if(window.innerWidth<1000)this.isHorizontal=false;
+    else this.isHorizontal=true;
+  }
 
 
   constructor(
@@ -41,7 +46,7 @@ export class UpdateMovieComponent {
         top: 0,
         behavior:'smooth'
       });
-
+      window.addEventListener("resize", this.resizing);
   }
 
 
@@ -151,6 +156,11 @@ export class UpdateMovieComponent {
             year : [this.movie?.year,{validators:[Validators.required],updateOn:"change"}],
           });
 
+        }
+
+
+        ngOnDestroy(): void {
+          window.removeEventListener("resize", this.resizing);
         }
 
 
