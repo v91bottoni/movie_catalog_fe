@@ -124,7 +124,8 @@
     "telephone":"Telephone : ",
     "mail":"E-mail : ",
     "address":"Address : ",
-    "arrow": "Click me!"
+    "openmap":"Open Map!",
+    "home": "HOME PAGE"
 },
 "searcherror":{
   "nocontent":"Enter at least one search criteria!"
