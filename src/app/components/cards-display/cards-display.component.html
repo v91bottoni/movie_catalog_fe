@@ -2,7 +2,7 @@
 <mat-grid-list cols="1" style="text-align: center;">
 
 <!-- Search Bar -->
-<app-search-bar></app-search-bar>
+<!-- <app-search-bar></app-search-bar> -->
 
 <!-- Swtich Cards - List -->
  <mat-button-toggle-group value="selected" class="switch">
@@ -28,7 +28,7 @@
 <!-- Cards -->
 <mat-grid-list [cols]="gridCols" rowHeight="1.4:2.7" *ngIf="response && cardView" class="card-grid" [@fadeInOut]>
     <mat-grid-tile *ngFor="let result of movies">
-      <app-movie-card [imdbid]="result.imdbid" style="width: 90%; height: auto;" ></app-movie-card>
+      <app-movie-card [movie]="result" style="width: 90%; height: auto;" ></app-movie-card>
     </mat-grid-tile>
 </mat-grid-list>
 
