@@ -65,3 +65,12 @@ button {
 .mat-mdc-standard-chip {
   --mdc-chip-elevated-container-color: rgb(218, 218, 218);
 }
+
+.movie-actors {
+  display: flex;
+  align-items: center;
+}
+
+.actor-icon {
+  margin-right: 5px;
+}
