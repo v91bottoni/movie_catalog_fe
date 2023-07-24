@@ -33,9 +33,16 @@
 </mat-grid-list>
 
 <!-- Table -->
-<div class="table">
+<div class="upperRow" *ngIf="response && !cardView">
+    <button mat-icon-button (click)="exportToPDF()">
+        <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+    <button mat-icon-button (click)="exportToCSV()">
+        <mat-icon>download</mat-icon>
+    </button>
+</div>
+<div class="table" #moviesTable>
     <table mat-table [dataSource]="movies" *ngIf="response && !cardView" class="mat-elevation-z8">
-        
         <!-- Title Column -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.title' | translate }} </th>

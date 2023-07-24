@@ -151,7 +151,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       debug:true
     }),
     ShareIconsModule,
-
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

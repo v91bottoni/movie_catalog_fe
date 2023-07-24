@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, VERSION ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { response } from 'src/app/models/response';
@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ExportService } from 'src/app/service/export.service';
+import { DataSource } from '@angular/cdk/collections';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-cards-display',
@@ -53,7 +56,8 @@ export class CardsDisplayComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private util: UtilityService
+    private util: UtilityService,
+    private exportService: ExportService
   ) {
     this.util.backpage = "home";
   }
@@ -340,5 +344,28 @@ firstLoadSearch() {
 
   convertNumber(string:string):Number{
     return Number(string);
+  }
+
+  @ViewChild('moviesTable') moviesTable!: ElementRef;
+
+  exportToCSV(){
+    //TODO:da eliminare nel momento in cui i filtri vengono settati dal DB
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsExcelFile(filteredTable, 'excel');
+  }
+
+  exportToPDF(){
+    const filteredTable = this.createFilteredTable();
+    this.exportService.exportAsPDFFile(filteredTable, 'pdf');
+  }
+
+  createFilteredTable() : Partial<Movie>[]{
+    const filteredTable: Partial<Movie>[] = this.movies.map(x => ({
+      title: x.title,
+      plot: x.plot,
+      writer: x.writer,
+      rating: x.imdbrating
+    }));
+    return filteredTable;
   }
 }

@@ -41,3 +41,22 @@
     -webkit-line-clamp:4;
     -webkit-box-orient:vertical;
   }
+
+
+  .table{
+    margin-top: 0;
+  }
+
+  .upperRow{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 15%;
+  }
+
+  @media (max-width: 1100px){
+    .upperRow{
+      margin-right: 5%;
+    }
+  }
