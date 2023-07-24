@@ -39,7 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
     if(!this.refreshON){
-      this.refresh(sessionStorage.getItem('token'));
       this.refreshON = true;
       setTimeout(()=>{
         this.refresh(sessionStorage.getItem('refreshToken'));
@@ -52,11 +51,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
         error: (error) => {
           this.router.navigateByUrl('errorPage');
-          console.log(error);
-          if(sessionStorage.getItem('refreshToken') && s.includes("refresh")){
+          if(sessionStorage.getItem('refreshToken') && error.status === 401){
             let refreshTok = sessionStorage.getItem('refreshToken')+"";
             this.authservice.refreshTok(refreshTok).subscribe(res=>{
-              console.log("Token Scaduto", res);
             if(res != null){
               if(res.msg){
               this.logout();
@@ -66,7 +63,7 @@ export class AuthInterceptor implements HttpInterceptor {
               }
               if(res.token){
                 this.dialog.closeAll();
-                this.dialog.open(ExpiredialogComponent,{width:'30%'})
+                this.dialog.open(ExpiredialogComponent,{width:'50%'})
                 .afterClosed().subscribe(result=>{
                   if(result){
                    // console.log("Refresh Avvenuto");
