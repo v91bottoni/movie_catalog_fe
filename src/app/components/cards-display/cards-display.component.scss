@@ -22,10 +22,12 @@
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
     cursor: pointer;
+    height: 100%;
   }
   
   .mat-mdc-row:hover .mat-mdc-cell {
-    background: whitesmoke;
+    border-color: currentColor;
+    background-color: whitesmoke;
   }
 
   .custom-paginator {
