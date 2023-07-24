@@ -1,5 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component,  Output, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/service/auth.service';
+import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 
@@ -31,7 +34,11 @@ import { UtilityService } from 'src/app/service/utility.service';
 })
 export class NavbarComponent {
   username: string| null = "";
-  constructor( protected util: UtilityService){
+  constructor(
+    protected util: UtilityService, 
+    private authService: AuthService,
+    private alert: SnackbarService,
+    private translate: TranslateService){
   }
   @Output()drawerEvent = new EventEmitter<string>;
 
@@ -67,8 +74,12 @@ export class NavbarComponent {
 
 
   logOut(){
-    sessionStorage.clear();
-    this.util.username = null;
-    this.util.role = null;
+    if(this.authService.logout()){
+      this.util.username = null;
+      this.util.role = null;
+      setTimeout(() => {
+        this.alert.openSuccess(this.translate.instant("message.logoutSuccess"), this.translate.instant("button.ok"));
+      }, 1);
+    }
   }
 }

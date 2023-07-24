@@ -1,46 +1,30 @@
-<!-- <mat-card class="card slidedown" (mouseenter)="setHover(false, movie.imdbid)" (mouseleave)="setHover(true, '')" (click)="openDialog(movie.imdbid)" *ngIf="movie">
-
-    <img mat-card-image [src]="movie.poster" class="card-poster" *ngIf="hover || idHover !== movie.imdbid" [@fadeInOut]>
-    
-
-
-    <mat-card-content *ngIf="!hover && idHover == movie.imdbid" class="card-poster" [@fadeInOut]>
-
-        <mat-card-header class="card-header">
-            <button mat-icon-button (click)="goUpdate(movie.imdbid)"> <mat-icon>edit</mat-icon> </button>
-        </mat-card-header>
-        <mat-card-title class="card-title content" >
-            <b> <h3> {{movie.title}} </h3> </b>
-        </mat-card-title>
-        <mat-card-content class="card-text" >
-            {{movie.plot}}
-        </mat-card-content>
-        <mat-card-actions class="vote">
-            <p><b>Rated:</b> {{movie.imdbrating}}</p>
-        </mat-card-actions>
-    </mat-card-content>
-
-</mat-card> -->
-
 <mat-card class="card slidedown" (mouseenter)="hoverSet('poster')" (mouseleave)="hoverSet('info')" (click)="openDialog(movie.imdbid)" *ngIf="movie">
 
+    <!-- Immagine del poster del film -->
     <img mat-card-image [src]="movie.poster" class="card-poster" *ngIf="poster" [@fadeInOut]>
-    
 
-
+    <!-- Contenuto del film -->
     <mat-card-content *ngIf="info" class="card-poster" [@fadeInOut]>
 
+        <!-- Header della card -->
         <mat-card-header class="card-header">
-            <button mat-icon-button (click)="goUpdate(movie.imdbid)"> <mat-icon>edit</mat-icon> </button>
+            <!-- Pulsante per modificare il film -->
+            <button mat-icon-button (click)="goUpdate(movie.imdbid)" style="color: whitesmoke;"> <mat-icon>edit</mat-icon> </button>
         </mat-card-header>
-        <mat-card-title class="card-title content" >
+
+        <!-- Titolo del film -->
+        <mat-card-title class="card-title content">
             <b> <h3> {{movie.title}} </h3> </b>
         </mat-card-title>
-        <mat-card-content class="card-text" >
+
+        <!-- Descrizione del film -->
+        <mat-card-content class="card-text">
             {{movie.plot}}
         </mat-card-content>
+
+        <!-- Voto del film -->
         <mat-card-actions class="vote">
-            <p><b>Rated:</b> {{movie.imdbrating}}</p>
+            <p>{{movie.imdbrating}}</p>
         </mat-card-actions>
     </mat-card-content>
 

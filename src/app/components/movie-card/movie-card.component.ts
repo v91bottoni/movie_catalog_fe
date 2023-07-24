@@ -24,17 +24,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class MovieCardComponent implements OnInit {
 
-  @Input() imdbid: string = '';
-  movie!: Movie;
+  @Input() movie!: Movie;
   hover: boolean = true;
   isHovered: boolean = false;
   idHover!: string;
+  timeout!: any;
 
-  ngOnInit(): void {
-    this.movieService.getMovieById(this.imdbid).subscribe(res => {
-      this.movie = res;
-    })
-  }
+  ngOnInit(): void { }
 
   constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router) { }
 
@@ -47,36 +43,38 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  setHover(value: boolean, id: string) {
-
-    // setTimeout(() => {
-    if (value == false)
-      setTimeout(() => {
-        this.isHovered = true;
-      },300);
-    if (value == true)
-      this.isHovered = false;
-
-    this.hover = value;
-    this.idHover = id;
-    // },300);
-  }
-
   poster: boolean = true;
   info: boolean = false;
 
-  hoverSet(type:string){
-    // setTimeout(() => {
-      if(type==='poster'){
-        this.poster=false;
-        setTimeout(() => { this.info = true; }, 150);
+  hoverSet(type: string) {
+    clearTimeout(this.timeout); // Cancella il timeout precedente
+    this.timeout = setTimeout(() => { // Imposta un nuovo timeout
+      // Se il tipo è 'poster'
+      if (type === 'poster') {
+        // Imposta la variabile 'poster' su false
+        this.poster = false;
+        setTimeout(() => {
+          // Se 'poster' è ancora false dopo 155 millisecondi
+          if (!this.poster) {
+            // Imposta la variabile 'info' su true
+            this.info = true;
+          }
+        }, 155);
       }
-
-      if(type==='info'){
-        this.info=false;
-        setTimeout(() => {this.poster=true;}, 150);
-      }
-    // },1);
+  
+      // Se il tipo è 'info'
+      if (type === 'info') {
+        // Imposta la variabile 'info' su false
+        this.info = false;
+        setTimeout(() => {
+          // Se 'info' è ancora false dopo 155 millisecondi
+          if (!this.info) {
+            // Imposta la variabile 'poster' su true
+            this.poster = true;
+          }
+        }, 155);
+      };
+    }, 156);
   }
 
   goUpdate(imdbid: string) {

@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
 
   goToCategory(chips:String){
 
-    sessionStorage.setItem('chipsValue', String(chips));
-    this.router.navigateByUrl('/home/gerne/'+chips+'/1')
+    localStorage.setItem('chipsValue', String(chips));
+    this.router.navigateByUrl('/home/gerne/'+chips)
   }
 
   setHover(value: boolean, id:string) {

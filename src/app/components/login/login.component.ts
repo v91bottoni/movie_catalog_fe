@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { timeout } from 'rxjs';
 import { LoginStates } from 'src/app/enums/loginStates';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
@@ -18,9 +19,6 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hidePass: boolean = true;
 
-  badCredentials: boolean = false;
-  userDisabled: boolean = false;
-
   constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder, 
@@ -31,7 +29,12 @@ export class LoginComponent implements OnInit {
     
   ngOnInit(): void {
 
-    sessionStorage.clear();
+    if(this.authService.isLogged()){
+      this.router.navigateByUrl('/home');
+      setTimeout(() => {
+        this.alert.openError(this.translate.instant("message.error.alreadyLogged"), this.translate.instant("button.ok"));
+      }, 1);
+    }
 
     this.loginForm = this.formBuilder.group(
       {
@@ -45,8 +48,6 @@ export class LoginComponent implements OnInit {
   get password()  { return this.loginForm.get('password')}
 
   onSubmit(){
-    this.badCredentials = false;
-    this.userDisabled = false;
     this.authService.login(this.loginForm.value).subscribe(res => {
         //logged successfully
 
@@ -63,10 +64,10 @@ export class LoginComponent implements OnInit {
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){
-          this.badCredentials = true;
+          this.alert.openError(this.translate.instant('message.error.emailPasswordNotRecognized'), this.translate.instant("button.ok"));
         }
         if(res.error.msg == LoginStates.userDisabled){
-          this.userDisabled = true;
+          this.alert.openError(this.translate.instant('message.error.userDisabled'), this.translate.instant("button.ok"));
         }
       }
     );

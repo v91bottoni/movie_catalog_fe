@@ -14,6 +14,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { RootComponent } from './components/root/root.component';
 import { CardsDisplayComponent } from './components/cards-display/cards-display.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
 
@@ -46,15 +47,15 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "home/page/:pag",
+        path: "home/all", 
         component: CardsDisplayComponent
       },
       {
-        path: "home/gerne/:gerne/:page",
+        path: "home/gerne/:gerne", 
         component: CardsDisplayComponent
       },
       {
-        path: 'home/search/:keyword/:pg',
+        path: 'home/search/:keyword',
         component: CardsDisplayComponent,
       },
       {
@@ -97,6 +98,18 @@ const routes: Routes = [
       {
         path: 'searchError',
         component: ErrorComponent
+      },
+      {
+        path: 'about_us',
+        component: AboutUsComponent
+      },
+      {
+        path: 'factory',
+        component: AboutUsComponent
+      },
+      {
+        path: 'values',
+        component: AboutUsComponent
       },
       {
         path: '**',

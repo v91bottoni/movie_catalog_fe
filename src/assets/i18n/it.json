@@ -5,7 +5,7 @@
       "management" : "MANAGEMENT",
       "title" : "CATALOGO FILM",
       "profile" : "PROFILO",
-      "logout" : "DISCONNETTITI",
+      "logout" : "ESCI",
       "search" : "Ricerca",
       "anagraphicData" : "Dati Anagrafici",
       "accountData" : "Dati Account",
@@ -32,7 +32,8 @@
       "iAlreadyHaveAnAccount" : "Ho già un account.",
       "insertMovie" : "Inserisci Film!",
       "welcome" : "Benvenuto",
-      "loginSuccess" : "Accesso eseguito.",
+      "loginSuccess" : "Accesso eseguito con successo.",
+      "logoutSuccess" : "Disconnesso con successo.",
       "registrationSuccess" : "Registrato con successo.",
       "pwdChangeSuccess" : "Password modificata con successo.",
       "updateSuccess" : "Aggiornato con successo.",
@@ -54,7 +55,8 @@
           "pwdRecoveryTknExpired" : "Il token per recuperare la Password è scaduto.",
           "pwdChangeError" : "Errore nel cambiare Password.",
           "mailNotFound" : "Controlla bene se la mail fornita è giusta.",
-          "error" : "Si è verificato un errore."
+          "error" : "Si è verificato un errore.",
+          "alreadyLogged" : "Hai già effettuato l'accesso."
       }
   },
   "button": {
@@ -76,7 +78,7 @@
       "title" : "Titolo",
       "plot" : "Trama",
       "writer" : "Sceneggiatore",
-      "imdbRating" : "Rating IMDB",
+      "imdbRating" : "Voto IMDB",
       "imdbid" : "IMDB-ID",
       "actors" : "Attori",
       "year" : "Anno",
@@ -114,18 +116,16 @@
   "footer" :{
     "social" : "SOCIAL",
     "about" : "SU DI NOI",
-    "link" : "LINKS",
+    "contacts" : "CONTATTI",
     "tools": "AMMINISTAZIONE",
     "factory" : "L' Azienda",
     "team" : "Chi siamo",
     "values" : "I nostri valori",
-    "home": "Home",
-    "profile" : "Profilo",
-    "search" : "Ricerca",
-    "logout" : "Esci",
-    "management" : "Gestionale",
-    "add" : "Inserisci Film",
-    "update" : "Modifica Movie"
+    "telephone":"Telefono : ",
+    "mail":"E-mail : ",
+    "address":"Indirizzo : ",
+    "openmap":"Apri la Mappa!",
+    "home": "PAGINA HOME"
 },
 "searcherror":{
   "nocontent":"Inserire almeno un criterio di ricerca!"
@@ -148,5 +148,18 @@
   "msg":"Vuoi Proseguire?",
   "yes":"SI",
   "no":"NO"
+},
+"tooltip":{
+    "obligatory":"Campo obbligatorio!"
+  },
+  "aboutus" :{
+    "factory" : "L' AZIENDA",
+    "team" : "SU DI NOI",
+    "contacts" : "CONTATTI",
+    "values" : "I NOSTRI VALORI",
+    "factoryText" : "La nostra Azienda, nata nel 2023 offre i massimi contenuti e i migliori film di sempre.\n",
+    "teamText":"Il nostro personale formato ed esperto nel settore, nei nostri punti sparsi in tutto il territorio, offrirà il miglior servizio di sempre e ti garantirà di guardare i tuoi films preferiti.",
+    "valuesText":"Il notro impegno è quello di offrire un servizio di qualità e contenuti sempre aggiornati di massimo livello.\n"
 }
+
 }
