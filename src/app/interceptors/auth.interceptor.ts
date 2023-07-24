@@ -39,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
     if(!this.refreshON){
-      //this.refresh(sessionStorage.getItem('refreshToken'));
+      this.refresh(sessionStorage.getItem('token'));
       this.refreshON = true;
       setTimeout(()=>{
         this.refresh(sessionStorage.getItem('refreshToken'));
