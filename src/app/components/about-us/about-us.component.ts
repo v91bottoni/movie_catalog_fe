@@ -7,11 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent {
-  constructor(private router:ActivatedRoute){
-   this.router.url.subscribe(val =>{
-    let id=val[0].path;
+  constructor(private route:ActivatedRoute){
+   this.route.url.subscribe(val =>{
+    let id = val[0].path;
     if(innerWidth<=1100) id += "Mobile";
-    setTimeout(()=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'})},0);
+      setTimeout(()=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'})},0);
    });
   }
 }

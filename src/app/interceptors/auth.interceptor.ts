@@ -39,6 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
     if(!this.refreshON){
+      //this.refresh(sessionStorage.getItem('refreshToken'));
       this.refreshON = true;
       setTimeout(()=>{
         this.refresh(sessionStorage.getItem('refreshToken'));
@@ -51,11 +52,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
         error: (error) => {
           this.router.navigateByUrl('errorPage');
-          console.log("Token Scaduto - Refresh");
+          console.log(error);
           if(sessionStorage.getItem('refreshToken') && s.includes("refresh")){
             let refreshTok = sessionStorage.getItem('refreshToken')+"";
             this.authservice.refreshTok(refreshTok).subscribe(res=>{
-
+              console.log("Token Scaduto", res);
             if(res != null){
               if(res.msg){
               this.logout();
@@ -123,7 +124,7 @@ export class AuthInterceptor implements HttpInterceptor {
     this.router.navigateByUrl('/login');
   }
   login(res:userres){
-   // console.log("Refreshing Token, logging in");
+   console.log("Refreshing Token, logging in");
    sessionStorage.setItem('role', res.user.role.role || '');
    sessionStorage.setItem('userID', res.user.id.toString() || '');
    sessionStorage.setItem('userName', res.user.name || '');
