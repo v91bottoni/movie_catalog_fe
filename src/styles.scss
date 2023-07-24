@@ -8,7 +8,7 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .table {
@@ -89,6 +89,8 @@ mat-chip-option:hover {
   --success-color: #198754;
   --delete-color: #dc3545;
   --background-color: white;
+  --accent-color: #FFAB00;
+  --primary-color: #616161;
 }
 
 .success-snackbar {

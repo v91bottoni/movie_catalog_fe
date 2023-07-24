@@ -9,7 +9,7 @@
         <!-- Header della card -->
         <mat-card-header class="card-header">
             <!-- Pulsante per modificare il film -->
-            <button mat-icon-button (click)="goUpdate(movie.imdbid)"> <mat-icon>edit</mat-icon> </button>
+            <button mat-icon-button (click)="goUpdate(movie.imdbid)" style="color: whitesmoke;"> <mat-icon>edit</mat-icon> </button>
         </mat-card-header>
 
         <!-- Titolo del film -->
@@ -24,7 +24,7 @@
 
         <!-- Voto del film -->
         <mat-card-actions class="vote">
-            <p><b>Rated:</b> {{movie.imdbrating}}</p>
+            <p>{{movie.imdbrating}}</p>
         </mat-card-actions>
     </mat-card-content>
 
