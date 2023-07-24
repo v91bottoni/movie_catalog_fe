@@ -81,7 +81,8 @@ export class UserInfoComponent implements OnInit{
 
 
     this.authService.updateUser(userRes).subscribe(res=>{
-      console.log(res);
+      
+      sessionStorage.setItem('userName', res.user.name);
       this.alert.openSuccess(this.translate.instant('message.updateSuccess'), this.translate.instant('button.ok'));
 
 
