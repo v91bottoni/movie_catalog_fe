@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -37,7 +37,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 
 
 
-export class InsertMovieComponent {
+export class InsertMovieComponent implements OnDestroy{
 
   movie!: Movie;
 
@@ -45,6 +45,12 @@ export class InsertMovieComponent {
 
   insertForm!: FormGroup;
 
+  isHorizontal:boolean = !(window.innerWidth<1000);
+
+  resizing = () => {
+    if(window.innerWidth<1000)this.isHorizontal=false;
+    else this.isHorizontal=true;
+  }
 
 
 
@@ -54,7 +60,7 @@ export class InsertMovieComponent {
 
     private movieService: MovieService, public dialog: MatDialog) {
 
-
+      window.addEventListener("resize", this.resizing);
 
 
     this.insertForm = this.formbuilder.group({
@@ -216,6 +222,10 @@ export class InsertMovieComponent {
 
     });
 
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener("resize", this.resizing);
   }
 
   goBack(){
