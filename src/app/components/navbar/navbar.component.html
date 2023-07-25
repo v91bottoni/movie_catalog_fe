@@ -16,10 +16,10 @@
 
   <mat-label *ngIf="util.username != null || util.username != undefined" class="welcome">{{ 'message.welcome' | translate }} {{util.username}}!</mat-label>
 
-  <button  (click)="toggleProfile()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button  (click)="toggleProfile(proMenu)"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>account_circle</mat-icon>
   </button>
-  <mat-label class="profilelabel"  [@openClose]="isOpen? 'open' : 'closed'" >
+  <mat-label #proMenu class="profilelabel closePro">
     <div class="proElement" routerLink="userInfo" style="border-radius: 4px 4px 0 0;"> {{ 'menu.profile' | translate }} <mat-icon class="proIcon">person</mat-icon>
     </div>
     <div class="proElement" style="border-radius: 0 0 4px 4px;" (click)="logOut()" routerLink="login"><mat-label>{{ 'menu.logout' | translate }}</mat-label><mat-icon class="proIcon">exit_to_app</mat-icon></div>

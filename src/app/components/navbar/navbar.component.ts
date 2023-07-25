@@ -17,7 +17,7 @@ import { UtilityService } from 'src/app/service/utility.service';
         opacity: 1,
       })),
       state('closed', style({
-        transform:'scale(1%) translate(50px, -200px)',
+        transform:'scale(1%) ',
         opacity: 0,
       })),
       transition('open => closed', [
@@ -42,17 +42,20 @@ export class NavbarComponent {
   @Output()drawerEvent = new EventEmitter<string>;
 
   isOpen :boolean = false;
+  proElement!:HTMLElement;
 
 
 
 
-
-  toggleProfile(){
+  toggleProfile(proMenu:HTMLElement){
+    this.proElement = proMenu;
     if(this.isOpen){
       this.isOpen = false;
+      proMenu.classList.add('closePro');
       document.removeEventListener('click', this.closeProfile);
     }else{
       this.isOpen = true;
+      proMenu.classList.remove('closePro');
       setTimeout(() => {document.addEventListener('click', this.closeProfile)}, 1);
     }
   }
@@ -62,15 +65,11 @@ export class NavbarComponent {
     this.drawerEvent.emit("DrawerToggleEvent");
   }
 
-
-
-
   closeProfile = ()=>{
     this.isOpen = false;
+    this.proElement.classList.add('closePro');
     document.removeEventListener('click', this.closeProfile);
   }
-
-
 
   logOut(){
     if(this.authService.logout()){
