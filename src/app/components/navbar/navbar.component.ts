@@ -9,25 +9,6 @@ import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-navbar',
-  animations: [
-    trigger('openClose', [
-      // ...
-      state('open', style({
-        transform:'scale(100%)',
-        opacity: 1,
-      })),
-      state('closed', style({
-        transform:'scale(1%) ',
-        opacity: 0,
-      })),
-      transition('open => closed', [
-        animate('0.5s ease'),
-      ]),
-      transition('closed => open', [
-        animate('0.2s')
-      ]),
-    ]),
-  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -44,8 +25,13 @@ export class NavbarComponent {
   isOpen :boolean = false;
   proElement!:HTMLElement;
 
-
-
+  goTop(){
+    window.scrollTo({
+      top:0,
+      left:0,
+      behavior:'smooth'
+    });
+  }
 
   toggleProfile(proMenu:HTMLElement){
     this.proElement = proMenu;
@@ -53,10 +39,14 @@ export class NavbarComponent {
       this.isOpen = false;
       proMenu.classList.add('closePro');
       document.removeEventListener('click', this.closeProfile);
+      document.removeEventListener('scroll', this.closeScrollFun);
     }else{
       this.isOpen = true;
       proMenu.classList.remove('closePro');
-      setTimeout(() => {document.addEventListener('click', this.closeProfile)}, 1);
+      setTimeout(() => {
+        document.addEventListener('click', this.closeProfile);
+        document.addEventListener('scroll', this.closeScrollFun);
+      }, 1);
     }
   }
 
@@ -69,6 +59,16 @@ export class NavbarComponent {
     this.isOpen = false;
     this.proElement.classList.add('closePro');
     document.removeEventListener('click', this.closeProfile);
+  }
+  closeScrollFun = ()=>{
+    if(window.scrollY>400){
+      if(!this.proElement.classList.contains('closeProfile')){
+        this.isOpen = false;
+        this.proElement.classList.add('closePro');
+        document.removeEventListener('click', this.closeProfile);
+        document.removeEventListener('scroll', this.closeScrollFun);
+      }
+    }
   }
 
   logOut(){

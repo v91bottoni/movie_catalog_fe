@@ -31,15 +31,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class DrowerButtonComponent {
 
-  constructor(
-    private router: Router,
-    protected util : UtilityService) { }
+  constructor( protected util : UtilityService) { }
 
-panelOpenState = false;
 isOpenHome= false;
-isOpenCat= false;
+/*isOpenCat= false;
 isOpenProf= false;
-isOpenLog= false;
+isOpenLog= false;*/
 isOpenAdd= false;
 isOpenMan= false;
 

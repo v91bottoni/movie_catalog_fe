@@ -33,7 +33,7 @@ export class RootComponent {
 
 
   }
-  close = (event:MouseEvent)=>{
+  close = ()=>{
       if(!this.drawer.classList.contains('hide')){
         this.drawer.classList.add('hide');
         document.removeEventListener('click', this.close);

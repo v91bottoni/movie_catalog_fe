@@ -64,7 +64,7 @@ mat-toolbar{
   border-left: solid 1px rgba(0,0,0,0.2);
   background: rgb(255, 255, 255);
   transform: translateY(-9px) rotate(45deg) ;
-  position: fixed;
+  position: absolute;
   right: 94px;
   transition: 0.3s ease;
 }
@@ -94,6 +94,6 @@ mat-toolbar{
   transform: translateY(25%);
 }
 .closePro{
-  transform: scale(0);
+  transform: translate(-40px, -70px) scale(0) ;
   opacity: 0;
 }
