@@ -16,7 +16,12 @@ export class ErrorComponent {
   disabled = false;
   unbounded = false;
 
-  radius: number = 30;
+  errPage:boolean = false;
+  errNoCont:boolean = false;
+  errNoSearchRes:boolean = false;
+  errDefault:boolean = false;
+
+  radius: number = 40;
   color: string = "rgba(255,0,0,0.6)";
   message!:string;
   url = this.route.url;
@@ -24,11 +29,10 @@ constructor(private route:Router,private translate:TranslateService,private util
 this.getMessage();
 }
 getMessage(){
-  setTimeout(()=>{
-    this.url.includes("errorPage")? this.message = this.translate.instant("errormessage.errorpage"):
-    this.url.includes("noContent")? this.message = this.translate.instant("errormessage.nocontent"):
-    this.url.includes("searchError")? this.message = this.translate.instant("errormessage.nosearchres") : this.message =  this.translate.instant("errormessage.default");
-  },0);
+    this.url.includes("errorPage")? this.errPage = true:
+      this.url.includes("noContent")? this.errNoCont = true:
+        this.url.includes("searchError")? this.errNoSearchRes = true:
+          this.errDefault =  true;
 }
 goBack(){
   this.route.navigate([this.util.backpage]);

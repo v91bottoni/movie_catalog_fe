@@ -1,14 +1,7 @@
 <form [formGroup]="updateForm"  >
-  <table class="mat-elevation-z8 demo-table">
-  <tr>
-    <th >
-      <button (click)="goBack()" type="button" mat-raised-button  class="back">
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </button>
+  <mat-card class="updateCard">
+        <mat-icon (click)="goBack()" class="back">keyboard_arrow_left</mat-icon>
       <h1>{{ 'menu.updateMovie' | translate }}</h1>
-    </th>
-  </tr>
-  <tr>
     <mat-stepper [orientation]="isHorizontal?'horizontal':'vertical'" [linear]="false" #stepper>
       <mat-step [stepControl]="updateForm">
         <form [formGroup]="updateForm">
@@ -188,7 +181,7 @@
           </mat-form-field>
           <br>
 
-        <div class="demo-button-container">
+        <div class="button-container">
           <button  mat-raised-button color="primary" (click)="updateData()" class="demo-button">
             <mat-label *ngIf="!updateForm.valid">{{ 'menu.verify' | translate }}</mat-label>
             <mat-label *ngIf="updateForm.valid">{{ 'menu.updateData' | translate }}</mat-label>
@@ -209,6 +202,5 @@
 
 
 
-        </tr>
-      </table>
+  </mat-card>
   </form>

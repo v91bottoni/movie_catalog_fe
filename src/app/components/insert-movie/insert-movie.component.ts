@@ -218,9 +218,8 @@ export class InsertMovieComponent {
 
   }
 
-
-
-
-
+  goBack(){
+    this.route.navigate([this.util.backpage]);
+  }
 
 }
