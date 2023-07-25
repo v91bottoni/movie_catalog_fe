@@ -72,6 +72,8 @@ mat-list-item mat-label{
 }
 .searchmap{
   display: none;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -87,7 +89,7 @@ mat-list-item mat-label{
     color: white;
   }
   .searchmap{
-    display: block;
+    display: inline-flex;
   }
   .divider:hover{
     border-right: 1px solid rgba(0,0,0,0) ;
