@@ -1,3 +1,5 @@
+@import '/src/custom-theme.scss';
+$bg : $movie-catalog-fe-theme;
 mat-card{
     min-width: 100%;
     min-height: 100%;
@@ -21,11 +23,21 @@ mat-card h2{
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.671);
 
 }
+p, h2{
+  padding: 10px 20px;
+  width: fit-content;
+  border-radius: 5px;
+  transition: 0.3s;
+}
 mat-card:hover h2{
   font-size: xx-large;
 }
-
-
+.imagecard:hover p{
+  background: rgba(map-get($bg,primary,700), 0.5) ;
+}
+.imagecard:hover h2{
+  background: rgba(map-get($bg,primary,700), 0.1) ;
+}
 hr{
     margin: 5px 5% 10px 5%;
     opacity: 0.5;
@@ -56,10 +68,17 @@ hr{
     .pcview{
       display: none;
     }
-    .imagecard{
-        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    }
     .mobileview{
         display: block;
       }
+    .imagecard{
+        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+    .imagecard p{
+      background: rgba(map-get($bg,primary,700), 0.5) ;
+      transition: 0.3s;
+    }
+    .imagecard:hover p{
+      background: rgba(map-get($bg,primary,700), 0.8) ;
+    }
   }

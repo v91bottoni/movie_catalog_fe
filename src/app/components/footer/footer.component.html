@@ -4,10 +4,10 @@
           <div style="min-width: fit-content;" class="cardContainer">
           <h2 >{{'footer.about' | translate}}</h2>
           <mat-list>
-            <mat-list-item routerLink="contacts" ><mat-label>{{'footer.contacttext' | translate}}</mat-label></mat-list-item>
-            <mat-list-item routerLink="factory" ><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
-            <mat-list-item routerLink="about_us" ><mat-label>{{'footer.team' | translate}}</mat-label></mat-list-item>
-            <mat-list-item routerLink="values" ><mat-label>{{'footer.values' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="scroll()" routerLink="contacts" ><mat-label>{{'footer.contacttext' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="scroll()" routerLink="factory" ><mat-label>{{'footer.factory' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="scroll()" routerLink="about_us" ><mat-label>{{'footer.team' | translate}}</mat-label></mat-list-item>
+            <mat-list-item (click)="scroll()" routerLink="values" ><mat-label>{{'footer.values' | translate}}</mat-label></mat-list-item>
           </mat-list>
         </div>
       </div>

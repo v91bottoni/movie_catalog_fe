@@ -6,12 +6,4 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })
-export class AboutUsComponent {
-  constructor(private route:ActivatedRoute){
-   this.route.url.subscribe(val =>{
-    let id = val[0].path;
-    if(innerWidth<=1100) id += "Mobile";
-      setTimeout(()=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'})},0);
-   });
-  }
-}
+export class AboutUsComponent {}
