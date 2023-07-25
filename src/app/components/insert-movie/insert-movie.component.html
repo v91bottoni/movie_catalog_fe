@@ -1,10 +1,11 @@
 <div class="insert-container">
   <mat-card *ngIf="insertForm">
+    <mat-icon (click)="goBack()" class="back">keyboard_arrow_left</mat-icon>
     <mat-card-header>
       <mat-card-title><strong> {{ 'message.insertMovie' | translate }} </strong></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-stepper>
+      <mat-stepper [orientation]="isHorizontal?'horizontal':'vertical'">
       <form [formGroup]="insertForm" (ngSubmit)="onSubmit()"
         style="display: flex; flex-direction: column; align-items: center;">
 
@@ -203,7 +204,7 @@
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
-      
+
     </mat-step>
 
     <mat-step [stepControl]="insertForm" label="{{ 'menu.productionInfo' | translate }}">
@@ -221,15 +222,15 @@
           <div *ngIf="production?.errors?.['required']">
             {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.production' | translate) } }}
           </div>
-        
+
           <div *ngIf="production?.errors?.['minlength']">
             {{ 'message.error.longAtLeast' | translate: {'obj' : ('movie.production' | translate), 'num' : '2'} }}
           </div>
-        
+
           <div *ngIf="production?.errors?.['maxlength']">
             {{ 'message.error.longMax' | translate: {'obj' : ('movie.production' | translate), 'num' : '100'} }}
           </div>
-        
+
         </mat-error>
 
         <!-- Actors input -->
@@ -465,10 +466,10 @@
           <mat-label>{{ 'movie.writer' | translate }}</mat-label>
           <input matInput formControlName="writer" placeholder="{{ 'movie.writer' | translate }}" type="string" required>
         </mat-form-field>
-        
+
         <!-- IMDB-Rating Errors -->
         <mat-error *ngIf="imdbrating?.invalid && (imdbrating?.dirty || imdbrating?.touched)">
-        
+
           <div *ngIf="imdbrating?.errors?.['required']">
             {{ 'message.error.isRequired' | translate: { 'obj' : ('movie.imdbRating' | translate) } }}
           </div>
@@ -479,7 +480,7 @@
           <mat-label>{{ 'movie.imdbVotes' | translate }}</mat-label>
           <input matInput formControlName="imdbvotes" placeholder="{{ 'movie.imdbVotes' | translate }}" type="string" required />
         </mat-form-field>
-        
+
         <!-- IMDB-Votes Errors -->
         <mat-error *ngIf="imdbvotes?.invalid && (imdbvotes?.dirty || imdbvotes?.touched)">
           <div *ngIf="imdbvotes?.errors?.['required']">

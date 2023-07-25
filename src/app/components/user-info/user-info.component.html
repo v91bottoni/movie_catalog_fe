@@ -1,8 +1,6 @@
 <div class="user-container">
     <mat-card *ngIf="userForm">
-      <button (click)="goBack()" type="button" mat-raised-button class="back">
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </button>
+      <mat-icon (click)="goBack()" class="back">keyboard_arrow_left</mat-icon>
 
         <!-- <mat-card-header>
             <mat-card-title><strong> {{ 'menu.userDetails' | translate }} </strong></mat-card-title>
