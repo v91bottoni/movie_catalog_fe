@@ -14,20 +14,28 @@
         <div  class="divider">
           <div  class="cardContainer">
           <h2>{{'footer.social' | translate}}</h2>
-         <!--
+
 
           <mat-list>
-            <img (click)="goTop()" class="socialLogo" src="../assets/img/facebook.png"/>
-            <img (click)="goTop()" class="socialLogo" src="../assets/img/instagram.png"/>
-            <img (click)="goTop()" class="socialLogo" src="../assets/img/youtube.png"/>
-            <img (click)="goTop()" class="socialLogo" src="../assets/img/tiktok.png"/>
-          </mat-list>-->
-          <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
+            <div class="socialBox" title="https://www.facebook.com/mooviesSrl"><a href="https://www.facebook.com/moovieSsrl/" target="_blank"><img  class="socialLogo" src="../assets/img/facebook_icon.png"/></a></div>
+            <div class="socialBox" title="moovies@gmail.com"><a href="mailto:moovies@gmail.com" target="_blank"><img  class="socialLogo" src="../assets/img/email_icon.png"/></a></div>
+            <div class="socialBox" title="3381212123"><a href="https://wa.me/393381212123" target="_blank"><img  class="socialLogo" src="../assets/img/whatsapp_icon.png"/></a></div>
+            <div class="socialBox" title="https://www.twitter.com/mooviesSrl"><a href="https://twitter.com/" target="_blank"><img  class="socialLogo" src="../assets/img/twitter_icon.png"/></a></div>
+            <div class="socialBox" title="https://www.linkedin.com/mooviesSrl"><a href="https://www.linkedin.com/company/step-s.r.l./" target="_blank"><img  class="socialLogo" src="../assets/img/linkedin_icon.png"/></a></div>
+            <!--<div class="socialBox"><img  class="socialLogo" src="../assets/img/sharethis_icon.png"/></div>-->
+            <div class="socialBox searchmap" title="https://www.google.com/maps/"><a href="https://www.google.com/maps/dir//STEP+SRL,+Via+Giovanni+Porzio,+4,+80143+Napoli+NA/@43.2006436,8.2677392,6z/data=!4m9!4m8!1m0!1m5!1m1!1s0x133b0804d660a4e1:0xe79085f124acad3b!2m2!1d14.2778256!2d40.8571513!3e0?entry=ttu" target="_blank">
+            <img class="socialLogo searchmap" src="../assets/img/map_search_icon.png"/></a></div>
+          </mat-list>
+
+      <!--    <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
           [include]="['facebook']"
           [showIcon]="true"
           [showText]="false"
           title="https://www.facebook.com/mooviesSrl">
         </share-buttons>
+        <mat-icon>facebook</mat-icon>
+        <mat-icon>email</mat-icon>
+        <span class="material-icons">whatsapp</span>
         <share-buttons style="margin-top:20px;" [theme]="'circles-dark'"
           [include]="['email']"
           [showIcon]="true"
@@ -51,11 +59,11 @@
           [showIcon]="true"
           [showText]="false"
           title="https://www.twitter.com/mooviesSrl">
-        </share-buttons>
+        </share-buttons>-->
         </div>
       </div>
 
-        <div class="divider hide">
+        <div #map class="divider hide">
           <div class="cardContainer hide">
           <div class="maptitle" style="text-align: left;">
             <img class="footerlogo" title="{{'footer.home'|translate}}" (click)="goTop()" routerLink="home" src="../assets/icons/logo-icon.svg"/>

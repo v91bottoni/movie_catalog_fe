@@ -141,7 +141,9 @@
   "title":"MOVIE UPDATED",
   "msg":"Movie update completed successfully!",
   "continue":"CONTINUE",
-  "viewchanges":"VIEW CHANGES"
+  "viewchanges":"VIEW CHANGES",
+  "updated":"Updates done!",
+  "ok":"OK"
 },
 "expire":{
   "title":"SESSION EXPIRED",

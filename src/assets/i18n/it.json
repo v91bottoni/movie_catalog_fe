@@ -141,7 +141,10 @@
   "title":"FILM AGGIORNATO",
   "msg":"Modifiche al film effettuate con successo!",
   "continue":"CONTINUA",
-  "viewchanges":"VEDI MODIFICHE"
+  "viewchanges":"VEDI MODIFICHE",
+  "updated":"Modifiche Efettuate!",
+  "ok":"OK"
+
 },
 "expire":{
   "title":"SESSIONE SCADUTA",

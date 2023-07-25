@@ -7,6 +7,8 @@ import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
+import { SnackbarService } from 'src/app/service/snackbar.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-movie',
@@ -35,7 +37,9 @@ export class UpdateMovieComponent implements OnDestroy{
     private route :Router,
     private activatedRoute:ActivatedRoute,
     private util:UtilityService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private alert: SnackbarService,
+    private translate:TranslateService) {
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
         this.movie = resp;
@@ -69,6 +73,7 @@ export class UpdateMovieComponent implements OnDestroy{
                       this.service.movieid = movie.imdbid;
                       this.dialog.open(MovieDetailsComponent);
                     }
+                    this.alert.openSuccess(this.translate.instant('updatemovie.updated'), this.translate.instant('updatemovie.ok'));
                   });
               }
             });
