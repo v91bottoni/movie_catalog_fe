@@ -1,8 +1,37 @@
 @import '/src/custom-theme.scss';
 $bg : $movie-catalog-fe-theme;
 .aboutContainer{
-  width: 100%;
-  padding: 80px 0 150px 0;
+  width: 90%;
+  padding: 80px 5% 150px 5%;
+
+}
+
+.contactDiv{
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: fit-content;
+  padding: 12px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 1px 1px rgba(0,0,0,0.4);
+  transition: 0.3s;
+  z-index: 1;
+}
+.contactDiv:hover{
+  cursor: pointer;
+  box-shadow: 5px 5px rgba(0,0,0,0.4);
+  transform: translate(-2px, -2px);
+}
+.pop{
+  transform: scale(0);
+}
+.contact{
+  width: 40px;
+  height: 40px;
+  filter:invert(100%);
 }
 h2{
   font-size: xx-large;
@@ -11,10 +40,22 @@ h2{
 .pellicola{
   position: absolute;
   border-radius: 0  50% 50% 0;
-  width: 50%;
+  width: 40%;
   transform:  translateY(-50%);
 }
-
+.movieResult{
+  display: inline-block;
+  margin: 10px 20px;
+  width: fit-content;
+  text-align: center;
+  padding: 5px 20px;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+.movieResult:hover{
+  background: rgba(255, 255, 255, 0.662);
+  transform: scale(130%);
+}
 .factory{
   background: map-get($bg,primary,300);
   display: flex;
@@ -25,7 +66,11 @@ h2{
   margin: 10%;
   max-width: 40%;
 }
+.textContainer p{
+  margin-bottom: 20%;
+}
 .imgContainer{
+  text-align: center;
   width: 50%;
   min-width: 500px;
 }
@@ -36,7 +81,7 @@ h2{
 
 .team{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 .values{
@@ -62,23 +107,26 @@ h2{
     width: 90%;
   }
   .factory{
-    width: 100%;
+    width: 90%;
     display: block;
   }
   .team{
-    width: 100%;
+    width: 90%;
     display: block;
   }
   .values{
-    width: 100%;
+    width: 90%;
     display: block;
   }
   .textContainer{
-    max-width: 100%;
+    max-width: 90%;
   }
   .imgContainer{
     margin: 0 auto;
     width: 90%;
     min-width: 90%;
+  }
+  .hide{
+    display: none;
   }
 }
