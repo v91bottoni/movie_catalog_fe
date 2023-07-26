@@ -1,112 +1,60 @@
-<mat-grid-list class="pcview" cols="4" rowHeight="500px" >
-    <mat-grid-tile id="factory" class="img factory" [colspan]="3" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2 class="slide">{{'aboutus.factory' | translate}}</h2><hr>
+<div id="waContact" class="contactDiv" title="{{'aboutus.contactus'|translate}}"><a href="https://wa.me/393381212123" target="_blank"><img  class="contact" src="../assets/img/whatsapp_icon.png"/></a></div>
 
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.factoryText'| translate }}</p>
+<img class="pellicola" src="..\assets\img\pellicola.png"/>
+<div id="factory" class="aboutContainer factory" >
+  <div class="textContainer">
+    <h2 class="slide">{{'aboutus.factory' | translate}}</h2>
+    <p>{{'aboutus.factoryText'| translate }}</p>
+    <div class="movieResult">
+      <h1><mat-icon>group_add</mat-icon> {{nVisitors}}</h1>
+      <mat-label>{{'aboutus.visitors'|translate}} !</mat-label>
+    </div>
+    <div class="movieResult">
+      <h1><mat-icon>movie</mat-icon> {{nMovie}}</h1>
+      <mat-label>{{'aboutus.movieResult'|translate}} !</mat-label>
+    </div>
+  </div>
+  <div class="imgContainer hide">
+    <img src="..\assets\img\cinema.png"/>
+  </div>
 
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="contacts" class="contacts" [colspan]="1" [rowspan]="3">
-        <mat-card>
-            <mat-card-title>
-                <h2>{{'aboutus.contacts' | translate}}</h2><hr>
+</div>
+<div id="about_us" class="aboutContainer team" >
+  <div class="imgContainer hide">
+    <img src="..\assets\img\team.png"/>
+  </div>
+  <div class="textContainer">
+    <h2> {{'aboutus.team' | translate}}</h2>
+    <p>{{'aboutus.teamText'| translate }}</p>
+    <div class="movieResult">
+      <h1><mat-icon>sentiment_satisfied_alt</mat-icon> {{nEmployees}}</h1>
+      <mat-label>{{'aboutus.employees'|translate}} !</mat-label>
+    </div>
+    <div class="movieResult">
+      <h1><mat-icon>thumb_up_alt</mat-icon> {{nSubscribers}}</h1>
+      <mat-label>{{'aboutus.subscribers'|translate}} !</mat-label>
+    </div>
+  </div>
+</div>
 
-            </mat-card-title>
-            <mat-card-content>
-            <mat-icon class="contactIcon">phone</mat-icon>080-5651234<br><br>
-            <mat-icon class="contactIcon">smartphone</mat-icon>338-1212123<br><br>
-            <mat-icon class="contactIcon">mail</mat-icon>moovies@gmail.com<br><br>
-            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4 - NA<br>
+<div id="values" class="aboutContainer values" >
+  <div class="textContainer">
+    <h2>{{'aboutus.values' | translate}}</h2>
+    <p>{{'aboutus.valuesText'| translate }}</p>
+  </div>
+  <div class="imgContainer">
+    <img src="..\assets\img\values.png"/>
+  </div>
+</div>
 
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="about_us" class="img team" [colspan]="3" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2> {{'aboutus.team' | translate}}</h2><hr>
-
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.teamText'| translate }}</p>
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="values" class="img values" [colspan]="3" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2>{{'aboutus.values' | translate}}</h2><hr>
-
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.valuesText'| translate }}</p>
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+<div id="contacts" class="aboutContainer contacts" >
+  <div class="textContainer">
+  <h2>{{'aboutus.contacts' | translate}}</h2>
+    <mat-icon class="contactIcon">phone</mat-icon>080-5651234<br><br>
+    <mat-icon class="contactIcon">smartphone</mat-icon>338-1212123<br><br>
+    <mat-icon class="contactIcon">mail</mat-icon>moovies@gmail.com<br><br>
+    <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4 - NA<br>
+  </div>
+</div>
 
 
-
-
-
-
-<mat-grid-list class="mobileview" cols="1" rowHeight="400px" >
-    <mat-grid-tile id="factory-Mobile" class="img factory" [colspan]="1" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2>{{'aboutus.factory' | translate}}</h2>
-
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.factoryText'| translate }}</p>
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="about_us-Mobile" class="img team" [colspan]="1" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2>{{'aboutus.team' | translate}}</h2>
-
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.teamText'| translate }}</p>
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="values-Mobile"  class="img values" [colspan]="1" [rowspan]="1">
-        <mat-card class="imagecard">
-            <mat-card-title>
-                <h2>{{'aboutus.values' | translate}}</h2>
-
-            </mat-card-title>
-            <mat-card-content>
-                <p>{{'aboutus.valuesText'| translate }}</p>
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile id="contacts-Mobile" class="contacts" [colspan]="1" [rowspan]="1">
-        <mat-card>
-            <mat-card-title>
-                <h2>{{'aboutus.contacts' | translate}}</h2>
-
-            </mat-card-title>
-            <mat-card-content>
-            <mat-icon class="contactIcon">phone</mat-icon>080-5651234<br><br>
-            <mat-icon class="contactIcon">smartphone</mat-icon>338-12121234<br><br>
-            <mat-icon class="contactIcon">mail</mat-icon>moovies@gmail.com<br><br>
-            <mat-icon class="contactIcon">room</mat-icon>Via Giovanni Porzio, 4 - NA
-
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>

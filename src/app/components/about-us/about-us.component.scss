@@ -1,84 +1,132 @@
 @import '/src/custom-theme.scss';
 $bg : $movie-catalog-fe-theme;
-mat-card{
-    min-width: 100%;
-    min-height: 100%;
-}
-mat-grid-list{
-    margin: 0 auto;
-    width: 100%;
-}
-mat-card h2{
-    margin-top: 80px;
-    margin-left: 20px;
-    transition: 0.5s;
-}
-.imagecard{
-    background: none;
-    color: white;
-    transition: 1s ease;
-}
-.imagecard:hover{
-    backdrop-filter: blur(10px);
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.671);
+.aboutContainer{
+  width: 90%;
+  padding: 80px 5% 150px 5%;
 
 }
-p, h2{
-  padding: 10px 20px;
+
+.contactDiv{
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
   width: fit-content;
-  border-radius: 5px;
+  padding: 12px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 1px 1px rgba(0,0,0,0.4);
   transition: 0.3s;
+  z-index: 1;
 }
-mat-card:hover h2{
+.contactDiv:hover{
+  cursor: pointer;
+  box-shadow: 5px 5px rgba(0,0,0,0.4);
+  transform: translate(-2px, -2px);
+}
+.pop{
+  transform: scale(0);
+}
+.contact{
+  width: 40px;
+  height: 40px;
+  filter:invert(100%);
+}
+h2{
   font-size: xx-large;
+  margin-bottom: 50px;
 }
-.imagecard:hover p{
-  background: rgba(map-get($bg,primary,700), 0.5) ;
+.pellicola{
+  position: absolute;
+  border-radius: 0  50% 50% 0;
+  width: 40%;
+  transform:  translateY(-50%);
 }
-.imagecard:hover h2{
-  background: rgba(map-get($bg,primary,700), 0.1) ;
+.movieResult{
+  display: inline-block;
+  margin: 10px 20px;
+  width: fit-content;
+  text-align: center;
+  padding: 5px 20px;
+  border-radius: 5px;
+  transition: 0.5s ease;
 }
-hr{
-    margin: 5px 5% 10px 5%;
-    opacity: 0.5;
+.movieResult:hover{
+  background: rgba(255, 255, 255, 0.662);
+  transform: scale(130%);
 }
+.factory{
+  background: map-get($bg,primary,300);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.textContainer{
+  margin: 10%;
+  max-width: 40%;
+}
+.textContainer p{
+  margin-bottom: 20%;
+}
+.imgContainer{
+  text-align: center;
+  width: 50%;
+  min-width: 500px;
+}
+.imgContainer img{
+  max-width: 100%;
+  max-height: 500px;
+}
+
+.team{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.values{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: map-get($bg,primary,400);
+}
+.contacts{
+
+}
+
 .contactIcon{
     margin-right: 10px;
     transform: translateY(20%);
 }
-.img{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-}
-.factory{
-    background-image: url('https://galinewsblog.files.wordpress.com/2021/12/img-200123-o-29-1365-0-0-84b7487908d945400b1776407e1543c0.jpg');
-}
-.team{
-    background-image: url('https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/2020-08/shutterstock_1731284125_0.jpg?itok=89UrdUt_');
-}
-.values{
-    background-image: url('https://thestorytellers.com/wp-content/uploads/2018/05/07.-Value-of-Values-1024x478.jpg');
-}
-.mobileview{
-    display: none;
-}
 
 @media screen and (max-width: 1100px) {
-    .pcview{
-      display: none;
-    }
-    .mobileview{
-        display: block;
-      }
-    .imagecard{
-        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    }
-    .imagecard p{
-      background: rgba(map-get($bg,primary,700), 0.5) ;
-      transition: 0.3s;
-    }
-    .imagecard:hover p{
-      background: rgba(map-get($bg,primary,700), 0.8) ;
-    }
+  .aboutContainer{
+    text-align: center;
   }
+  .pellicola{
+    width: 90%;
+  }
+  .factory{
+    width: 90%;
+    display: block;
+  }
+  .team{
+    width: 90%;
+    display: block;
+  }
+  .values{
+    width: 90%;
+    display: block;
+  }
+  .textContainer{
+    max-width: 90%;
+  }
+  .imgContainer{
+    margin: 0 auto;
+    width: 90%;
+    min-width: 90%;
+  }
+  .hide{
+    display: none;
+  }
+}
