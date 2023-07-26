@@ -45,34 +45,8 @@ export class SliderComponent implements OnInit {
   ngOnInit(): void {
   
     this.updateGridCols(); //Aggiorna il numore di collonne in base alla grandezza dello schermo
-  
-    // Se il tipo è "all"
-    if(this.type=="all"){
-      // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination(1,'imdbrating',4).subscribe(res=>{
-        this.maxPage=res.maxPageNumber;
-        this.movies=res.movieList
-  
-        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
-        if(this.maxPage==1){
-          this.right=false
-        }
-      });
-    }
-  
-    // Se il tipo è "category"
-    if(this.type=="category"){
-      // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination(this.category, 1 ,4).subscribe(res=>{
-        this.maxPage=res.maxPageNumber;
-        this.movies=res.movieList
-  
-        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
-        if(this.maxPage==1){
-          this.right=false
-        }
-      });
-    }
+    this.updateCard(4);  //Aggiorna il numero di card in base alla gradezza dello schermo
+
   }
 
   constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router){}
@@ -101,35 +75,25 @@ export class SliderComponent implements OnInit {
   updateGridCols() {
     const screenWidth = window.innerWidth;
     
+    // Se la larghezza dello schermo è inferiore a 600 pixel
     if (screenWidth < 600) {
-      if(this.gridCols!=1){
-        this.updateCard(1);
-      }
+      // Se il numero di colonne della griglia non è 1, aggiorna la scheda
+      if (this.gridCols != 1) { this.updateCard(1); }
       this.gridCols = 1;
-    } 
-    
-    else if (screenWidth < 850) {
-      if(this.gridCols!=2){
-        this.updateCard(2);
-      }
+    } else if (screenWidth < 850) {
+      // Se la larghezza dello schermo è compresa tra 600 e 850 pixel
+      if (this.gridCols != 2) { this.updateCard(2); }
       this.gridCols = 2;
-    } 
-    
-    else if (screenWidth < 1040) {
-      if(this.gridCols!=3){
-        this.updateCard(3);
-      }
+    } else if (screenWidth < 1040) {
+      // Se la larghezza dello schermo è compresa tra 850 e 1040 pixel
+      if (this.gridCols != 3) { this.updateCard(3); }
       this.gridCols = 3;
-    } 
-    
-    else {
-      if(this.gridCols!=4){
-        this.updateCard(4);
-      }
+    } else {
+      // Se la larghezza dello schermo è superiore a 1040 pixel
+      if (this.gridCols != 4) { this.updateCard(4); }
       this.gridCols = 4;
     }
-    
-  }
+}
 
   updateCard(number:number){
 
