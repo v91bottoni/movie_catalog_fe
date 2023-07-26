@@ -31,6 +31,7 @@ export class SliderComponent implements OnInit {
   movies!: Movie[];
   maxPage!: number;
   current: number = 1
+  size: number = 4;
 
   hover: boolean = true;
   idHover!: string;
@@ -99,14 +100,67 @@ export class SliderComponent implements OnInit {
 
   updateGridCols() {
     const screenWidth = window.innerWidth;
+    
     if (screenWidth < 600) {
+      if(this.gridCols!=1){
+        this.updateCard(1);
+      }
       this.gridCols = 1;
-    } else if (screenWidth < 850) {
+    } 
+    
+    else if (screenWidth < 850) {
+      if(this.gridCols!=2){
+        this.updateCard(2);
+      }
       this.gridCols = 2;
-    } else if (screenWidth < 1040) {
+    } 
+    
+    else if (screenWidth < 1040) {
+      if(this.gridCols!=3){
+        this.updateCard(3);
+      }
       this.gridCols = 3;
-    } else {
+    } 
+    
+    else {
+      if(this.gridCols!=4){
+        this.updateCard(4);
+      }
       this.gridCols = 4;
+    }
+    
+  }
+
+  updateCard(number:number){
+
+    this.size = number;
+
+    // Se il tipo è "all"
+    if(this.type=="all"){
+      // Ottieni tutti i film con paginazione
+      this.movieService.getAllMoviesWithPagination(1,'imdbrating',number).subscribe(res=>{
+        this.maxPage=res.maxPageNumber;
+        this.movies=res.movieList
+  
+        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
+        if(this.maxPage==1){
+          this.right=false
+        }
+      });
+    }
+  
+    // Se il tipo è "category"
+    if(this.type=="category"){
+      // Ottieni i film per genere con paginazione
+      this.movieService.getMoviesByGenreWithPagination(this.category, 1 ,number).subscribe(res=>{
+        this.maxPage=res.maxPageNumber;
+        this.movies=res.movieList
+  
+        // Se c'è solo una pagina, disabilita il pulsante "Avanti"
+        if(this.maxPage==1){
+          this.right=false
+        }
+      });
     }
   }
 
@@ -125,7 +179,7 @@ export class SliderComponent implements OnInit {
       page=this.current+1
       console.log(page);
       // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination(page,'imdbrating',4).subscribe(res=>{
+      this.movieService.getAllMoviesWithPagination(page,'imdbrating',this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'right';
@@ -144,7 +198,7 @@ export class SliderComponent implements OnInit {
       // Decrementa la pagina corrente
       page=this.current-1;
       // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination( page ,'imdbrating',4).subscribe(res=>{
+      this.movieService.getAllMoviesWithPagination( page ,'imdbrating',this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'left';
@@ -164,7 +218,7 @@ export class SliderComponent implements OnInit {
       page=this.current+1
       console.log(page);
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination( this.category, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'right';
@@ -183,7 +237,7 @@ export class SliderComponent implements OnInit {
       // Decrementa la pagina corrente
       page=this.current-1;
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.category, page ,4).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination( this.category, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'left';
