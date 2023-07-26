@@ -91,7 +91,15 @@ h2{
   background: map-get($bg,primary,400);
 }
 .contacts{
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contacts .imgContainer{
+  padding: 0 10px;
+  border: solid 3px rgba(map-get($bg,primary,700),0.3);
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(map-get($bg,primary,700),0.5);
 }
 
 .contactIcon{
