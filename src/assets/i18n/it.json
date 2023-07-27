@@ -169,9 +169,73 @@
     "employees":"DIPENDENTI",
     "contactus":"Contattaci!"
 },
+"chips": {
+    
+   
+  "all": "Tutti",
+      
+     
+  "action": "Azione",
+      
+     
+  "adventure": "Avventura",
+      
+     
+  "animation": "Animazione",
+      
+     
+  "comedy": "Commedia",
+      
+     
+  "crime": "Crimine",
+      
+     
+  "drama": "Dramma",
+      "documentary": "Documentario",
+      "fantasy": "Fantasy",
+      
+     
+  "romance": "Romantico",
+      
+     
+  "thriller": "Romanzo"
+    },
+
+    "title": {
+      "For You": "Per Te",
+   
+      "all": "Tutti",
+          
+         
+      "action": "Azione",
+          
+         
+      "adventure": "Avventura",
+          
+         
+      "animation": "Animazione",
+          
+         
+      "comedy": "Commedia",
+          
+         
+      "crime": "Crimine",
+          
+         
+      "drama": "Dramma",
+          "documentary": "Documentario",
+          "fantasy": "Fantasy",
+          
+         
+      "romance": "Romantico",
+          
+         
+      "thriller": "Romanzo"
+        },
 "multiselect" : {
   "ok":"OK",
   "close":"CHIUDI"
 }
+    
 
 }

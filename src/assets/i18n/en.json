@@ -168,8 +168,75 @@
     "employees":"EMPLOYEES",
     "contactus":"Contact us!"
 },
+"chips": {
+    
+   
+  "all": "All",
+      
+     
+  "action": "Action",
+      
+     
+  "adventure": "Adventure",
+      
+     
+  "animation": "Animation",
+      
+     
+  "comedy": "Comedy",
+      
+     
+  "crime": "Crime",
+      "drama": "Drama",
+      
+     
+  "documentary": "Documentary",
+      
+     
+  "fantasy": "Fantasy",
+      
+     
+  "romance": "Romance",
+      
+     
+  "thriller": "Thriller"
+    },
+    "title": {
+    
+      "For You": "For You",
+      "all": "All",
+          
+         
+      "action": "Action",
+          
+         
+      "adventure": "Adventure",
+          
+         
+      "animation": "Animation",
+          
+         
+      "comedy": "Comedy",
+          
+         
+      "crime": "Crime",
+          "drama": "Drama",
+          
+         
+      "documentary": "Documentary",
+          
+         
+      "fantasy": "Fantasy",
+          
+         
+      "romance": "Romance",
+          
+         
+      "thriller": "Thriller"
+        },
 "multiselect" : {
   "ok":"OK",
   "close":"CLOSE"
 }
+  
 }
