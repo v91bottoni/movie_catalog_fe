@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MultiSelectDialogComponent } from 'src/app/dialogs/multi-select-dialog/multi-select-dialog.component';
 
@@ -8,12 +8,24 @@ import { MultiSelectDialogComponent } from 'src/app/dialogs/multi-select-dialog/
   styleUrls: ['./multi-select-button.component.scss']
 })
 export class MultiSelectButtonComponent {
-  @Input() path:string='';
+  @Input() path:string = '';
+  @Output()launchString = new EventEmitter<string>();
 constructor(public dialog: MatDialog){}
 
   openMenu(){
     this.dialog.open(MultiSelectDialogComponent, {
       data: { path: this.path }
+    }).afterClosed().subscribe(res=>{
+      if(res!= null){
+        //console.log(res);
+        let out:string='';
+        res.forEach((element: string) => {
+          out += element+', ';
+        });
+        out = out.substring(0,out.length-2);
+        console.log(out);
+        this.launchString.emit(out);
+      }
     });
 
   }

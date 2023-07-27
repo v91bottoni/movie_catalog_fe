@@ -18,13 +18,15 @@ import { TranslateService } from '@ngx-translate/core';
 export class UpdateMovieComponent implements OnDestroy{
   movie:Movie| null = null;
   submitted = false;
-  updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :['', Validators.required],    imdbrating :[''],    imdbvotes :[''],    language :[''],    metascore :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],    response :[''],    runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
+  updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :['', Validators.required],    imdbrating :[''],    imdbvotes :[''],    language :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],     runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
   //controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
 
   genNames:string[] = [ 'plot',    'released',    'runtime',   'genre',    'title',    'totalseason',    'type', 'year'];
   prodNames:string[] = ['actors',      'country',    'director',    'dvd',     'language',    'poster',    'production','writer'];
-  otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',      'metascore',    'rated',      'response',   'website'];
+  otherNames:string[] = [ 'awards','boxoffice',    'imdbrating',    'imdbvotes',       'rated',  'website'];
+
   isHorizontal:boolean = !(window.innerWidth<1000);
+
   resizing = () => {
     if(window.innerWidth<1000)this.isHorizontal=false;
     else this.isHorizontal=true;
@@ -43,7 +45,6 @@ export class UpdateMovieComponent implements OnDestroy{
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
         this.movie = resp;
-        console.log(this.movie);
         this.reset();
       });
       window.scrollTo({
@@ -55,7 +56,6 @@ export class UpdateMovieComponent implements OnDestroy{
 
 
         updateData() {
-
           this.verifyStepError();
           this.submitted = true;
           if(this.updateForm.valid){
@@ -145,13 +145,11 @@ export class UpdateMovieComponent implements OnDestroy{
             imdbrating : [this.movie?.imdbrating],
             imdbvotes : [this.movie?.imdbvotes],
             language : [this.movie?.language],
-            metascore : [this.movie?.metascore],
             plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
             poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
             production : [this.movie?.production],
             rated : [this.movie?.rated],
             released : [this.movie?.released],
-            response : [this.movie?.response],
             runtime : [this.movie?.runtime],
             title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
             totalseasons : [this.movie?.totalseasons],
@@ -166,6 +164,12 @@ export class UpdateMovieComponent implements OnDestroy{
 
         ngOnDestroy(): void {
           window.removeEventListener("resize", this.resizing);
+        }
+
+        setMultiSelectInput(event:string, path:string){
+          console.log('Event emit: ' ,event);
+          this.updateForm.get(path)?.setValue(event);
+
         }
 
 

@@ -1,8 +1,10 @@
-<div class="multi-select-menu hide">
-    <mat-chip-listbox selectable multiple class="mat-mdc-chip-set-stacked">
-        <mat-chip (click)="renderOut(option)" *ngFor="let option of listElement" [value]="option">{{option}}</mat-chip>
+<div class="multi-select-menu">
+  <h1>{{'multiselect.title' | translate}}</h1>
+      <mat-chip-listbox selectable multiple class="mat-mdc-chip-set-stacked" >
+        <mat-chip-option (selectionChange)="renderOut(option)" *ngFor="let option of listElement">
+          {{option}}
+        </mat-chip-option>
       </mat-chip-listbox>
-
-      <button mat-button [mat-dialog-close]="true">{{'multiselect.close'|translate}}</button>
+      <button mat-button [mat-dialog-close]="null">{{'multiselect.close'|translate}}</button>
       <button mat-button [mat-dialog-close]="listOut">{{'multiselect.ok'|translate}}</button>
 </div>

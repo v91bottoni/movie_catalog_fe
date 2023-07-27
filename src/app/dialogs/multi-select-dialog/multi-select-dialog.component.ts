@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -7,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./multi-select-dialog.component.scss']
 })
 export class MultiSelectDialogComponent {
-  @Output()launchString = new EventEmitter<string[]>();
+ 
 
   listElement:string[]=['Clooney','Carry'];
   listOut:string[]=[];
@@ -20,12 +21,15 @@ export class MultiSelectDialogComponent {
 
   }
   renderOut(option:string){
-
     if(this.listOut.includes(option)){
       this.listOut = this.listOut.filter(val=>val!=option);
     }else{
       this.listOut.push(option);
     }
     console.log(this.listOut);
+  }
+
+  keyPressed(option:string){
+    console.log("Key pressed: ");
   }
 }

@@ -170,6 +170,7 @@
     "contactus":"Contattaci!"
 },
 "multiselect" : {
+  "title":"Selezionare le voci d'interesse",
   "ok":"OK",
   "close":"CHIUDI"
 }

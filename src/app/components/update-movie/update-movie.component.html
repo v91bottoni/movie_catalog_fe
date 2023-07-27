@@ -80,12 +80,13 @@
           <mat-form-field appearance="fill">
             <mat-label for="actors">{{ 'movie.actors' | translate }}</mat-label>
             <input  matInput #actors  id="actors" name="actors" type="text" placeholder="{{ 'movie.actors' | translate }}" formControlName="actors">
-            <app-multi-select-button [path]="'actors'" matSuffix></app-multi-select-button>
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'actors')" [path]="'actors'"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label for="writer">{{ 'movie.writer' | translate }}</mat-label>
             <input  matInput #writer id="writer" name="writer" type="text" placeholder="{{ 'movie.writer' | translate }}" formControlName="writer">
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'writer')" [path]="'writer'"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -163,23 +164,12 @@
             <input  matInput #imdbvotes id="imdbvotes" name="imdbvotes" type="text" placeholder="{{ 'movie.imdbVotes' | translate }}" formControlName="imdbvotes">
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label for="metascore">{{ 'movie.metascore' | translate }}</mat-label>
-            <input  matInput #metascore id="metascore" name="metascore" type="text"placeholder="{{ 'movie.metascore' | translate }}" formControlName="metascore">
-          </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label for="rated">{{ 'movie.rated' | translate }}</mat-label>
             <input  matInput #rated id="rated" name="rated" type="text" placeholder="{{ 'movie.rated' | translate }}" formControlName="rated">
           </mat-form-field>
 
-          <mat-form-field  appearance="fill">
-            <mat-label for="response">{{ 'movie.response' | translate }}</mat-label>
-            <mat-select formControlName="response">
-              <mat-option value="True">{{ 'menu.true' | translate }}</mat-option>
-              <mat-option value="False">{{ 'menu.false' | translate }}</mat-option>
-            </mat-select>
-          </mat-form-field>
           <br>
 
         <div class="button-container">

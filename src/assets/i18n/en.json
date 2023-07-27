@@ -169,6 +169,7 @@
     "contactus":"Contact us!"
 },
 "multiselect" : {
+  "title":"Select the items of interest",
   "ok":"OK",
   "close":"CLOSE"
 }
