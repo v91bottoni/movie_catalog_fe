@@ -5,6 +5,8 @@ import { MovieDetailsComponent } from '../movie-details/movie-details.component'
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
+import { GenreService } from 'src/app/service/genre.service';
 
 @Component({
   selector: 'app-slider',
@@ -25,10 +27,10 @@ export class SliderComponent implements OnInit {
   
 
   @Input() title: string ='';
-  @Input() category: string ='';
+  @Input() category: number = 0;
   @Input() type: string ='';
 
-  movies!: Movie[];
+  movies!: MovieDetailsDTO[];
   maxPage!: number;
   current: number = 1
   size: number = 4;
@@ -49,7 +51,7 @@ export class SliderComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router){}
+  constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router, private genreService: GenreService){}
 
   openDialog(imdbid: string){
     this.movieService.movieid = imdbid;
@@ -102,7 +104,7 @@ export class SliderComponent implements OnInit {
     // Se il tipo è "all"
     if(this.type=="all"){
       // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination(1,'imdbrating',number).subscribe(res=>{
+      this.movieService.getAllMoviesWithPagination(1,'rating',number).subscribe(res=>{
         this.maxPage=res.maxPageNumber;
         this.movies=res.movieList
   
@@ -143,7 +145,7 @@ export class SliderComponent implements OnInit {
       page=this.current+1
       console.log(page);
       // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination(page,'imdbrating',this.size).subscribe(res=>{
+      this.movieService.getAllMoviesWithPagination(page,'rating',this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'right';
@@ -162,7 +164,7 @@ export class SliderComponent implements OnInit {
       // Decrementa la pagina corrente
       page=this.current-1;
       // Ottieni tutti i film con paginazione
-      this.movieService.getAllMoviesWithPagination( page ,'imdbrating',this.size).subscribe(res=>{
+      this.movieService.getAllMoviesWithPagination( page ,'rating',this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'left';

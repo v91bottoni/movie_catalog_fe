@@ -1,0 +1,7 @@
+<!-- Chips -->
+<div class="chips">
+    <mat-chip-listbox value={{currentChipsValue}}>
+        <mat-chip-option (click)="goToCategory(-1)" value="-1"> All </mat-chip-option>
+        <mat-chip-option (click)="goToCategory(chips.idGenre)" *ngFor="let chips of chipsCategory" value={{chips.idGenre}} > {{chips.genre}}</mat-chip-option>
+    </mat-chip-listbox>
+    </div>

@@ -1,3 +1,12 @@
+import { ActorDTO } from "./dto/actor-dto";
+import { CountryDTO } from "./dto/country-dto";
+import { DirectorDTO } from "./dto/director-dto";
+import { GenreDTO } from "./dto/genre-dto";
+import { LanguageDTO } from "./dto/language-dto";
+import { ProductionDTO } from "./dto/production-dto";
+import { WriterDTO } from "./dto/writer-dto";
+import { Type } from "./type";
+
 export interface Movie {
     imdbid: string,
     title: string,
@@ -5,23 +14,21 @@ export interface Movie {
     rated: string,
     released: Date,
     runtime: string,
-    genre: string,
-    director: string,
-    writer:string,
-    actors: string,
+    genre: GenreDTO[],
+    director: DirectorDTO[],
+    writer:WriterDTO[],
+    actors: ActorDTO[],
     plot: string,
     boxoffice: string,
-    language: string,
-    country: string,
+    language: LanguageDTO[],
+    country: CountryDTO[],
     awards: string,
     poster: string,
-    metascore: string,
-    imdbrating: string,
-    imdbvotes: string,
-    type: string,
+    voteNumber: number,
+    rating: number,
+    type: Type,
     dvd: Date,
-    production: string,
+    production: ProductionDTO[],
     website: string,
-    response: boolean,
     totalseasons: number
 }

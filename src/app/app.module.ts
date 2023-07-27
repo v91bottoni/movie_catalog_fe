@@ -67,6 +67,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CategoryChipsComponent } from './components/category-chips/category-chips.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -103,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MapDialogComponent,
     SpinnerComponent,
     AboutUsComponent,
+    CategoryChipsComponent,
   ],
   imports: [
     BrowserModule,

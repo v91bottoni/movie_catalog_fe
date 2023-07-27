@@ -13,13 +13,15 @@
 </mat-button-toggle-group>
 
 <!-- Chips -->
-<div class="chips">
+<!-- <div class="chips">
 <mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
     <mat-chip-option routerLink="/home/all" value="-1" [disabled]="currentChipsValue === '-1'" > 
        All  </mat-chip-option>
-    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}}  [disabled]="currentChipsValue === chips"> {{chips}}</mat-chip-option>
+    <mat-chip-option (click)="goToCategory(chips.idGenre)" *ngFor="let chips of chipsCategory; index as i" value={{chips.idGenre}}  [disabled]="currentChipsValue === chips.genre"> {{chips.genre}}</mat-chip-option>
 </mat-chip-listbox>
-</div>
+</div> -->
+
+<app-category-chips></app-category-chips>
 
 </mat-grid-list>
 

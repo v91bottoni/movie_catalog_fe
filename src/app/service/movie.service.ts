@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../models/movie';
 import { response } from '../models/response';
+import { MovieDetailsDTO } from '../models/dto/movie-details-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,34 +29,34 @@ export class MovieService {
 
   }
 
-  getMovieByGenre(genre:string, page:number = 1):Observable<response>{
-    return this.http.get<response>(this.apiUrl + 'genre/' + genre + '/' + page);
+  getMovieById(id: string): Observable<MovieDetailsDTO>{
+    return this.http.get<MovieDetailsDTO>(this.apiUrl + 'details/' + id);
   }
 
-  getMovieById(id: string): Observable<Movie>{
-    return this.http.get<Movie>(this.apiUrl + 'details/' + id);
-  }
-
-  getAllMovies(page: number = 1, sort: string = 'imdbrating'): Observable<response>{
+  getAllMovies(page: number = 1, sort: string = 'rating'): Observable<response>{
     return this.http.get<response>(this.apiUrl + 'all/' + page + '/' + sort);
   }
 
-  saveMovie(movie: Movie): Observable<Movie>{
-    return this.http.post<Movie>(this.apiUrl + 'add/', movie);
+  saveMovie(movie: MovieDetailsDTO): Observable<MovieDetailsDTO>{
+    return this.http.post<MovieDetailsDTO>(this.apiUrl + 'add/', movie);
   }
 
-  updateMovie(movie: Movie): Observable<Movie>{
-    return this.http.post<Movie>(this.apiUrl + 'update', movie);
+  updateMovie(movie: MovieDetailsDTO): Observable<MovieDetailsDTO>{
+    return this.http.post<MovieDetailsDTO>(this.apiUrl + 'update', movie);
   }
 
-    getAllMoviesWithPagination(page: number = 1, sort: string = 'imdbrating', size: number = 10): Observable<response> {
-      return this.http.get<response>(this.apiUrl + 'all/' + page + '/' + sort + '/' + size);
+  getAllMoviesWithPagination(page: number = 1, sort: string = 'rating', size: number = 10): Observable<response> {
+    return this.http.get<response>(this.apiUrl + 'all/' + page + '/' + sort + '/' + size);
 
-    }
+  }
 
-    getMoviesByGenreWithPagination(genre: string, page: number = 1, size: number = 10): Observable<response> {
-      return this.http.get<response>(`${this.apiUrl}size/${genre}/${page}/${size}`);
-    }
+  getMovieByGenre(idGenre:number, page:number = 1):Observable<response>{
+    return this.http.get<response>(this.apiUrl + 'genre/' + idGenre + '/' + page);
+  }
+
+  getMoviesByGenreWithPagination(idGenre: number, page: number = 1, size: number = 10): Observable<response> {
+    return this.http.get<response>(this.apiUrl + 'size/' + idGenre + '/' + page + '/' + size);
+  }
 
   constructor(private http: HttpClient) { }
 }

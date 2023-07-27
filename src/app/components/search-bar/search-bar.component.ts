@@ -76,7 +76,7 @@ export class SearchBarComponent implements OnInit{
           let movies = resp.movieList;
           if(movies){
             this.options = [];
-            movies.forEach(movie=>{if(!this.options.includes(movie.title))this.options.push(movie.title)});
+            movies.forEach(movie=>{if(!this.options.includes(movie.movieDto.title))this.options.push(movie.movieDto.title)});
           }
           else this.options=[];
         }
