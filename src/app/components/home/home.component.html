@@ -3,18 +3,18 @@
 <app-search-bar></app-search-bar>
 
 <!-- Chips -->
-<div class="chips">
+<!-- <div class="chips">
 <mat-chip-listbox aria-label="Fish selection" value={{currentChipsValue}}>
-    <mat-chip-option routerLink="/home/all" value="-1"> {{'chips.all' | translate}} </mat-chip-option>
-    <mat-chip-option (click)="goToCategory(chips)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{'chips.'+chips | translate}}</mat-chip-option>
+    <mat-chip-option routerLink="/home/all" value="-1"> All </mat-chip-option>
+    <mat-chip-option (click)="goToCategory(i)" *ngFor="let chips of chipsCategory; index as i" value={{chips}} > {{chips}}</mat-chip-option>
 </mat-chip-listbox>
-</div>
+</div> -->
+<app-category-chips></app-category-chips>
 
 </mat-grid-list>
 
 <app-slider [category] = "category" [title] = "'For You'" [type] = "'all'"></app-slider>
 
-<div *ngFor="let cat of categories">
+<!-- <div *ngFor="let cat of categories">
     <app-slider [category] = "cat" [title] = "cat" [type] = "'category'"></app-slider>
-</div>
- 
+</div> -->

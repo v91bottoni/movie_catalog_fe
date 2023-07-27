@@ -5,6 +5,7 @@ import { MovieDetailsComponent } from '../movie-details/movie-details.component'
 import { Movie } from 'src/app/models/movie';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 
 @Component({
   selector: 'app-movie-card',
@@ -24,7 +25,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class MovieCardComponent implements OnInit {
 
-  @Input() movie!: Movie;
+  @Input() movie!: MovieDetailsDTO;
   hover: boolean = true;
   isHovered: boolean = false;
   idHover!: string;

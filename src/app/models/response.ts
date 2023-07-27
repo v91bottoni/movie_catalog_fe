@@ -1,7 +1,7 @@
-import { Movie } from "./movie";
+import { MovieDetailsDTO } from "./dto/movie-details-dto";
 
 export interface response{
-    movieList: Movie[];
+    movieList: MovieDetailsDTO[];
     maxPageNumber: number;
     totalElements: number;
     pageSize: number; 

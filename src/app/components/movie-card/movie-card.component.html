@@ -1,7 +1,7 @@
-<mat-card class="card slidedown" (mouseenter)="hoverSet('poster')" (mouseleave)="hoverSet('info')" (click)="openDialog(movie.imdbid)" *ngIf="movie">
+<mat-card class="card slidedown" (mouseenter)="hoverSet('poster')" (mouseleave)="hoverSet('info')" (click)="openDialog(movie.movieDto.imdbid)" *ngIf="movie">
 
     <!-- Immagine del poster del film -->
-    <img mat-card-image [src]="movie.poster" class="card-poster" *ngIf="poster" [@fadeInOut]>
+    <img mat-card-image [src]="movie.movieDto.poster" class="card-poster" *ngIf="poster" [@fadeInOut]>
 
     <!-- Contenuto del film -->
     <mat-card-content *ngIf="info" class="card-poster" [@fadeInOut]>
@@ -9,22 +9,22 @@
         <!-- Header della card -->
         <mat-card-header class="card-header">
             <!-- Pulsante per modificare il film -->
-            <button mat-icon-button (click)="goUpdate(movie.imdbid)" style="color: whitesmoke;"> <mat-icon>edit</mat-icon> </button>
+            <button mat-icon-button (click)="goUpdate(movie.movieDto.imdbid)" style="color: whitesmoke;"> <mat-icon>edit</mat-icon> </button>
         </mat-card-header>
 
         <!-- Titolo del film -->
         <mat-card-title class="card-title content">
-            <b> <h3> {{movie.title}} </h3> </b>
+            <b> <h3> {{movie.movieDto.title}} </h3> </b>
         </mat-card-title>
 
         <!-- Descrizione del film -->
         <mat-card-content class="card-text">
-            {{movie.plot}}
+            {{movie.movieDto.plot}}
         </mat-card-content>
 
         <!-- Voto del film -->
         <mat-card-actions class="vote">
-            <p>{{movie.imdbrating}}</p>
+            <p>{{movie.movieDto.rating}}</p>
         </mat-card-actions>
     </mat-card-content>
 

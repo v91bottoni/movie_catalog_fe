@@ -11,6 +11,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { InsertMovieDialogComponent } from 'src/app/dialogs/insert-movie-dialog/insert-movie-dialog.component';
 
 import { Regex } from 'src/app/enums/regex';
+import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 
 import { Movie } from 'src/app/models/movie';
 
@@ -39,7 +40,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 
 export class InsertMovieComponent implements OnDestroy{
 
-  movie!: Movie;
+  movie!: MovieDetailsDTO;
 
   submitted = false;
 

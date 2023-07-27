@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/service/movie.service';
 import  { UtilityService } from 'src/app/service/utility.service';
+import { MovieMapperService } from 'src/app/util/movie-mapper.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -19,7 +20,8 @@ export class MovieDetailsComponent implements OnInit {
     private movieService: MovieService,
     private route: ActivatedRoute,
     protected utilityService : UtilityService,
-    private router:Router
+    private router:Router,
+    private movieMapperService: MovieMapperService
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +35,8 @@ export class MovieDetailsComponent implements OnInit {
   getMovieById() {
     this.movieService.getMovieById(this.movieService.movieid).subscribe(
       (response) => {
-        this.movie = response;
-        this.moviePosterUrl = response.poster; // Assegna l'URL del poster a moviePosterUrl
+        this.movie = this.movieMapperService.movieDetailsDTOtoMovie(response);
+        this.moviePosterUrl = response.movieDto.poster; // Assegna l'URL del poster a moviePosterUrl
 
       },
       () => {
