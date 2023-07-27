@@ -6,6 +6,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 
 @Component({
   selector: 'app-home',
@@ -14,18 +15,18 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  categories: string[] = ["Action", "Animation", "Comedy", "Drama", "Fantasy", "Romance"];
+  categories: string[] = ["action", "animation", "comedy", "drama", "fantasy", "romance"];
 
-  movies!: Movie[];
+  movies!: MovieDetailsDTO[];
 
   currentChipsValue: String = "-1"
 
   hover: boolean = true;
   idHover!: string;
+  chipsCategory = ['action', 'adventure', 'animation', 'comedy', 'crime', 'drama', 'documentary', 'fantasy', 'romance', 'thriller'];
 
-  chipsCategory: String[] = this.movieService.categories;
 
-  category!: string;
+  category!: number;
   title!: string;
   type!: string;
 
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  goToCategory(chips:String){
+  goToCategory(chips:number){
 
     localStorage.setItem('chipsValue', String(chips));
     this.router.navigateByUrl('/home/gerne/'+chips)

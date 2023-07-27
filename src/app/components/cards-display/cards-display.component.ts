@@ -11,6 +11,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ExportService } from 'src/app/service/export.service';
 import { DataSource } from '@angular/cdk/collections';
 import { MatTable } from '@angular/material/table';
+import { MovieMapperService } from 'src/app/util/movie-mapper.service';
+import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
+import { GenreService } from 'src/app/service/genre.service';
+import { GenreDTO } from 'src/app/models/dto/genre-dto';
 
 @Component({
   selector: 'app-cards-display',
@@ -36,19 +40,19 @@ export class CardsDisplayComponent implements OnInit {
   maxPage!: number;
   totalItems!: number;
   cardView: boolean = true;
-  movies!: Movie[];
+  movies!: MovieDetailsDTO[];
   displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
   home: boolean = false;
   gerne: boolean = false;
   search: boolean = false;
   keyword!: string;
   category!: string;
-  currentChipsValue: string = "-1";
+  // currentChipsValue: string = "-1";
   hover: boolean = true;
   idHover!: string;
   gridCols!: number;
   colsNumber!: number;
-  chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
+  // chipsCategory: GenreDTO[] = this.genreService.allGenres;
   smallList: boolean = false;
 
   constructor(
@@ -57,7 +61,9 @@ export class CardsDisplayComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private util: UtilityService,
-    private exportService: ExportService
+    private exportService: ExportService,
+    private movieMapperService : MovieMapperService,
+    private genreService: GenreService,
   ) {
     this.util.backpage = "home";
   }
@@ -67,18 +73,25 @@ export class CardsDisplayComponent implements OnInit {
     this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
     this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
     this.updateSmallList();
+
+    // this.genreService.getAllGenre().subscribe(res =>{
+    //   this.chipsCategory = res;
+    // });
     
     let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
     if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
     if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
     
     // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
-    if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
+    
+    // if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
 
     // Sottoscrivi al cambiamento dei parametri dell'URL
     this.route.params.subscribe(params => {
         // Se il parametro 'gerne' è presente, chiama il metodo firstLoadCategory()
         if (params['gerne']) { 
+          console.log('a');
+          
             this.firstLoadCategory(); 
         } 
         // Se il parametro 'keyword' è presente, chiama il metodo firstLoadSearch()
@@ -87,7 +100,7 @@ export class CardsDisplayComponent implements OnInit {
         } 
         // Altrimenti, imposta la variabile currentChipsValue su "-1" e chiama il metodo loadMovies()
         else { 
-            this.currentChipsValue = "-1"; 
+            // this.currentChipsValue = "-1"; 
             this.loadMovies(); 
         }
     });
@@ -148,7 +161,7 @@ export class CardsDisplayComponent implements OnInit {
         // Recupera la dimensione della pagina dal paginatore
         const pageSize = this.paginator.pageSize;
         // Ottieni tutti i film con paginazione
-        this.movieService.getAllMoviesWithPagination(this.page, 'imdbrating', pageSize || 10).subscribe(res => {
+        this.movieService.getAllMoviesWithPagination(this.page, 'rating', pageSize || 10).subscribe(res => {
           this.maxPage = res.maxPageNumber;
           this.movies = res.movieList;
           this.response = res;
@@ -163,13 +176,21 @@ export class CardsDisplayComponent implements OnInit {
   firstLoadCategory() {
     // Sottoscrive ai parametri della rotta
     this.route.params.subscribe(params => {
+      
         // Assegna il valore del parametro 'gerne' alla variabile 'category'
-        this.category = params['gerne'];
+        
+        this.category = String(Number(params['gerne']+1));
+
+        console.log('1 '+params['gerne']);
+        
+        
         // Controlla se il valore corrente di 'currentChipsValue' è diverso dalla categoria corrente
         // Se è diverso, aggiorna 'currentChipsValue' con il valore della categoria
-        if (this.currentChipsValue != this.category) {
-            this.currentChipsValue = this.category;
-        }
+        
+        // if (this.currentChipsValue != this.category) {
+        //     this.currentChipsValue = this.category;
+        // }
+        
         // Chiama il metodo getMovieByGenre del movieService, passando la categoria e il numero di pagina 1
         this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
             // Assegna il valore di 'maxPageNumber' dalla risposta alla variabile 'maxPage'
@@ -194,7 +215,7 @@ firstLoadSearch() {
       // Assegna il valore del parametro 'keyword' alla variabile 'keyword'
       this.keyword = params['keyword'];
       // Imposta il valore di 'currentChipsValue' a "-1"
-      this.currentChipsValue = "-1";
+      // this.currentChipsValue = "-1";
       // Chiama il metodo searchMoviePagination del movieService, passando la parola chiave, il numero di pagina e il numero di risultati per pagina
       this.movieService.searchMoviePagination(params['keyword'], params['pg'], 10).subscribe(res => {
           // Controlla se la risposta esiste
@@ -262,21 +283,21 @@ firstLoadSearch() {
     this.router.navigate(['/movies', movieId]);
   }
 
-  goToCategory(chips: string) {
-    // Verifica se il valore dei chips è "All"
-    if (chips === "All") {
-      this.currentChipsValue = chips; // Imposta il valore corrente dei chips
-      this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-      this.goTop(); // Scrolla la pagina verso l'alto
-    } else {
-      // Altrimenti, imposta solo il valore corrente dei chips
-      this.currentChipsValue = chips;
-    }
+  // goToCategory(chips: number) {
+  //   // Verifica se il valore dei chips è "All"
+  //   if (chips === -1) {
+  //     // this.currentChipsValue = String(chips); // Imposta il valore corrente dei chips
+  //     this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
+  //     this.goTop(); // Scrolla la pagina verso l'alto
+  //   } else {
+  //     // Altrimenti, imposta solo il valore corrente dei chips
+  //     this.currentChipsValue = String(chips);
+  //   }
     
-    sessionStorage.setItem('chipsValue', this.currentChipsValue); // Salva il valore corrente dei chips nella sessione
-    this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-    this.goTop(); // Scrolla la pagina verso l'alto
-  }
+  //   sessionStorage.setItem('chipsValue', this.currentChipsValue); // Salva il valore corrente dei chips nella sessione
+  //   this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
+  //   this.goTop(); // Scrolla la pagina verso l'alto
+  // }
 
   goTop(){
     window.scrollTo({
@@ -288,7 +309,7 @@ firstLoadSearch() {
 
 
   goHome(){
-    this.currentChipsValue = "-1"
+    // this.currentChipsValue = "-1"
     this.router.navigateByUrl('/home')
   }
 
@@ -361,10 +382,10 @@ firstLoadSearch() {
 
   createFilteredTable() : Partial<Movie>[]{
     const filteredTable: Partial<Movie>[] = this.movies.map(x => ({
-      title: x.title,
-      plot: x.plot,
-      writer: x.writer,
-      rating: x.imdbrating
+      title: x.movieDto.title,
+      plot: x.movieDto.plot,
+      writer: x.writerDTOs,
+      rating: x.movieDto.rating
     }));
     return filteredTable;
   }

@@ -6,11 +6,11 @@
         <div class="movie-title">{{ movie.title }}</div>
         <div class="movie-year">{{ 'movie.released' | translate }}: {{ movie.year }}</div>
         <mat-chip-listbox aria-label="Genre selection" [value]="currentChipsValue">
-          <mat-chip disable color="accent" value="-1" *ngFor="let genre of movie.genre.split(',')">{{ genre }}</mat-chip>        </mat-chip-listbox>
+          <mat-chip disable color="accent" value="-1" *ngFor="let genre of movie.genre">{{ genre.genre }}</mat-chip>        </mat-chip-listbox>
         <div class="movie-plot">{{ movie.plot }}</div>
         <div class="movie-actors">
           
-            <mat-icon>person_outline</mat-icon> <a *ngFor="let actor of movie.actors.split(',')" [href]="'https://en.wikipedia.org/wiki/' + actor" target="_blank">{{ actor }}</a>
+            <mat-icon>person_outline</mat-icon> <a *ngFor="let actor of movie.actors" [href]="'https://en.wikipedia.org/wiki/' + actor.first_name + '_' + actor.last_name" target="_blank">{{ actor.first_name }} {{ actor.last_name }}</a>
           
         </div>
               </div>

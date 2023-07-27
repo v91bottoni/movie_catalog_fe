@@ -9,6 +9,7 @@ import { MovieDetailsComponent } from '../movie-details/movie-details.component'
 import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-movie-successfull-dialog/update-movie-successfull-dialog.component';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MovieMapperService } from 'src/app/util/movie-mapper.service';
 
 @Component({
   selector: 'app-update-movie',
@@ -41,10 +42,12 @@ export class UpdateMovieComponent implements OnDestroy{
     private util:UtilityService,
     public dialog: MatDialog,
     private alert: SnackbarService,
+    private movieMapperService : MovieMapperService,
     private translate:TranslateService) {
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
-        this.movie = resp;
+        this.movie = movieMapperService.movieDetailsDTOtoMovie(resp);
+        console.log(this.movie);
         this.reset();
       });
       window.scrollTo({
@@ -64,7 +67,7 @@ export class UpdateMovieComponent implements OnDestroy{
             if(movie.boxoffice!= null && !movie.boxoffice.startsWith('$')){
               movie.boxoffice= "$" + movie.boxoffice;
             }
-            this.service.updateMovie(movie).subscribe(resp =>{
+            this.service.updateMovie(this.movieMapperService.movieToMovieDetailsDTO(movie)).subscribe(resp =>{
               if(resp != null){
                 this.dialog.open(UpdateMovieSuccessfullDialogComponent)
                   .afterClosed().subscribe(result=>{
@@ -142,8 +145,8 @@ export class UpdateMovieComponent implements OnDestroy{
             director : [this.movie?.director],
             dvd : [this.movie?.dvd],
             genre : [this.movie?.genre,{validators:[Validators.required],updateOn:"change"}],
-            imdbrating : [this.movie?.imdbrating],
-            imdbvotes : [this.movie?.imdbvotes],
+            imdbrating : [this.movie?.rating],
+            imdbvotes : [this.movie?.voteNumber],
             language : [this.movie?.language],
             plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
             poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
