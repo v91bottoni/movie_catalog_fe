@@ -48,7 +48,7 @@ export class CardsDisplayComponent implements OnInit {
   idHover!: string;
   gridCols!: number;
   colsNumber!: number;
-  chipsCategory: string[] = this.movieService.chipsCategory.map(category => category.toString());
+  chipsCategory = ['action', 'adventure', 'animation', 'comedy', 'crime', 'drama', 'documentary', 'fantasy', 'romance', 'thriller'];
   smallList: boolean = false;
 
   constructor(
