@@ -15,7 +15,7 @@ import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 })
 export class HomeComponent implements OnInit {
 
-  categories: string[] = ["Action", "Animation", "Comedy", "Drama", "Fantasy", "Romance"];
+  categories: string[] = ["action", "animation", "comedy", "drama", "fantasy", "romance"];
 
   movies!: MovieDetailsDTO[];
 
@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
 
   hover: boolean = true;
   idHover!: string;
+  chipsCategory = ['action', 'adventure', 'animation', 'comedy', 'crime', 'drama', 'documentary', 'fantasy', 'romance', 'thriller'];
 
-  chipsCategory: String[] = this.movieService.categories;
 
   category!: number;
   title!: string;

@@ -162,7 +162,80 @@
     "values" : "I NOSTRI VALORI",
     "factoryText" : "La nostra Azienda, nata nel 2023 offre i massimi contenuti e i migliori film di sempre.\n",
     "teamText":"Il nostro personale formato ed esperto nel settore, nei nostri punti sparsi in tutto il territorio, offrirà il miglior servizio di sempre e ti garantirà di guardare i tuoi films preferiti.",
-    "valuesText":"Il notro impegno è quello di offrire un servizio di qualità e contenuti sempre aggiornati di massimo livello.\n"
+    "valuesText":"Il notro impegno è quello di offrire un servizio di qualità e contenuti sempre aggiornati di massimo livello.\n",
+    "movieResult":"FILMS DA GUARDARE",
+    "visitors":"VISITE OGGI",
+    "subscribers":"ISCRITTI",
+    "employees":"DIPENDENTI",
+    "contactus":"Contattaci!"
+},
+"chips": {
+    
+   
+  "all": "Tutti",
+      
+     
+  "action": "Azione",
+      
+     
+  "adventure": "Avventura",
+      
+     
+  "animation": "Animazione",
+      
+     
+  "comedy": "Commedia",
+      
+     
+  "crime": "Crimine",
+      
+     
+  "drama": "Dramma",
+      "documentary": "Documentario",
+      "fantasy": "Fantasy",
+      
+     
+  "romance": "Romantico",
+      
+     
+  "thriller": "Romanzo"
+    },
+
+    "title": {
+      "For You": "Per Te",
+   
+      "all": "Tutti",
+          
+         
+      "action": "Azione",
+          
+         
+      "adventure": "Avventura",
+          
+         
+      "animation": "Animazione",
+          
+         
+      "comedy": "Commedia",
+          
+         
+      "crime": "Crimine",
+          
+         
+      "drama": "Dramma",
+          "documentary": "Documentario",
+          "fantasy": "Fantasy",
+          
+         
+      "romance": "Romantico",
+          
+         
+      "thriller": "Romanzo"
+        },
+"multiselect" : {
+  "ok":"OK",
+  "close":"CHIUDI"
 }
+    
 
 }

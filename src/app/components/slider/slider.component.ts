@@ -43,7 +43,7 @@ export class SliderComponent implements OnInit {
   right:boolean=true;
   left:boolean=false;
   animationState: string = 'left'
-  
+ 
   ngOnInit(): void {
   
     this.updateGridCols(); //Aggiorna il numore di collonne in base alla grandezza dello schermo
@@ -110,7 +110,7 @@ export class SliderComponent implements OnInit {
   
         // Se c'è solo una pagina, disabilita il pulsante "Avanti"
         if(this.maxPage==1){
-          this.right=false
+          this.right=true
         }
       });
     }
@@ -124,7 +124,7 @@ export class SliderComponent implements OnInit {
   
         // Se c'è solo una pagina, disabilita il pulsante "Avanti"
         if(this.maxPage==1){
-          this.right=false
+          this.right=true
         }
       });
     }
@@ -193,7 +193,7 @@ export class SliderComponent implements OnInit {
         this.current=this.current+1;
         // Se siamo sull'ultima pagina, disabilita il pulsante "Avanti"
         if(page+1>=this.maxPage){
-          this.right=false;
+          this.right=true;
         }
       });
     }

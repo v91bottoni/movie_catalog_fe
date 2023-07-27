@@ -31,7 +31,6 @@ export class FooterComponent {
   scroll(){
     setTimeout(()=>{
     let path = document.URL.substring(document.baseURI.length);
-    if(innerWidth<=1100) path += "-Mobile";
       document.getElementById(path)?.scrollIntoView({behavior:'smooth'});
     },100);
 

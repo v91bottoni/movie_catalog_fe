@@ -67,6 +67,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { MultiSelectButtonComponent } from './components/multi-select-button/multi-select-button.component';
+import { MultiSelectDialogComponent } from './dialogs/multi-select-dialog/multi-select-dialog.component';
 import { CategoryChipsComponent } from './components/category-chips/category-chips.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -104,6 +106,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MapDialogComponent,
     SpinnerComponent,
     AboutUsComponent,
+    MultiSelectButtonComponent,
+    MultiSelectDialogComponent,
     CategoryChipsComponent,
   ],
   imports: [
