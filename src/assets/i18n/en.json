@@ -167,5 +167,9 @@
     "subscribers":"SUBSCRIBERS",
     "employees":"EMPLOYEES",
     "contactus":"Contact us!"
+},
+"multiselect" : {
+  "ok":"OK",
+  "close":"CLOSE"
 }
 }
