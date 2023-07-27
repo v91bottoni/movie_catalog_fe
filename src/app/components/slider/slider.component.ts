@@ -40,7 +40,7 @@ export class SliderComponent implements OnInit {
   right:boolean=true;
   left:boolean=false;
   animationState: string = 'left'
-  
+ 
   ngOnInit(): void {
   
     this.updateGridCols(); //Aggiorna il numore di collonne in base alla grandezza dello schermo

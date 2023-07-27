@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  categories: string[] = ["Action", "Animation", "Comedy", "Drama", "Fantasy", "Romance"];
+  categories: string[] = ["action", "animation", "comedy", "drama", "fantasy", "romance"];
 
   movies!: Movie[];
 
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
 
   hover: boolean = true;
   idHover!: string;
+  chipsCategory = ['action', 'adventure', 'animation', 'comedy', 'crime', 'drama', 'documentary', 'fantasy', 'romance', 'thriller'];
 
-  chipsCategory: String[] = this.movieService.categories;
 
   category!: string;
   title!: string;
