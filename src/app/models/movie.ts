@@ -32,3 +32,4 @@ export interface Movie {
     website: string,
     totalseasons: number
 }
+export class Movie {}

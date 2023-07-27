@@ -22,7 +22,20 @@
 
             <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
               <mat-label for="genre">{{ 'movie.genre' | translate }}</mat-label>
-              <input  matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
+
+
+              <mat-chip-grid #chipGrid aria-label="Fruit selection">
+                <mat-chip-row *ngFor="let genre of movie?.genre" (removed)="remove(genre)">
+                  {{genre.genre}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + genre">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </mat-chip-grid>
+
+
+              <input [matChipInputFor]="chipGrid"
+              matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
             </mat-form-field>
 
