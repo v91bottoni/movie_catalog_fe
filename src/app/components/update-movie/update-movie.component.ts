@@ -28,7 +28,7 @@ import { CountryDTO } from 'src/app/models/dto/country-dto';
 export class UpdateMovieComponent implements OnDestroy{
   movie:Movie  = new Movie();
   submitted = false;
-  updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :['', Validators.required],    imdbrating :[''],    imdbvotes :[''],    language :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],     runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
+  updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :[''],    imdbrating :[''],    imdbvotes :[''],    language :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],     runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
   //controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
 
   genNames:string[] = [ 'plot',    'released',    'runtime',   'genre',    'title',    'totalseason',    'type', 'year'];
@@ -84,9 +84,17 @@ export class UpdateMovieComponent implements OnDestroy{
           if(this.updateForm.valid){
             let movie :Movie = this.updateForm.value;
             movie.imdbid = this.movie?.imdbid+"";
+            movie.genre= this.movie.genre;
+            movie.actors= this.movie.actors;
+            movie.writer= this.movie.writer;
+            movie.director= this.movie.director;
+            movie.production= this.movie.production;
+            movie.country= this.movie.country;
+            movie.language= this.movie.language;
             if(movie.boxoffice!= null && !movie.boxoffice.startsWith('$')){
               movie.boxoffice= "$" + movie.boxoffice;
             }
+            console.log(this.movieMapperService.movieToMovieDetailsDTO(movie));
             this.service.updateMovie(this.movieMapperService.movieToMovieDetailsDTO(movie)).subscribe(resp =>{
               if(resp != null){
                 this.dialog.open(UpdateMovieSuccessfullDialogComponent)
@@ -145,6 +153,13 @@ export class UpdateMovieComponent implements OnDestroy{
                 break;
               }
             }
+            if(this.movie.genre.length==0)this.genOK = false;
+            if(this.movie.actors.length==0)this.proOK=false;
+            if(this.movie.writer.length==0)this.proOK=false;
+            if(this.movie.director.length==0)this.proOK=false;
+            if(this.movie.production.length==0)this.proOK=false;
+            if(this.movie.country.length==0)this.proOK=false;
+            if(this.movie.language.length==0)this.proOK=false;
           }
 
          /*if(!this.generalityForm.valid) {this .message = "Generality Step Incomplete!"}
@@ -164,13 +179,13 @@ export class UpdateMovieComponent implements OnDestroy{
             country: [""],
             director : [""],
             dvd : [this.movie?.dvd],
-            genre : ["",{validators:[Validators.required],updateOn:"change"}],
+            genre : [""],
             imdbrating : [this.movie?.rating],
             imdbvotes : [this.movie?.voteNumber],
             language : [""],
             plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
             poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
-            production : [this.movie?.production],
+            production : [""],
             rated : [this.movie?.rated],
             released : [this.movie?.released],
             runtime : [this.movie?.runtime],
@@ -191,7 +206,29 @@ export class UpdateMovieComponent implements OnDestroy{
         }
 
         setMultiSelectInput(event:any[], path:string){
-          //this.updateForm.get(path)?.setValue(event);
+          switch(path){
+            case 'actors':
+              this.movie.actors=event;
+              break;
+            case 'country':
+              this.movie.country=event;
+              break;
+            case 'language':
+              this.movie.language=event;
+              break;
+            case 'director':
+              this.movie.director=event;
+              break;
+            case 'genre':
+              this.movie.genre=event;
+              break;
+            case 'production':
+              this.movie.production=event;
+              break;
+            case 'writer':
+              this.movie.writer=event;
+              break;
+          }
         }
 
         removeGenre(genreIn: GenreDTO): void {

@@ -27,36 +27,52 @@ export class MultiSelectDialogComponent {
     this.load();
   }
   renderOut(option:any){
-    console.log('renderOut OPTION:');
-    console.log(option);
     switch(this.path){
       case 'actors':
-        if(this.listOut.includes(option)){
-          console.log('tolgo');
-          this.listOut = this.listOut.filter(act=>{return (act.idActor != option.idActor)});
-        }else{ console.log('metto');
-              this.listOut.push(option);
-        }
-        console.log('renderOut LIST');
-        console.log(this.listOut);
+        if(this.listOut.includes(option))
+          this.listOut = this.listOut.filter(actor=>{return (actor.idActor != option.idActor)});
+        else
+          this.listOut.push(option);
         break;
       case 'country':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(country=>{return (country.idCountry != option.idCountry)});
+      else
+        this.listOut.push(option);
         break;
       case 'language':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(language=>{return (language.idLanguage != option.idLanguage)});
+      else
+        this.listOut.push(option);
         break;
       case 'director':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(director=>{return (director.idDirector != option.idActor)});
+      else
+        this.listOut.push(option);
         break;
       case 'genre':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(genre=>{return (genre.idGenre != option.idGenre)});
+      else
+        this.listOut.push(option);
         break;
       case 'production':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(production=>{return (production.idProduction != option.idProduction)});
+      else
+        this.listOut.push(option);
         break;
       case 'writer':
+        if(this.listOut.includes(option))
+        this.listOut = this.listOut.filter(writer=>{return (writer.idWriter != option.idWriter)});
+      else
+        this.listOut.push(option);
         break;
     }
 
   }
-
-
 
   check(option:any):boolean{
     switch(this.path){
