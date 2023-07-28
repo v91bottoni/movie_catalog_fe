@@ -41,7 +41,7 @@ export class CardsDisplayComponent implements OnInit {
   totalItems!: number;
   cardView: boolean = true;
   movies!: MovieDetailsDTO[];
-  displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
+  displayedColumns: string[] = ['title', 'plot', 'imdbrating', 'button', 'edit'];
   home: boolean = false;
   gerne: boolean = false;
   search: boolean = false;

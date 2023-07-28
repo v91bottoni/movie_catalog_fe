@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 import { GenreService } from 'src/app/service/genre.service';
+import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { DatabaseService } from 'src/app/service/database.service';
 
 @Component({
   selector: 'app-slider',
@@ -29,6 +31,7 @@ export class SliderComponent implements OnInit {
   @Input() title: string ='';
   @Input() category: number = 0;
   @Input() type: string ='';
+  @Input() genre: GenreDTO = {idGenre : -1, genre: ''};
 
   movies!: MovieDetailsDTO[];
   maxPage!: number;
@@ -51,7 +54,8 @@ export class SliderComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router, private genreService: GenreService){}
+  constructor(private movieService: MovieService, public dialog: MatDialog, 
+              private router: Router, private genreService: GenreService){}
 
   openDialog(imdbid: string){
     this.movieService.movieid = imdbid;
@@ -67,11 +71,11 @@ export class SliderComponent implements OnInit {
     this.idHover = id;
   }
 
-  viewAll(title:string){
-    if(title==='For You')
+  viewAll(id: number){
+    if(id===-1)
       this.router.navigate(['/home/all']);
     else
-      this.router.navigate(['/home/gerne/'+title])
+      this.router.navigate(['/home/gerne/'+id])
   }
 
   updateGridCols() {
@@ -184,7 +188,7 @@ export class SliderComponent implements OnInit {
       page=this.current+1
       console.log(page);
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.category, page ,this.size).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination( this.genre.idGenre, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'right';
@@ -203,7 +207,7 @@ export class SliderComponent implements OnInit {
       // Decrementa la pagina corrente
       page=this.current-1;
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.category, page ,this.size).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination( this.genre.idGenre, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'left';
