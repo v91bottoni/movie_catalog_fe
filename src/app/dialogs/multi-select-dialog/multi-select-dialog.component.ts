@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ActorDTO } from 'src/app/models/dto/actor-dto';
 import { Movie } from 'src/app/models/movie';
 import { DatabaseService } from 'src/app/service/database.service';
 
@@ -25,50 +26,73 @@ export class MultiSelectDialogComponent {
     console.log(this.path, this.movie);
     this.load();
   }
-  renderOut(option:string){
-    if(this.listOut.includes(option)){
-      this.listOut = this.listOut.filter(val=>val!=option);
-    }else{
-      this.listOut.push(option);
+  renderOut(option:any){
+    console.log('renderOut OPTION:');
+    console.log(option);
+    switch(this.path){
+      case 'actors':
+        if(this.listOut.includes(option)){
+          console.log('tolgo');
+          this.listOut = this.listOut.filter(act=>{return (act.idActor != option.idActor)});
+        }else{ console.log('metto');
+              this.listOut.push(option);
+        }
+        console.log('renderOut LIST');
+        console.log(this.listOut);
+        break;
+      case 'country':
+        break;
+      case 'language':
+        break;
+      case 'director':
+        break;
+      case 'genre':
+        break;
+      case 'production':
+        break;
+      case 'writer':
+        break;
     }
-    console.log(this.listOut);
+
   }
 
-  check(option:string):boolean{
+
+
+  check(option:any):boolean{
     switch(this.path){
       case 'actors':
         for(let actor of this.movie.actors){
-          if((actor.first_name+" "+actor.last_name) == option) return true;
+          if((actor.idActor) == option.idActor) return true;
         }
         break;
       case 'country':
         for(let country of this.movie.country){
-          if((country.countries) == option) return true;
+          if((country.idCountry) == option.idCountry) return true;
         }
         break;
       case 'language':
         for(let language of this.movie.language){
-          if((language.language) == option) return true;
+          if((language.idLanguage) == option.idLanguage) return true;
         }
         break;
       case 'director':
         for(let director of this.movie.director){
-          if((director.first_name+" "+director.last_name) == option) return true;
+          if((director.idDirector) == option.idDirector) return true;
         }
         break;
       case 'genre':
         for(let genre of this.movie.genre){
-          if((genre.genre) == option) return true;
+          if((genre.idGenre) == option.idGenre) return true;
         }
         break;
       case 'production':
         for(let production of this.movie.production){
-          if((production.name) == option) return true;
+          if((production.idProduction) == option.idProduction) return true;
         }
         break;
       case 'writer':
         for(let writer of this.movie.writer){
-          if((writer.first_name+" "+writer.last_name) == option) return true;
+          if((writer.idWriter) == option.idWriter) return true;
         }
         break;
     }
@@ -79,33 +103,46 @@ export class MultiSelectDialogComponent {
     this.listElement=[];
     switch(this.path){
       case 'actors':
-        this.listOut = this.movie.actors;
-        this.dataService.actors.forEach(act=>{this.listElement.push(act.first_name+" "+act.last_name)});
+        this.listElement = this.dataService.actors;
         break;
       case 'country':
-        this.listOut = this.movie.country;
-        //this.dataService.countries.forEach(country=>{this.listElement.push(country.countries)});
+        this.listElement = this.dataService.countries;
         break;
       case 'language':
-        this.listOut = this.movie.language;
-        //this.dataService.language.forEach(language=>{this.listElement.push(language.language)});
+        this.listElement = this.dataService.languages;
         break;
       case 'director':
-        this.listOut = this.movie.director;
-        this.dataService.directors.forEach(director=>{this.listElement.push(director.first_name+" "+director.last_name)});
+        this.listElement = this.dataService.directors;
         break;
       case 'genre':
-        this.listOut = this.movie.genre;
-        this.dataService.genres.forEach(genre=>{this.listElement.push(genre.genre)});
+        this.listElement = this.dataService.genres;
         break;
       case 'production':
-        this.listOut = this.movie.production;
-        this.dataService.productions.forEach(production=>{this.listElement.push(production.name)});
+        this.listElement = this.dataService.productions;
         break;
       case 'writer':
-        this.listOut = this.movie.writer;
-        this.dataService.writers.forEach(writer=>{this.listElement.push(writer.first_name+" "+writer.last_name)});
+        this.listElement = this.dataService.writers;
         break;
+    }
+  }
+  stringify(option:any) : string{
+    switch(this.path){
+      case 'actors':
+        return option.first_name + " "+ option.last_name;
+      case 'country':
+        return option.countries;
+      case 'language':
+        return option.language;
+      case 'director':
+        return option.director;
+      case 'genre':
+        return option.genre;
+      case 'production':
+        return option.name;
+      case 'writer':
+        return option.first_name + " "+ option.last_name;
+      default:
+        return "";
     }
   }
 }

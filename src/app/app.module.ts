@@ -43,7 +43,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
-
 import {MatSnackBarModule, matSnackBarAnimations} from '@angular/material/snack-bar';
 import { InsertMovieComponent } from './components/insert-movie/insert-movie.component';
 import { InsertMovieDialogComponent } from './dialogs/insert-movie-dialog/insert-movie-dialog.component';
