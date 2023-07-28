@@ -173,7 +173,7 @@
    
   "all": "All",
       
-     
+  "0": "All",
   "1": "Action",
           
          
@@ -212,7 +212,7 @@
     "title": {
       "all": "All",
       
-     
+      "0": "All",
       "1": "Action",
           
          

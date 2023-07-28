@@ -34,17 +34,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.databaseService.loadTypologicals();
-      setTimeout(() => {
-        console.log(this.databaseService.actors);
-        console.log(this.databaseService.countries);
-        console.log(this.databaseService.genres);
-        console.log(this.databaseService.directors);
-        console.log(this.databaseService.languages);
-        console.log(this.databaseService.productions);
-        console.log(this.databaseService.writers);
-      }, 5000);
-
     sessionStorage.removeItem('currentChips')
 
     this.categories= this.databaseService.genres.filter(o=> o.idGenre==1 || o.idGenre==4 || o.idGenre==7 || 
@@ -55,11 +44,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     public dialog: MatDialog, 
-    private route: ActivatedRoute, 
     private router: Router, 
     private util: UtilityService, 
-    private authService:AuthService,
-    private genreService: GenreService,
     private databaseService: DatabaseService) {
       
       this.util.backpage = "home";
