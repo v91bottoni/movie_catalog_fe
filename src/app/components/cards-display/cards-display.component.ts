@@ -15,6 +15,7 @@ import { MovieMapperService } from 'src/app/util/movie-mapper.service';
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 import { GenreService } from 'src/app/service/genre.service';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cards-display',
@@ -79,24 +80,24 @@ export class CardsDisplayComponent implements OnInit {
     if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
     
     // Sottoscrivi al cambiamento dei parametri dell'URL
-    this.route.params.subscribe(params => {
-        // Se il parametro 'gerne' è presente, chiama il metodo firstLoadCategory()
-        if (params['gerne']) { 
-          console.log('a');
-          
-            this.firstLoadCategory(); 
-        } 
-        // Se il parametro 'keyword' è presente, chiama il metodo firstLoadSearch()
-        else if (params['keyword']) { 
-            this.firstLoadSearch(); 
-        } 
-        // Altrimenti, imposta la variabile currentChipsValue su "-1" e chiama il metodo loadMovies()
-        else { 
-            // this.currentChipsValue = "-1"; 
-            this.loadMovies(); 
+    this.route.params.pipe(take(1)).subscribe(params => {
+      if (params['gerne']) {
+        // Controlla se params['gerne'] è un numero valido prima di effettuare le operazioni
+        const genreId = Number(params['gerne']);
+        if (!isNaN(genreId)) {
+          this.category = String(genreId + 1);
+          console.log('1 ' + params['gerne']);
+          this.firstLoadCategory();
+        } else {
+          // Se params['gerne'] non è un numero valido, gestisci il caso adeguatamente
+          console.error('Il parametro "gerne" non è un numero valido:', params['gerne']);
         }
+      } else if (params['keyword']) {
+        this.firstLoadSearch();
+      } else {
+        this.loadMovies();
+      }
     });
-
     // Sottoscrivi all'evento di cambio pagina del paginatore
     this.paginator.page.subscribe((event: PageEvent) => {
       // Aggiorna le variabili di paginazione
