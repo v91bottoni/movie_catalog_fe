@@ -3,6 +3,7 @@
       "home" : "HOME",
       "addFilm" : "ADD MOVIE",
       "add" : "INSERT",
+      "addsuccess" : "Movie successfully insert",
       "management" : "MANAGEMENT",
       "title" : "MOVIE CATALOGUE",
       "profile" : "PROFILE",

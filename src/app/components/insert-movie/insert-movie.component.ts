@@ -101,7 +101,7 @@ export class InsertMovieComponent implements OnDestroy{
                 //console.log(resp);
                 if(resp != null){
                     this.route.navigate(['home']);
-                    this.alert.openSuccess(this.translate.instant('updatemovie.updated'), this.translate.instant('updatemovie.ok'));
+                    this.alert.openSuccess(this.translate.instant('menu.addsuccess'), this.translate.instant('updatemovie.ok'));
                 }
               });
             }
@@ -109,13 +109,7 @@ export class InsertMovieComponent implements OnDestroy{
 
           goBack(){
             this.route.navigate([this.util.backpage]);
-            this.service.movieid = this.movie?.imdbid+"";
-            this.dialog.open(MovieDetailsComponent);
 
-          }
-
-          exit(){
-            this.route.navigate([this.util.backpage]);
           }
 
 
