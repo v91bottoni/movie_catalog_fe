@@ -24,8 +24,10 @@ export class RootComponent implements OnInit{
     this.db.loadTypologicals();
     setTimeout(() => {
       console.log(this.db.actors);
+      console.log(this.db.countries);
       console.log(this.db.genres);
       console.log(this.db.directors);
+      console.log(this.db.languages);
       console.log(this.db.productions);
       console.log(this.db.writers);
     }, 5000);
