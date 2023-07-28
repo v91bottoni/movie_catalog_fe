@@ -1,4 +1,5 @@
 import { Type } from "../type";
+import { TypeDTO } from "./type-dto";
 
 export interface MovieDTO {
     imdbid: string,
@@ -15,6 +16,6 @@ export interface MovieDTO {
     website: string,
     totalseasons: number,
     boxoffice: string,
-    type: Type;
+    type: TypeDTO;
     rating: number;
 }

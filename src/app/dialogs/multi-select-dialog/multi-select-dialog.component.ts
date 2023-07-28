@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ActorDTO } from 'src/app/models/dto/actor-dto';
 import { Movie } from 'src/app/models/movie';
 import { DatabaseService } from 'src/app/service/database.service';
 
@@ -48,7 +46,7 @@ export class MultiSelectDialogComponent {
         break;
       case 'director':
         if(this.listOut.includes(option))
-        this.listOut = this.listOut.filter(director=>{return (director.idDirector != option.idActor)});
+        this.listOut = this.listOut.filter(director=>{return (director.idDirector != option.idDirector)});
       else
         this.listOut.push(option);
         break;
@@ -150,7 +148,7 @@ export class MultiSelectDialogComponent {
       case 'language':
         return option.language;
       case 'director':
-        return option.director;
+        return option.first_name + " "+ option.last_name;
       case 'genre':
         return option.genre;
       case 'production':

@@ -4,6 +4,7 @@ import { DirectorDTO } from "./dto/director-dto";
 import { GenreDTO } from "./dto/genre-dto";
 import { LanguageDTO } from "./dto/language-dto";
 import { ProductionDTO } from "./dto/production-dto";
+import { TypeDTO } from "./dto/type-dto";
 import { WriterDTO } from "./dto/writer-dto";
 import { Type } from "./type";
 
@@ -26,7 +27,7 @@ export interface Movie {
     poster: string,
     voteNumber: number,
     rating: number,
-    type: Type,
+    type: TypeDTO,
     dvd: Date,
     production: ProductionDTO[],
     website: string,

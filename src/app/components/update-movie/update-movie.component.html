@@ -37,7 +37,7 @@
               <input [matChipInputFor]="chipGridGenre"
               matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
               <app-multi-select-button (launchString)="setMultiSelectInput($event, 'genre')" [path]="'genre'" [movie]="movie"  matSuffix></app-multi-select-button>
-              <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
+              <mat-error *ngIf="chipGridGenre.errorState">{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}</mat-error>
             </mat-form-field>
 
             <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
