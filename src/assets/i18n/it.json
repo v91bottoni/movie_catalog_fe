@@ -2,6 +2,7 @@
   "menu": {
       "home" : "HOME",
       "addFilm" : "AGGIUNGI FILM",
+      "add" : "AGGIUNGI",
       "management" : "MANAGEMENT",
       "title" : "CATALOGO FILM",
       "profile" : "PROFILO",
@@ -170,37 +171,37 @@
     "contactus":"Contattaci!"
 },
 "chips": {
-    
-   
+
+
   "all": "Tutti",
-      
+
   "0": "Tutti",
 
   "1": "Azione",
-      
-     
+
+
   "2": "Aventura",
-      
-     
+
+
   "3": "Drammatico",
-      
-     
+
+
   "4": "Animazione",
-      
-     
+
+
   "5": "Sci-Fi",
       "6": "Fantasia",
-      
-     
+
+
   "7": "Commedia",
-      
-     
+
+
   "8": "Cortometraggio",
-      
-     
+
+
   "9": "Famiglia",
-      
-     
+
+
   "10": "Drammatico",
   "11": "Documentario",
     "12": "Mistero",
@@ -213,35 +214,35 @@
     },
 
     "title": {
-     
+
       "all": "Tutti",
-      
+
       "0": "Tutti",
   "1": "Azione",
-      
-     
+
+
   "2": "Aventura",
-      
-     
+
+
   "3": "Drammatico",
-      
-     
+
+
   "4": "Animazione",
-      
-     
+
+
   "5": "Sci-Fi",
       "6": "Fantasia",
-      
-     
+
+
   "7": "Commedia",
-      
-     
+
+
   "8": "Cortometraggio",
-      
-     
+
+
   "9": "Famiglia",
-      
-     
+
+
   "10": "Drammatico",
   "11": "Documentario",
     "12": "Mistero",
@@ -257,36 +258,36 @@
   "close":"CHIUDI"
 },
 "category": {
-    
-   
+
+
   "all": "Tutti",
-      
-     
+
+
   "1": "Azione",
-      
-     
+
+
   "2": "Aventura",
-      
-     
+
+
   "3": "Animazione",
-      
-     
+
+
   "4": "Commedia",
-      
-     
+
+
   "5": "Crimine",
       "6": "Drammatico",
-      
-     
+
+
   "7": "Documentario",
-      
-     
+
+
   "8": "Fantasy",
-      
-     
+
+
   "9": "Romantico",
-      
-     
+
+
   "10": "Romanzo",
   "11": "Mistero",
     "12": "Guerra",
@@ -297,6 +298,6 @@
     "17": "Famiglia"
 
     }
-    
+
 
 }

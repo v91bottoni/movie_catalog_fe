@@ -1,56 +1,58 @@
-.insert-container {
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
-mat-card {
-  width: 65%;
-  height: fit-content;
-}
-mat-form-field {
-  width: 45%;
-  padding-right: 5%;
-}
-
-/* input{
+.updateCard {
   text-align: center;
-} */
-
-@media (max-width: 600px) {
-  mat-card {
-    width: 80%;
-  }
+  margin : 100px auto;
+  width: 90%;
 }
 
-mat-card-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.button-container {
+  margin-top: 20px;
+  padding-bottom: 16px;
 }
 
-mat-card-title {
-  text-align: center;
-  font-size: 40px;
-  padding-bottom: 10%;
-  width: 100%;
-
+.demo-button  {
+  margin: 15px;
+  font-size: medium;
+  min-width: fit-content;
+  padding: 20px 20px;
 }
 
-mat-error {
-  margin-top: -6%;
-  margin-bottom: 1%;
-
+.updateCard label{
+  text-align: left;
 }
 
-.form{
-  padding-bottom: 5%;
+mat-error{
+  font-size: small;
 }
 
-.col{
-  width:215%;
+mat-form-field{
+  width: 35%;
+  overflow: auto;
+  min-width: 210px;
+  margin: 10px 1%;
 
 }
 
+label{
+  float: inline-start;
+  text-align: left;
+  letter-spacing: 2px;
+}
 
+.error{
+  color:red ;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.mat-chip-grid{
+  height: 80px !important;
+}

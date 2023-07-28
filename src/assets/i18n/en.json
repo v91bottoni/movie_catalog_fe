@@ -2,6 +2,7 @@
   "menu": {
       "home" : "HOME",
       "addFilm" : "ADD MOVIE",
+      "add" : "INSERT",
       "management" : "MANAGEMENT",
       "title" : "MOVIE CATALOGUE",
       "profile" : "PROFILE",
@@ -169,38 +170,38 @@
     "contactus":"Contact us!"
 },
 "chips": {
-    
-   
+
+
   "all": "All",
-      
+
   "0": "All",
   "1": "Action",
-          
-         
+
+
       "2": "Adventure",
-          
-         
+
+
       "3": "Drama",
-          
-         
+
+
       "4": "Animation",
-          
-         
+
+
       "5": "Sci-fFi",
           "6": "Fantasy",
-          
-         
+
+
       "7": "Comedy",
-          
-         
+
+
       "8": "Short",
-          
-         
+
+
       "9": "Family",
-          
-         
+
+
       "10": "Drama",
-    
+
         "11": "Documentary",
         "12": "Mistery",
         "13": "War",
@@ -211,35 +212,35 @@
     },
     "title": {
       "all": "All",
-      
+
       "0": "All",
       "1": "Action",
-          
-         
+
+
       "2": "Adventure",
-          
-         
+
+
       "3": "Drama",
-          
-         
+
+
       "4": "Animation",
-          
-         
+
+
       "5": "Sci-fFi",
           "6": "Fantasy",
-          
-         
+
+
       "7": "Comedy",
-          
-         
+
+
       "8": "Short",
-          
-         
+
+
       "9": "Family",
-          
-         
+
+
       "10": "Drama",
-    
+
         "11": "Documentary",
         "12": "Mistery",
         "13": "War",
@@ -254,36 +255,36 @@
   "close":"CLOSE"
 },
 "category": {
-    
-   
+
+
   "all": "All",
-      
-     
+
+
   "1": "Action",
-      
-     
+
+
   "2": "Adventure",
-      
-     
+
+
   "3": "Animation",
-      
-     
+
+
   "4": "Comedy",
-      
-     
+
+
   "5": "Crime",
       "6": "Drama",
-      
-     
+
+
   "7": "Documentary",
-      
-     
+
+
   "8": "Fantasy",
-      
-     
+
+
   "9": "Romance",
-      
-     
+
+
   "10": "Thriller",
 
     "11": "Mistero",
@@ -294,5 +295,5 @@
     "16": "Cortometraggio",
     "17": "Famiglia"
     }
-  
+
 }
