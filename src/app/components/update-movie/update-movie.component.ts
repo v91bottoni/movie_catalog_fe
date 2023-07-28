@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute,  Router } from '@angular/router';
@@ -10,8 +10,7 @@ import { UpdateMovieSuccessfullDialogComponent } from 'src/app/dialogs/update-mo
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MovieMapperService } from 'src/app/util/movie-mapper.service';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { GenreService } from 'src/app/service/genre.service';
+import { MatChipGrid} from '@angular/material/chips';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
 import { ProductionDTO } from 'src/app/models/dto/production-dto';
 import { ActorDTO } from 'src/app/models/dto/actor-dto';
@@ -19,6 +18,7 @@ import { WriterDTO } from 'src/app/models/dto/writer-dto';
 import { LanguageDTO } from 'src/app/models/dto/language-dto';
 import { DirectorDTO } from 'src/app/models/dto/director-dto';
 import { CountryDTO } from 'src/app/models/dto/country-dto';
+import { TypeDTO } from 'src/app/models/dto/type-dto';
 
 @Component({
   selector: 'app-update-movie',
@@ -26,7 +26,9 @@ import { CountryDTO } from 'src/app/models/dto/country-dto';
   styleUrls: ['./update-movie.component.scss']
 })
 export class UpdateMovieComponent implements OnDestroy{
+  @ViewChild('chipGridGenre') chipList!:MatChipGrid;
   movie:Movie  = new Movie();
+  resetmovie:Movie  = new Movie();
   submitted = false;
   updateForm: FormGroup = this.formbuilder.group({    actors :[''],    awards :[''],    boxoffice :[''],    country:[''],    director :[''],    dvd :[''],    genre :[''],    imdbrating :[''],    imdbvotes :[''],    language :[''],    plot :['', Validators.required],    poster :['', Validators.required],    production :[''],    rated :[''],    released :[''],     runtime :[''],    title :['', Validators.required],    totalseasons:[''],    type :[''],    website :[''],    writer :[''],    year :['', Validators.required]  });
   //controlsNames:string[] = ['actors',    'awards',    'boxoffice',    'countr',    'director',    'dvd',    'genre',   'imdbrating',    'imdbvotes',    'language',    'metascore',    'plot',    'poster',    'production',    'rated',    'released',    'response',    'runtime',    'title',    'totalseason',    'type','website','writer','year'];
@@ -38,7 +40,6 @@ export class UpdateMovieComponent implements OnDestroy{
   isHorizontal:boolean = !(window.innerWidth<1000);
 
 
-  listGenre:GenreDTO[]=[];
   resizing = () => {
     if(window.innerWidth<1000)this.isHorizontal=false;
     else this.isHorizontal=true;
@@ -55,11 +56,12 @@ export class UpdateMovieComponent implements OnDestroy{
     private alert: SnackbarService,
     private movieMapperService : MovieMapperService,
     private translate:TranslateService,
-    private genreService:GenreService) {
+    ) {
       let idMovie = this.activatedRoute.snapshot.paramMap.get('idMovie') + "";
       this.service.getMovieById(idMovie).subscribe(resp =>{
         this.movie = movieMapperService.movieDetailsDTOtoMovie(resp);
-        console.log(this.movie);
+        this.resetmovie = JSON.parse(JSON.stringify(this.movie));
+        //console.log(this.movie);
         this.reset();
       });
       window.scrollTo({
@@ -68,20 +70,14 @@ export class UpdateMovieComponent implements OnDestroy{
       });
       window.addEventListener("resize", this.resizing);
 
-
-      this.genreService.getAllGenre().subscribe(res=>{
-        console.log(res);
-        if(res){
-          this.listGenre=res;
-        }
-      });
   }
 
 
         updateData() {
           this.verifyStepError();
           this.submitted = true;
-          if(this.updateForm.valid){
+
+          if(this.updateForm.valid && this.genOK == true && this.proOK == true && this.othOK == true){
             let movie :Movie = this.updateForm.value;
             movie.imdbid = this.movie?.imdbid+"";
             movie.genre= this.movie.genre;
@@ -91,11 +87,15 @@ export class UpdateMovieComponent implements OnDestroy{
             movie.production= this.movie.production;
             movie.country= this.movie.country;
             movie.language= this.movie.language;
+            let type = new TypeDTO();
+            type.idType = this.updateForm.get('type')?.value;
+            movie.type = type;
             if(movie.boxoffice!= null && !movie.boxoffice.startsWith('$')){
               movie.boxoffice= "$" + movie.boxoffice;
             }
             console.log(this.movieMapperService.movieToMovieDetailsDTO(movie));
             this.service.updateMovie(this.movieMapperService.movieToMovieDetailsDTO(movie)).subscribe(resp =>{
+              console.log(resp);
               if(resp != null){
                 this.dialog.open(UpdateMovieSuccessfullDialogComponent)
                   .afterClosed().subscribe(result=>{
@@ -119,7 +119,6 @@ export class UpdateMovieComponent implements OnDestroy{
         }
 
         exit(){
-          console.log(this.util.backpage);
           this.route.navigate([this.util.backpage]);
         }
 
@@ -132,11 +131,11 @@ export class UpdateMovieComponent implements OnDestroy{
           this.genOK = true;
           this.proOK = true;
           this.othOK = true;
+          this.chipList.errorState = false;
 
           if(!this.updateForm.valid) {
             for(let control of this.genNames){
               if(this.updateForm.get(control)?.hasError('required')){
-                console.log(control);
                 this.genOK = false;
                 break;
               }
@@ -153,25 +152,18 @@ export class UpdateMovieComponent implements OnDestroy{
                 break;
               }
             }
-            if(this.movie.genre.length==0)this.genOK = false;
-            if(this.movie.actors.length==0)this.proOK=false;
-            if(this.movie.writer.length==0)this.proOK=false;
-            if(this.movie.director.length==0)this.proOK=false;
-            if(this.movie.production.length==0)this.proOK=false;
-            if(this.movie.country.length==0)this.proOK=false;
-            if(this.movie.language.length==0)this.proOK=false;
           }
-
-         /*if(!this.generalityForm.valid) {this .message = "Generality Step Incomplete!"}
-          if(!this.productionForm.valid) {this .message = "Production Info Step Incomplete!"}
-          if(!this.otherInfoForm.valid) {this .message = "Other Info Step Incomplete!"}*/
-
-
+          if(this.movie.genre.length == 0){
+            this.genOK = false;
+            this.chipList.errorState = true;
+          }
         }
+
         reset(){
           this.genOK = true;
           this.proOK = true;
           this.othOK = true;
+          this.movie = JSON.parse(JSON.stringify(this.resetmovie));
           this.updateForm = this.formbuilder.group({
             actors : [""],
             awards : [this.movie?.awards],
@@ -232,7 +224,8 @@ export class UpdateMovieComponent implements OnDestroy{
         }
 
         removeGenre(genreIn: GenreDTO): void {
-          this.movie.genre=this.movie?.genre.filter(gen=>gen!=genreIn);
+          this.movie.genre=this.movie?.genre.filter(genre=>genre!=genreIn);
+          console.log(this.movie.genre);
         }
         removeProduction(productionIn: ProductionDTO): void {
           this.movie.production = this.movie?.production.filter(production=>production!=productionIn);
@@ -252,23 +245,6 @@ export class UpdateMovieComponent implements OnDestroy{
         removeCountry(countryIn: CountryDTO): void {
           this.movie.country = this.movie?.country.filter(country=>country!=countryIn);
         }
-
-
-
-
-       /* add(event: MatChipInputEvent): void {
-          const value = (event.value || '').trim();
-
-          // Add our keyword
-          if (value) {
-            let genre:GenreDTO = new GenreDTO();
-            genre.genre=value;
-            this.movie?.genre.push(genre);
-          }
-
-          // Clear the input value
-          event.chipInput!.clear();
-        }*/
 
 
 }
