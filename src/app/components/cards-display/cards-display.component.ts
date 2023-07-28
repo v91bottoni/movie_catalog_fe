@@ -73,19 +73,11 @@ export class CardsDisplayComponent implements OnInit {
     this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
     this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
     this.updateSmallList();
-
-    // this.genreService.getAllGenre().subscribe(res =>{
-    //   this.chipsCategory = res;
-    // });
     
     let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
     if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
     if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
     
-    // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
-    
-    // if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
-
     // Sottoscrivi al cambiamento dei parametri dell'URL
     this.route.params.subscribe(params => {
         // Se il parametro 'gerne' è presente, chiama il metodo firstLoadCategory()
@@ -183,14 +175,6 @@ export class CardsDisplayComponent implements OnInit {
 
         console.log('1 '+params['gerne']);
         
-        
-        // Controlla se il valore corrente di 'currentChipsValue' è diverso dalla categoria corrente
-        // Se è diverso, aggiorna 'currentChipsValue' con il valore della categoria
-        
-        // if (this.currentChipsValue != this.category) {
-        //     this.currentChipsValue = this.category;
-        // }
-        
         // Chiama il metodo getMovieByGenre del movieService, passando la categoria e il numero di pagina 1
         this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
             // Assegna il valore di 'maxPageNumber' dalla risposta alla variabile 'maxPage'
@@ -283,22 +267,6 @@ firstLoadSearch() {
     this.router.navigate(['/movies', movieId]);
   }
 
-  // goToCategory(chips: number) {
-  //   // Verifica se il valore dei chips è "All"
-  //   if (chips === -1) {
-  //     // this.currentChipsValue = String(chips); // Imposta il valore corrente dei chips
-  //     this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-  //     this.goTop(); // Scrolla la pagina verso l'alto
-  //   } else {
-  //     // Altrimenti, imposta solo il valore corrente dei chips
-  //     this.currentChipsValue = String(chips);
-  //   }
-    
-  //   sessionStorage.setItem('chipsValue', this.currentChipsValue); // Salva il valore corrente dei chips nella sessione
-  //   this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-  //   this.goTop(); // Scrolla la pagina verso l'alto
-  // }
-
   goTop(){
     window.scrollTo({
       top: 0,
@@ -384,7 +352,6 @@ firstLoadSearch() {
     const filteredTable: Partial<Movie>[] = this.movies.map(x => ({
       title: x.movieDto.title,
       plot: x.movieDto.plot,
-      writer: x.writerDTOs,
       rating: x.movieDto.rating
     }));
     return filteredTable;
