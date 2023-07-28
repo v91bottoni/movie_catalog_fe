@@ -14,6 +14,8 @@ import { CountryDTO } from '../models/dto/country-dto';
 import { LanguageDTO } from '../models/dto/language-dto';
 import { LanguageService } from './language.service';
 import { Observable, forkJoin, map, tap } from 'rxjs';
+import { TypeDTO } from '../models/dto/type-dto';
+import { TypeService } from './type.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,7 @@ export class DatabaseService {
   languages!: LanguageDTO[];
   productions!: ProductionDTO[];
   writers!: WriterDTO[];
+  types!: TypeDTO[];
 
   constructor(
     private actorService: ActorService,
@@ -35,7 +38,8 @@ export class DatabaseService {
     private genreService: GenreService,
     private languageService: LanguageService,
     private productionService: ProductionService,
-    private writerService: WriterService
+    private writerService: WriterService,
+    private typeService: TypeService
     ) { }
 
   public loadTypologicals(): Promise<any>{
@@ -68,7 +72,8 @@ export class DatabaseService {
       genres : this.genreService.getAllGenre(),
       languages : this.languageService.getAllLanguages(),
       productions : this.productionService.getAllProductions(),
-      writers : this.writerService.getAllWriters()
+      writers : this.writerService.getAllWriters(),
+      types: this.typeService.getAllTypes()
     })
     .toPromise().then( (res) => {
       if(res){
@@ -87,6 +92,7 @@ export class DatabaseService {
         this.languages = res.languages;
         this.productions = res.productions;
         this.writers = res.writers;
+        this.types = res.types;
       }
     }).catch( (err) => {
       console.log("ERRORE: " + err);
