@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MultiSelectDialogComponent } from 'src/app/dialogs/multi-select-dialog/multi-select-dialog.component';
+import { Movie } from 'src/app/models/movie';
 
 @Component({
   selector: 'app-multi-select-button',
@@ -9,22 +10,17 @@ import { MultiSelectDialogComponent } from 'src/app/dialogs/multi-select-dialog/
 })
 export class MultiSelectButtonComponent {
   @Input() path:string = '';
-  @Output()launchString = new EventEmitter<string>();
+  @Input() movie!:Movie;
+  @Output()launchString = new EventEmitter<Array<any>>();
 constructor(public dialog: MatDialog){}
 
   openMenu(){
     this.dialog.open(MultiSelectDialogComponent, {
-      data: { path: this.path }
+      data: { path: this.path, movie:this.movie }
     }).afterClosed().subscribe(res=>{
       if(res!= null){
-        //console.log(res);
-        let out:string='';
-        res.forEach((element: string) => {
-          out += element+', ';
-        });
-        out = out.substring(0,out.length-2);
-        console.log(out);
-        this.launchString.emit(out);
+        console.log('MULTISELECT Button Component Result: ', res);
+        this.launchString.emit(res);
       }
     });
 

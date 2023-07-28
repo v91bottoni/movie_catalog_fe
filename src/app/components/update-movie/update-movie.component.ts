@@ -190,10 +190,16 @@ export class UpdateMovieComponent implements OnDestroy{
           window.removeEventListener("resize", this.resizing);
         }
 
-        setMultiSelectInput(event:string, path:string){
-          console.log('Event emit: ' ,event);
-          this.updateForm.get(path)?.setValue(event);
+        setMultiSelectInput(event:any[], path:string){
+          console.log('Event emit: ' , event);
+          console.log('Event Instance Of GenreDTO: ',event instanceof GenreDTO);
+          console.log('Event Instance Of ProductionDTO: ',event instanceof ProductionDTO);
+          console.log('Event Instance Of WriterDTO: ',event instanceof WriterDTO);
+          console.log('Event Instance Of LanguageDTO: ',event instanceof LanguageDTO);
+          console.log('Event Instance Of DirectorDTO: ',event instanceof DirectorDTO);
+          console.log('Event Instance Of CountryDTO: ',event instanceof CountryDTO);
 
+          //this.updateForm.get(path)?.setValue(event);
         }
 
         removeGenre(genreIn: GenreDTO): void {

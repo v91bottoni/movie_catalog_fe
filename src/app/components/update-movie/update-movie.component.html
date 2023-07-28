@@ -36,7 +36,7 @@
 
               <input [matChipInputFor]="chipGridGenre"
               matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
-              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'genre')" [path]="'genre'"  matSuffix></app-multi-select-button>
+              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'genre')" [path]="'genre'" [movie]="movie"  matSuffix></app-multi-select-button>
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
             </mat-form-field>
 
@@ -102,7 +102,7 @@
 
             <mat-chip-grid #chipGridProduction aria-label="Production selection">
               <mat-chip-row *ngFor="let production of movie?.production" (removed)="removeProduction(production)">
-                {{production.production}}
+                {{production.name}}
                 <button matChipRemove [attr.aria-label]="'remove ' + production">
                   <mat-icon>cancel</mat-icon>
                 </button>
@@ -111,7 +111,7 @@
 
 
             <input [matChipInputFor]="chipGridProduction"  matInput #production id="production" name="production" type="text" placeholder="{{ 'movie.production' | translate }}" formControlName="production">
-            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'production')" [path]="'production'"  matSuffix></app-multi-select-button>
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'production')" [path]="'production'" [movie]="movie"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -125,7 +125,7 @@
               </mat-chip-row>
             </mat-chip-grid>
             <input [matChipInputFor]="chipGridActors" matInput #actors  id="actors" name="actors" type="text" placeholder="{{ 'movie.actors' | translate }}" formControlName="actors">
-            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'actors')" [path]="'actors'"  matSuffix></app-multi-select-button>
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'actors')" [path]="'actors'" [movie]="movie" matSuffix></app-multi-select-button>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -139,7 +139,7 @@
               </mat-chip-row>
             </mat-chip-grid>
             <input [matChipInputFor]="chipGridWriter"  matInput #writer id="writer" name="writer" type="text" placeholder="{{ 'movie.writer' | translate }}" formControlName="writer">
-            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'writer')" [path]="'writer'"  matSuffix></app-multi-select-button>
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'writer')" [path]="'writer'" [movie]="movie" matSuffix></app-multi-select-button>
           </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -153,7 +153,7 @@
                 </mat-chip-row>
               </mat-chip-grid>
               <input [matChipInputFor]="chipGridlanguage"  matInput #language id="language" name="language" type="text" placeholder="{{ 'movie.language' | translate }}" formControlName="language">
-              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'language')" [path]="'language'"  matSuffix></app-multi-select-button>
+              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'language')" [path]="'language'" [movie]="movie" matSuffix></app-multi-select-button>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -167,7 +167,7 @@
                   </mat-chip-row>
                 </mat-chip-grid>
                 <input [matChipInputFor]="chipGridDirector"   matInput #director  id="director" name="director" type="text" placeholder="{{ 'movie.direcotr' | translate }}" formControlName="director">
-                <app-multi-select-button (launchString)="setMultiSelectInput($event, 'director')" [path]="'director'"  matSuffix></app-multi-select-button>
+                <app-multi-select-button (launchString)="setMultiSelectInput($event, 'director')" [path]="'director'" [movie]="movie" matSuffix></app-multi-select-button>
               </mat-form-field>
 
           <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
