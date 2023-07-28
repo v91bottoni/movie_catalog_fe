@@ -6,8 +6,8 @@
         <div class="movie-title">{{ movie.title }}</div>
         <div class="movie-year">{{ 'movie.released' | translate }}: {{ movie.year }}</div>
         <mat-chip-listbox aria-label="Genre selection" [value]="currentChipsValue">
-          <mat-chip disable color="accent" *ngFor="let genre of movie.genre; let i=index">
-            {{ 'title.' + i| translate }}
+          <mat-chip disable color="accent" *ngFor="let genre of movie.genre;">
+            {{ genre.genre }}
           </mat-chip>
           
                  </mat-chip-listbox>
