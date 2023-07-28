@@ -22,7 +22,7 @@ export class ActorService {
   }
 
   saveActor(actor: ActorDTO): Observable<ActorDTO>{
-    return this.http.post<ActorDTO>(this.apiUrl + 'save', actor);
+    return this.http.post<ActorDTO>(this.apiUrl + 'add', actor);
   }
 
 }
