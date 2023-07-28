@@ -10,7 +10,8 @@ import { GenreService } from 'src/app/service/genre.service';
 })
 export class CategoryChipsComponent implements OnInit {
   
-  currentChipsValue: number = Number(sessionStorage.getItem('currentChipsValue')) || -1;
+  currentChips: GenreDTO = {idGenre : -2, genre : 'null'};
+  currentChipsID: number = -1;
   chipsCategory! : GenreDTO[];
 
   constructor(
@@ -21,36 +22,34 @@ export class CategoryChipsComponent implements OnInit {
   
   ngOnInit(): void {
 
-    if (sessionStorage.getItem('currentChipsValue')) 
-      this.currentChipsValue = Number(sessionStorage.getItem('currentChipsValue'));
-    else 
-      this.currentChipsValue = -1;
-      
-    console.log('Chips Value '+this.currentChipsValue);
-    console.log('Type currentChipsValue: '+ typeof this.currentChipsValue);
+    console.log(this.currentChips.genre);
     
+
+    if (sessionStorage.getItem('currentChips')){
+      this.currentChips = JSON.parse(sessionStorage.getItem('currentChips') || '' );
+    }
+    else {
+      this.currentChips = {idGenre : -2, genre : 'null'};
+    }   
     
 
     this.genreService.getAllGenre().subscribe(res =>{
       this.chipsCategory = res;
     });
-
-    // this.currentChipsValue = Number(sessionStorage.getItem('currentChipsValue'));
-    // console.log('Chips value: '+ this.currentChipsValue);
     
   }
 
-  goToCategory(chips: number) {
-    this.currentChipsValue = chips;
-    sessionStorage.setItem('currentChipsValue', String(this.currentChipsValue))
-
-    if(chips!=-1){
-      this.router.navigate(['/home/gerne/' + chips]);
+  goToCategory(id_chips: number, chips: string = '-1') {
+    if(chips!='-1'){
+      this.currentChips = {idGenre: id_chips, genre: chips};
+      sessionStorage.setItem('currentChips', JSON.stringify(this.currentChips));
+      this.router.navigate(['/home/gerne/' + id_chips]);
     }
     else{
+      this.currentChips = {idGenre: -1, genre: 'all'};
+      sessionStorage.setItem('currentChips', JSON.stringify(this.currentChips));
       this.router.navigate(['/home/all']);
     }
-    
   }
 
   goTop(){

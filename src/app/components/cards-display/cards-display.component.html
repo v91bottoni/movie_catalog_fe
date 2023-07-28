@@ -48,25 +48,19 @@
         <!-- Title Column -->
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.title' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.title}}</p> </td>
+            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.movieDto.title}}</p> </td>
         </ng-container>
     
         <!-- Plot Column -->
         <ng-container matColumnDef="plot">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.plot' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.plot}}</p> </td>
-        </ng-container>
-    
-        <!-- Writer Column -->
-        <ng-container matColumnDef="writer">
-            <th mat-header-cell *matHeaderCellDef> {{ 'movie.writer' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.writer}}</p> </td>
+            <td mat-cell *matCellDef="let movie"> <p class="small-plot">{{movie.movieDto.plot}}</p> </td>
         </ng-container>
     
         <!-- IMDB Rating Column -->
         <ng-container matColumnDef="imdbrating">
             <th mat-header-cell *matHeaderCellDef> {{ 'movie.imdbRating' | translate }} </th>
-            <td mat-cell *matCellDef="let movie"> {{movie.imdbrating}} </td>
+            <td mat-cell *matCellDef="let movie"> {{movie.movieDto.rating}} </td>
         </ng-container>
 
         <!-- Bottone -->

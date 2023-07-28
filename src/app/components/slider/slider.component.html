@@ -1,7 +1,7 @@
 <div class="slider"> 
      
-    <!-- Titolo dello slider -->  <h1 class="title" (click)="viewAll(title)" *ngIf="type === 'all'"> {{'title.'+type |translate}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1> 
-    <h1 class="title" (click)="viewAll(title)" *ngIf="type === 'category'"> {{'title.'+category |translate}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1> 
+    <!-- Titolo dello slider -->  <h1 class="title" (click)="viewAll(-1)" *ngIf="type === 'all'"> {{'title.'+type |translate}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1> 
+    <h1 class="title" (click)="viewAll(category)" *ngIf="type === 'category'"> {{title}} <mat-icon style="font-size: 100%;"> chevron_right </mat-icon> </h1> 
     <hr> 
 
     <div class="slide"> 
