@@ -7,6 +7,9 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
+import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { GenreService } from 'src/app/service/genre.service';
+import { DatabaseService } from 'src/app/service/database.service';
 
 @Component({
   selector: 'app-home',
@@ -15,16 +18,15 @@ import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 })
 export class HomeComponent implements OnInit {
 
-  categories: string[] = ["action", "animation", "comedy", "drama", "fantasy", "romance"];
+  categoryFilter: number[] = [1, 4, 7, 3, 6, 14]; 
+  categories!: GenreDTO[]; /*= [{idGenre: 1, genre: 'Action'}, {idGenre: 4, genre: 'Animation'},
+                            {idGenre: 7, genre: 'Comedy'}, {idGenre: 3, genre: 'Drama'},
+                            {idGenre: 6, genre: 'Fantasy'}, {idGenre: 14, genre: 'Romance'},];*/
 
   movies!: MovieDetailsDTO[];
 
-  currentChipsValue: String = "-1"
-
   hover: boolean = true;
   idHover!: string;
-  chipsCategory = ['action', 'adventure', 'animation', 'comedy', 'crime', 'drama', 'documentary', 'fantasy', 'romance', 'thriller'];
-
 
   category!: number;
   title!: string;
@@ -32,9 +34,11 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.movies);
-        this.currentChipsValue = "-2";
 
+    sessionStorage.removeItem('currentChips')
+
+    this.categories= this.databaseService.genres.filter(o=> o.idGenre==1 || o.idGenre==4 || o.idGenre==7 || 
+                                                            o.idGenre==3 || o.idGenre==6 || o.idGenre==14);
 
   }
 
@@ -44,7 +48,9 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router, 
     private util: UtilityService, 
-    private authService:AuthService) {
+    private authService:AuthService,
+    private genreService: GenreService,
+    private databaseService: DatabaseService) {
       
       this.util.backpage = "home";
   }
