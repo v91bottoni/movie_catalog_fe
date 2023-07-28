@@ -74,8 +74,6 @@ export class MultiSelectDialogComponent {
 
   }
 
-
-
   check(option:any):boolean{
     switch(this.path){
       case 'actors':
