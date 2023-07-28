@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/service/movie.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-about-us',
@@ -12,12 +13,19 @@ export class AboutUsComponent implements OnDestroy{
   nVisitors=0;
   nEmployees=0;
   nSubscribers=0;
-  constructor(private service:MovieService){
+  constructor(private service:MovieService, private util:UtilityService){
     this.service.getAllMovies().subscribe(res=>{
       if(res){
         this.nMovie = res.totalElements;
       }
 
+    });
+
+    this.util.getEventNumberByType('visitor').subscribe(res=>{
+      if(res){
+        console.log('Numero Visite: ',res);
+        this.nVisitors=res;
+      }
     });
 
     document.addEventListener('scroll',this.scrollFun);
