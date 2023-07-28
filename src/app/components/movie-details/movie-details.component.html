@@ -10,7 +10,7 @@
         <div class="movie-plot">{{ movie.plot }}</div>
         <div class="movie-actors">
           
-            <mat-icon>person_outline</mat-icon> <a *ngFor="let actor of movie.actors" [href]="'https://en.wikipedia.org/wiki/' + actor.first_name + '_' + actor.last_name" target="_blank">{{ actor.first_name }} {{ actor.last_name }}</a>
+            <mat-icon>person_outline</mat-icon> <p *ngFor="let actor of movie.actors" ><a [href]="'https://en.wikipedia.org/wiki/' + actor.first_name + '_' + actor.last_name" target="_blank">{{ actor.first_name }} {{ actor.last_name }}</a>, &nbsp;</p>
           
         </div>
               </div>

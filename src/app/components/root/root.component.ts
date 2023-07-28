@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, map, startWith } from 'rxjs';
+import { DatabaseService } from 'src/app/service/database.service';
 import { MovieService } from 'src/app/service/movie.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
@@ -10,12 +11,13 @@ import { UtilityService } from 'src/app/service/utility.service';
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss']
 })
-export class RootComponent {
-
+export class RootComponent{
 
   title = 'movie-catalog-fe';
   drawer!:HTMLElement;
-  constructor(protected util: UtilityService){}
+  constructor(
+    protected util: UtilityService
+  ){}
 
   toggle(drawer:HTMLElement){
     this.drawer=drawer;

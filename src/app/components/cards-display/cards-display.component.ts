@@ -15,6 +15,7 @@ import { MovieMapperService } from 'src/app/util/movie-mapper.service';
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 import { GenreService } from 'src/app/service/genre.service';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cards-display',
@@ -41,7 +42,7 @@ export class CardsDisplayComponent implements OnInit {
   totalItems!: number;
   cardView: boolean = true;
   movies!: MovieDetailsDTO[];
-  displayedColumns: string[] = ['title', 'plot', 'writer', 'imdbrating', 'button', 'edit'];
+  displayedColumns: string[] = ['title', 'plot', 'imdbrating', 'button', 'edit'];
   home: boolean = false;
   gerne: boolean = false;
   search: boolean = false;
@@ -73,38 +74,30 @@ export class CardsDisplayComponent implements OnInit {
     this.updateGridCols(); // Aggiorna il numero di colonne nella griglia
     this.updateColsNumber(); // Aggiorna il numero di colonne in base alla dimensione dello schermo
     this.updateSmallList();
-
-    // this.genreService.getAllGenre().subscribe(res =>{
-    //   this.chipsCategory = res;
-    // });
     
     let bool: string = sessionStorage.getItem("cardView") as string; // Recupera il valore booleano di CardView dalla sessionStorage e lo assegna a bool
     if(bool === 'true') { this.cardView = true; } // Se bool è 'true', imposta this.cardView su true
     if (bool === 'false') { this.cardView = false; } // Se bool è 'false', imposta this.cardView su false
     
-    // Se esiste un valore nella sessionStorage con chiave "chipsValue", assegna il valore a this.currentChipsValue
-    
-    // if (sessionStorage.getItem("chipsValue")) { this.currentChipsValue = sessionStorage.getItem("chipsValue") as string; }
-
     // Sottoscrivi al cambiamento dei parametri dell'URL
-    this.route.params.subscribe(params => {
-        // Se il parametro 'gerne' è presente, chiama il metodo firstLoadCategory()
-        if (params['gerne']) { 
-          console.log('a');
-          
-            this.firstLoadCategory(); 
-        } 
-        // Se il parametro 'keyword' è presente, chiama il metodo firstLoadSearch()
-        else if (params['keyword']) { 
-            this.firstLoadSearch(); 
-        } 
-        // Altrimenti, imposta la variabile currentChipsValue su "-1" e chiama il metodo loadMovies()
-        else { 
-            // this.currentChipsValue = "-1"; 
-            this.loadMovies(); 
+    this.route.params.pipe(take(1)).subscribe(params => {
+      if (params['gerne']) {
+        // Controlla se params['gerne'] è un numero valido prima di effettuare le operazioni
+        const genreId = Number(params['gerne']);
+        if (!isNaN(genreId)) {
+          this.category = String(genreId + 1);
+          console.log('1 ' + params['gerne']);
+          this.firstLoadCategory();
+        } else {
+          // Se params['gerne'] non è un numero valido, gestisci il caso adeguatamente
+          console.error('Il parametro "gerne" non è un numero valido:', params['gerne']);
         }
+      } else if (params['keyword']) {
+        this.firstLoadSearch();
+      } else {
+        this.loadMovies();
+      }
     });
-
     // Sottoscrivi all'evento di cambio pagina del paginatore
     this.paginator.page.subscribe((event: PageEvent) => {
       // Aggiorna le variabili di paginazione
@@ -182,14 +175,6 @@ export class CardsDisplayComponent implements OnInit {
         this.category = String(Number(params['gerne']+1));
 
         console.log('1 '+params['gerne']);
-        
-        
-        // Controlla se il valore corrente di 'currentChipsValue' è diverso dalla categoria corrente
-        // Se è diverso, aggiorna 'currentChipsValue' con il valore della categoria
-        
-        // if (this.currentChipsValue != this.category) {
-        //     this.currentChipsValue = this.category;
-        // }
         
         // Chiama il metodo getMovieByGenre del movieService, passando la categoria e il numero di pagina 1
         this.movieService.getMovieByGenre(params['gerne'], 1).subscribe(res => {
@@ -283,22 +268,6 @@ firstLoadSearch() {
     this.router.navigate(['/movies', movieId]);
   }
 
-  // goToCategory(chips: number) {
-  //   // Verifica se il valore dei chips è "All"
-  //   if (chips === -1) {
-  //     // this.currentChipsValue = String(chips); // Imposta il valore corrente dei chips
-  //     this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-  //     this.goTop(); // Scrolla la pagina verso l'alto
-  //   } else {
-  //     // Altrimenti, imposta solo il valore corrente dei chips
-  //     this.currentChipsValue = String(chips);
-  //   }
-    
-  //   sessionStorage.setItem('chipsValue', this.currentChipsValue); // Salva il valore corrente dei chips nella sessione
-  //   this.router.navigateByUrl('/home/gerne/' + this.currentChipsValue); // Naviga verso la pagina di genere con il valore dei chips corrente
-  //   this.goTop(); // Scrolla la pagina verso l'alto
-  // }
-
   goTop(){
     window.scrollTo({
       top: 0,
@@ -384,7 +353,6 @@ firstLoadSearch() {
     const filteredTable: Partial<Movie>[] = this.movies.map(x => ({
       title: x.movieDto.title,
       plot: x.movieDto.plot,
-      writer: x.writerDTOs,
       rating: x.movieDto.rating
     }));
     return filteredTable;
