@@ -188,7 +188,7 @@ export class SliderComponent implements OnInit {
       page=this.current+1
       console.log(page);
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.genre.idGenre, page ,this.size).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination(this.category, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'right';
@@ -207,7 +207,7 @@ export class SliderComponent implements OnInit {
       // Decrementa la pagina corrente
       page=this.current-1;
       // Ottieni i film per genere con paginazione
-      this.movieService.getMoviesByGenreWithPagination( this.genre.idGenre, page ,this.size).subscribe(res=>{
+      this.movieService.getMoviesByGenreWithPagination(this.category, page ,this.size).subscribe(res=>{
         this.right=true;
         this.left=true
         this.animationState = 'left';
