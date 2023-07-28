@@ -9,7 +9,7 @@
           <ng-template #generality matStepLabel><p *ngIf="genOK" >{{ 'menu.movieGeneralities' | translate }}</p><p *ngIf="!genOK" class="error">{{ 'menu.movieGeneralities' | translate }}</p></ng-template>
 
           <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
-            <mat-label for="actors">{{ 'movie.title' | translate }}</mat-label>
+            <mat-label for="title">{{ 'movie.title' | translate }}</mat-label>
               <input  matInput #actors  id="title" name="title" type="text" placeholder="{{ 'movie.title' | translate }}" formControlName="title">
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.title' | translate)}  }}</mat-error>
             </mat-form-field>
@@ -24,8 +24,8 @@
               <mat-label for="genre">{{ 'movie.genre' | translate }}</mat-label>
 
 
-              <mat-chip-grid #chipGrid aria-label="Fruit selection">
-                <mat-chip-row *ngFor="let genre of movie?.genre" (removed)="remove(genre)">
+              <mat-chip-grid #chipGridGenre aria-label="Fruit selection">
+                <mat-chip-row *ngFor="let genre of movie?.genre" (removed)="removeGenre(genre)">
                   {{genre.genre}}
                   <button matChipRemove [attr.aria-label]="'remove ' + genre">
                     <mat-icon>cancel</mat-icon>
@@ -34,8 +34,9 @@
               </mat-chip-grid>
 
 
-              <input [matChipInputFor]="chipGrid"
+              <input [matChipInputFor]="chipGridGenre"
               matInput #genre id="genre" name="genre" type="text" placeholder="{{ 'movie.genre' | translate }}" formControlName="genre">
+              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'genre')" [path]="'genre'"  matSuffix></app-multi-select-button>
               <mat-error>{{ 'message.error.isRequired' | translate:  {'obj' : ('movie.genre' | translate)}  }}!</mat-error>
             </mat-form-field>
 
@@ -47,7 +48,12 @@
 
           <mat-form-field appearance="fill">
             <mat-label for="type">{{ 'movie.type' | translate }}</mat-label>
-            <input  matInput #type id="type" name="type" type="text" placeholder="{{ 'movie.type' | translate }}" formControlName="type">
+
+            <mat-select  #type id="type" name="type" type="text" placeholder="{{ 'movie.type' | translate }}" formControlName="type">
+              <mat-option  value="1">Film</mat-option>
+              <mat-option  value="2">Series</mat-option>
+              <mat-option  value="3">Game</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -73,43 +79,95 @@
             <input  matInput #runtime id="runtime" name="runtime" type="text" placeholder="{{ 'movie.runtime' | translate }}" formControlName="runtime">
           </mat-form-field>
 
-
-
-
           <div>
             <button mat-button matStepperNext>{{ 'button.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
+
+
+
+
+
+
+
+
+
       <mat-step [stepControl]="updateForm" >
         <ng-template #production matStepLabel><p *ngIf="proOK" >{{ 'menu.productionInfo' | translate }}</p><p *ngIf="!proOK" class="error">{{ 'menu.productionInfo' | translate }}</p></ng-template>
         <form [formGroup]="updateForm">
 
           <mat-form-field appearance="fill">
             <mat-label for="production">{{ 'movie.production' | translate }}</mat-label>
-            <input  matInput #production id="production" name="production" type="text" placeholder="{{ 'movie.production' | translate }}" formControlName="production">
+
+            <mat-chip-grid #chipGridProduction aria-label="Production selection">
+              <mat-chip-row *ngFor="let production of movie?.production" (removed)="removeProduction(production)">
+                {{production.production}}
+                <button matChipRemove [attr.aria-label]="'remove ' + production">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+
+
+            <input [matChipInputFor]="chipGridProduction"  matInput #production id="production" name="production" type="text" placeholder="{{ 'movie.production' | translate }}" formControlName="production">
+            <app-multi-select-button (launchString)="setMultiSelectInput($event, 'production')" [path]="'production'"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label for="actors">{{ 'movie.actors' | translate }}</mat-label>
-            <input  matInput #actors  id="actors" name="actors" type="text" placeholder="{{ 'movie.actors' | translate }}" formControlName="actors">
+            <mat-chip-grid #chipGridActors aria-label="Actors selection">
+              <mat-chip-row *ngFor="let actor of movie?.actors" (removed)="removeActor(actor)">
+                {{actor.first_name}} {{actor.last_name}}
+                <button matChipRemove [attr.aria-label]="'remove ' + actor">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input [matChipInputFor]="chipGridActors" matInput #actors  id="actors" name="actors" type="text" placeholder="{{ 'movie.actors' | translate }}" formControlName="actors">
             <app-multi-select-button (launchString)="setMultiSelectInput($event, 'actors')" [path]="'actors'"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label for="writer">{{ 'movie.writer' | translate }}</mat-label>
-            <input  matInput #writer id="writer" name="writer" type="text" placeholder="{{ 'movie.writer' | translate }}" formControlName="writer">
+            <mat-chip-grid #chipGridWriter aria-label="Writer selection">
+              <mat-chip-row *ngFor="let writer of movie?.writer" (removed)="removeWriter(writer)">
+                {{writer.first_name}} {{writer.last_name}}
+                <button matChipRemove [attr.aria-label]="'remove ' + writer">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input [matChipInputFor]="chipGridWriter"  matInput #writer id="writer" name="writer" type="text" placeholder="{{ 'movie.writer' | translate }}" formControlName="writer">
             <app-multi-select-button (launchString)="setMultiSelectInput($event, 'writer')" [path]="'writer'"  matSuffix></app-multi-select-button>
           </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label for="language">{{ 'movie.language' | translate }}</mat-label>
-              <input  matInput #language id="language" name="language" type="text" placeholder="{{ 'movie.language' | translate }}" formControlName="language">
+              <mat-chip-grid #chipGridlanguage aria-label="Languages selection">
+                <mat-chip-row *ngFor="let language of movie?.language" (removed)="removeLanguage(language)">
+                  {{language.language}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + language">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </mat-chip-grid>
+              <input [matChipInputFor]="chipGridlanguage"  matInput #language id="language" name="language" type="text" placeholder="{{ 'movie.language' | translate }}" formControlName="language">
+              <app-multi-select-button (launchString)="setMultiSelectInput($event, 'language')" [path]="'language'"  matSuffix></app-multi-select-button>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label for="director">{{ 'movie.director' | translate }}</mat-label>
-                <input  matInput #director  id="director" name="director" type="text" placeholder="{{ 'movie.direcotr' | translate }}" formControlName="director">
+                <mat-chip-grid #chipGridDirector aria-label="Director selection">
+                  <mat-chip-row *ngFor="let director of movie?.director" (removed)="removeDirector(director)">
+                    {{director.first_name}} {{director.last_name}}
+                    <button matChipRemove [attr.aria-label]="'remove ' + director">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip-row>
+                </mat-chip-grid>
+                <input [matChipInputFor]="chipGridDirector"   matInput #director  id="director" name="director" type="text" placeholder="{{ 'movie.direcotr' | translate }}" formControlName="director">
+                <app-multi-select-button (launchString)="setMultiSelectInput($event, 'director')" [path]="'director'"  matSuffix></app-multi-select-button>
               </mat-form-field>
 
           <mat-form-field title="{{'tooltip.obligatory' | translate }}" appearance="fill">
@@ -120,7 +178,15 @@
 
               <mat-form-field appearance="fill">
                 <mat-label for="country">{{ 'movie.country' | translate }}</mat-label>
-                <input  matInput #country id="country" name="country" type="text" placeholder="{{ 'movie.country' | translate }}" formControlName="country">
+                <mat-chip-grid #chipGridCountry aria-label="Country selection">
+                  <mat-chip-row *ngFor="let country of movie?.country" (removed)="removeCountry(country)">
+                    {{country.countries}}
+                    <button matChipRemove [attr.aria-label]="'remove ' + country">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip-row>
+                </mat-chip-grid>
+                <input [matChipInputFor]="chipGridCountry"  matInput #country id="country" name="country" type="text" placeholder="{{ 'movie.country' | translate }}" formControlName="country">
               </mat-form-field>
 
             <!--   <mat-form-field appearance="fill">

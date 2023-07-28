@@ -13,6 +13,12 @@ import { MovieMapperService } from 'src/app/util/movie-mapper.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { GenreService } from 'src/app/service/genre.service';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { ProductionDTO } from 'src/app/models/dto/production-dto';
+import { ActorDTO } from 'src/app/models/dto/actor-dto';
+import { WriterDTO } from 'src/app/models/dto/writer-dto';
+import { LanguageDTO } from 'src/app/models/dto/language-dto';
+import { DirectorDTO } from 'src/app/models/dto/director-dto';
+import { CountryDTO } from 'src/app/models/dto/country-dto';
 
 @Component({
   selector: 'app-update-movie',
@@ -152,16 +158,16 @@ export class UpdateMovieComponent implements OnDestroy{
           this.proOK = true;
           this.othOK = true;
           this.updateForm = this.formbuilder.group({
-            actors : [this.movie?.actors],
+            actors : [""],
             awards : [this.movie?.awards],
             boxoffice : [this.movie?.boxoffice],
-            country: [this.movie?.country],
-            director : [this.movie?.director],
+            country: [""],
+            director : [""],
             dvd : [this.movie?.dvd],
             genre : ["",{validators:[Validators.required],updateOn:"change"}],
             imdbrating : [this.movie?.rating],
             imdbvotes : [this.movie?.voteNumber],
-            language : [this.movie?.language],
+            language : [""],
             plot : [this.movie?.plot,{validators:[Validators.required],updateOn:"change"}],
             poster : [this.movie?.poster,{validators:[Validators.required],updateOn:"change"}],
             production : [this.movie?.production],
@@ -170,11 +176,12 @@ export class UpdateMovieComponent implements OnDestroy{
             runtime : [this.movie?.runtime],
             title : [this.movie?.title,{validators:[Validators.required],updateOn:"change"}],
             totalseasons : [this.movie?.totalseasons],
-            type : [this.movie?.type],
+            type : [this.movie?.type.idType+""],
             website : [this.movie?.website],
-            writer : [this.movie?.writer],
+            writer : [""],
             year : [this.movie?.year,{validators:[Validators.required],updateOn:"change"}],
           });
+          ;
 
         }
 
@@ -189,22 +196,41 @@ export class UpdateMovieComponent implements OnDestroy{
 
         }
 
-        remove(genre: GenreDTO): void {
-          this.movie.genre=this.movie?.genre.filter(gen=>gen!=genre);
-         
+        removeGenre(genreIn: GenreDTO): void {
+          this.movie.genre=this.movie?.genre.filter(gen=>gen!=genreIn);
         }
-      
+        removeProduction(productionIn: ProductionDTO): void {
+          this.movie.production = this.movie?.production.filter(production=>production!=productionIn);
+        }
+        removeActor(actorIn: ActorDTO): void {
+          this.movie.actors = this.movie?.actors.filter(actor=>actor!=actorIn);
+        }
+        removeWriter(writerIn: WriterDTO): void {
+          this.movie.writer = this.movie?.writer.filter(writer=>writer!=writerIn);
+        }
+        removeLanguage(languageIn: LanguageDTO): void {
+          this.movie.language = this.movie?.language.filter(language=>language!=languageIn);
+        }
+        removeDirector(directorIn: DirectorDTO): void {
+          this.movie.director = this.movie?.director.filter(director=>director!=directorIn);
+        }
+        removeCountry(countryIn: CountryDTO): void {
+          this.movie.country = this.movie?.country.filter(country=>country!=countryIn);
+        }
+
+
+
 
        /* add(event: MatChipInputEvent): void {
           const value = (event.value || '').trim();
-      
+
           // Add our keyword
           if (value) {
             let genre:GenreDTO = new GenreDTO();
             genre.genre=value;
             this.movie?.genre.push(genre);
           }
-      
+
           // Clear the input value
           event.chipInput!.clear();
         }*/

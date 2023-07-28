@@ -3,3 +3,4 @@ export interface ActorDTO {
     first_name: string,
     last_name: string
 }
+export class ActorDTO{}
