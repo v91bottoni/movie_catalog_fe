@@ -130,6 +130,7 @@ export class CardsDisplayComponent implements OnInit {
   
       // Se esiste il parametro 'keyword'
       if (params['keyword']) {
+        sessionStorage.removeItem('currentChips')
         // Recupera la dimensione della pagina dal paginatore
         const pageSize = this.paginator.pageSize;
         // Cerca i film con paginazione
@@ -195,6 +196,7 @@ export class CardsDisplayComponent implements OnInit {
 }
 
 firstLoadSearch() {
+  sessionStorage.removeItem('currentChips')
   // Sottoscrive ai parametri della rotta
   this.route.params.subscribe(params => {
       // Assegna il valore del parametro 'keyword' alla variabile 'keyword'
