@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { timeout } from 'rxjs';
 import { LoginStates } from 'src/app/enums/loginStates';
 import { AuthService } from 'src/app/service/auth.service';
+import { DatabaseService } from 'src/app/service/database.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private router: Router, 
     private util: UtilityService,
     private alert: SnackbarService,
-    private translate: TranslateService) {}
+    private translate: TranslateService,
+    private dbService: DatabaseService) {}
     
   ngOnInit(): void {
 
@@ -56,11 +58,16 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userID', res.user.id.toString() || '');
         sessionStorage.setItem('userName', res.user.name || '');
         sessionStorage.setItem('token', res.token || '');
-        this.router.navigateByUrl('/home');
         this.util.username = res.user.name;
         this.util.role = res.user.role.role;
-
-        this.alert.openSuccess(this.translate.instant("message.loginSuccess"), this.translate.instant("button.ok"));
+        
+        this.dbService.loadTypologicals().then( () => {
+          this.router.navigateByUrl('/home');
+          this.alert.openSuccess(this.translate.instant("message.loginSuccess"), this.translate.instant("button.ok"));
+        }).catch( (err) =>{
+          console.log(err);
+        })
+        
       },
       (res) => {
         if(res.error.msg == LoginStates.badCredentials){

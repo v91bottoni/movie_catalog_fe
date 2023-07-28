@@ -1,4 +1,4 @@
-import { NgModule, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -69,6 +69,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { MultiSelectButtonComponent } from './components/multi-select-button/multi-select-button.component';
 import { MultiSelectDialogComponent } from './dialogs/multi-select-dialog/multi-select-dialog.component';
 import { CategoryChipsComponent } from './components/category-chips/category-chips.component';
+import { DatabaseService } from './service/database.service';
+import { AuthService } from './service/auth.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -165,9 +167,30 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true
     },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeDB,
+      deps: [DatabaseService, AuthService],
+      multi: true
+    },
     MatNativeDateModule,
   ],
   bootstrap: [AppComponent]
 })
 
 export class AppModule { }
+
+export function initializeDB(dbService: DatabaseService, authService: AuthService): () => Promise<void> {
+  return () =>
+    new Promise((resolve) =>{
+      if(authService.isLogged()){
+        dbService.loadTypologicals().then( () => {
+          console.log(dbService.actors);
+          
+          resolve();
+        });
+      }else{
+        resolve();
+      }
+    })
+}
