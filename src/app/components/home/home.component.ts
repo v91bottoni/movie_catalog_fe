@@ -18,7 +18,6 @@ import { DatabaseService } from 'src/app/service/database.service';
 })
 export class HomeComponent implements OnInit {
 
-  categoryFilter: number[] = [1, 4, 7, 3, 6, 14]; 
   categories!: GenreDTO[]; /*= [{idGenre: 1, genre: 'Action'}, {idGenre: 4, genre: 'Animation'},
                             {idGenre: 7, genre: 'Comedy'}, {idGenre: 3, genre: 'Drama'},
                             {idGenre: 6, genre: 'Fantasy'}, {idGenre: 14, genre: 'Romance'},];*/

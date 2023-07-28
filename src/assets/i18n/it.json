@@ -175,68 +175,127 @@
   "all": "Tutti",
       
      
-  "action": "Azione",
+  "1": "Azione",
       
      
-  "adventure": "Avventura",
+  "2": "Aventura",
       
      
-  "animation": "Animazione",
+  "3": "Drammatico",
       
      
-  "comedy": "Commedia",
+  "4": "Animazione",
       
      
-  "crime": "Crimine",
+  "5": "Sci-Fi",
+      "6": "Fantasia",
       
      
-  "drama": "Dramma",
-      "documentary": "Documentario",
-      "fantasy": "Fantasy",
+  "7": "Commedia",
       
      
-  "romance": "Romantico",
+  "8": "Cortometraggio",
       
      
-  "thriller": "Romanzo"
+  "9": "Famiglia",
+      
+     
+  "10": "Drammatico",
+  "11": "Documentario",
+    "12": "Mistero",
+    "13": "Guerra",
+    "14": "Romantico",
+    "15": "Storico",
+    "16": "Thriller",
+    "17": "Horror"
+
     },
 
     "title": {
-      "For You": "Per Te",
-   
+     
       "all": "Tutti",
-          
-         
-      "action": "Azione",
-          
-         
-      "adventure": "Avventura",
-          
-         
-      "animation": "Animazione",
-          
-         
-      "comedy": "Commedia",
-          
-         
-      "crime": "Crimine",
-          
-         
-      "drama": "Dramma",
-          "documentary": "Documentario",
-          "fantasy": "Fantasy",
-          
-         
-      "romance": "Romantico",
-          
-         
-      "thriller": "Romanzo"
+      
+     
+  "1": "Azione",
+      
+     
+  "2": "Aventura",
+      
+     
+  "3": "Drammatico",
+      
+     
+  "4": "Animazione",
+      
+     
+  "5": "Sci-Fi",
+      "6": "Fantasia",
+      
+     
+  "7": "Commedia",
+      
+     
+  "8": "Cortometraggio",
+      
+     
+  "9": "Famiglia",
+      
+     
+  "10": "Drammatico",
+  "11": "Documentario",
+    "12": "Mistero",
+    "13": "Guerra",
+    "14": "Romantico",
+    "15": "Storico",
+    "16": "Thriller",
+    "17": "Horror"
         },
 "multiselect" : {
   "title":"Selezionare le voci d'interesse",
   "ok":"OK",
   "close":"CHIUDI"
-}
+},
+"category": {
+    
+   
+  "all": "Tutti",
+      
+     
+  "1": "Azione",
+      
+     
+  "2": "Aventura",
+      
+     
+  "3": "Animazione",
+      
+     
+  "4": "Commedia",
+      
+     
+  "5": "Crimine",
+      "6": "Drammatico",
+      
+     
+  "7": "Documentario",
+      
+     
+  "8": "Fantasy",
+      
+     
+  "9": "Romantico",
+      
+     
+  "10": "Romanzo",
+  "11": "Mistero",
+    "12": "Guerra",
+    "13": "Storia",
+    "14": "Horror",
+    "15": "Sci-Fi",
+    "16": "Cortometraggio",
+    "17": "Famiglia"
+
+    }
     
 
 }

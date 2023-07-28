@@ -1,7 +1,7 @@
 <!-- Chips -->
 <div class="chips">
     <mat-chip-listbox aria-label="Fish selection" value={{currentChips.genre}}>
-        <mat-chip-option (click)="goToCategory(-1)" value="all" [disabled]="'all'==currentChips.genre"> All </mat-chip-option>
-        <mat-chip-option (click)="goToCategory(chips.idGenre, chips.genre)" *ngFor="let chips of chipsCategory" [value]="chips.genre" [disabled]="chips.genre==currentChips.genre"> {{chips.genre}}</mat-chip-option>
+        <mat-chip-option (click)="goToCategory(-1)" value="all" [disabled]="'all'==currentChips.genre"> {{'title.all' |translate}} </mat-chip-option>
+        <mat-chip-option (click)="goToCategory(chips.idGenre, chips.genre)" *ngFor="let chips of chipsCategory" [value]="chips.genre" [disabled]="chips.genre==currentChips.genre"> {{'title.'+chips.idGenre | translate}}</mat-chip-option>
     </mat-chip-listbox>
 </div>
