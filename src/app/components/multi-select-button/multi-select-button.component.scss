@@ -3,21 +3,22 @@
     height: fit-content;
 }
 .multi-select-btn{
-    width: 30px;
-    height: 30px;
     display: flex;
-    align-content: center;
+    margin-right: 6px;
+    padding: 3px;
+    text-align: center;
     border-radius: 50%;
     border:none;
     background: green;
+    transition: 0.2s;
+}
+.multi-select-btn:hover{
+    cursor: pointer;
+    background: rgb(30, 223, 30);
+    transform: translate(-1px,-1px);
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.575);
 }
 .multi-select-btn mat-icon{
     filter: invert(100%);
 }
 
-.multi-select-menu{
-transition: 0.3s;
-position: absolute;
-margin: 0 auto;
-padding: 15px;
-}

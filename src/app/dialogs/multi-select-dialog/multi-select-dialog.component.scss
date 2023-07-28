@@ -1,4 +1,12 @@
 .multi-select-menu{
-    padding: 15px;
+    text-align: center;
+    width: 30vw;
+    max-height: 80vh;
+    min-width: 220px;
+    padding: 10px 25px;
+}
+
+.multi-select-menu mat-chip-option{
+text-align: center;
 }
     

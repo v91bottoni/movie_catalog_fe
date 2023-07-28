@@ -3,3 +3,4 @@ export interface WriterDTO {
     first_name: string,
     last_name: string
 }
+export class WriterDTO {}

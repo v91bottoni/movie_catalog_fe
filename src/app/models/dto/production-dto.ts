@@ -1,4 +1,5 @@
 export interface ProductionDTO {
     idProduction: number,
-	production: string
+	name: string
 }
+export class ProductionDTO {}

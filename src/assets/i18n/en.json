@@ -235,6 +235,7 @@
       "thriller": "Thriller"
         },
 "multiselect" : {
+  "title":"Select the items of interest",
   "ok":"OK",
   "close":"CLOSE"
 }
