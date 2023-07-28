@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { DatabaseService } from 'src/app/service/database.service';
 import { GenreService } from 'src/app/service/genre.service';
 
 @Component({
@@ -12,11 +13,12 @@ export class CategoryChipsComponent implements OnInit {
   
   currentChips: GenreDTO = {idGenre : -2, genre : 'null'};
   currentChipsID: number = -1;
-  chipsCategory! : GenreDTO[];
+  chipsCategory : GenreDTO[] = this.databaseService.genres;
 
   constructor(
     private genreService: GenreService,
     private router: Router,
+    private databaseService: DatabaseService
     ){}
   
   
@@ -31,11 +33,8 @@ export class CategoryChipsComponent implements OnInit {
     else {
       this.currentChips = {idGenre : -2, genre : 'null'};
     }   
-    
 
-    this.genreService.getAllGenre().subscribe(res =>{
-      this.chipsCategory = res;
-    });
+      // this.chipsCategory = res;
     
   }
 

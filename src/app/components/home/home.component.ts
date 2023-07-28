@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
 import { GenreService } from 'src/app/service/genre.service';
+import { DatabaseService } from 'src/app/service/database.service';
 
 @Component({
   selector: 'app-home',
@@ -33,14 +34,12 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let allCategorys: GenreDTO[];
-    
-    this.genreService.getAllGenre().subscribe(res=> {
-      allCategorys=res;
-      this.categories= allCategorys.filter(o=> o.idGenre==1 || o.idGenre==4 || o.idGenre==7 || 
-                              o.idGenre==3 || o.idGenre==6 || o.idGenre==14);
-        
-    });
+
+    sessionStorage.removeItem('currentChips')
+
+    this.categories= this.databaseService.genres.filter(o=> o.idGenre==1 || o.idGenre==4 || o.idGenre==7 || 
+                                                            o.idGenre==3 || o.idGenre==6 || o.idGenre==14);
+
   }
 
   constructor(
@@ -50,7 +49,8 @@ export class HomeComponent implements OnInit {
     private router: Router, 
     private util: UtilityService, 
     private authService:AuthService,
-    private genreService: GenreService) {
+    private genreService: GenreService,
+    private databaseService: DatabaseService) {
       
       this.util.backpage = "home";
   }

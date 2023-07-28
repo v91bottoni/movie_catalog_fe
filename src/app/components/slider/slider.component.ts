@@ -8,6 +8,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MovieDetailsDTO } from 'src/app/models/dto/movie-details-dto';
 import { GenreService } from 'src/app/service/genre.service';
 import { GenreDTO } from 'src/app/models/dto/genre-dto';
+import { DatabaseService } from 'src/app/service/database.service';
 
 @Component({
   selector: 'app-slider',
@@ -53,7 +54,8 @@ export class SliderComponent implements OnInit {
 
   }
 
-  constructor(private movieService: MovieService, public dialog: MatDialog, private router: Router, private genreService: GenreService){}
+  constructor(private movieService: MovieService, public dialog: MatDialog, 
+              private router: Router, private genreService: GenreService){}
 
   openDialog(imdbid: string){
     this.movieService.movieid = imdbid;
