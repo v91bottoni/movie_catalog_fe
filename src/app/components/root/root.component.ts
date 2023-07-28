@@ -11,27 +11,13 @@ import { UtilityService } from 'src/app/service/utility.service';
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss']
 })
-export class RootComponent implements OnInit{
+export class RootComponent{
 
   title = 'movie-catalog-fe';
   drawer!:HTMLElement;
   constructor(
-    protected util: UtilityService,
-    private db: DatabaseService
+    protected util: UtilityService
   ){}
-
-  ngOnInit(): void {
-    this.db.loadTypologicals();
-    setTimeout(() => {
-      console.log(this.db.actors);
-      console.log(this.db.countries);
-      console.log(this.db.genres);
-      console.log(this.db.directors);
-      console.log(this.db.languages);
-      console.log(this.db.productions);
-      console.log(this.db.writers);
-    }, 5000);
-  }
 
   toggle(drawer:HTMLElement){
     this.drawer=drawer;
