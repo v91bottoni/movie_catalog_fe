@@ -1,7 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ActorDTO } from 'src/app/models/dto/actor-dto';
 import { Movie } from 'src/app/models/movie';
+import { ActorService } from 'src/app/service/actor.service';
+import { CountryService } from 'src/app/service/country.service';
 import { DatabaseService } from 'src/app/service/database.service';
+import { DirectorService } from 'src/app/service/director.service';
+import { GenreService } from 'src/app/service/genre.service';
+import { LanguageService } from 'src/app/service/language.service';
+import { ProductionService } from 'src/app/service/production.service';
+import { WriterService } from 'src/app/service/writer.service';
 
 @Component({
   selector: 'app-multi-select-dialog',
@@ -17,6 +25,13 @@ export class MultiSelectDialogComponent {
   movie!:Movie;
   constructor(
     private dataService : DatabaseService,
+    private actorService:ActorService,
+    private countriesService : CountryService,
+    private languagesService : LanguageService,
+    private directorsService : DirectorService,
+    private genresService : GenreService,
+    private writersService : WriterService,
+    private productionsService : ProductionService,
     public dialogRef: MatDialogRef<MultiSelectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: { path: string, movie: Movie }){
     this.path = data.path;
@@ -117,25 +132,53 @@ export class MultiSelectDialogComponent {
     this.listElement=[];
     switch(this.path){
       case 'actors':
-        this.listElement = this.dataService.actors;
+        if(!this.dataService.actors){
+          this.actorService.getAllActors().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.actors;
         break;
       case 'country':
-        this.listElement = this.dataService.countries;
+        if(!this.dataService.countries){
+          this.countriesService.getAllCountries().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.countries;
         break;
       case 'language':
-        this.listElement = this.dataService.languages;
+        if(!this.dataService.languages){
+          this.languagesService.getAllLanguages().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.languages;
         break;
       case 'director':
-        this.listElement = this.dataService.directors;
+        if(!this.dataService.directors){
+          this.directorsService.getAllDirectors().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.directors;
         break;
       case 'genre':
-        this.listElement = this.dataService.genres;
+        if(!this.dataService.genres){
+          this.genresService.getAllGenre().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.genres;
         break;
       case 'production':
-        this.listElement = this.dataService.productions;
+        if(!this.dataService.productions){
+          this.productionsService.getAllProductions().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.productions;
         break;
       case 'writer':
-        this.listElement = this.dataService.writers;
+        if(!this.dataService.writers){
+          this.writersService.getAllWriters().subscribe(res => {
+              if(res) this.listElement = res;
+            });
+        } else this.listElement = this.dataService.writers;
         break;
     }
   }
