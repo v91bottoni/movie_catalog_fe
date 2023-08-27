@@ -2,8 +2,9 @@ import { user } from "./user";
 
 export interface Click_event{
   id: number;
-  event_type: string;
-  event_date: Date;
-  event_user: user;
+  eventType: string;
+  eventDate: Date;
+  eventUser: user;
 
 }
+export class Click_event{}

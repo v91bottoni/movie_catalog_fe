@@ -25,4 +25,11 @@ export class UserService {
   disableUser(user: user):Observable<user>{
     return this.http.patch<user>(this.userApiUrl + 'disable', user);
   }
+
+  getNumberEmployees():Observable<number>{
+    return this.http.get<number>(this.userApiUrl + 'numberEmployees');
+  }
+  getNumberSubscribers():Observable<number>{
+    return this.http.get<number>(this.userApiUrl + 'numberSubscribers');
+  }
 }

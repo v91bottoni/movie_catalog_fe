@@ -10,6 +10,7 @@ export interface user{
     disabledAt: Date
     passReset: boolean
 }
+export class user{}
 
 export interface Role{
     id: number,

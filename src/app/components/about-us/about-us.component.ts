@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/service/movie.service';
+import { UserService } from 'src/app/service/user.service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -13,15 +14,32 @@ export class AboutUsComponent implements OnDestroy{
   nVisitors=0;
   nEmployees=0;
   nSubscribers=0;
-  constructor(private service:MovieService, private util:UtilityService){
-    this.service.getAllMovies().subscribe(res=>{
+  constructor(
+      private movieService:MovieService,
+        private util:UtilityService,
+        private userService:UserService){
+    this.movieService.getAllMovies().subscribe(res=>{
       if(res){
         this.nMovie = res.totalElements;
       }
 
     });
 
-    this.util.getEventNumberByType('visitor').subscribe(res=>{
+    this.userService.getNumberEmployees().subscribe(res=>{
+      if(res!= null){
+        this.nEmployees = res;
+      }
+
+    });
+
+    this.userService.getNumberSubscribers().subscribe(res=>{
+      if(res!= null){
+        this.nSubscribers = res;
+      }
+
+    });
+
+    this.util.getEventNumberByType('view').subscribe(res=>{
       if(res){
         console.log('Numero Visite: ',res);
         this.nVisitors=res;
